@@ -45,4 +45,15 @@ class Smart_SEO_Admin_UI {
     public static function render_audit_report() {
         include plugin_dir_path(__FILE__) . '../templates/audit-report.php';
     }
+
+    public static function init() {
+        add_action('admin_menu', [__CLASS__, 'add_menu']);
+        add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue_assets']);
+    }
+    
+    public static function enqueue_assets($hook) {
+        if (strpos($hook, 'smart-seo') !== false) {
+            wp_enqueue_style('smart-seo-admin', plugin_dir_url(__FILE__) . '../css/admin.css');
+        }
+    }
 }

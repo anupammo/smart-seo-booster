@@ -15,5 +15,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-loader.php';
 
 // Initialize plugin
 add_action('plugins_loaded', function () {
+    // Load translation files
+    load_plugin_textdomain('smart-seo-booster', false, dirname(plugin_basename(__FILE__)) . '/languages');
+
+    // Initialize plugin modules
     Smart_SEO_Loader::init();
 });

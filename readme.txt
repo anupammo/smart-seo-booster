@@ -1,0 +1,62 @@
+=== Smart SEO Booster ===
+Contributors: anupam-mondal  
+Tags: seo, schema, json-ld, internal links, content audit, wordpress seo  
+Requires at least: 5.2  
+Tested up to: 6.5  
+Stable tag: 1.0.0  
+License: GPLv2 or later  
+License URI: https://www.gnu.org/licenses/gpl-2.0.html  
+
+Modular SEO plugin with schema injection, content audit, and internal link analysis. Built for clarity, automation, and performance.
+
+== Description ==
+
+Smart SEO Booster is a lightweight, modular plugin designed to improve your website's SEO with minimal effort. It automatically injects JSON-LD schema, audits content structure, and analyzes internal links — all from a clean admin interface.
+
+**Features:**
+* Dynamic JSON-LD schema for Article, FAQ, LocalBusiness, Organization, and ProfilePage
+* Title and meta description injection
+* Content audit: word count, headings, image alt coverage
+* Internal link analysis
+* Admin dashboard with audit report
+* Localization-ready
+
+Built by Anupam Mondal — Full Stack Developer & SEO Consultant — to automate clarity and boost discoverability.
+
+== Installation ==
+
+1. Upload the plugin folder to `/wp-content/plugins/`
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Go to **Smart SEO → Settings** to enable schema and view audit reports
+
+== Frequently Asked Questions ==
+
+= Does this plugin support custom post types? =
+Yes, schema detection works for posts, pages, and can be extended to CPTs.
+
+= Can I customize the schema output? =
+Yes, schema templates are modular PHP files located in `/schema/`.
+
+= Will this plugin slow down my site? =
+No. It uses minimal hooks and outputs schema only in the footer.
+
+== Screenshots ==
+
+1. Admin settings panel
+2. SEO audit report table
+3. Schema markup preview
+
+== Changelog ==
+
+= 1.0.0 =
+* Initial release with schema injection, audit report, and internal link analysis
+
+== Upgrade Notice ==
+
+= 1.0.0 =
+First release. Safe to install and test on WordPress 5.2+.
+
+== Localization ==
+
+This plugin is translation-ready. `.pot` file included in `/languages/`.
+

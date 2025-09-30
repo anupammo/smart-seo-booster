@@ -16,6 +16,15 @@ class Smart_SEO_Admin_UI {
             'dashicons-chart-line',
             80
         );
+
+        add_submenu_page(
+            'smart-seo',
+            'SEO Audit Report',
+            'Audit Report',
+            'manage_options',
+            'smart-seo-audit',
+            [__CLASS__, 'render_audit_report']
+        );
     }
 
     public static function render_settings_page() {
@@ -31,5 +40,9 @@ class Smart_SEO_Admin_UI {
             </form>
         </div>
         <?php
+    }
+
+    public static function render_audit_report() {
+        include plugin_dir_path(__FILE__) . '../templates/audit-report.php';
     }
 }

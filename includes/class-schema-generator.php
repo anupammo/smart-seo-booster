@@ -7,17 +7,30 @@ class Smart_SEO_Schema_Generator {
     }
 
     public static function output_schema() {
+        if (is_admin()) return;
+
         $options = get_option('smart_seo_options');
         if (empty($options['enable_schema'])) return;
 
-        $schema = [
-            "@context" => "https://schema.org",
-            "@type" => "WebSite",
-            "name" => get_bloginfo('name'),
-            "url" => home_url(),
-            "description" => get_bloginfo('description')
-        ];
+        $schema_type = self::detect_schema_type();
 
-        echo "<script type='application/ld+json'>" . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
+        $schema_file = plugin_dir_path(__FILE__) . "../schema/{$schema_type}-schema.php";
+        if (!file_exists($schema_file)) return;
+
+        $schema_data = require $schema_file;
+        if (!is_array($schema_data)) return;
+
+        echo "<script type='application/ld+json'>" . wp_json_encode($schema_data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
+    }
+
+    private static function detect_schema_type() {
+        // Priority: Admin selection (future enhancement), then page context
+        if (is_singular('post')) return 'article';
+        if (is_page('faq')) return 'faq';
+        if (is_page('about')) return 'profile-page';
+        if (is_front_page()) return 'organization';
+        if (is_page('contact') || is_page('services')) return 'local-business';
+
+        return 'organization'; // Default fallback
     }
 }

@@ -4,6 +4,7 @@ defined('ABSPATH') || exit;
 class Smart_SEO_Admin_UI {
     public static function init() {
         add_action('admin_menu', [__CLASS__, 'add_menu']);
+        add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue_assets']);
     }
 
     public static function add_menu() {
@@ -44,11 +45,6 @@ class Smart_SEO_Admin_UI {
 
     public static function render_audit_report() {
         include plugin_dir_path(__FILE__) . '../templates/audit-report.php';
-    }
-
-    public static function init() {
-        add_action('admin_menu', [__CLASS__, 'add_menu']);
-        add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue_assets']);
     }
     
     public static function enqueue_assets($hook) {

@@ -4,11 +4,20 @@
   font-size: 28px;
   margin-bottom: 20px;
   color: #23282d;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wrap h1:before {
+  content: "📈";
+  font-size: 24px;
 }
 
 table.widefat {
   margin-top: 20px;
   border-collapse: collapse;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 table.widefat th,
@@ -20,6 +29,8 @@ table.widefat td {
 table.widefat th {
   background-color: #f1f1f1;
   font-weight: 600;
+  color: #23282d;
+  border-bottom: 2px solid #e1e1e1;
 }
 
 table.widefat tr:nth-child(even) {
@@ -28,17 +39,89 @@ table.widefat tr:nth-child(even) {
 
 table.widefat tr:hover {
   background-color: #eaf2ff;
+  transition: background-color 0.2s ease;
 }
 
+/* Enhanced notice styles */
 .notice-info,
-.notice-success {
-  margin-top: 15px;
-  padding: 10px 15px;
+.notice-success,
+.notice-warning,
+.notice-error {
+  margin: 15px 0;
+  padding: 15px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.notice-info {
   border-left: 4px solid #00a0d2;
   background-color: #f0f8ff;
 }
 
 .notice-success {
-  border-left-color: #46b450;
+  border-left: 4px solid #46b450;
   background-color: #f7fff7;
+}
+
+.notice-warning {
+  border-left: 4px solid #ffb900;
+  background-color: #fffbf0;
+}
+
+.notice-error {
+  border-left: 4px solid #dc3232;
+  background-color: #fff5f5;
+}
+
+/* SEO Score styling */
+.notice p strong {
+  font-weight: 700;
+}
+
+/* Form elements */
+.form-table th {
+  padding: 20px 10px 20px 0;
+  font-weight: 600;
+}
+
+.form-table td {
+  padding: 15px 10px;
+}
+
+/* Button enhancements */
+.button-primary {
+  background: #2271b1;
+  border-color: #2271b1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.button-primary:hover {
+  background: #135e96;
+  border-color: #135e96;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Admin menu icon enhancement */
+.wp-menu-image img {
+  opacity: 0.6;
+}
+
+.wp-has-current-submenu .wp-menu-image img,
+.wp-menu-open .wp-menu-image img {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 782px) {
+  table.widefat th,
+  table.widefat td {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  
+  .notice {
+    padding: 10px 15px;
+  }
 }

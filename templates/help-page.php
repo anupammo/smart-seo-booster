@@ -468,9 +468,41 @@ defined('ABSPATH') || exit;
                 <a href="https://github.com/anupammo/smart-seo-booster/issues" target="_blank" class="support-link">
                     🐛 Report a Bug
                 </a>
-                <a href="mailto:support@example.com" class="support-link">
-                    📧 Email Support
+                <a href="https://wordpress.org/support/plugin/smart-seo-booster/" target="_blank" class="support-link">
+                    💬 WordPress Support Forum
                 </a>
+            </div>
+        </div>
+
+        <!-- Developer Services Section -->
+        <div class="developer-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin: 30px 0; text-align: center;">
+            <h3 style="color: white; margin-bottom: 15px;">🚀 Need Professional WordPress & SEO Services?</h3>
+            <div style="display: grid; grid-template-columns: 80px 1fr; gap: 20px; align-items: center; max-width: 600px; margin: 0 auto;">
+                <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">
+                    AM
+                </div>
+                <div style="text-align: left;">
+                    <h4 style="color: white; margin: 0 0 5px 0;">Anupam Mondal</h4>
+                    <p style="margin: 0 0 10px 0; opacity: 0.9;">WordPress Developer & SEO Expert</p>
+                    <p style="margin: 0 0 15px 0; font-size: 14px; opacity: 0.8;">Get custom WordPress development, SEO optimization, plugin customization, and technical support from the creator of Smart SEO Booster.</p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="https://anupammondal.in/?utm_source=smart-seo-booster&utm_medium=plugin&utm_campaign=help-page" 
+                           target="_blank" 
+                           style="background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; border: 1px solid rgba(255,255,255,0.3);">
+                            🌐 Visit Website
+                        </a>
+                        <a href="https://anupammondal.in/contact/?utm_source=smart-seo-booster&utm_medium=plugin&utm_campaign=help-contact" 
+                           target="_blank" 
+                           style="background: white; color: #667eea; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500;">
+                            � Get Quote
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="margin: 0; font-size: 13px; opacity: 0.8;">
+                    Services: Custom Development • SEO Optimization • Plugin Development • Performance Optimization • Technical Support
+                </p>
             </div>
         </div>
     </div>

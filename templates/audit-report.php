@@ -2,11 +2,34 @@
 /**
  * Smart SEO Booster - Audit Report Template
  * WordPress Admin Style with PageSpeed Insights UI
+ * 
+ * @package SmartSEOBooster
+ * @since 2.1.0
  */
 
 // Prevent direct access
 if (!defined('ABSPATH')) {
-    exit;
+    exit('Direct access forbidden.');
+}
+
+// Security check - verify user capabilities
+if (!current_user_can('manage_options')) {
+    wp_die(
+        esc_html__('You do not have sufficient permissions to access this page.', 'smart-seo-booster'),
+        esc_html__('Access Denied', 'smart-seo-booster'),
+        ['response' => 403]
+    );
+}
+
+// Verify nonce for any form submissions
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['smart_seo_nonce']) || !wp_verify_nonce($_POST['smart_seo_nonce'], 'smart_seo_audit_action')) {
+        wp_die(
+            esc_html__('Security check failed. Please refresh the page and try again.', 'smart-seo-booster'),
+            esc_html__('Security Error', 'smart-seo-booster'),
+            ['response' => 403]
+        );
+    }
 }
 
 // Initialize variables for comprehensive SEO analysis

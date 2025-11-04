@@ -10,7 +10,7 @@ class Smart_SEO_Admin_UI {
     public static function add_menu() {
         add_menu_page(
             'Smart SEO Booster',
-            'Smart SEO',
+            'Settings',
             'manage_options',
             'smart-seo',
             [__CLASS__, 'render_settings_page'],
@@ -25,6 +25,15 @@ class Smart_SEO_Admin_UI {
             'manage_options',
             'smart-seo-audit',
             [__CLASS__, 'render_audit_report']
+        );
+
+        add_submenu_page(
+            'smart-seo',
+            'Help & Documentation',
+            'Help',
+            'manage_options',
+            'smart-seo-help',
+            [__CLASS__, 'render_help_page']
         );
     }
 
@@ -45,6 +54,10 @@ class Smart_SEO_Admin_UI {
 
     public static function render_audit_report() {
         include plugin_dir_path(__FILE__) . '../templates/audit-report.php';
+    }
+
+    public static function render_help_page() {
+        include plugin_dir_path(__FILE__) . '../templates/help-page.php';
     }
     
     public static function enqueue_assets($hook) {

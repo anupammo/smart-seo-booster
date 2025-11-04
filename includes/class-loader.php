@@ -9,6 +9,7 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-schema-generator.php';
         require_once plugin_dir_path(__FILE__) . 'class-content-auditor.php';
         require_once plugin_dir_path(__FILE__) . 'class-link-analyzer.php';
+        require_once plugin_dir_path(__FILE__) . 'class-seo-score-display.php';
 
         Smart_SEO_Settings::init();
         Smart_SEO_Admin_UI::init();
@@ -16,5 +17,6 @@ class Smart_SEO_Loader {
         Smart_SEO_Schema_Generator::init();
         Smart_SEO_Content_Auditor::init();
         Smart_SEO_Link_Analyzer::init();
+        Smart_SEO_Score_Display::init();
     }
 }

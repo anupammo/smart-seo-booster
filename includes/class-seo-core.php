@@ -6,31 +6,8 @@ class Smart_SEO_Core {
         // Use wp_head for both classic and block themes
         add_action('wp_head', [__CLASS__, 'inject_meta_tags'], 1);
         
-        // Additional hook for block themes that might use different head structure
-        add_filter('wp_head', [__CLASS__, 'ensure_meta_tags_for_block_themes'], 999);
-        
         // Support for custom post types
         add_filter('document_title_parts', [__CLASS__, 'modify_title_parts'], 10, 1);
-    }
-    
-    public static function ensure_meta_tags_for_block_themes() {
-        // Additional check for block themes that might interfere with meta tag injection
-        if (wp_is_block_theme()) {
-            // Block themes might need additional handling
-            $options = get_option('smart_seo_options', []);
-            if (!empty($options['enable_meta_tags'])) {
-                // Ensure our meta tags are present
-                $existing_description = false;
-                ob_start();
-                wp_head();
-                $head_content = ob_get_clean();
-                
-                if (strpos($head_content, 'name="description"') === false) {
-                    // Meta description not found, inject it
-                    self::inject_meta_tags();
-                }
-            }
-        }
     }
     
     public static function modify_title_parts($title_parts) {
@@ -61,6 +38,18 @@ class Smart_SEO_Core {
 
         // Get current post/page data
         global $post;
+        
+        // Only output if we don't have custom meta fields (to avoid duplication)
+        if (is_singular() && $post) {
+            $custom_title = get_post_meta($post->ID, '_smart_seo_title', true);
+            $custom_description = get_post_meta($post->ID, '_smart_seo_description', true);
+            
+            // If custom meta fields exist, let the meta fields class handle output
+            if ($custom_title || $custom_description) {
+                return;
+            }
+        }
+        
         $title = is_singular() && $post ? get_the_title() : get_bloginfo('name');
         
         // Get description with fallback to default

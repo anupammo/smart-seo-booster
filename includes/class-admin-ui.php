@@ -140,15 +140,15 @@ class Smart_SEO_Admin_UI {
         }
 
         ?>
-        <div class="wrap smart-seo-wrapper">
+        <div class="wrap smart-seo-wrapper smart-seo-settings-wrap">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
             
-            <form method="post" action="options.php">
+            <form method="post" action="options.php" class="smart-seo-settings-form">
                 <?php
                 settings_fields('smart_seo_settings');
                 do_settings_sections('smart_seo');
                 submit_button(
-                    esc_html__('Save Settings', 'smart-seo-booster'),
+                    esc_html__('Save SEO Settings', 'smart-seo-booster'),
                     'primary',
                     'submit',
                     true,
@@ -156,6 +156,21 @@ class Smart_SEO_Admin_UI {
                 );
                 ?>
             </form>
+            
+            <!-- Footer with author credit -->
+            <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-left: 4px solid #2271b1; border-radius: 4px;">
+                <p style="margin: 0; color: #666; font-size: 14px;">
+                    <strong><?php esc_html_e('Smart SEO Booster', 'smart-seo-booster'); ?></strong> 
+                    <?php printf(
+                        /* translators: %s: plugin version */
+                        esc_html__('version %s - Developed with ❤️ for better WordPress SEO', 'smart-seo-booster'),
+                        esc_html(SMART_SEO_VERSION)
+                    ); ?>
+                </p>
+                <p style="margin: 5px 0 0 0; color: #666; font-size: 12px;">
+                    <?php esc_html_e('Thank you for using Smart SEO Booster. For support and documentation, visit our website.', 'smart-seo-booster'); ?>
+                </p>
+            </div>
         </div>
         <?php
     }

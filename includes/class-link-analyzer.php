@@ -7,7 +7,10 @@ class Smart_SEO_Link_Analyzer {
     }
 
     public static function show_link_summary() {
-        if (!is_admin() || !get_current_screen()->is_block_editor()) return;
+        if (!is_admin() || !function_exists('get_current_screen')) return;
+        
+        $screen = get_current_screen();
+        if (!$screen || !$screen->is_block_editor()) return;
 
         $options = get_option('smart_seo_options', []);
         if (empty($options['enable_link_analysis'])) return;

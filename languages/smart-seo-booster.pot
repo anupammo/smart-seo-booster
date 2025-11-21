@@ -1,44 +1,162 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Smart SEO Booster\n"
+"Project-Id-Version: Smart SEO Booster 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/anupammo/smart-seo-booster\n"
+"POT-Creation-Date: 2025-11-19 12:00+0000\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Copilot\n"
+"X-Generator: Manual\n"
+"X-Domain: smart-seo-booster\n"
 
-#: includes/class-admin-ui.php:12
-msgid "Smart SEO Booster Settings"
+#: includes/class-admin-ui.php:11
+msgid "Smart SEO Booster"
 msgstr ""
 
-#: includes/class-admin-ui.php:13
+#: includes/class-admin-ui.php:12
+msgid "Smart SEO"
+msgstr ""
+
+#: includes/class-admin-ui.php:19
 msgid "SEO Audit Report"
 msgstr ""
 
-#: includes/class-settings.php:20
+#: includes/class-admin-ui.php:20
+msgid "Audit Report"
+msgstr ""
+
+#: includes/class-admin-ui.php:28
+msgid "Smart SEO Booster Settings"
+msgstr ""
+
+#: includes/class-settings.php:9
+msgid "Smart SEO Settings"
+msgstr ""
+
+#: includes/class-settings.php:10
 msgid "Enable Schema Markup"
 msgstr ""
 
-#: templates/audit-report.php:11
-msgid "Smart SEO Audit Report"
+#. translators: 1: emoji icon, 2: current score, 3: maximum score
+#: includes/class-content-auditor.php:59
+msgid "%1$s SEO Score: %2$d/%3$d"
 msgstr ""
 
-#: templates/audit-report.php:15
-msgid "Word Count"
+#: includes/class-content-auditor.php:61
+msgid "Stats:"
 msgstr ""
 
-#: templates/audit-report.php:16
-msgid "Headings"
+#. translators: 1: word count, 2: heading count, 3: image count, 4: alt text count
+#: includes/class-content-auditor.php:61
+msgid "Words: %1$d | Headings: %2$d | Images: %3$d | Alt Texts: %4$d"
 msgstr ""
 
-#: templates/audit-report.php:17
-msgid "Images"
+#: includes/class-content-auditor.php:64
+msgid "Recommendations:"
+msgstr ""
+
+#: includes/class-content-auditor.php:32
+msgid "Add more content (minimum 300 words recommended)"
+msgstr ""
+
+#: includes/class-content-auditor.php:39
+msgid "Add more headings for better structure"
+msgstr ""
+
+#: includes/class-content-auditor.php:46
+msgid "Add alt text to all images"
+msgstr ""
+
+#: includes/class-link-analyzer.php:22
+msgid "Internal Links:"
+msgstr ""
+
+#. translators: %d is the number of internal links found
+#: includes/class-link-analyzer.php:22
+msgid "%d found in this post."
 msgstr ""
 
 #: templates/audit-report.php:18
+msgid "Smart SEO Audit Report"
+msgstr ""
+
+#: templates/audit-report.php:21
+msgid "Metric"
+msgstr ""
+
+#: templates/audit-report.php:22
+msgid "Value"
+msgstr ""
+
+#: templates/audit-report.php:23
+msgid "Status"
+msgstr ""
+
+#: templates/audit-report.php:27
+msgid "Word Count"
+msgstr ""
+
+#: templates/audit-report.php:29
+msgid "✅ Good"
+msgstr ""
+
+#: templates/audit-report.php:29
+msgid "⚠️ Consider adding more content"
+msgstr ""
+
+#: templates/audit-report.php:32
+msgid "Headings"
+msgstr ""
+
+#: templates/audit-report.php:34
+msgid "✅ Structured"
+msgstr ""
+
+#: templates/audit-report.php:34
+msgid "⚠️ Add more headings"
+msgstr ""
+
+#: templates/audit-report.php:37
+msgid "Images"
+msgstr ""
+
+#: templates/audit-report.php:39
+msgid "✅ All images have alt text"
+msgstr ""
+
+#: templates/audit-report.php:39
+msgid "⚠️ Missing alt attributes"
+msgstr ""
+
+#: templates/audit-report.php:42
 msgid "Internal Links"
 msgstr ""
 
-#: templates/audit-report.php:19
+#: templates/audit-report.php:44
+msgid "✅ Good linking"
+msgstr ""
+
+#: templates/audit-report.php:44
+msgid "⚠️ Add more internal links"
+msgstr ""
+
+#: templates/audit-report.php:47
 msgid "Schema Markup"
+msgstr ""
+
+#: templates/audit-report.php:48
+msgid "Enabled"
+msgstr ""
+
+#: templates/audit-report.php:48
+msgid "Disabled"
+msgstr ""
+
+#: templates/audit-report.php:49
+msgid "✅ Active"
+msgstr ""
+
+#: templates/audit-report.php:49
+msgid "⚠️ Enable in settings"
 msgstr ""

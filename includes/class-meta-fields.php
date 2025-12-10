@@ -413,6 +413,7 @@ class Smart_SEO_Meta_Fields {
         foreach ($meta_fields as $field) {
             // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Access checked via isset; value is unslashed and fully sanitized before use
             if (isset($_POST[$field])) {
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Value is immediately sanitized into $value based on field type
                 $raw = wp_unslash( $_POST[$field] );
                 $value = sanitize_text_field( $raw );
                 

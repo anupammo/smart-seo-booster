@@ -3,7 +3,7 @@ Contributors: anupam-mondal
 Tags: seo, schema, json-ld, content audit, wordpress seo  
 Requires at least: 5.2  
 Tested up to: 6.9
-Stable tag: 1.0.0  
+Stable tag: 1.0.1  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -48,10 +48,22 @@ No. It uses minimal hooks and outputs schema only in the footer.
 
 == Changelog ==
 
+= 1.0.1 =
+* Security: Added ABSPATH checks to all schema files
+* Security: Added path traversal protection in schema file loading
+* Security: Enhanced capability checks in admin render methods
+* Security: Sanitized all schema output (URLs and text)
+* Fix: Added null check for get_current_screen() to prevent fatal errors
+* Fix: Added missing class-meta-fields.php and class-seo-score-display.php to loader
+* Improvement: Code compliance with WordPress.org security standards
+
 = 1.0.0 =
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Security and stability update. Recommended for all users. Fixes fatal error and adds enterprise-level security hardening.
 
 = 1.0.0 =
 First release. Safe to install and test on WordPress 5.2+.

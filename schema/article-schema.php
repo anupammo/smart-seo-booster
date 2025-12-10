@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('ABSPATH') || exit;
 
 return [
@@ -24,3 +24,4 @@ return [
         ]
     ]
 ];
+

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('ABSPATH') || exit;
 
 class Smart_SEO_Schema_Generator {
@@ -40,3 +40,4 @@ class Smart_SEO_Schema_Generator {
         return 'organization'; // Default fallback
     }
 }
+

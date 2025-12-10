@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('ABSPATH') || exit;
 
 class Smart_SEO_Core {
@@ -29,3 +29,4 @@ class Smart_SEO_Core {
         echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '" />' . "\n";
     }
 }
+

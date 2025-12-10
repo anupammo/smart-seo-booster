@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Smart SEO Meta Fields Class
  * 
@@ -53,7 +53,7 @@ class Smart_SEO_Meta_Fields {
         foreach ($post_types as $post_type) {
             add_meta_box(
                 'smart_seo_meta_fields',
-                '🎯 SEO Meta Tags & Social Preview',
+                'ðŸŽ¯ SEO Meta Tags & Social Preview',
                 [__CLASS__, 'meta_fields_metabox_content'],
                 $post_type,
                 'normal',
@@ -148,16 +148,16 @@ class Smart_SEO_Meta_Fields {
             
             <!-- Tab Navigation -->
             <div class="seo-tab-nav">
-                <button type="button" class="seo-tab-btn active" data-tab="basic">📝 Basic SEO</button>
-                <button type="button" class="seo-tab-btn" data-tab="social">📱 Social Media</button>
-                <button type="button" class="seo-tab-btn" data-tab="advanced">⚙️ Advanced</button>
-                <button type="button" class="seo-tab-btn" data-tab="analysis">📊 Analysis</button>
+                <button type="button" class="seo-tab-btn active" data-tab="basic">ðŸ“ Basic SEO</button>
+                <button type="button" class="seo-tab-btn" data-tab="social">ðŸ“± Social Media</button>
+                <button type="button" class="seo-tab-btn" data-tab="advanced">âš™ï¸ Advanced</button>
+                <button type="button" class="seo-tab-btn" data-tab="analysis">ðŸ“Š Analysis</button>
             </div>
             
             <!-- Basic SEO Tab -->
             <div class="seo-tab-content active" id="basic-tab">
                 <div class="seo-field-group">
-                    <label for="smart_seo_focus_keyword">🎯 Focus Keyword</label>
+                    <label for="smart_seo_focus_keyword">ðŸŽ¯ Focus Keyword</label>
                     <input type="text" id="smart_seo_focus_keyword" name="smart_seo_focus_keyword" value="<?php echo esc_attr($focus_keyword); ?>" placeholder="Enter your target keyword">
                     <div class="seo-field-help">The main keyword you want this content to rank for.</div>
                     <div id="keyword-analysis" class="seo-keyword-analysis" style="display: none;">
@@ -166,28 +166,28 @@ class Smart_SEO_Meta_Fields {
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_title">📄 SEO Title</label>
+                    <label for="smart_seo_title">ðŸ“„ SEO Title</label>
                     <input type="text" id="smart_seo_title" name="smart_seo_title" value="<?php echo esc_attr($meta_title); ?>" placeholder="Enter SEO title">
                     <div class="seo-field-counter" id="title-counter">0 characters (30-60 optimal)</div>
                     <div class="seo-field-help">This title will appear in search engine results. Keep it between 30-60 characters.</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_description">📝 Meta Description</label>
+                    <label for="smart_seo_description">ðŸ“ Meta Description</label>
                     <textarea id="smart_seo_description" name="smart_seo_description" placeholder="Enter meta description"><?php echo esc_textarea($meta_description); ?></textarea>
                     <div class="seo-field-counter" id="description-counter">0 characters (120-160 optimal)</div>
                     <div class="seo-field-help">A brief description that appears in search results. Keep it between 120-160 characters.</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_keywords">🏷️ Meta Keywords</label>
+                    <label for="smart_seo_keywords">ðŸ·ï¸ Meta Keywords</label>
                     <input type="text" id="smart_seo_keywords" name="smart_seo_keywords" value="<?php echo esc_attr($meta_keywords); ?>" placeholder="keyword1, keyword2, keyword3">
                     <div class="seo-field-help">Comma-separated keywords related to your content. Limited SEO value but can be useful for internal organization.</div>
                 </div>
                 
                 <!-- Search Preview -->
                 <div class="seo-preview-box">
-                    <h4 style="margin: 0 0 10px 0;">🔍 Search Engine Preview</h4>
+                    <h4 style="margin: 0 0 10px 0;">ðŸ” Search Engine Preview</h4>
                     <div id="search-preview">
                         <div class="seo-preview-title" id="preview-title"><?php echo esc_html($meta_title); ?></div>
                         <div class="seo-preview-url" id="preview-url"><?php echo esc_url(get_permalink($post->ID)); ?></div>
@@ -198,22 +198,22 @@ class Smart_SEO_Meta_Fields {
             
             <!-- Social Media Tab -->
             <div class="seo-tab-content" id="social-tab">
-                <h4>📘 Open Graph (Facebook, LinkedIn)</h4>
+                <h4>ðŸ“˜ Open Graph (Facebook, LinkedIn)</h4>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_og_title">📄 OG Title</label>
+                    <label for="smart_seo_og_title">ðŸ“„ OG Title</label>
                     <input type="text" id="smart_seo_og_title" name="smart_seo_og_title" value="<?php echo esc_attr($og_title); ?>" placeholder="Open Graph title">
                     <div class="seo-field-counter" id="og-title-counter">0 characters (40-60 optimal)</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_og_description">📝 OG Description</label>
+                    <label for="smart_seo_og_description">ðŸ“ OG Description</label>
                     <textarea id="smart_seo_og_description" name="smart_seo_og_description" placeholder="Open Graph description"><?php echo esc_textarea($og_description); ?></textarea>
                     <div class="seo-field-counter" id="og-description-counter">0 characters (130-160 optimal)</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_og_image">🖼️ OG Image</label>
+                    <label for="smart_seo_og_image">ðŸ–¼ï¸ OG Image</label>
                     <div class="seo-image-upload">
                         <input type="url" id="smart_seo_og_image" name="smart_seo_og_image" value="<?php echo esc_url($og_image); ?>" placeholder="Image URL">
                         <button type="button" class="button" id="upload-og-image">Upload Image</button>
@@ -229,7 +229,7 @@ class Smart_SEO_Meta_Fields {
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_og_type">📋 OG Type</label>
+                    <label for="smart_seo_og_type">ðŸ“‹ OG Type</label>
                     <select id="smart_seo_og_type" name="smart_seo_og_type">
                         <option value="article" <?php selected($og_type, 'article'); ?>>Article</option>
                         <option value="website" <?php selected($og_type, 'website'); ?>>Website</option>
@@ -239,10 +239,10 @@ class Smart_SEO_Meta_Fields {
                     </select>
                 </div>
                 
-                <h4 style="margin-top: 30px;">🐦 Twitter Cards</h4>
+                <h4 style="margin-top: 30px;">ðŸ¦ Twitter Cards</h4>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_twitter_card">📋 Card Type</label>
+                    <label for="smart_seo_twitter_card">ðŸ“‹ Card Type</label>
                     <select id="smart_seo_twitter_card" name="smart_seo_twitter_card">
                         <option value="summary" <?php selected($twitter_card, 'summary'); ?>>Summary</option>
                         <option value="summary_large_image" <?php selected($twitter_card, 'summary_large_image'); ?>>Summary Large Image</option>
@@ -252,17 +252,17 @@ class Smart_SEO_Meta_Fields {
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_twitter_title">📄 Twitter Title</label>
+                    <label for="smart_seo_twitter_title">ðŸ“„ Twitter Title</label>
                     <input type="text" id="smart_seo_twitter_title" name="smart_seo_twitter_title" value="<?php echo esc_attr($twitter_title); ?>" placeholder="Twitter title">
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_twitter_description">📝 Twitter Description</label>
+                    <label for="smart_seo_twitter_description">ðŸ“ Twitter Description</label>
                     <textarea id="smart_seo_twitter_description" name="smart_seo_twitter_description" placeholder="Twitter description"><?php echo esc_textarea($twitter_description); ?></textarea>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_twitter_image">🖼️ Twitter Image</label>
+                    <label for="smart_seo_twitter_image">ðŸ–¼ï¸ Twitter Image</label>
                     <div class="seo-image-upload">
                         <input type="url" id="smart_seo_twitter_image" name="smart_seo_twitter_image" value="<?php echo esc_url($twitter_image); ?>" placeholder="Image URL">
                         <button type="button" class="button" id="upload-twitter-image">Upload Image</button>
@@ -279,7 +279,7 @@ class Smart_SEO_Meta_Fields {
                 
                 <!-- Social Preview -->
                 <div class="seo-preview-box">
-                    <h4 style="margin: 0 0 10px 0;">📱 Social Media Preview</h4>
+                    <h4 style="margin: 0 0 10px 0;">ðŸ“± Social Media Preview</h4>
                     <div class="seo-social-preview">
                         <div class="preview-card">
                             <div class="preview-image" id="facebook-preview-image">
@@ -314,13 +314,13 @@ class Smart_SEO_Meta_Fields {
             <!-- Advanced Tab -->
             <div class="seo-tab-content" id="advanced-tab">
                 <div class="seo-field-group">
-                    <label for="smart_seo_canonical">🔗 Canonical URL</label>
+                    <label for="smart_seo_canonical">ðŸ”— Canonical URL</label>
                     <input type="url" id="smart_seo_canonical" name="smart_seo_canonical" value="<?php echo esc_url($canonical_url); ?>" placeholder="https://example.com/page">
                     <div class="seo-field-help">The preferred URL for this content. Helps prevent duplicate content issues.</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_robots">🤖 Robots Meta</label>
+                    <label for="smart_seo_robots">ðŸ¤– Robots Meta</label>
                     <select id="smart_seo_robots" name="smart_seo_robots">
                         <option value="index,follow" <?php selected($robots_meta, 'index,follow'); ?>>Index, Follow (Default)</option>
                         <option value="noindex,follow" <?php selected($robots_meta, 'noindex,follow'); ?>>No Index, Follow</option>
@@ -333,7 +333,7 @@ class Smart_SEO_Meta_Fields {
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_schema_type">📋 Schema Type</label>
+                    <label for="smart_seo_schema_type">ðŸ“‹ Schema Type</label>
                     <select id="smart_seo_schema_type" name="smart_seo_schema_type">
                         <option value="Article" <?php selected($schema_type, 'Article'); ?>>Article</option>
                         <option value="BlogPosting" <?php selected($schema_type, 'BlogPosting'); ?>>Blog Posting</option>

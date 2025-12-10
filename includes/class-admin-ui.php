@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('ABSPATH') || exit;
 
 class Smart_SEO_Admin_UI {
@@ -64,3 +64,4 @@ class Smart_SEO_Admin_UI {
         }
     }
 }
+

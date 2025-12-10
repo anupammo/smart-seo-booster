@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('ABSPATH') || exit;
 
 class Smart_SEO_Settings {
@@ -39,3 +39,4 @@ class Smart_SEO_Settings {
         return $output;
     }
 }
+

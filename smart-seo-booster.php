@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Plugin Name: Smart SEO Booster
  * Description: Modular SEO plugin with schema injection, content audit, and internal link analysis.
@@ -26,3 +26,4 @@ add_action('plugins_loaded', function () {
     // Initialize plugin modules
     Smart_SEO_Loader::init();
 });
+

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('ABSPATH') || exit;
 
 class Smart_SEO_Loader {
@@ -22,3 +22,4 @@ class Smart_SEO_Loader {
         Smart_SEO_Score_Display::init();
     }
 }
+

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('ABSPATH') || exit;
 
 return [
@@ -17,3 +17,4 @@ return [
     "url" => esc_url_raw( home_url() ),
     "telephone" => "+91-XXXXXXXXXX"
 ];
+

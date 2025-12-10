@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('ABSPATH') || exit;
 
 class Smart_SEO_Link_Analyzer {
@@ -23,3 +23,4 @@ class Smart_SEO_Link_Analyzer {
         echo "<div class='notice notice-success'><p><strong>" . esc_html__( 'Internal Links:', 'smart-seo-booster' ) . "</strong> " . sprintf( esc_html__( '%d found in this post.', 'smart-seo-booster' ), absint( $count ) ) . "</p></div>";
     }
 }
+

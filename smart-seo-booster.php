@@ -5,10 +5,15 @@
  * Version: 1.0.0
  * Author: Anupam Mondal
  * License: GPL2+
- * Text Domain: smart-seo-booster
+ * Text Domain: smart-seo-booster-1
  */
 
 defined('ABSPATH') || exit;
+
+// Define plugin version constant for cache busting in enqueued assets.
+if (!defined('SMART_SEO_BOOSTER_VERSION')) {
+    define('SMART_SEO_BOOSTER_VERSION', '1.0.0');
+}
 
 // Autoload classes
 require_once plugin_dir_path(__FILE__) . 'includes/class-loader.php';

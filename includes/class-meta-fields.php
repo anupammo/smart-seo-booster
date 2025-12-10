@@ -371,9 +371,12 @@ class Smart_SEO_Meta_Fields {
      * @since 2.1.0
      */
     public static function save_seo_meta_fields($post_id) {
-        // Check nonce
-        if (!isset($_POST['smart_seo_meta_nonce_field']) || 
-            !wp_verify_nonce($_POST['smart_seo_meta_nonce_field'], 'smart_seo_meta_nonce')) {
+        // Check nonce: unslash and sanitize before verify
+        if (!isset($_POST['smart_seo_meta_nonce_field'])) {
+            return;
+        }
+        $nonce = sanitize_text_field( wp_unslash( $_POST['smart_seo_meta_nonce_field'] ) );
+        if ( ! wp_verify_nonce( $nonce, 'smart_seo_meta_nonce' ) ) {
             return;
         }
         
@@ -408,17 +411,20 @@ class Smart_SEO_Meta_Fields {
         
         // Save each field
         foreach ($meta_fields as $field) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Access checked via isset; value is unslashed and fully sanitized before use
             if (isset($_POST[$field])) {
-                $value = sanitize_text_field($_POST[$field]);
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Value is immediately sanitized into $value based on field type
+                $raw = wp_unslash( $_POST[$field] );
+                $value = sanitize_text_field( $raw );
                 
                 // Special handling for textarea fields
                 if (in_array($field, ['smart_seo_description', 'smart_seo_og_description', 'smart_seo_twitter_description'])) {
-                    $value = sanitize_textarea_field($_POST[$field]);
+                    $value = sanitize_textarea_field( $raw );
                 }
                 
                 // Special handling for URL fields
                 if (in_array($field, ['smart_seo_canonical', 'smart_seo_og_image', 'smart_seo_twitter_image'])) {
-                    $value = esc_url_raw($_POST[$field]);
+                    $value = esc_url_raw( $raw );
                 }
                 
                 update_post_meta($post_id, '_' . $field, $value);

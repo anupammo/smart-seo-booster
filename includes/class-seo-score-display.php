@@ -35,7 +35,7 @@ class Smart_SEO_Score_Display {
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count( wp_strip_all_tags( $content ) );
         $headings = substr_count($content, '<h');
         $images = substr_count($content, '<img');
         $alts = substr_count($content, 'alt=');
@@ -114,7 +114,7 @@ class Smart_SEO_Score_Display {
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count( wp_strip_all_tags( $content ) );
         $headings = substr_count($content, '<h');
         $images = substr_count($content, '<img');
         $alts = substr_count($content, 'alt=');
@@ -256,12 +256,12 @@ class Smart_SEO_Score_Display {
             'id' => 'smart-seo-score',
             'title' => sprintf(
                 '<span style="color: %s;">📊 SEO: %d/100</span>',
-                $color,
-                $score
+                esc_attr( $color ),
+                absint( $score )
             ),
             'href' => admin_url('admin.php?page=smart-seo-audit'),
             'meta' => [
-                'title' => "SEO Score: {$score}/100 ({$status})"
+                'title' => 'SEO Score: ' . absint($score) . '/100 (' . sanitize_text_field($status) . ')'
             ]
         ]);
     }
@@ -300,9 +300,9 @@ class Smart_SEO_Score_Display {
                 $post_count++;
                 
                 echo '<tr>';
-                echo '<td><a href="' . get_edit_post_link($post->ID) . '">' . esc_html($post->post_title) . '</a></td>';
-                echo '<td><span style="color: ' . $color . '; font-weight: bold;">' . $score . '/100</span></td>';
-                echo '<td><span style="color: ' . $color . ';">' . $status . '</span></td>';
+                echo '<td><a href="' . esc_url( get_edit_post_link($post->ID) ) . '">' . esc_html($post->post_title) . '</a></td>';
+                echo '<td><span style="color: ' . esc_attr($color) . '; font-weight: bold;">' . absint($score) . '/100</span></td>';
+                echo '<td><span style="color: ' . esc_attr($color) . ';">' . esc_html($status) . '</span></td>';
                 echo '</tr>';
             }
             
@@ -312,19 +312,19 @@ class Smart_SEO_Score_Display {
             $avg_color = self::get_score_color($avg_score);
             
             echo '<div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px;">';
-            echo '<strong>Average Score: <span style="color: ' . $avg_color . ';">' . $avg_score . '/100</span></strong>';
+            echo '<strong>Average Score: <span style="color: ' . esc_attr($avg_color) . ';">' . absint($avg_score) . '/100</span></strong>';
+            echo '<div>';
+            echo '<strong style="color: ' . esc_attr( $color ) . '; font-size: 14px;">' . absint( $score ) . '/100</strong><br>';
+            echo '<small style="color: ' . esc_attr( $color ) . ';">' . esc_html( $status ) . '</small>';
             echo '</div>';
-        } else {
-            echo '<p>No content found. Start creating posts and pages to see SEO scores!</p>';
-        }
         
         echo '<div style="margin-top: 15px; text-align: center;">';
-        echo '<a href="' . admin_url('admin.php?page=smart-seo-audit') . '" class="button button-primary">View Full Audit Report</a>';
-        echo '</div>';
+        echo '<a href="' . esc_url( admin_url('admin.php?page=smart-seo-audit') ) . '" class="button button-primary">View Full Audit Report</a>';
+                    <strong style="font-size: 18px; color: <?php echo esc_attr( $color ); ?>;"><?php echo absint( $score ); ?></strong>
         echo '</div>';
     }
     
-    public static function add_seo_score_metabox() {
+            <p><strong style="color: <?php echo esc_attr( $color ); ?>;"><?php echo esc_html( $status ); ?></strong></p>
         $post_types = ['post', 'page'];
         foreach ($post_types as $post_type) {
             add_meta_box(
@@ -333,19 +333,16 @@ class Smart_SEO_Score_Display {
                 [__CLASS__, 'seo_score_metabox_content'],
                 $post_type,
                 'side',
-                'high'
+                    <?php echo absint( $analysis['word_count']['value'] ); ?> words <?php echo esc_html( $analysis['word_count']['icon'] ); ?>
             );
         }
     }
     
     public static function seo_score_metabox_content($post) {
-        $score = self::calculate_seo_score($post->ID);
-        $color = self::get_score_color($score);
-        $status = self::get_score_status($score);
-        
-        // Get detailed analysis
-        $analysis = self::get_detailed_seo_analysis($post);
-        
+        $score   = self::calculate_seo_score($post->ID);
+        $color   = self::get_score_color($score);
+        $status  = self::get_score_status($score);
+        $analysis = self::smart_seo_get_detailed_seo_analysis($post);
         ?>
         <div class="smart-seo-score-metabox">
             <style>
@@ -359,16 +356,16 @@ class Smart_SEO_Score_Display {
                 .seo-score-big { font-size: 24px; font-weight: bold; text-align: center; }
                 .seo-recommendations { background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 10px; }
             </style>
-            
+
             <!-- Overall Score -->
             <div class="seo-section" style="text-align: center;">
-                <div class="seo-score-circle" style="margin: 10px auto; width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(<?php echo $color; ?> <?php echo ($score * 3.6); ?>deg, #e5e7eb 0deg); display: flex; align-items: center; justify-content: center;">
-                    <div style="width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                        <strong style="font-size: 18px; color: <?php echo $color; ?>;"><?php echo $score; ?></strong>
+                <div class="seo-score-circle" style="margin: 10px auto; width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(<?php echo esc_attr( $color ); ?> <?php echo esc_attr( $score * 3.6 ); ?>deg, #e5e7eb 0deg); display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 60px; height: 60px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        <strong style="font-size: 18px; color: <?php echo esc_attr( $color ); ?>; "><?php echo absint( $score ); ?></strong>
                         <small style="color: #666;">/ 100</small>
                     </div>
                 </div>
-                <p><strong style="color: <?php echo $color; ?>;"><?php echo $status; ?></strong></p>
+                <p><strong style="color: <?php echo esc_attr( $color ); ?>; "><?php echo esc_html( $status ); ?></strong></p>
             </div>
 
             <!-- Content Analysis -->
@@ -376,26 +373,26 @@ class Smart_SEO_Score_Display {
                 <h4 style="margin: 0 0 10px 0;">📝 Content Analysis</h4>
                 <div class="seo-check">
                     <span>Word Count</span>
-                    <span class="seo-check-status <?php echo $analysis['word_count']['status']; ?>">
-                        <?php echo $analysis['word_count']['value']; ?> words <?php echo $analysis['word_count']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['word_count']['status'] ?? '' ); ?>">
+                        <?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> <?php echo esc_html( $analysis['word_count']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Paragraphs</span>
-                    <span class="seo-check-status <?php echo $analysis['paragraphs']['status']; ?>">
-                        <?php echo $analysis['paragraphs']['value']; ?> <?php echo $analysis['paragraphs']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['paragraphs']['status'] ?? '' ); ?>">
+                        <?php echo isset($analysis['paragraphs']['value']) ? absint( $analysis['paragraphs']['value'] ) : 0; ?> <?php echo esc_html( $analysis['paragraphs']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Headings</span>
-                    <span class="seo-check-status <?php echo $analysis['headings']['status']; ?>">
-                        <?php echo $analysis['headings']['value']; ?> <?php echo $analysis['headings']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['headings']['status'] ?? '' ); ?>">
+                        <?php echo isset($analysis['headings']['value']) ? absint( $analysis['headings']['value'] ) : 0; ?> <?php echo esc_html( $analysis['headings']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Reading Level</span>
-                    <span class="seo-check-status <?php echo $analysis['readability']['status']; ?>">
-                        <?php echo $analysis['readability']['value']; ?> <?php echo $analysis['readability']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['readability']['status'] ?? '' ); ?>">
+                        <?php echo esc_html( $analysis['readability']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['readability']['icon'] ?? '' ); ?>
                     </span>
                 </div>
             </div>
@@ -405,20 +402,20 @@ class Smart_SEO_Score_Display {
                 <h4 style="margin: 0 0 10px 0;">🎯 SEO Elements</h4>
                 <div class="seo-check">
                     <span>Title Length</span>
-                    <span class="seo-check-status <?php echo $analysis['title']['status']; ?>">
-                        <?php echo $analysis['title']['value']; ?> chars <?php echo $analysis['title']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['title']['status'] ?? '' ); ?>">
+                        <?php echo isset($analysis['title']['value']) ? absint( $analysis['title']['value'] ) : 0; ?> chars <?php echo esc_html( $analysis['title']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Meta Description</span>
-                    <span class="seo-check-status <?php echo $analysis['description']['status']; ?>">
-                        <?php echo $analysis['description']['value']; ?> <?php echo $analysis['description']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['description']['status'] ?? '' ); ?>">
+                        <?php echo esc_html( $analysis['description']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['description']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>URL Structure</span>
-                    <span class="seo-check-status <?php echo $analysis['url']['status']; ?>">
-                        <?php echo $analysis['url']['value']; ?> <?php echo $analysis['url']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['url']['status'] ?? '' ); ?>">
+                        <?php echo esc_html( $analysis['url']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['url']['icon'] ?? '' ); ?>
                     </span>
                 </div>
             </div>
@@ -428,38 +425,38 @@ class Smart_SEO_Score_Display {
                 <h4 style="margin: 0 0 10px 0;">🖼️ Media & Links</h4>
                 <div class="seo-check">
                     <span>Images</span>
-                    <span class="seo-check-status <?php echo $analysis['images']['status']; ?>">
-                        <?php echo $analysis['images']['value']; ?> <?php echo $analysis['images']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['images']['status'] ?? '' ); ?>">
+                        <?php echo isset($analysis['images']['value']) ? absint( $analysis['images']['value'] ) : 0; ?> <?php echo esc_html( $analysis['images']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Alt Text</span>
-                    <span class="seo-check-status <?php echo $analysis['alt_text']['status']; ?>">
-                        <?php echo $analysis['alt_text']['value']; ?> <?php echo $analysis['alt_text']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['alt_text']['status'] ?? '' ); ?>">
+                        <?php echo esc_html( $analysis['alt_text']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['alt_text']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Internal Links</span>
-                    <span class="seo-check-status <?php echo $analysis['internal_links']['status']; ?>">
-                        <?php echo $analysis['internal_links']['value']; ?> <?php echo $analysis['internal_links']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['internal_links']['status'] ?? '' ); ?>">
+                        <?php echo isset($analysis['internal_links']['value']) ? absint( $analysis['internal_links']['value'] ) : 0; ?> <?php echo esc_html( $analysis['internal_links']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>External Links</span>
-                    <span class="seo-check-status <?php echo $analysis['external_links']['status']; ?>">
-                        <?php echo $analysis['external_links']['value']; ?> <?php echo $analysis['external_links']['icon']; ?>
+                    <span class="seo-check-status <?php echo esc_attr( $analysis['external_links']['status'] ?? '' ); ?>">
+                        <?php echo esc_html( $analysis['external_links']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['external_links']['icon'] ?? '' ); ?>
                     </span>
                 </div>
             </div>
 
             <!-- Recommendations -->
-            <?php if (!empty($analysis['recommendations'])): ?>
+            <?php if (!empty($analysis['recommendations']) && is_array($analysis['recommendations'])): ?>
             <div class="seo-section">
                 <h4 style="margin: 0 0 10px 0;">💡 Recommendations</h4>
                 <div class="seo-recommendations">
                     <ul style="margin: 0; padding-left: 20px;">
                         <?php foreach ($analysis['recommendations'] as $recommendation): ?>
-                            <li><?php echo $recommendation; ?></li>
+                            <li><?php echo esc_html( $recommendation ); ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -468,10 +465,10 @@ class Smart_SEO_Score_Display {
 
             <!-- Actions -->
             <div style="text-align: center; margin-top: 15px;">
-                <button type="button" class="button button-primary button-small" onclick="smartSeoRefreshScore(<?php echo $post->ID; ?>)">
+                <button type="button" class="button button-primary button-small" onclick="smartSeoRefreshScore(<?php echo absint( $post->ID ); ?>)">
                     🔄 Refresh Analysis
                 </button>
-                <button type="button" class="button button-small" onclick="smartSeoShowFullReport(<?php echo $post->ID; ?>)" style="margin-left: 5px;">
+                <button type="button" class="button button-small" onclick="smartSeoShowFullReport(<?php echo absint( $post->ID ); ?>)" style="margin-left: 5px;">
                     📊 Full Report
                 </button>
             </div>
@@ -485,14 +482,14 @@ class Smart_SEO_Score_Display {
      * @param WP_Post $post The post object
      * @return array Detailed analysis data
      */
-    public static function get_detailed_seo_analysis($post) {
+    public static function smart_seo_get_detailed_seo_analysis($post) {
         $content = $post->post_content;
         $title = $post->post_title;
         $excerpt = $post->post_excerpt;
         $slug = $post->post_name;
         
         // Content Analysis
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count( wp_strip_all_tags( $content ) );
         $paragraph_count = substr_count($content, '</p>');
         $heading_count = substr_count($content, '<h');
         
@@ -543,7 +540,7 @@ class Smart_SEO_Score_Display {
                 'icon' => $heading_count >= 2 ? '✅' : ($heading_count >= 1 ? '⚠️' : '❌')
             ],
             'readability' => [
-                'value' => self::calculate_readability_score($content),
+                'value' => self::smart_seo_calculate_readability_score($content),
                 'status' => 'seo-good', // Simplified for now
                 'icon' => '✅'
             ],
@@ -632,8 +629,8 @@ class Smart_SEO_Score_Display {
      * @param string $content The content to analyze
      * @return string Readability level
      */
-    public static function calculate_readability_score($content) {
-        $text = strip_tags($content);
+    public static function smart_seo_calculate_readability_score($content) {
+        $text = wp_strip_all_tags( $content );
         $sentences = preg_split('/[.!?]+/', $text, -1, PREG_SPLIT_NO_EMPTY);
         $words = str_word_count($text);
         $sentence_count = count($sentences);
@@ -651,28 +648,31 @@ class Smart_SEO_Score_Display {
         }
     }
     
-    public static function add_seo_score_column($columns) {
+    public static function smart_seo_add_seo_score_column($columns) {
         $columns['seo_score'] = '📊 SEO Score';
         return $columns;
     }
     
-    public static function display_seo_score_column($column, $post_id) {
+    public static function smart_seo_display_seo_score_column($column, $post_id) {
         if ($column === 'seo_score') {
             $score = self::calculate_seo_score($post_id);
             $color = self::get_score_color($score);
             $status = self::get_score_status($score);
             
             echo '<div>';
-            echo '<strong style="color: ' . $color . '; font-size: 14px;">' . $score . '/100</strong><br>';
-            echo '<small style="color: ' . $color . ';">' . $status . '</small>';
+            echo '<strong style="color: ' . esc_attr($color) . '; font-size: 14px;">' . absint($score) . '/100</strong><br>';
+            echo '<small style="color: ' . esc_attr($color) . ';">' . esc_html($status) . '</small>';
             echo '</div>';
         }
     }
     
-    public static function ajax_get_seo_score() {
+    public static function smart_seo_ajax_get_seo_score() {
         check_ajax_referer('smart_seo_nonce', 'nonce');
         
-        $post_id = intval($_POST['post_id']);
+        $post_id = 0;
+        if ( isset( $_POST['post_id'] ) ) {
+            $post_id = absint( wp_unslash( $_POST['post_id'] ) );
+        }
         if (!$post_id || !current_user_can('edit_post', $post_id)) {
             wp_die('Access denied');
         }
@@ -691,10 +691,13 @@ class Smart_SEO_Score_Display {
     /**
      * AJAX handler for full SEO report
      */
-    public static function ajax_get_full_seo_report() {
+    public static function smart_seo_ajax_get_full_seo_report() {
         check_ajax_referer('smart_seo_nonce', 'nonce');
         
-        $post_id = intval($_POST['post_id']);
+        $post_id = 0;
+        if ( isset( $_POST['post_id'] ) ) {
+            $post_id = absint( wp_unslash( $_POST['post_id'] ) );
+        }
         if (!$post_id || !current_user_can('edit_post', $post_id)) {
             wp_die('Access denied');
         }
@@ -704,7 +707,7 @@ class Smart_SEO_Score_Display {
             wp_send_json_error('Post not found');
         }
         
-        $analysis = self::get_detailed_seo_analysis($post);
+        $analysis = self::smart_seo_get_detailed_seo_analysis($post);
         $score = self::calculate_seo_score($post_id);
         $color = self::get_score_color($score);
         $status = self::get_score_status($score);
@@ -717,16 +720,16 @@ class Smart_SEO_Score_Display {
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
                 <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-                    <div style="font-size: 48px; font-weight: bold; color: <?php echo $color; ?>;"><?php echo $score; ?>/100</div>
-                    <div style="font-size: 18px; font-weight: bold; color: <?php echo $color; ?>;"><?php echo $status; ?></div>
+                    <div style="font-size: 48px; font-weight: bold; color: <?php echo esc_attr( $color ); ?>;"><?php echo absint( $score ); ?>/100</div>
+                    <div style="font-size: 18px; font-weight: bold; color: <?php echo esc_attr( $color ); ?>;"><?php echo esc_html( $status ); ?></div>
                 </div>
                 <div style="padding: 20px;">
                     <h4>Quick Stats</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li><strong>Published:</strong> <?php echo get_the_date('M j, Y', $post); ?></li>
-                        <li><strong>Last Modified:</strong> <?php echo get_the_modified_date('M j, Y', $post); ?></li>
-                        <li><strong>Word Count:</strong> <?php echo $analysis['word_count']['value']; ?> words</li>
-                        <li><strong>Reading Time:</strong> <?php echo ceil($analysis['word_count']['value'] / 200); ?> minutes</li>
+                        <li><strong>Published:</strong> <?php echo esc_html( get_the_date('M j, Y', $post) ); ?></li>
+                        <li><strong>Last Modified:</strong> <?php echo esc_html( get_the_modified_date('M j, Y', $post) ); ?></li>
+                        <li><strong>Word Count:</strong> <?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> words</li>
+                        <li><strong>Reading Time:</strong> <?php echo isset($analysis['word_count']['value']) ? absint( ceil($analysis['word_count']['value'] / 200) ) : 0; ?> minutes</li>
                     </ul>
                 </div>
             </div>
@@ -735,34 +738,34 @@ class Smart_SEO_Score_Display {
                 <div>
                     <h4>📝 Content Quality</h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Word Count</td><td style="text-align: right;"><span class="<?php echo $analysis['word_count']['status']; ?>"><?php echo $analysis['word_count']['value']; ?> <?php echo $analysis['word_count']['icon']; ?></span></td></tr>
-                        <tr><td>Paragraphs</td><td style="text-align: right;"><span class="<?php echo $analysis['paragraphs']['status']; ?>"><?php echo $analysis['paragraphs']['value']; ?> <?php echo $analysis['paragraphs']['icon']; ?></span></td></tr>
-                        <tr><td>Headings</td><td style="text-align: right;"><span class="<?php echo $analysis['headings']['status']; ?>"><?php echo $analysis['headings']['value']; ?> <?php echo $analysis['headings']['icon']; ?></span></td></tr>
-                        <tr><td>Readability</td><td style="text-align: right;"><span class="<?php echo $analysis['readability']['status']; ?>"><?php echo $analysis['readability']['value']; ?> <?php echo $analysis['readability']['icon']; ?></span></td></tr>
+                        <tr><td>Word Count</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['word_count']['status'] ?? '' ); ?>"><?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> <?php echo esc_html( $analysis['word_count']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Paragraphs</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['paragraphs']['status'] ?? '' ); ?>"><?php echo isset($analysis['paragraphs']['value']) ? absint( $analysis['paragraphs']['value'] ) : 0; ?> <?php echo esc_html( $analysis['paragraphs']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Headings</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['headings']['status'] ?? '' ); ?>"><?php echo isset($analysis['headings']['value']) ? absint( $analysis['headings']['value'] ) : 0; ?> <?php echo esc_html( $analysis['headings']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Readability</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['readability']['status'] ?? '' ); ?>"><?php echo esc_html( $analysis['readability']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['readability']['icon'] ?? '' ); ?></span></td></tr>
                     </table>
                     
                     <h4>🎯 SEO Elements</h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Title Length</td><td style="text-align: right;"><span class="<?php echo $analysis['title']['status']; ?>"><?php echo $analysis['title']['value']; ?> <?php echo $analysis['title']['icon']; ?></span></td></tr>
-                        <tr><td>Meta Description</td><td style="text-align: right;"><span class="<?php echo $analysis['description']['status']; ?>"><?php echo $analysis['description']['value']; ?> <?php echo $analysis['description']['icon']; ?></span></td></tr>
-                        <tr><td>URL Structure</td><td style="text-align: right;"><span class="<?php echo $analysis['url']['status']; ?>"><?php echo $analysis['url']['value']; ?> <?php echo $analysis['url']['icon']; ?></span></td></tr>
+                        <tr><td>Title Length</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['title']['status'] ); ?>"><?php echo isset($analysis['title']['value']) ? absint( $analysis['title']['value'] ) : 0; ?> <?php echo esc_html( $analysis['title']['icon'] ); ?></span></td></tr>
+                        <tr><td>Meta Description</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['description']['status'] ); ?>"><?php echo esc_html( $analysis['description']['value'] ); ?> <?php echo esc_html( $analysis['description']['icon'] ); ?></span></td></tr>
+                        <tr><td>URL Structure</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['url']['status'] ); ?>"><?php echo esc_html( $analysis['url']['value'] ); ?> <?php echo esc_html( $analysis['url']['icon'] ); ?></span></td></tr>
                     </table>
                 </div>
                 
                 <div>
                     <h4>🖼️ Media & Links</h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Images</td><td style="text-align: right;"><span class="<?php echo $analysis['images']['status']; ?>"><?php echo $analysis['images']['value']; ?> <?php echo $analysis['images']['icon']; ?></span></td></tr>
-                        <tr><td>Alt Text Coverage</td><td style="text-align: right;"><span class="<?php echo $analysis['alt_text']['status']; ?>"><?php echo $analysis['alt_text']['value']; ?> <?php echo $analysis['alt_text']['icon']; ?></span></td></tr>
-                        <tr><td>Internal Links</td><td style="text-align: right;"><span class="<?php echo $analysis['internal_links']['status']; ?>"><?php echo $analysis['internal_links']['value']; ?> <?php echo $analysis['internal_links']['icon']; ?></span></td></tr>
-                        <tr><td>External Links</td><td style="text-align: right;"><span class="<?php echo $analysis['external_links']['status']; ?>"><?php echo $analysis['external_links']['value']; ?> <?php echo $analysis['external_links']['icon']; ?></span></td></tr>
+                        <tr><td>Images</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['images']['status'] ); ?>"><?php echo isset($analysis['images']['value']) ? absint( $analysis['images']['value'] ) : 0; ?> <?php echo esc_html( $analysis['images']['icon'] ); ?></span></td></tr>
+                        <tr><td>Alt Text Coverage</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['alt_text']['status'] ); ?>"><?php echo esc_html( $analysis['alt_text']['value'] ); ?> <?php echo esc_html( $analysis['alt_text']['icon'] ); ?></span></td></tr>
+                        <tr><td>Internal Links</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['internal_links']['status'] ); ?>"><?php echo isset($analysis['internal_links']['value']) ? absint( $analysis['internal_links']['value'] ) : 0; ?> <?php echo esc_html( $analysis['internal_links']['icon'] ); ?></span></td></tr>
+                        <tr><td>External Links</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['external_links']['status'] ); ?>"><?php echo isset($analysis['external_links']['value']) ? absint( $analysis['external_links']['value'] ) : 0; ?> <?php echo esc_html( $analysis['external_links']['icon'] ); ?></span></td></tr>
                     </table>
                     
                     <?php if (!empty($analysis['recommendations'])): ?>
                     <h4>💡 Priority Recommendations</h4>
                     <ol style="padding-left: 20px;">
                         <?php foreach (array_slice($analysis['recommendations'], 0, 5) as $recommendation): ?>
-                            <li style="margin-bottom: 5px;"><?php echo $recommendation; ?></li>
+                            <li style="margin-bottom: 5px;"><?php echo esc_html( $recommendation ); ?></li>
                         <?php endforeach; ?>
                     </ol>
                     <?php endif; ?>
@@ -790,7 +793,7 @@ class Smart_SEO_Score_Display {
         ]);
     }
     
-    public static function enqueue_score_scripts($hook) {
+    public static function smart_seo_enqueue_score_scripts($hook) {
         if (in_array($hook, ['post.php', 'post-new.php', 'edit.php'])) {
             wp_enqueue_script('jquery');
             

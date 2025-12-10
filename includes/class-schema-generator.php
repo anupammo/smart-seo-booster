@@ -13,6 +13,12 @@ class Smart_SEO_Schema_Generator {
         if (empty($options['enable_schema'])) return;
 
         $schema_type = self::detect_schema_type();
+        
+        // Whitelist validation for security (prevent path traversal)
+        $allowed_types = ['article', 'faq', 'profile-page', 'organization', 'local-business'];
+        if (!in_array($schema_type, $allowed_types, true)) {
+            return;
+        }
 
         $schema_file = plugin_dir_path(__FILE__) . "../schema/{$schema_type}-schema.php";
         if (!file_exists($schema_file)) return;

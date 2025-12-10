@@ -1,8 +1,10 @@
 <?php
+defined('ABSPATH') || exit;
+
 return [
     "@context" => "https://schema.org",
     "@type" => "Article",
-    "headline" => get_the_title(),
+    "headline" => wp_strip_all_tags( get_the_title() ),
     "author" => [
         "@type" => "Person",
         "name" => "Anupam Mondal"
@@ -11,14 +13,14 @@ return [
     "dateModified" => get_the_modified_date('c'),
     "mainEntityOfPage" => [
         "@type" => "WebPage",
-        "@id" => get_permalink()
+        "@id" => esc_url_raw( get_permalink() )
     ],
     "publisher" => [
         "@type" => "Organization",
-        "name" => get_bloginfo('name'),
+        "name" => wp_strip_all_tags( get_bloginfo('name') ),
         "logo" => [
             "@type" => "ImageObject",
-            "url" => get_site_icon_url()
+            "url" => esc_url_raw( get_site_icon_url() )
         ]
     ]
 ];

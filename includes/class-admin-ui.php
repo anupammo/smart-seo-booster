@@ -29,6 +29,9 @@ class Smart_SEO_Admin_UI {
     }
 
     public static function render_settings_page() {
+        if (!current_user_can('manage_options')) {
+            wp_die( esc_html__('You do not have sufficient permissions to access this page.', 'smart-seo-booster-1') );
+        }
         ?>
         <div class="wrap">
             <h1><?php echo esc_html__( 'Smart SEO Booster Settings', 'smart-seo-booster-1' ); ?></h1>
@@ -44,6 +47,9 @@ class Smart_SEO_Admin_UI {
     }
 
     public static function render_audit_report() {
+        if (!current_user_can('manage_options')) {
+            wp_die( esc_html__('You do not have sufficient permissions to access this page.', 'smart-seo-booster-1') );
+        }
         include plugin_dir_path(__FILE__) . '../templates/audit-report.php';
     }
     

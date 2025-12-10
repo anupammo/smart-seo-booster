@@ -7,7 +7,8 @@ class Smart_SEO_Link_Analyzer {
     }
 
     public static function show_link_summary() {
-        if (!is_admin() || !get_current_screen()->is_block_editor()) return;
+        $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+        if (!is_admin() || !$screen || !$screen->is_block_editor()) return;
 
         global $post;
         if (!$post) return;

@@ -1,4 +1,6 @@
 <?php
+defined('ABSPATH') || exit;
+
 return [
     "@context" => "https://schema.org",
     "@type" => "FAQPage",

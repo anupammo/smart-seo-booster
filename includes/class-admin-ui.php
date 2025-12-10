@@ -9,8 +9,8 @@ class Smart_SEO_Admin_UI {
 
     public static function add_menu() {
         add_menu_page(
-            __( 'Smart SEO Booster', 'smart-seo-booster' ),
-            __( 'Smart SEO', 'smart-seo-booster' ),
+            __( 'Smart SEO Booster', 'smart-seo-booster-1' ),
+            __( 'Smart SEO', 'smart-seo-booster-1' ),
             'manage_options',
             'smart-seo',
             [__CLASS__, 'render_settings_page'],
@@ -20,8 +20,8 @@ class Smart_SEO_Admin_UI {
 
         add_submenu_page(
             'smart-seo',
-            __( 'SEO Audit Report', 'smart-seo-booster' ),
-            __( 'Audit Report', 'smart-seo-booster' ),
+            __( 'SEO Audit Report', 'smart-seo-booster-1' ),
+            __( 'Audit Report', 'smart-seo-booster-1' ),
             'manage_options',
             'smart-seo-audit',
             [__CLASS__, 'render_audit_report']
@@ -31,7 +31,7 @@ class Smart_SEO_Admin_UI {
     public static function render_settings_page() {
         ?>
         <div class="wrap">
-            <h1><?php echo esc_html__( 'Smart SEO Booster Settings', 'smart-seo-booster' ); ?></h1>
+            <h1><?php echo esc_html__( 'Smart SEO Booster Settings', 'smart-seo-booster-1' ); ?></h1>
             <form method="post" action="options.php">
                 <?php
                 settings_fields('smart_seo_settings');
@@ -49,7 +49,12 @@ class Smart_SEO_Admin_UI {
     
     public static function enqueue_assets($hook) {
         if (strpos($hook, 'smart-seo') !== false) {
-            wp_enqueue_style('smart-seo-admin', plugin_dir_url(__FILE__) . '../css/admin.css');
+            wp_enqueue_style(
+                'smart-seo-admin',
+                plugin_dir_url(__FILE__) . '../css/admin.css',
+                [],
+                defined('SMART_SEO_BOOSTER_VERSION') ? SMART_SEO_BOOSTER_VERSION : null
+            );
         }
     }
 }

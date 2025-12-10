@@ -17,14 +17,14 @@ class Smart_SEO_Core {
         $desc = is_singular() && $post ? wp_trim_words( $desc_clean, 20 ) : $desc_clean;
         
         // Sanitize and output meta tags
-        $title = esc_html($title);
-        $desc = esc_attr($desc);
+        $title_escaped = esc_attr($title);
+        $desc_escaped = esc_attr($desc);
         
-        echo '<meta name="description" content="' . $desc . '" />' . "\n";
+        echo '<meta name="description" content="' . $desc_escaped . '" />' . "\n";
         
         // Add Open Graph tags for better social sharing
-        echo '<meta property="og:title" content="' . $title . '" />' . "\n";
-        echo '<meta property="og:description" content="' . $desc . '" />' . "\n";
+        echo '<meta property="og:title" content="' . $title_escaped . '" />' . "\n";
+        echo '<meta property="og:description" content="' . $desc_escaped . '" />' . "\n";
         echo '<meta property="og:type" content="' . esc_attr( is_singular('post') ? 'article' : 'website' ) . '" />' . "\n";
         echo '<meta property="og:url" content="' . esc_url(get_permalink()) . '" />' . "\n";
         

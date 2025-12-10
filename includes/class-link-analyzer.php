@@ -19,6 +19,6 @@ class Smart_SEO_Link_Analyzer {
 
         $count = count($internal_links);
         // translators: %d is the number of internal links found
-        echo "<div class='notice notice-success'><p><strong>" . esc_html__( 'Internal Links:', 'smart-seo-booster' ) . "</strong> " . sprintf( esc_html__( '%d found in this post.', 'smart-seo-booster' ), $count ) . "</p></div>";
+        echo "<div class='notice notice-success'><p><strong>" . esc_html__( 'Internal Links:', 'smart-seo-booster-1' ) . "</strong> " . sprintf( esc_html__( '%d found in this post.', 'smart-seo-booster-1' ), absint( $count ) ) . "</p></div>";
     }
 }

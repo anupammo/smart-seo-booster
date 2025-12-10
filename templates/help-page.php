@@ -34,7 +34,7 @@ defined('ABSPATH') || exit;
                         <li>✅ Enable Meta Tags for title and description optimization</li>
                         <li>✅ Enable Content Audit for real-time SEO feedback</li>
                     </ul>
-                    <a href="<?php echo admin_url('admin.php?page=smart-seo'); ?>" class="button button-primary">Go to Settings</a>
+                    <a href="<?php echo esc_url( admin_url('admin.php?page=smart-seo') ); ?>" class="button button-primary">Go to Settings</a>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@ defined('ABSPATH') || exit;
                         <li>🎯 Get specific improvement recommendations</li>
                         <li>📝 Identify content gaps and opportunities</li>
                     </ul>
-                    <a href="<?php echo admin_url('admin.php?page=smart-seo-audit'); ?>" class="button button-primary">View Audit Report</a>
+                    <a href="<?php echo esc_url( admin_url('admin.php?page=smart-seo-audit') ); ?>" class="button button-primary">View Audit Report</a>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@ defined('ABSPATH') || exit;
                         <li>💡 Get instant recommendations</li>
                         <li>🔗 Monitor internal links automatically</li>
                     </ul>
-                    <a href="<?php echo admin_url('edit.php'); ?>" class="button button-primary">Edit Posts</a>
+                    <a href="<?php echo esc_url( admin_url('edit.php') ); ?>" class="button button-primary">Edit Posts</a>
                 </div>
             </div>
         </div>
@@ -407,7 +407,7 @@ defined('ABSPATH') || exit;
                 <strong>Plugin Version:</strong> 1.0.0<br>
                 <strong>Active Theme:</strong> <?php echo wp_get_theme()->get('Name'); ?><br>
                 <strong>Site URL:</strong> <?php echo home_url(); ?><br>
-                <strong>Admin URL:</strong> <?php echo admin_url(); ?>
+                <strong>Admin URL:</strong> <?php echo esc_url( admin_url() ); ?>
             </div>
         </div>
     </div>
@@ -558,15 +558,15 @@ jQuery(document).ready(function($) {
 <!-- Footer with author credit -->
 <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-left: 4px solid #2271b1; border-radius: 4px;">
     <p style="margin: 0; color: #666; font-size: 14px;">
-        <strong><?php esc_html_e('Smart SEO Booster', 'smart-seo-booster'); ?></strong> 
+        <strong><?php esc_html_e('Smart SEO Booster', 'smart-seo-booster-1'); ?></strong> 
         <?php printf(
             /* translators: %s: plugin version */
-            esc_html__('version %s - Developed with ❤️ for better WordPress SEO', 'smart-seo-booster'),
+            esc_html__('version %s - Developed with ❤️ for better WordPress SEO', 'smart-seo-booster-1'),
             esc_html(SMART_SEO_VERSION)
         ); ?>
     </p>
     <p style="margin: 5px 0 0 0; color: #666; font-size: 12px;">
-        <?php esc_html_e('Thank you for using Smart SEO Booster. For support and documentation, visit our website.', 'smart-seo-booster'); ?>
+        <?php esc_html_e('Thank you for using Smart SEO Booster. For support and documentation, visit our website.', 'smart-seo-booster-1'); ?>
     </p>
 </div>
 </div>

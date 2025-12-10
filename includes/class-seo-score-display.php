@@ -35,7 +35,7 @@ class Smart_SEO_Score_Display {
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count( wp_strip_all_tags( $content ) );
         $headings = substr_count($content, '<h');
         $images = substr_count($content, '<img');
         $alts = substr_count($content, 'alt=');
@@ -114,7 +114,7 @@ class Smart_SEO_Score_Display {
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count( wp_strip_all_tags( $content ) );
         $headings = substr_count($content, '<h');
         $images = substr_count($content, '<img');
         $alts = substr_count($content, 'alt=');
@@ -630,7 +630,7 @@ class Smart_SEO_Score_Display {
      * @return string Readability level
      */
     public static function smart_seo_calculate_readability_score($content) {
-        $text = strip_tags($content);
+        $text = wp_strip_all_tags( $content );
         $sentences = preg_split('/[.!?]+/', $text, -1, PREG_SPLIT_NO_EMPTY);
         $words = str_word_count($text);
         $sentence_count = count($sentences);
@@ -669,7 +669,10 @@ class Smart_SEO_Score_Display {
     public static function smart_seo_ajax_get_seo_score() {
         check_ajax_referer('smart_seo_nonce', 'nonce');
         
-        $post_id = intval($_POST['post_id']);
+        $post_id = 0;
+        if ( isset( $_POST['post_id'] ) ) {
+            $post_id = absint( wp_unslash( $_POST['post_id'] ) );
+        }
         if (!$post_id || !current_user_can('edit_post', $post_id)) {
             wp_die('Access denied');
         }
@@ -691,7 +694,10 @@ class Smart_SEO_Score_Display {
     public static function smart_seo_ajax_get_full_seo_report() {
         check_ajax_referer('smart_seo_nonce', 'nonce');
         
-        $post_id = intval($_POST['post_id']);
+        $post_id = 0;
+        if ( isset( $_POST['post_id'] ) ) {
+            $post_id = absint( wp_unslash( $_POST['post_id'] ) );
+        }
         if (!$post_id || !current_user_can('edit_post', $post_id)) {
             wp_die('Access denied');
         }
@@ -740,26 +746,26 @@ class Smart_SEO_Score_Display {
                     
                     <h4>🎯 SEO Elements</h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Title Length</td><td style="text-align: right;"><span class="<?php echo $analysis['title']['status']; ?>"><?php echo $analysis['title']['value']; ?> <?php echo $analysis['title']['icon']; ?></span></td></tr>
-                        <tr><td>Meta Description</td><td style="text-align: right;"><span class="<?php echo $analysis['description']['status']; ?>"><?php echo $analysis['description']['value']; ?> <?php echo $analysis['description']['icon']; ?></span></td></tr>
-                        <tr><td>URL Structure</td><td style="text-align: right;"><span class="<?php echo $analysis['url']['status']; ?>"><?php echo $analysis['url']['value']; ?> <?php echo $analysis['url']['icon']; ?></span></td></tr>
+                        <tr><td>Title Length</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['title']['status'] ); ?>"><?php echo isset($analysis['title']['value']) ? absint( $analysis['title']['value'] ) : 0; ?> <?php echo esc_html( $analysis['title']['icon'] ); ?></span></td></tr>
+                        <tr><td>Meta Description</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['description']['status'] ); ?>"><?php echo esc_html( $analysis['description']['value'] ); ?> <?php echo esc_html( $analysis['description']['icon'] ); ?></span></td></tr>
+                        <tr><td>URL Structure</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['url']['status'] ); ?>"><?php echo esc_html( $analysis['url']['value'] ); ?> <?php echo esc_html( $analysis['url']['icon'] ); ?></span></td></tr>
                     </table>
                 </div>
                 
                 <div>
                     <h4>🖼️ Media & Links</h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Images</td><td style="text-align: right;"><span class="<?php echo $analysis['images']['status']; ?>"><?php echo $analysis['images']['value']; ?> <?php echo $analysis['images']['icon']; ?></span></td></tr>
-                        <tr><td>Alt Text Coverage</td><td style="text-align: right;"><span class="<?php echo $analysis['alt_text']['status']; ?>"><?php echo $analysis['alt_text']['value']; ?> <?php echo $analysis['alt_text']['icon']; ?></span></td></tr>
-                        <tr><td>Internal Links</td><td style="text-align: right;"><span class="<?php echo $analysis['internal_links']['status']; ?>"><?php echo $analysis['internal_links']['value']; ?> <?php echo $analysis['internal_links']['icon']; ?></span></td></tr>
-                        <tr><td>External Links</td><td style="text-align: right;"><span class="<?php echo $analysis['external_links']['status']; ?>"><?php echo $analysis['external_links']['value']; ?> <?php echo $analysis['external_links']['icon']; ?></span></td></tr>
+                        <tr><td>Images</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['images']['status'] ); ?>"><?php echo isset($analysis['images']['value']) ? absint( $analysis['images']['value'] ) : 0; ?> <?php echo esc_html( $analysis['images']['icon'] ); ?></span></td></tr>
+                        <tr><td>Alt Text Coverage</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['alt_text']['status'] ); ?>"><?php echo esc_html( $analysis['alt_text']['value'] ); ?> <?php echo esc_html( $analysis['alt_text']['icon'] ); ?></span></td></tr>
+                        <tr><td>Internal Links</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['internal_links']['status'] ); ?>"><?php echo isset($analysis['internal_links']['value']) ? absint( $analysis['internal_links']['value'] ) : 0; ?> <?php echo esc_html( $analysis['internal_links']['icon'] ); ?></span></td></tr>
+                        <tr><td>External Links</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['external_links']['status'] ); ?>"><?php echo isset($analysis['external_links']['value']) ? absint( $analysis['external_links']['value'] ) : 0; ?> <?php echo esc_html( $analysis['external_links']['icon'] ); ?></span></td></tr>
                     </table>
                     
                     <?php if (!empty($analysis['recommendations'])): ?>
                     <h4>💡 Priority Recommendations</h4>
                     <ol style="padding-left: 20px;">
                         <?php foreach (array_slice($analysis['recommendations'], 0, 5) as $recommendation): ?>
-                            <li style="margin-bottom: 5px;"><?php echo $recommendation; ?></li>
+                            <li style="margin-bottom: 5px;"><?php echo esc_html( $recommendation ); ?></li>
                         <?php endforeach; ?>
                     </ol>
                     <?php endif; ?>

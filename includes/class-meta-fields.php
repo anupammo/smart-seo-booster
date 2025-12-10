@@ -371,9 +371,12 @@ class Smart_SEO_Meta_Fields {
      * @since 2.1.0
      */
     public static function save_seo_meta_fields($post_id) {
-        // Check nonce (unslash before verify)
-        if (!isset($_POST['smart_seo_meta_nonce_field']) || 
-            !wp_verify_nonce( wp_unslash( $_POST['smart_seo_meta_nonce_field'] ), 'smart_seo_meta_nonce')) {
+        // Check nonce: unslash and sanitize before verify
+        if (!isset($_POST['smart_seo_meta_nonce_field'])) {
+            return;
+        }
+        $nonce = sanitize_text_field( wp_unslash( $_POST['smart_seo_meta_nonce_field'] ) );
+        if ( ! wp_verify_nonce( $nonce, 'smart_seo_meta_nonce' ) ) {
             return;
         }
         

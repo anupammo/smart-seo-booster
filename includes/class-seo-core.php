@@ -20,11 +20,11 @@ class Smart_SEO_Core {
         $title_escaped = esc_attr($title);
         $desc_escaped = esc_attr($desc);
         
-        echo '<meta name="description" content="' . $desc_escaped . '" />' . "\n";
+        printf('<meta name="description" content="%s" />' . "\n", $desc_escaped);
         
         // Add Open Graph tags for better social sharing
-        echo '<meta property="og:title" content="' . $title_escaped . '" />' . "\n";
-        echo '<meta property="og:description" content="' . $desc_escaped . '" />' . "\n";
+        printf('<meta property="og:title" content="%s" />' . "\n", $title_escaped);
+        printf('<meta property="og:description" content="%s" />' . "\n", $desc_escaped);
         echo '<meta property="og:type" content="' . esc_attr( is_singular('post') ? 'article' : 'website' ) . '" />' . "\n";
         echo '<meta property="og:url" content="' . esc_url(get_permalink()) . '" />' . "\n";
         

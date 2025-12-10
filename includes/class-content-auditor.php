@@ -61,9 +61,9 @@ class Smart_SEO_Content_Auditor {
         }
         echo '<div class="notice ' . esc_attr( $score_class ) . '">';
         // translators: 1: emoji icon, 2: current score, 3: maximum score
-        echo "<p><strong>" . sprintf( esc_html__( '%1$s SEO Score: %2$d/%3$d', 'smart-seo-booster-1' ), esc_html( $score_emoji ), $score, 100 ) . "</strong></p>";
+        echo '<p><strong>' . sprintf( esc_html__( '%1$s SEO Score: %2$d/%3$d', 'smart-seo-booster-1' ), esc_html( $score_emoji ), absint( $score ), 100 ) . '</strong></p>';
         // translators: 1: word count, 2: heading count, 3: image count, 4: alt text count
-        echo "<p><strong>" . esc_html__( 'Stats:', 'smart-seo-booster-1' ) . "</strong> " . sprintf( esc_html__( 'Words: %1$d | Headings: %2$d | Images: %3$d | Alt Texts: %4$d', 'smart-seo-booster-1' ), $word_count, $headings, $images, $alts ) . "</p>";
+        echo '<p><strong>' . esc_html__( 'Stats:', 'smart-seo-booster-1' ) . '</strong> ' . sprintf( esc_html__( 'Words: %1$d | Headings: %2$d | Images: %3$d | Alt Texts: %4$d', 'smart-seo-booster-1' ), absint( $word_count ), absint( $headings ), absint( $images ), absint( $alts ) ) . '</p>';
         
         if (!empty($recommendations)) {
             echo "<p><strong>" . esc_html__( 'Recommendations:', 'smart-seo-booster-1' ) . "</strong> " . esc_html( implode( ' • ', $recommendations ) ) . "</p>";

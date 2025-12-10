@@ -313,10 +313,10 @@ class Smart_SEO_Score_Display {
             
             echo '<div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px;">';
             echo '<strong>Average Score: <span style="color: ' . esc_attr($avg_color) . ';">' . absint($avg_score) . '/100</span></strong>';
+            echo '<div>';
+            echo '<strong style="color: ' . esc_attr( $color ) . '; font-size: 14px;">' . absint( $score ) . '/100</strong><br>';
+            echo '<small style="color: ' . esc_attr( $color ) . ';">' . esc_html( $status ) . '</small>';
             echo '</div>';
-        } else {
-            echo '<p>No content found. Start creating posts and pages to see SEO scores!</p>';
-        }
         
         echo '<div style="margin-top: 15px; text-align: center;">';
         echo '<a href="' . esc_url( admin_url('admin.php?page=smart-seo-audit') ) . '" class="button button-primary">View Full Audit Report</a>';
@@ -342,7 +342,7 @@ class Smart_SEO_Score_Display {
         $score   = self::calculate_seo_score($post->ID);
         $color   = self::get_score_color($score);
         $status  = self::get_score_status($score);
-        $analysis = self::get_detailed_seo_analysis($post);
+        $analysis = self::smart_seo_get_detailed_seo_analysis($post);
         ?>
         <div class="smart-seo-score-metabox">
             <style>
@@ -482,7 +482,7 @@ class Smart_SEO_Score_Display {
      * @param WP_Post $post The post object
      * @return array Detailed analysis data
      */
-    public static function get_detailed_seo_analysis($post) {
+    public static function smart_seo_get_detailed_seo_analysis($post) {
         $content = $post->post_content;
         $title = $post->post_title;
         $excerpt = $post->post_excerpt;
@@ -540,7 +540,7 @@ class Smart_SEO_Score_Display {
                 'icon' => $heading_count >= 2 ? '✅' : ($heading_count >= 1 ? '⚠️' : '❌')
             ],
             'readability' => [
-                'value' => self::calculate_readability_score($content),
+                'value' => self::smart_seo_calculate_readability_score($content),
                 'status' => 'seo-good', // Simplified for now
                 'icon' => '✅'
             ],
@@ -629,7 +629,7 @@ class Smart_SEO_Score_Display {
      * @param string $content The content to analyze
      * @return string Readability level
      */
-    public static function calculate_readability_score($content) {
+    public static function smart_seo_calculate_readability_score($content) {
         $text = strip_tags($content);
         $sentences = preg_split('/[.!?]+/', $text, -1, PREG_SPLIT_NO_EMPTY);
         $words = str_word_count($text);
@@ -648,12 +648,12 @@ class Smart_SEO_Score_Display {
         }
     }
     
-    public static function add_seo_score_column($columns) {
+    public static function smart_seo_add_seo_score_column($columns) {
         $columns['seo_score'] = '📊 SEO Score';
         return $columns;
     }
     
-    public static function display_seo_score_column($column, $post_id) {
+    public static function smart_seo_display_seo_score_column($column, $post_id) {
         if ($column === 'seo_score') {
             $score = self::calculate_seo_score($post_id);
             $color = self::get_score_color($score);
@@ -666,7 +666,7 @@ class Smart_SEO_Score_Display {
         }
     }
     
-    public static function ajax_get_seo_score() {
+    public static function smart_seo_ajax_get_seo_score() {
         check_ajax_referer('smart_seo_nonce', 'nonce');
         
         $post_id = intval($_POST['post_id']);
@@ -688,7 +688,7 @@ class Smart_SEO_Score_Display {
     /**
      * AJAX handler for full SEO report
      */
-    public static function ajax_get_full_seo_report() {
+    public static function smart_seo_ajax_get_full_seo_report() {
         check_ajax_referer('smart_seo_nonce', 'nonce');
         
         $post_id = intval($_POST['post_id']);
@@ -701,7 +701,7 @@ class Smart_SEO_Score_Display {
             wp_send_json_error('Post not found');
         }
         
-        $analysis = self::get_detailed_seo_analysis($post);
+        $analysis = self::smart_seo_get_detailed_seo_analysis($post);
         $score = self::calculate_seo_score($post_id);
         $color = self::get_score_color($score);
         $status = self::get_score_status($score);
@@ -714,16 +714,16 @@ class Smart_SEO_Score_Display {
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
                 <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-                    <div style="font-size: 48px; font-weight: bold; color: <?php echo $color; ?>;"><?php echo $score; ?>/100</div>
-                    <div style="font-size: 18px; font-weight: bold; color: <?php echo $color; ?>;"><?php echo $status; ?></div>
+                    <div style="font-size: 48px; font-weight: bold; color: <?php echo esc_attr( $color ); ?>;"><?php echo absint( $score ); ?>/100</div>
+                    <div style="font-size: 18px; font-weight: bold; color: <?php echo esc_attr( $color ); ?>;"><?php echo esc_html( $status ); ?></div>
                 </div>
                 <div style="padding: 20px;">
                     <h4>Quick Stats</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li><strong>Published:</strong> <?php echo get_the_date('M j, Y', $post); ?></li>
-                        <li><strong>Last Modified:</strong> <?php echo get_the_modified_date('M j, Y', $post); ?></li>
-                        <li><strong>Word Count:</strong> <?php echo $analysis['word_count']['value']; ?> words</li>
-                        <li><strong>Reading Time:</strong> <?php echo ceil($analysis['word_count']['value'] / 200); ?> minutes</li>
+                        <li><strong>Published:</strong> <?php echo esc_html( get_the_date('M j, Y', $post) ); ?></li>
+                        <li><strong>Last Modified:</strong> <?php echo esc_html( get_the_modified_date('M j, Y', $post) ); ?></li>
+                        <li><strong>Word Count:</strong> <?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> words</li>
+                        <li><strong>Reading Time:</strong> <?php echo isset($analysis['word_count']['value']) ? absint( ceil($analysis['word_count']['value'] / 200) ) : 0; ?> minutes</li>
                     </ul>
                 </div>
             </div>
@@ -732,10 +732,10 @@ class Smart_SEO_Score_Display {
                 <div>
                     <h4>📝 Content Quality</h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Word Count</td><td style="text-align: right;"><span class="<?php echo $analysis['word_count']['status']; ?>"><?php echo $analysis['word_count']['value']; ?> <?php echo $analysis['word_count']['icon']; ?></span></td></tr>
-                        <tr><td>Paragraphs</td><td style="text-align: right;"><span class="<?php echo $analysis['paragraphs']['status']; ?>"><?php echo $analysis['paragraphs']['value']; ?> <?php echo $analysis['paragraphs']['icon']; ?></span></td></tr>
-                        <tr><td>Headings</td><td style="text-align: right;"><span class="<?php echo $analysis['headings']['status']; ?>"><?php echo $analysis['headings']['value']; ?> <?php echo $analysis['headings']['icon']; ?></span></td></tr>
-                        <tr><td>Readability</td><td style="text-align: right;"><span class="<?php echo $analysis['readability']['status']; ?>"><?php echo $analysis['readability']['value']; ?> <?php echo $analysis['readability']['icon']; ?></span></td></tr>
+                        <tr><td>Word Count</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['word_count']['status'] ?? '' ); ?>"><?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> <?php echo esc_html( $analysis['word_count']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Paragraphs</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['paragraphs']['status'] ?? '' ); ?>"><?php echo isset($analysis['paragraphs']['value']) ? absint( $analysis['paragraphs']['value'] ) : 0; ?> <?php echo esc_html( $analysis['paragraphs']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Headings</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['headings']['status'] ?? '' ); ?>"><?php echo isset($analysis['headings']['value']) ? absint( $analysis['headings']['value'] ) : 0; ?> <?php echo esc_html( $analysis['headings']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Readability</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['readability']['status'] ?? '' ); ?>"><?php echo esc_html( $analysis['readability']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['readability']['icon'] ?? '' ); ?></span></td></tr>
                     </table>
                     
                     <h4>🎯 SEO Elements</h4>
@@ -787,7 +787,7 @@ class Smart_SEO_Score_Display {
         ]);
     }
     
-    public static function enqueue_score_scripts($hook) {
+    public static function smart_seo_enqueue_score_scripts($hook) {
         if (in_array($hook, ['post.php', 'post-new.php', 'edit.php'])) {
             wp_enqueue_script('jquery');
             

@@ -558,15 +558,15 @@ jQuery(document).ready(function($) {
 <!-- Footer with author credit -->
 <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-left: 4px solid #2271b1; border-radius: 4px;">
     <p style="margin: 0; color: #666; font-size: 14px;">
-        <strong><?php esc_html_e('Smart SEO Booster', 'smart-seo-booster-1'); ?></strong> 
+        <strong><?php esc_html_e('Smart SEO Booster', 'smart-seo-booster'); ?></strong> 
         <?php printf(
             /* translators: %s: plugin version */
-            esc_html__('version %s - Developed with ❤️ for better WordPress SEO', 'smart-seo-booster-1'),
+            esc_html__('version %s - Developed with ❤️ for better WordPress SEO', 'smart-seo-booster'),
             esc_html(SMART_SEO_VERSION)
         ); ?>
     </p>
     <p style="margin: 5px 0 0 0; color: #666; font-size: 12px;">
-        <?php esc_html_e('Thank you for using Smart SEO Booster. For support and documentation, visit our website.', 'smart-seo-booster-1'); ?>
+        <?php esc_html_e('Thank you for using Smart SEO Booster. For support and documentation, visit our website.', 'smart-seo-booster'); ?>
     </p>
 </div>
 </div>

@@ -5,7 +5,7 @@
  * Version: 1.0.1
  * Author: Anupam Mondal
  * License: GPL2+
- * Text Domain: smart-seo-booster-1
+ * Text Domain: smart-seo-booster
  */
 
 defined('ABSPATH') || exit;

@@ -10,8 +10,8 @@ class Smart_SEO_Settings {
         register_setting('smart_seo_settings', 'smart_seo_options', [
             'sanitize_callback' => [__CLASS__, 'sanitize_options']
         ]);
-        add_settings_section('smart_seo_main', __( 'Smart SEO Settings', 'smart-seo-booster-1' ), null, 'smart_seo');
-        add_settings_field('enable_schema', __( 'Enable Schema Markup', 'smart-seo-booster-1' ), [__CLASS__, 'checkbox'], 'smart_seo', 'smart_seo_main', ['name' => 'enable_schema']);
+        add_settings_section('smart_seo_main', __( 'Smart SEO Settings', 'smart-seo-booster' ), null, 'smart_seo');
+        add_settings_field('enable_schema', __( 'Enable Schema Markup', 'smart-seo-booster' ), [__CLASS__, 'checkbox'], 'smart_seo', 'smart_seo_main', ['name' => 'enable_schema']);
     }
 
     public static function checkbox($args) {

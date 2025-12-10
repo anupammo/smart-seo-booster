@@ -489,7 +489,7 @@ class Smart_SEO_Score_Display {
         $slug = $post->post_name;
         
         // Content Analysis
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count( wp_strip_all_tags( $content ) );
         $paragraph_count = substr_count($content, '</p>');
         $heading_count = substr_count($content, '<h');
         

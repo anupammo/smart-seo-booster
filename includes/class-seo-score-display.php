@@ -14,17 +14,17 @@ class Smart_SEO_Score_Display {
         add_action('add_meta_boxes', [__CLASS__, 'add_seo_score_metabox']);
         
         // Add SEO score column to posts/pages list
-        add_filter('manage_posts_columns', [__CLASS__, 'add_seo_score_column']);
-        add_filter('manage_pages_columns', [__CLASS__, 'add_seo_score_column']);
-        add_action('manage_posts_custom_column', [__CLASS__, 'display_seo_score_column'], 10, 2);
-        add_action('manage_pages_custom_column', [__CLASS__, 'display_seo_score_column'], 10, 2);
+        add_filter('manage_posts_columns', [__CLASS__, 'smart_seo_add_seo_score_column']);
+        add_filter('manage_pages_columns', [__CLASS__, 'smart_seo_add_seo_score_column']);
+        add_action('manage_posts_custom_column', [__CLASS__, 'smart_seo_display_seo_score_column'], 10, 2);
+        add_action('manage_pages_custom_column', [__CLASS__, 'smart_seo_display_seo_score_column'], 10, 2);
         
         // Add AJAX handlers for SEO analysis
-        add_action('wp_ajax_get_seo_score', [__CLASS__, 'ajax_get_seo_score']);
-        add_action('wp_ajax_get_full_seo_report', [__CLASS__, 'ajax_get_full_seo_report']);
+        add_action('wp_ajax_get_seo_score', [__CLASS__, 'smart_seo_ajax_get_seo_score']);
+        add_action('wp_ajax_get_full_seo_report', [__CLASS__, 'smart_seo_ajax_get_full_seo_report']);
         
         // Enqueue scripts for real-time updates
-        add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue_score_scripts']);
+        add_action('admin_enqueue_scripts', [__CLASS__, 'smart_seo_enqueue_score_scripts']);
     }
     
     public static function calculate_seo_score($post_id) {

@@ -14,7 +14,6 @@
  * Tested up to: 6.8
  * Requires PHP: 7.4
  * Network: false
- * Update URI: https://github.com/anupammo/smart-seo-booster
  * 
  * @package SmartSEOBooster
  * @author Anupam Mondal
@@ -160,13 +159,6 @@ register_deactivation_hook(__FILE__, 'smart_seo_deactivate');
  * @since 2.1.0
  */
 function smart_seo_init() {
-    // Load translation files
-    load_plugin_textdomain(
-        'smart-seo-booster', 
-        false, 
-        dirname(plugin_basename(__FILE__)) . '/languages'
-    );
-
     // Initialize plugin modules
     if (class_exists('Smart_SEO_Loader')) {
         Smart_SEO_Loader::init();

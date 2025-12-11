@@ -22,8 +22,9 @@ if (!current_user_can('manage_options')) {
 }
 
 // Verify nonce for any form submissions
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!isset($_POST['smart_seo_nonce']) || !wp_verify_nonce($_POST['smart_seo_nonce'], 'smart_seo_audit_action')) {
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nonce = isset($_POST['smart_seo_nonce']) ? sanitize_text_field(wp_unslash($_POST['smart_seo_nonce'])) : '';
+    if (!wp_verify_nonce($nonce, 'smart_seo_audit_action')) {
         wp_die(
             esc_html__('Security check failed. Please refresh the page and try again.', 'smart-seo-booster'),
             esc_html__('Security Error', 'smart-seo-booster'),
@@ -157,7 +158,7 @@ foreach ($post_ids as $post_id) {
     // 5. Links have descriptive text
     preg_match_all('/<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)<\/a>/i', $post_content, $link_matches, PREG_SET_ORDER);
     foreach ($link_matches as $link) {
-        $link_text = strip_tags($link[2]);
+        $link_text = wp_strip_all_tags($link[2]);
         $generic_texts = ['click here', 'read more', 'here', 'link', 'more', 'continue reading'];
         if (empty(trim($link_text)) || in_array(strtolower(trim($link_text)), $generic_texts)) {
             $links_without_descriptive_text++;
@@ -257,7 +258,7 @@ foreach ($post_ids as $post_id) {
     
     foreach ($image_matches as $img_match) {
         $img_src = $img_match[1];
-        $img_filename = basename(parse_url($img_src, PHP_URL_PATH));
+        $img_filename = basename(wp_parse_url($img_src, PHP_URL_PATH));
         
         // Check for descriptive filenames (not generic like image1.jpg)
         if (preg_match('/^(image|img|photo|picture|untitled)[\d]*\.(jpg|jpeg|png|gif|webp)$/i', $img_filename)) {
@@ -451,12 +452,12 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
 ?>
 
 <div class="wrap smart-seo-wrapper">
-    <h1><?php _e('SEO Audit Report', 'smart-seo-booster'); ?></h1>
+    <h1><?php esc_html_e('SEO Audit Report', 'smart-seo-booster'); ?></h1>
     
     <!-- Main Score Section - PageSpeed Style -->
     <div class="ps-card">
         <div class="ps-card-header">
-            <h2><?php _e('Overall SEO Performance', 'smart-seo-booster'); ?></h2>
+            <h2><?php esc_html_e('Overall SEO Performance', 'smart-seo-booster'); ?></h2>
         </div>
         <div class="ps-card-content">
             <div class="seo-score-display">
@@ -478,18 +479,18 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                               stroke-linecap="round"/>
                     </svg>
                     <div class="score-text <?php echo esc_attr($score_class); ?>"><?php echo esc_html(round($overall_score)); ?></div>
-                    <div class="score-label"><?php _e('SEO Score', 'smart-seo-booster'); ?></div>
+                    <div class="score-label"><?php esc_html_e('SEO Score', 'smart-seo-booster'); ?></div>
                 </div>
                 
                 <div class="ps-section">
                     <p style="text-align: center; margin-top: 16px;">
                         <?php 
                         if ($overall_score >= 90) {
-                            _e('Excellent! Your site has strong SEO fundamentals.', 'smart-seo-booster');
+                            esc_html_e('Excellent! Your site has strong SEO fundamentals.', 'smart-seo-booster');
                         } elseif ($overall_score >= 50) {
-                            _e('Good progress, but there\'s room for improvement.', 'smart-seo-booster');
+                            esc_html_e('Good progress, but there\'s room for improvement.', 'smart-seo-booster');
                         } else {
-                            _e('Your site needs SEO attention to improve search visibility.', 'smart-seo-booster');
+                            esc_html_e('Your site needs SEO attention to improve search visibility.', 'smart-seo-booster');
                         }
                         ?>
                     </p>
@@ -504,13 +505,13 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($pages_blocked_indexing == 0 ? 'good' : 'warning'); ?>"></span>
-                <?php _e('Page Indexing', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Page Indexing', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($pages_blocked_indexing == 0 ? 'score-good' : 'score-needs-improvement'); ?>">
                 <?php echo esc_html(round($indexing_score)); ?>%
             </div>
             <div class="ps-metric-description">
-                <?php echo esc_html($pages_blocked_indexing); ?> <?php _e('pages blocked from indexing', 'smart-seo-booster'); ?>
+                <?php echo esc_html($pages_blocked_indexing); ?> <?php esc_html_e('pages blocked from indexing', 'smart-seo-booster'); ?>
             </div>
         </div>
 
@@ -518,13 +519,13 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($pages_without_title == 0 ? 'good' : ($pages_without_title <= 2 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Title Elements', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Title Elements', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($pages_without_title == 0 ? 'score-good' : ($pages_without_title <= 2 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($title_score)); ?>%
             </div>
             <div class="ps-metric-description">
-                <?php echo esc_html($pages_without_title); ?> <?php _e('pages missing title elements', 'smart-seo-booster'); ?>
+                <?php echo esc_html($pages_without_title); ?> <?php esc_html_e('pages missing title elements', 'smart-seo-booster'); ?>
             </div>
         </div>
 
@@ -532,13 +533,13 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($pages_without_meta_desc == 0 ? 'good' : ($pages_without_meta_desc <= 5 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Meta Descriptions', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Meta Descriptions', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($pages_without_meta_desc == 0 ? 'score-good' : ($pages_without_meta_desc <= 5 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($meta_desc_score)); ?>%
             </div>
             <div class="ps-metric-description">
-                <?php echo esc_html($pages_without_meta_desc); ?> <?php _e('pages missing meta descriptions', 'smart-seo-booster'); ?>
+                <?php echo esc_html($pages_without_meta_desc); ?> <?php esc_html_e('pages missing meta descriptions', 'smart-seo-booster'); ?>
             </div>
         </div>
 
@@ -546,13 +547,13 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($pages_non_200_status == 0 ? 'good' : 'error'); ?>"></span>
-                <?php _e('HTTP Status Codes', 'smart-seo-booster'); ?>
+                <?php esc_html_e('HTTP Status Codes', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($pages_non_200_status == 0 ? 'score-good' : 'score-poor'); ?>">
                 <?php echo esc_html(round($http_status_score)); ?>%
             </div>
             <div class="ps-metric-description">
-                <?php echo esc_html($pages_non_200_status); ?> <?php _e('pages with non-200 status codes', 'smart-seo-booster'); ?>
+                <?php echo esc_html($pages_non_200_status); ?> <?php esc_html_e('pages with non-200 status codes', 'smart-seo-booster'); ?>
             </div>
         </div>
 
@@ -560,13 +561,13 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($links_without_descriptive_text == 0 ? 'good' : ($links_without_descriptive_text <= 5 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Link Text Quality', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Link Text Quality', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($links_without_descriptive_text == 0 ? 'score-good' : ($links_without_descriptive_text <= 5 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html($links_without_descriptive_text == 0 ? '100' : max(0, 100 - ($links_without_descriptive_text * 10))); ?>%
             </div>
             <div class="ps-metric-description">
-                <?php echo esc_html($links_without_descriptive_text); ?> <?php _e('links with poor descriptive text', 'smart-seo-booster'); ?>
+                <?php echo esc_html($links_without_descriptive_text); ?> <?php esc_html_e('links with poor descriptive text', 'smart-seo-booster'); ?>
             </div>
         </div>
 
@@ -574,13 +575,13 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($non_crawlable_links == 0 ? 'good' : 'warning'); ?>"></span>
-                <?php _e('Link Crawlability', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Link Crawlability', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($non_crawlable_links == 0 ? 'score-good' : 'score-needs-improvement'); ?>">
                 <?php echo esc_html($non_crawlable_links == 0 ? '100' : max(0, 100 - ($non_crawlable_links * 5))); ?>%
             </div>
             <div class="ps-metric-description">
-                <?php echo esc_html($non_crawlable_links); ?> <?php _e('non-crawlable links found', 'smart-seo-booster'); ?>
+                <?php echo esc_html($non_crawlable_links); ?> <?php esc_html_e('non-crawlable links found', 'smart-seo-booster'); ?>
             </div>
         </div>
 
@@ -588,7 +589,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($robots_txt_valid ? 'good' : 'error'); ?>"></span>
-                <?php _e('Robots.txt Validity', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Robots.txt Validity', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($robots_txt_valid ? 'score-good' : 'score-poor'); ?>">
                 <?php echo esc_html($robots_score); ?>%
@@ -602,13 +603,13 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($images_missing_alt == 0 ? 'good' : ($images_missing_alt <= 10 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Image Alt Attributes', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Image Alt Attributes', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($images_missing_alt == 0 ? 'score-good' : ($images_missing_alt <= 10 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($alt_text_score)); ?>%
             </div>
             <div class="ps-metric-description">
-                <?php echo esc_html($images_missing_alt); ?> <?php _e('images missing alt text', 'smart-seo-booster'); ?>
+                <?php echo esc_html($images_missing_alt); ?> <?php esc_html_e('images missing alt text', 'smart-seo-booster'); ?>
             </div>
         </div>
 
@@ -616,13 +617,13 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($canonical_issues == 0 ? 'good' : 'warning'); ?>"></span>
-                <?php _e('Canonical URLs', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Canonical URLs', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($canonical_issues == 0 ? 'score-good' : 'score-needs-improvement'); ?>">
                 <?php echo esc_html(round($canonical_score)); ?>%
             </div>
             <div class="ps-metric-description">
-                <?php echo esc_html($canonical_issues); ?> <?php _e('pages with canonical issues', 'smart-seo-booster'); ?>
+                <?php echo esc_html($canonical_issues); ?> <?php esc_html_e('pages with canonical issues', 'smart-seo-booster'); ?>
             </div>
         </div>
 
@@ -631,13 +632,13 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($hreflang_issues == 0 ? 'good' : 'warning'); ?>"></span>
-                <?php _e('Hreflang Attributes', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Hreflang Attributes', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($hreflang_issues == 0 ? 'score-good' : 'score-needs-improvement'); ?>">
                 <?php echo esc_html($hreflang_issues == 0 ? '100' : max(0, 100 - ($hreflang_issues / $posts_analyzed) * 100)); ?>%
             </div>
             <div class="ps-metric-description">
-                <?php echo esc_html($hreflang_issues); ?> <?php _e('pages missing hreflang', 'smart-seo-booster'); ?>
+                <?php echo esc_html($hreflang_issues); ?> <?php esc_html_e('pages missing hreflang', 'smart-seo-booster'); ?>
             </div>
         </div>
         <?php endif; ?>
@@ -646,7 +647,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($keyword_optimization_score >= 80 ? 'good' : ($keyword_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Keyword Optimization', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Keyword Optimization', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($keyword_optimization_score >= 80 ? 'score-good' : ($keyword_optimization_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($keyword_optimization_score)); ?>%
@@ -660,7 +661,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($content_quality_score >= 80 ? 'good' : ($content_quality_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Content Quality', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Content Quality', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($content_quality_score >= 80 ? 'score-good' : ($content_quality_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($content_quality_score)); ?>%
@@ -674,7 +675,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($image_optimization_score >= 80 ? 'good' : ($image_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Image Optimization', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Image Optimization', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($image_optimization_score >= 80 ? 'score-good' : ($image_optimization_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($image_optimization_score)); ?>%
@@ -688,7 +689,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($internal_linking_score >= 80 ? 'good' : ($internal_linking_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Internal Linking', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Internal Linking', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($internal_linking_score >= 80 ? 'score-good' : ($internal_linking_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($internal_linking_score)); ?>%
@@ -702,7 +703,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($external_links_score >= 80 ? 'good' : ($external_links_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('External Links', 'smart-seo-booster'); ?>
+                <?php esc_html_e('External Links', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($external_links_score >= 80 ? 'score-good' : ($external_links_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($external_links_score)); ?>%
@@ -716,7 +717,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($schema_markup_score >= 80 ? 'good' : ($schema_markup_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Schema Markup', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Schema Markup', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($schema_markup_score >= 80 ? 'score-good' : ($schema_markup_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($schema_markup_score)); ?>%
@@ -730,7 +731,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($social_media_score >= 80 ? 'good' : ($social_media_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Social Media Tags', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Social Media Tags', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($social_media_score >= 80 ? 'score-good' : ($social_media_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($social_media_score)); ?>%
@@ -744,7 +745,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
         <div class="ps-metric-card">
             <div class="ps-metric-title">
                 <span class="status-icon <?php echo esc_attr($technical_seo_score >= 80 ? 'good' : ($technical_seo_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                <?php _e('Technical SEO', 'smart-seo-booster'); ?>
+                <?php esc_html_e('Technical SEO', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($technical_seo_score >= 80 ? 'score-good' : ($technical_seo_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
                 <?php echo esc_html(round($technical_seo_score)); ?>%
@@ -757,7 +758,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
 
     <!-- Opportunities Section -->
     <div class="ps-section">
-        <h2 class="ps-section-title"><?php _e('Opportunities', 'smart-seo-booster'); ?></h2>
+        <h2 class="ps-section-title"><?php esc_html_e('Opportunities', 'smart-seo-booster'); ?></h2>
         <div class="ps-card">
             <div class="ps-card-content">
                 <ul class="ps-audit-list">
@@ -767,7 +768,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Remove indexing blocks', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Remove indexing blocks', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages blocked from indexing */
@@ -784,7 +785,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon error"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Add missing title elements', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Add missing title elements', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing title elements */
@@ -801,7 +802,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon error"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Add missing meta descriptions', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Add missing meta descriptions', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing meta descriptions */
@@ -818,7 +819,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon error"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Fix pages with HTTP errors', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Fix pages with HTTP errors', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages with non-200 HTTP status codes */
@@ -835,7 +836,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Improve link text quality', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Improve link text quality', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of links with poor descriptive text */
@@ -852,7 +853,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Make links crawlable', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Make links crawlable', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of non-crawlable links */
@@ -869,9 +870,9 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon error"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Fix robots.txt file', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Fix robots.txt file', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
-                                <?php _e('Your robots.txt file is missing or invalid. This file helps search engines understand which pages to crawl and index.', 'smart-seo-booster'); ?>
+                                <?php esc_html_e('Your robots.txt file is missing or invalid. This file helps search engines understand which pages to crawl and index.', 'smart-seo-booster'); ?>
                             </div>
                         </div>
                     </li>
@@ -883,7 +884,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Add alt text to images', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Add alt text to images', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of images missing alt attributes */
@@ -900,7 +901,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Fix canonical URL issues', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Fix canonical URL issues', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages with canonical URL issues */
@@ -917,7 +918,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Add hreflang attributes', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Add hreflang attributes', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing hreflang attributes */
@@ -934,7 +935,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Add H1 tags to pages', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Add H1 tags to pages', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing H1 tags */
@@ -951,7 +952,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Optimize keyword placement in titles', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Optimize keyword placement in titles', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing keywords in titles */
@@ -968,7 +969,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Expand short content', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Expand short content', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages with short content */
@@ -985,7 +986,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Optimize large images', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Optimize large images', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of large images over 100KB */
@@ -1002,7 +1003,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Improve internal linking', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Improve internal linking', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages with poor internal linking */
@@ -1019,7 +1020,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon error"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Fix broken external links', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Fix broken external links', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of broken external links */
@@ -1036,7 +1037,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Add schema markup', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Add schema markup', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing schema markup */
@@ -1053,7 +1054,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon warning"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Add social media tags', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Add social media tags', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing Open Graph tags */
@@ -1070,7 +1071,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon error"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Fix technical SEO issues', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Fix technical SEO issues', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of technical SEO issues found */
@@ -1087,9 +1088,9 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <span class="status-icon good"></span>
                         </div>
                         <div class="ps-audit-content">
-                            <div class="ps-audit-title"><?php _e('Excellent SEO health!', 'smart-seo-booster'); ?></div>
+                            <div class="ps-audit-title"><?php esc_html_e('Excellent SEO health!', 'smart-seo-booster'); ?></div>
                             <div class="ps-audit-description">
-                                <?php _e('Your site passes all major SEO checks. Continue monitoring and updating your content regularly to maintain this excellent performance.', 'smart-seo-booster'); ?>
+                                <?php esc_html_e('Your site passes all major SEO checks. Continue monitoring and updating your content regularly to maintain this excellent performance.', 'smart-seo-booster'); ?>
                             </div>
                         </div>
                     </li>
@@ -1101,75 +1102,75 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
 
     <!-- Detailed Analysis Table -->
     <div class="ps-section">
-        <h2 class="ps-section-title"><?php _e('Detailed Analysis', 'smart-seo-booster'); ?></h2>
+        <h2 class="ps-section-title"><?php esc_html_e('Detailed Analysis', 'smart-seo-booster'); ?></h2>
         <div class="ps-card">
             <div class="ps-card-content">
                 <table class="wp-list-table widefat fixed striped">
                     <thead>
                         <tr>
-                            <th scope="col"><?php _e('SEO Factor', 'smart-seo-booster'); ?></th>
-                            <th scope="col"><?php _e('Status', 'smart-seo-booster'); ?></th>
-                            <th scope="col"><?php _e('Issues Found', 'smart-seo-booster'); ?></th>
-                            <th scope="col"><?php _e('Score', 'smart-seo-booster'); ?></th>
+                            <th scope="col"><?php esc_html_e('SEO Factor', 'smart-seo-booster'); ?></th>
+                            <th scope="col"><?php esc_html_e('Status', 'smart-seo-booster'); ?></th>
+                            <th scope="col"><?php esc_html_e('Issues Found', 'smart-seo-booster'); ?></th>
+                            <th scope="col"><?php esc_html_e('Score', 'smart-seo-booster'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong><?php _e('Page Indexing', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Page Indexing', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($pages_blocked_indexing == 0 ? 'good' : 'warning'); ?>"></span>
                                 <?php echo $pages_blocked_indexing == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Review Needed', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($pages_blocked_indexing); ?> <?php _e('pages blocked', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($pages_blocked_indexing); ?> <?php esc_html_e('pages blocked', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($indexing_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Title Elements', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Title Elements', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($pages_without_title == 0 ? 'good' : 'error'); ?>"></span>
                                 <?php echo $pages_without_title == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Work', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($pages_without_title); ?> <?php _e('missing titles', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($pages_without_title); ?> <?php esc_html_e('missing titles', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($title_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Meta Descriptions', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Meta Descriptions', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($pages_without_meta_desc == 0 ? 'good' : 'error'); ?>"></span>
                                 <?php echo $pages_without_meta_desc == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Work', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($pages_without_meta_desc); ?> <?php _e('missing descriptions', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($pages_without_meta_desc); ?> <?php esc_html_e('missing descriptions', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($meta_desc_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('HTTP Status Codes', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('HTTP Status Codes', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($pages_non_200_status == 0 ? 'good' : 'error'); ?>"></span>
                                 <?php echo $pages_non_200_status == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Fix', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($pages_non_200_status); ?> <?php _e('non-200 responses', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($pages_non_200_status); ?> <?php esc_html_e('non-200 responses', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($http_status_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Link Descriptive Text', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Link Descriptive Text', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($links_without_descriptive_text == 0 ? 'good' : 'warning'); ?>"></span>
                                 <?php echo $links_without_descriptive_text == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Improvement', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($links_without_descriptive_text); ?> <?php _e('poor link text', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($links_without_descriptive_text); ?> <?php esc_html_e('poor link text', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html($links_without_descriptive_text == 0 ? '100' : max(0, 100 - ($links_without_descriptive_text * 10))); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Link Crawlability', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Link Crawlability', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($non_crawlable_links == 0 ? 'good' : 'warning'); ?>"></span>
                                 <?php echo $non_crawlable_links == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Review Needed', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($non_crawlable_links); ?> <?php _e('non-crawlable links', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($non_crawlable_links); ?> <?php esc_html_e('non-crawlable links', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html($non_crawlable_links == 0 ? '100' : max(0, 100 - ($non_crawlable_links * 5))); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Robots.txt Validity', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Robots.txt Validity', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($robots_txt_valid ? 'good' : 'error'); ?>"></span>
                                 <?php echo $robots_txt_valid ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Fix', 'smart-seo-booster'); ?>
@@ -1178,113 +1179,113 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <td><?php echo esc_html($robots_score); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Image Alt Attributes', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Image Alt Attributes', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($images_missing_alt == 0 ? 'good' : 'warning'); ?>"></span>
                                 <?php echo $images_missing_alt == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Work', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($images_missing_alt); ?> <?php _e('missing alt text', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($images_missing_alt); ?> <?php esc_html_e('missing alt text', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($alt_text_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Canonical URLs', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Canonical URLs', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($canonical_issues == 0 ? 'good' : 'warning'); ?>"></span>
                                 <?php echo $canonical_issues == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Review', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($canonical_issues); ?> <?php _e('canonical issues', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($canonical_issues); ?> <?php esc_html_e('canonical issues', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($canonical_score)); ?>%</td>
                         </tr>
                         <?php if (function_exists('pll_the_languages') || function_exists('icl_get_languages') || class_exists('WPSEO_Language_Utils')): ?>
                         <tr>
-                            <td><strong><?php _e('Hreflang Attributes', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Hreflang Attributes', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($hreflang_issues == 0 ? 'good' : 'warning'); ?>"></span>
                                 <?php echo $hreflang_issues == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Work', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($hreflang_issues); ?> <?php _e('missing hreflang', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($hreflang_issues); ?> <?php esc_html_e('missing hreflang', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html($hreflang_issues == 0 ? '100' : max(0, 100 - ($hreflang_issues / $posts_analyzed) * 100)); ?>%</td>
                         </tr>
                         <?php endif; ?>
                         <tr>
-                            <td><strong><?php _e('H1 Tags', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('H1 Tags', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($h1_tags_missing == 0 ? 'good' : 'warning'); ?>"></span>
                                 <?php echo $h1_tags_missing == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Work', 'smart-seo-booster'); ?>
                             </td>
-                            <td><?php echo esc_html($h1_tags_missing); ?> <?php _e('missing H1 tags', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($h1_tags_missing); ?> <?php esc_html_e('missing H1 tags', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($h1_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Keyword Optimization', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Keyword Optimization', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($keyword_optimization_score >= 80 ? 'good' : ($keyword_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
                                 <?php echo $keyword_optimization_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($keyword_optimization_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
-                            <td><?php echo esc_html($keyword_in_title_missing); ?> <?php _e('pages with poor keyword optimization', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($keyword_in_title_missing); ?> <?php esc_html_e('pages with poor keyword optimization', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($keyword_optimization_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Content Quality', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Content Quality', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($content_quality_score >= 80 ? 'good' : ($content_quality_score >= 60 ? 'warning' : 'error')); ?>"></span>
                                 <?php echo $content_quality_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($content_quality_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
-                            <td><?php echo esc_html($short_content_count); ?> <?php _e('pages with short content', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($short_content_count); ?> <?php esc_html_e('pages with short content', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($content_quality_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Image Optimization', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Image Optimization', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($image_optimization_score >= 80 ? 'good' : ($image_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
                                 <?php echo $image_optimization_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($image_optimization_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
-                            <td><?php echo esc_html($large_images_count); ?> <?php _e('large unoptimized images', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($large_images_count); ?> <?php esc_html_e('large unoptimized images', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($image_optimization_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Internal Linking', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Internal Linking', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($internal_linking_score >= 80 ? 'good' : ($internal_linking_score >= 60 ? 'warning' : 'error')); ?>"></span>
                                 <?php echo $internal_linking_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($internal_linking_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
-                            <td><?php echo esc_html($poor_internal_linking_count); ?> <?php _e('pages with poor internal linking', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($poor_internal_linking_count); ?> <?php esc_html_e('pages with poor internal linking', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($internal_linking_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('External Links', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('External Links', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($external_links_score >= 80 ? 'good' : ($external_links_score >= 60 ? 'warning' : 'error')); ?>"></span>
                                 <?php echo $external_links_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($external_links_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
-                            <td><?php echo esc_html($broken_external_links_count); ?> <?php _e('broken external links', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($broken_external_links_count); ?> <?php esc_html_e('broken external links', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($external_links_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Schema Markup', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Schema Markup', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($schema_markup_score >= 80 ? 'good' : ($schema_markup_score >= 60 ? 'warning' : 'error')); ?>"></span>
                                 <?php echo $schema_markup_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($schema_markup_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
-                            <td><?php echo esc_html($missing_schema_count); ?> <?php _e('pages missing schema markup', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($missing_schema_count); ?> <?php esc_html_e('pages missing schema markup', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($schema_markup_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Social Media Tags', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Social Media Tags', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($social_media_score >= 80 ? 'good' : ($social_media_score >= 60 ? 'warning' : 'error')); ?>"></span>
                                 <?php echo $social_media_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($social_media_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
-                            <td><?php echo esc_html($missing_og_tags_count); ?> <?php _e('pages missing Open Graph tags', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($missing_og_tags_count); ?> <?php esc_html_e('pages missing Open Graph tags', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($social_media_score)); ?>%</td>
                         </tr>
                         <tr>
-                            <td><strong><?php _e('Technical SEO', 'smart-seo-booster'); ?></strong></td>
+                            <td><strong><?php esc_html_e('Technical SEO', 'smart-seo-booster'); ?></strong></td>
                             <td>
                                 <span class="status-icon <?php echo esc_attr($technical_seo_score >= 80 ? 'good' : ($technical_seo_score >= 60 ? 'warning' : 'error')); ?>"></span>
                                 <?php echo $technical_seo_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($technical_seo_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
-                            <td><?php echo esc_html($technical_issues_count); ?> <?php _e('technical issues found', 'smart-seo-booster'); ?></td>
+                            <td><?php echo esc_html($technical_issues_count); ?> <?php esc_html_e('technical issues found', 'smart-seo-booster'); ?></td>
                             <td><?php echo esc_html(round($technical_seo_score)); ?>%</td>
                         </tr>
                     </tbody>
@@ -1295,24 +1296,24 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
 
     <!-- Next Steps -->
     <div class="ps-section">
-        <h2 class="ps-section-title"><?php _e('Recommended Actions', 'smart-seo-booster'); ?></h2>
+        <h2 class="ps-section-title"><?php esc_html_e('Recommended Actions', 'smart-seo-booster'); ?></h2>
         <div class="ps-card">
             <div class="ps-card-content">
                 <div class="ps-metrics-grid">
                     <div class="ps-metric-card">
                         <div class="ps-metric-title">
                             <span style="font-size: 20px; margin-right: 8px;">🎯</span>
-                            <?php _e('Immediate Actions', 'smart-seo-booster'); ?>
+                            <?php esc_html_e('Immediate Actions', 'smart-seo-booster'); ?>
                         </div>
                         <ul style="margin: 12px 0 0 0; padding-left: 16px;">
                             <?php if ($meta_descriptions_missing > 0): ?>
-                            <li><?php _e('Add meta descriptions to missing pages', 'smart-seo-booster'); ?></li>
+                            <li><?php esc_html_e('Add meta descriptions to missing pages', 'smart-seo-booster'); ?></li>
                             <?php endif; ?>
                             <?php if ($title_tags_missing > 0): ?>
-                            <li><?php _e('Optimize title tags for better CTR', 'smart-seo-booster'); ?></li>
+                            <li><?php esc_html_e('Optimize title tags for better CTR', 'smart-seo-booster'); ?></li>
                             <?php endif; ?>
                             <?php if ($h1_tags_missing > 0): ?>
-                            <li><?php _e('Add H1 tags to structure content', 'smart-seo-booster'); ?></li>
+                            <li><?php esc_html_e('Add H1 tags to structure content', 'smart-seo-booster'); ?></li>
                             <?php endif; ?>
                         </ul>
                     </div>
@@ -1320,25 +1321,25 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                     <div class="ps-metric-card">
                         <div class="ps-metric-title">
                             <span style="font-size: 20px; margin-right: 8px;">📈</span>
-                            <?php _e('Long-term Strategy', 'smart-seo-booster'); ?>
+                            <?php esc_html_e('Long-term Strategy', 'smart-seo-booster'); ?>
                         </div>
                         <ul style="margin: 12px 0 0 0; padding-left: 16px;">
-                            <li><?php _e('Regular content audits', 'smart-seo-booster'); ?></li>
-                            <li><?php _e('Monitor search performance', 'smart-seo-booster'); ?></li>
-                            <li><?php _e('Update content regularly', 'smart-seo-booster'); ?></li>
-                            <li><?php _e('Build quality backlinks', 'smart-seo-booster'); ?></li>
+                            <li><?php esc_html_e('Regular content audits', 'smart-seo-booster'); ?></li>
+                            <li><?php esc_html_e('Monitor search performance', 'smart-seo-booster'); ?></li>
+                            <li><?php esc_html_e('Update content regularly', 'smart-seo-booster'); ?></li>
+                            <li><?php esc_html_e('Build quality backlinks', 'smart-seo-booster'); ?></li>
                         </ul>
                     </div>
 
                     <div class="ps-metric-card">
                         <div class="ps-metric-title">
                             <span style="font-size: 20px; margin-right: 8px;">🛠️</span>
-                            <?php _e('Tools & Resources', 'smart-seo-booster'); ?>
+                            <?php esc_html_e('Tools & Resources', 'smart-seo-booster'); ?>
                         </div>
                         <ul style="margin: 12px 0 0 0; padding-left: 16px;">
-                            <li><a href="<?php echo admin_url('admin.php?page=smart-seo-help'); ?>"><?php _e('SEO Help Guide', 'smart-seo-booster'); ?></a></li>
-                            <li><a href="<?php echo admin_url('admin.php?page=smart-seo'); ?>"><?php _e('Plugin Settings', 'smart-seo-booster'); ?></a></li>
-                            <li><a href="https://search.google.com/search-console" target="_blank"><?php _e('Google Search Console', 'smart-seo-booster'); ?></a></li>
+                            <li><a href="<?php echo esc_url(admin_url('admin.php?page=smart-seo-help')); ?>"><?php esc_html_e('SEO Help Guide', 'smart-seo-booster'); ?></a></li>
+                            <li><a href="<?php echo esc_url(admin_url('admin.php?page=smart-seo')); ?>"><?php esc_html_e('Plugin Settings', 'smart-seo-booster'); ?></a></li>
+                            <li><a href="https://search.google.com/search-console" target="_blank"><?php esc_html_e('Google Search Console', 'smart-seo-booster'); ?></a></li>
                         </ul>
                     </div>
                 </div>

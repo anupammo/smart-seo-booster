@@ -187,8 +187,9 @@ class Smart_SEO_Admin_UI {
         }
 
         // Verify nonce if this is a form submission
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!wp_verify_nonce($_POST['_wpnonce'] ?? '', 'smart_seo_audit_action')) {
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nonce = isset($_POST['_wpnonce']) ? sanitize_text_field(wp_unslash($_POST['_wpnonce'])) : '';
+            if (!wp_verify_nonce($nonce, 'smart_seo_audit_action')) {
                 wp_die(esc_html__('Security check failed. Please try again.', 'smart-seo-booster'));
             }
         }

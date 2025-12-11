@@ -771,7 +771,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages blocked from indexing */
-                                printf(__('%d pages are blocked from indexing. Review if these should be visible to search engines.', 'smart-seo-booster'), $pages_blocked_indexing);
+                                printf(esc_html__('%d pages are blocked from indexing. Review if these should be visible to search engines.', 'smart-seo-booster'), absint($pages_blocked_indexing));
                                 ?>
                             </div>
                         </div>
@@ -788,7 +788,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing title elements */
-                                printf(__('%d pages are missing title elements. Title tags are essential for SEO and user experience.', 'smart-seo-booster'), $pages_without_title);
+                                printf(esc_html__('%d pages are missing title elements. Title tags are essential for SEO and user experience.', 'smart-seo-booster'), absint($pages_without_title));
                                 ?>
                             </div>
                         </div>
@@ -805,7 +805,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing meta descriptions */
-                                printf(__('%d pages are missing meta descriptions. Meta descriptions help search engines understand your page content and improve click-through rates.', 'smart-seo-booster'), $pages_without_meta_desc);
+                                printf(esc_html__('%d pages are missing meta descriptions. Meta descriptions help search engines understand your page content and improve click-through rates.', 'smart-seo-booster'), absint($pages_without_meta_desc));
                                 ?>
                             </div>
                         </div>
@@ -822,7 +822,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages with non-200 HTTP status codes */
-                                printf(__('%d pages have non-200 HTTP status codes. These pages may not be accessible to search engines.', 'smart-seo-booster'), $pages_non_200_status);
+                                printf(esc_html__('%d pages have non-200 HTTP status codes. These pages may not be accessible to search engines.', 'smart-seo-booster'), absint($pages_non_200_status));
                                 ?>
                             </div>
                         </div>
@@ -839,7 +839,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of links with poor descriptive text */
-                                printf(__('%d links have poor descriptive text like "click here" or "read more". Use descriptive anchor text that tells users and search engines what to expect.', 'smart-seo-booster'), $links_without_descriptive_text);
+                                printf(esc_html__('%d links have poor descriptive text like "click here" or "read more". Use descriptive anchor text that tells users and search engines what to expect.', 'smart-seo-booster'), absint($links_without_descriptive_text));
                                 ?>
                             </div>
                         </div>
@@ -856,7 +856,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of non-crawlable links */
-                                printf(__('%d links are not crawlable by search engines. Review nofollow attributes and JavaScript links.', 'smart-seo-booster'), $non_crawlable_links);
+                                printf(esc_html__('%d links are not crawlable by search engines. Review nofollow attributes and JavaScript links.', 'smart-seo-booster'), absint($non_crawlable_links));
                                 ?>
                             </div>
                         </div>
@@ -887,7 +887,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of images missing alt attributes */
-                                printf(__('%d images are missing alt attributes. Alt text improves accessibility and helps search engines understand your images.', 'smart-seo-booster'), $images_missing_alt);
+                                printf(esc_html__('%d images are missing alt attributes. Alt text improves accessibility and helps search engines understand your images.', 'smart-seo-booster'), absint($images_missing_alt));
                                 ?>
                             </div>
                         </div>
@@ -904,7 +904,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages with canonical URL issues */
-                                printf(__('%d pages have canonical URL issues. Proper canonical tags help prevent duplicate content problems.', 'smart-seo-booster'), $canonical_issues);
+                                printf(esc_html__('%d pages have canonical URL issues. Proper canonical tags help prevent duplicate content problems.', 'smart-seo-booster'), absint($canonical_issues));
                                 ?>
                             </div>
                         </div>
@@ -921,7 +921,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing hreflang attributes */
-                                printf(__('%d pages are missing hreflang attributes. These help search engines serve the correct language version to users.', 'smart-seo-booster'), $hreflang_issues);
+                                printf(esc_html__('%d pages are missing hreflang attributes. These help search engines serve the correct language version to users.', 'smart-seo-booster'), absint($hreflang_issues));
                                 ?>
                             </div>
                         </div>
@@ -938,7 +938,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing H1 tags */
-                                printf(__('%d pages are missing H1 tags. H1 tags help structure your content for search engines and users.', 'smart-seo-booster'), $h1_tags_missing);
+                                printf(esc_html__('%d pages are missing H1 tags. H1 tags help structure your content for search engines and users.', 'smart-seo-booster'), absint($h1_tags_missing));
                                 ?>
                             </div>
                         </div>
@@ -955,7 +955,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing keywords in titles */
-                                printf(__('%d pages are missing target keywords in their titles. Include relevant keywords in your title tags to improve rankings.', 'smart-seo-booster'), $keyword_in_title_missing);
+                                printf(esc_html__('%d pages are missing target keywords in their titles. Include relevant keywords in your title tags to improve rankings.', 'smart-seo-booster'), absint($keyword_in_title_missing));
                                 ?>
                             </div>
                         </div>
@@ -972,7 +972,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages with short content */
-                                printf(__('%d pages have content shorter than 300 words. Consider expanding these pages with valuable, relevant content.', 'smart-seo-booster'), $short_content_count);
+                                printf(esc_html__('%d pages have content shorter than 300 words. Consider expanding these pages with valuable, relevant content.', 'smart-seo-booster'), absint($short_content_count));
                                 ?>
                             </div>
                         </div>
@@ -989,7 +989,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of large images over 100KB */
-                                printf(__('%d images are over 100KB. Compress and optimize images to improve page loading speed.', 'smart-seo-booster'), $large_images_count);
+                                printf(esc_html__('%d images are over 100KB. Compress and optimize images to improve page loading speed.', 'smart-seo-booster'), absint($large_images_count));
                                 ?>
                             </div>
                         </div>
@@ -1006,7 +1006,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages with poor internal linking */
-                                printf(__('%d pages have poor internal linking. Add relevant internal links to improve navigation and SEO.', 'smart-seo-booster'), $poor_internal_linking_count);
+                                printf(esc_html__('%d pages have poor internal linking. Add relevant internal links to improve navigation and SEO.', 'smart-seo-booster'), absint($poor_internal_linking_count));
                                 ?>
                             </div>
                         </div>
@@ -1023,7 +1023,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of broken external links */
-                                printf(__('%d broken external links found. Update or remove these links to maintain site quality.', 'smart-seo-booster'), $broken_external_links_count);
+                                printf(esc_html__('%d broken external links found. Update or remove these links to maintain site quality.', 'smart-seo-booster'), absint($broken_external_links_count));
                                 ?>
                             </div>
                         </div>
@@ -1040,7 +1040,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing schema markup */
-                                printf(__('%d pages are missing schema markup. Add structured data to help search engines understand your content better.', 'smart-seo-booster'), $missing_schema_count);
+                                printf(esc_html__('%d pages are missing schema markup. Add structured data to help search engines understand your content better.', 'smart-seo-booster'), absint($missing_schema_count));
                                 ?>
                             </div>
                         </div>
@@ -1057,7 +1057,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of pages missing Open Graph tags */
-                                printf(__('%d pages are missing Open Graph tags. Add social media meta tags to improve sharing appearance.', 'smart-seo-booster'), $missing_og_tags_count);
+                                printf(esc_html__('%d pages are missing Open Graph tags. Add social media meta tags to improve sharing appearance.', 'smart-seo-booster'), absint($missing_og_tags_count));
                                 ?>
                             </div>
                         </div>
@@ -1074,7 +1074,7 @@ $avg_images_per_page = $posts_analyzed > 0 ? round($total_images / $posts_analyz
                             <div class="ps-audit-description">
                                 <?php
                                 /* translators: %d: Number of technical SEO issues found */
-                                printf(__('%d technical SEO issues found. Review robots.txt, sitemap, and server configuration.', 'smart-seo-booster'), $technical_issues_count);
+                                printf(esc_html__('%d technical SEO issues found. Review robots.txt, sitemap, and server configuration.', 'smart-seo-booster'), absint($technical_issues_count));
                                 ?>
                             </div>
                         </div>

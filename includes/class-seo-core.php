@@ -55,7 +55,7 @@ class Smart_SEO_Core {
         // Get description with fallback to default
         $desc = '';
         if (is_singular() && $post) {
-            $desc = $post->post_excerpt ?: wp_trim_words(strip_tags($post->post_content), 20);
+            $desc = $post->post_excerpt ?: wp_trim_words(wp_strip_all_tags($post->post_content), 20);
         }
         if (empty($desc)) {
             $desc = isset($options['default_description']) ? $options['default_description'] : get_bloginfo('description');

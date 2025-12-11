@@ -35,7 +35,7 @@ class Smart_SEO_Score_Display {
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count(wp_strip_all_tags($content));
         $headings = substr_count($content, '<h');
         $images = substr_count($content, '<img');
         $alts = substr_count($content, 'alt=');
@@ -114,7 +114,7 @@ class Smart_SEO_Score_Display {
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count(wp_strip_all_tags($content));
         $headings = substr_count($content, '<h');
         $images = substr_count($content, '<img');
         $alts = substr_count($content, 'alt=');
@@ -492,7 +492,7 @@ class Smart_SEO_Score_Display {
         $slug = $post->post_name;
         
         // Content Analysis
-        $word_count = str_word_count(strip_tags($content));
+        $word_count = str_word_count(wp_strip_all_tags($content));
         $paragraph_count = substr_count($content, '</p>');
         $heading_count = substr_count($content, '<h');
         
@@ -633,7 +633,7 @@ class Smart_SEO_Score_Display {
      * @return string Readability level
      */
     public static function calculate_readability_score($content) {
-        $text = strip_tags($content);
+        $text = wp_strip_all_tags($content);
         $sentences = preg_split('/[.!?]+/', $text, -1, PREG_SPLIT_NO_EMPTY);
         $words = str_word_count($text);
         $sentence_count = count($sentences);
@@ -672,7 +672,7 @@ class Smart_SEO_Score_Display {
     public static function ajax_get_seo_score() {
         check_ajax_referer('smart_seo_nonce', 'nonce');
         
-        $post_id = intval($_POST['post_id']);
+        $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
         if (!$post_id || !current_user_can('edit_post', $post_id)) {
             wp_die('Access denied');
         }
@@ -694,7 +694,7 @@ class Smart_SEO_Score_Display {
     public static function ajax_get_full_seo_report() {
         check_ajax_referer('smart_seo_nonce', 'nonce');
         
-        $post_id = intval($_POST['post_id']);
+        $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
         if (!$post_id || !current_user_can('edit_post', $post_id)) {
             wp_die('Access denied');
         }

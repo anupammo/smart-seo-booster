@@ -41,8 +41,3 @@ delete_transient('smart_seo_schema_cache');
 
 // Optional: Clean up user meta (uncomment if needed)
 // $wpdb->query("DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'smart_seo_%'");
-
-// Log uninstall for debugging (optional)
-if (defined('WP_DEBUG') && WP_DEBUG) {
-    error_log('Smart SEO Booster: Plugin uninstalled and data cleaned up.');
-}

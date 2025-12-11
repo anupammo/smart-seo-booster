@@ -27,8 +27,8 @@ class Smart_SEO_Link_Analyzer {
         $status_icon = $count >= 3 ? '✅' : ($count >= 1 ? '⚠️' : '❌');
         $status_text = $count >= 3 ? 'Good' : ($count >= 1 ? 'Could be better' : 'Needs improvement');
         
-        echo "<div class='notice notice-info'>";
-        echo "<p><strong>{$status_icon} Internal Links:</strong> {$count} found in this post. ({$status_text})</p>";
-        echo "</div>";
+        echo '<div class="notice notice-info">';
+        echo '<p><strong>' . esc_html($status_icon) . ' ' . esc_html__('Internal Links:', 'smart-seo-booster') . '</strong> ' . esc_html($count) . ' ' . esc_html__('found in this post.', 'smart-seo-booster') . ' (' . esc_html($status_text) . ')</p>';
+        echo '</div>';
     }
 }

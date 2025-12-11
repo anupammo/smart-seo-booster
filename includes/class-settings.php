@@ -509,93 +509,93 @@ class Smart_SEO_Settings {
     public static function checkbox($args) {
         $options = get_option('smart_seo_options', []);
         $checked = isset($options[$args['name']]) && $options[$args['name']] ? 'checked' : '';
-        $description = isset($args['description']) ? '<p class="description">' . $args['description'] . '</p>' : '';
+        $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo "<label>";
-        echo "<input type='checkbox' name='smart_seo_options[{$args['name']}]' value='1' $checked />";
-        echo " Enable this option";
-        echo "</label>";
-        echo $description;
+        echo '<label>';
+        echo '<input type="checkbox" name="smart_seo_options[' . esc_attr($args['name']) . ']" value="1" ' . esc_attr($checked) . ' />';
+        echo ' ' . esc_html__('Enable this option', 'smart-seo-booster');
+        echo '</label>';
+        echo wp_kses_post($description);
     }
     
     public static function select($args) {
         $options = get_option('smart_seo_options', []);
         $current = isset($options[$args['name']]) ? $options[$args['name']] : '';
-        $description = isset($args['description']) ? '<p class="description">' . $args['description'] . '</p>' : '';
+        $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo "<select name='smart_seo_options[{$args['name']}]'>";
+        echo '<select name="smart_seo_options[' . esc_attr($args['name']) . ']">';
         foreach ($args['options'] as $value => $label) {
             $selected = selected($current, $value, false);
-            echo "<option value='$value' $selected>$label</option>";
+            echo '<option value="' . esc_attr($value) . '" ' . esc_attr($selected) . '>' . esc_html($label) . '</option>';
         }
-        echo "</select>";
-        echo $description;
+        echo '</select>';
+        echo wp_kses_post($description);
     }
     
     public static function textarea($args) {
         $options = get_option('smart_seo_options', []);
         $value = isset($options[$args['name']]) ? esc_textarea($options[$args['name']]) : '';
-        $description = isset($args['description']) ? '<p class="description">' . $args['description'] . '</p>' : '';
+        $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo "<textarea name='smart_seo_options[{$args['name']}]' rows='3' cols='50' class='large-text'>$value</textarea>";
-        echo $description;
+        echo '<textarea name="smart_seo_options[' . esc_attr($args['name']) . ']" rows="3" cols="50" class="large-text">' . esc_textarea($value) . '</textarea>';
+        echo wp_kses_post($description);
     }
     
     public static function number($args) {
         $options = get_option('smart_seo_options', []);
         $value = isset($options[$args['name']]) ? floatval($options[$args['name']]) : ($args['default'] ?? 0);
-        $step = isset($args['step']) ? $args['step'] : 1;
-        $description = isset($args['description']) ? '<p class="description">' . $args['description'] . '</p>' : '';
+        $step = isset($args['step']) ? floatval($args['step']) : 1;
+        $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo "<input type='number' name='smart_seo_options[{$args['name']}]' value='$value' min='0' step='$step' class='small-text' />";
-        echo $description;
+        echo '<input type="number" name="smart_seo_options[' . esc_attr($args['name']) . ']" value="' . esc_attr($value) . '" min="0" step="' . esc_attr($step) . '" class="small-text" />';
+        echo wp_kses_post($description);
     }
 
     public static function text($args) {
         $options = get_option('smart_seo_options', []);
         $value = isset($options[$args['name']]) ? esc_attr($options[$args['name']]) : '';
-        $description = isset($args['description']) ? '<p class="description">' . $args['description'] . '</p>' : '';
+        $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo "<input type='text' name='smart_seo_options[{$args['name']}]' value='$value' class='regular-text' />";
-        echo $description;
+        echo '<input type="text" name="smart_seo_options[' . esc_attr($args['name']) . ']" value="' . esc_attr($value) . '" class="regular-text" />';
+        echo wp_kses_post($description);
     }
 
     public static function post_types_checkboxes($args) {
         $options = get_option('smart_seo_options', []);
         $selected_types = isset($options[$args['name']]) ? $options[$args['name']] : ['post', 'page'];
-        $description = isset($args['description']) ? '<p class="description">' . $args['description'] . '</p>' : '';
+        $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
         $post_types = get_post_types(['public' => true], 'objects');
         
         echo '<fieldset>';
         foreach ($post_types as $post_type) {
             $checked = in_array($post_type->name, $selected_types) ? 'checked' : '';
-            echo "<label style='display: block; margin-bottom: 5px;'>";
-            echo "<input type='checkbox' name='smart_seo_options[{$args['name']}][]' value='{$post_type->name}' $checked />";
-            echo " {$post_type->label}";
-            echo "</label>";
+            echo '<label style="display: block; margin-bottom: 5px;">';
+            echo '<input type="checkbox" name="smart_seo_options[' . esc_attr($args['name']) . '][]" value="' . esc_attr($post_type->name) . '" ' . esc_attr($checked) . ' />';
+            echo ' ' . esc_html($post_type->label);
+            echo '</label>';
         }
         echo '</fieldset>';
-        echo $description;
+        echo wp_kses_post($description);
     }
 
     public static function image_upload($args) {
         $options = get_option('smart_seo_options', []);
         $value = isset($options[$args['name']]) ? esc_url($options[$args['name']]) : '';
-        $description = isset($args['description']) ? '<p class="description">' . $args['description'] . '</p>' : '';
+        $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo "<div class='seo-image-upload-field'>";
-        echo "<input type='url' name='smart_seo_options[{$args['name']}]' value='$value' class='regular-text' />";
-        echo "<button type='button' class='button seo-upload-image-btn' data-field='{$args['name']}'>Upload Image</button>";
+        echo '<div class="seo-image-upload-field">';
+        echo '<input type="url" name="smart_seo_options[' . esc_attr($args['name']) . ']" value="' . esc_url($value) . '" class="regular-text" />';
+        echo '<button type="button" class="button seo-upload-image-btn" data-field="' . esc_attr($args['name']) . '">' . esc_html__('Upload Image', 'smart-seo-booster') . '</button>';
         
         if ($value) {
-            echo "<div class='seo-image-preview' style='margin-top: 10px;'>";
-            echo "<img src='$value' alt='Preview' style='max-width: 300px; max-height: 150px; border: 1px solid #ddd; border-radius: 4px;' />";
-            echo "</div>";
+            echo '<div class="seo-image-preview" style="margin-top: 10px;">';
+            echo '<img src="' . esc_url($value) . '" alt="' . esc_attr__('Preview', 'smart-seo-booster') . '" style="max-width: 300px; max-height: 150px; border: 1px solid #ddd; border-radius: 4px;" />';
+            echo '</div>';
         }
         
-        echo "</div>";
-        echo $description;
+        echo '</div>';
+        echo wp_kses_post($description);
     }
     
     public static function schema_section_callback() {

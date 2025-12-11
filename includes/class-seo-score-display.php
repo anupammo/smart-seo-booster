@@ -285,11 +285,11 @@ class Smart_SEO_Score_Display {
         $post_count = 0;
         
         echo '<div class="smart-seo-dashboard-widget">';
-        echo '<h4>Recent Content SEO Scores</h4>';
+        echo '<h4>' . esc_html__('Recent Content SEO Scores', 'smart-seo-booster') . '</h4>';
         
         if (!empty($recent_posts)) {
             echo '<table class="widefat" style="margin-top: 10px;">';
-            echo '<thead><tr><th>Content</th><th>Score</th><th>Status</th></tr></thead>';
+            echo '<thead><tr><th>' . esc_html__('Content', 'smart-seo-booster') . '</th><th>' . esc_html__('Score', 'smart-seo-booster') . '</th><th>' . esc_html__('Status', 'smart-seo-booster') . '</th></tr></thead>';
             echo '<tbody>';
             
             foreach ($recent_posts as $post) {
@@ -300,9 +300,9 @@ class Smart_SEO_Score_Display {
                 $post_count++;
                 
                 echo '<tr>';
-                echo '<td><a href="' . get_edit_post_link($post->ID) . '">' . esc_html($post->post_title) . '</a></td>';
-                echo '<td><span style="color: ' . $color . '; font-weight: bold;">' . $score . '/100</span></td>';
-                echo '<td><span style="color: ' . $color . ';">' . $status . '</span></td>';
+                echo '<td><a href="' . esc_url(get_edit_post_link($post->ID)) . '">' . esc_html($post->post_title) . '</a></td>';
+                echo '<td><span style="color: ' . esc_attr($color) . '; font-weight: bold;">' . esc_html($score) . '/100</span></td>';
+                echo '<td><span style="color: ' . esc_attr($color) . ';">' . esc_html($status) . '</span></td>';
                 echo '</tr>';
             }
             
@@ -312,14 +312,14 @@ class Smart_SEO_Score_Display {
             $avg_color = self::get_score_color($avg_score);
             
             echo '<div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px;">';
-            echo '<strong>Average Score: <span style="color: ' . $avg_color . ';">' . $avg_score . '/100</span></strong>';
+            echo '<strong>' . esc_html__('Average Score:', 'smart-seo-booster') . ' <span style="color: ' . esc_attr($avg_color) . ';">' . esc_html($avg_score) . '/100</span></strong>';
             echo '</div>';
         } else {
-            echo '<p>No content found. Start creating posts and pages to see SEO scores!</p>';
+            echo '<p>' . esc_html__('No content found. Start creating posts and pages to see SEO scores!', 'smart-seo-booster') . '</p>';
         }
         
         echo '<div style="margin-top: 15px; text-align: center;">';
-        echo '<a href="' . admin_url('admin.php?page=smart-seo-audit') . '" class="button button-primary">View Full Audit Report</a>';
+        echo '<a href="' . esc_url(admin_url('admin.php?page=smart-seo-audit')) . '" class="button button-primary">' . esc_html__('View Full Audit Report', 'smart-seo-booster') . '</a>';
         echo '</div>';
         echo '</div>';
     }
@@ -362,92 +362,92 @@ class Smart_SEO_Score_Display {
             
             <!-- Overall Score -->
             <div class="seo-section" style="text-align: center;">
-                <div class="seo-score-circle" style="margin: 10px auto; width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(<?php echo $color; ?> <?php echo ($score * 3.6); ?>deg, #e5e7eb 0deg); display: flex; align-items: center; justify-content: center;">
+                <div class="seo-score-circle" style="margin: 10px auto; width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(<?php echo esc_attr($color); ?> <?php echo esc_attr($score * 3.6); ?>deg, #e5e7eb 0deg); display: flex; align-items: center; justify-content: center;">
                     <div style="width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                        <strong style="font-size: 18px; color: <?php echo $color; ?>;"><?php echo $score; ?></strong>
+                        <strong style="font-size: 18px; color: <?php echo esc_attr($color); ?>;"><?php echo esc_html($score); ?></strong>
                         <small style="color: #666;">/ 100</small>
                     </div>
                 </div>
-                <p><strong style="color: <?php echo $color; ?>;"><?php echo $status; ?></strong></p>
+                <p><strong style="color: <?php echo esc_attr($color); ?>;"><?php echo esc_html($status); ?></strong></p>
             </div>
 
             <!-- Content Analysis -->
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">📝 Content Analysis</h4>
+                <h4 style="margin: 0 0 10px 0;">📝 <?php esc_html_e('Content Analysis', 'smart-seo-booster'); ?></h4>
                 <div class="seo-check">
-                    <span>Word Count</span>
-                    <span class="seo-check-status <?php echo $analysis['word_count']['status']; ?>">
-                        <?php echo $analysis['word_count']['value']; ?> words <?php echo $analysis['word_count']['icon']; ?>
+                    <span><?php esc_html_e('Word Count', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['word_count']['status']); ?>">
+                        <?php echo esc_html($analysis['word_count']['value']); ?> <?php esc_html_e('words', 'smart-seo-booster'); ?> <?php echo esc_html($analysis['word_count']['icon']); ?>
                     </span>
                 </div>
                 <div class="seo-check">
-                    <span>Paragraphs</span>
-                    <span class="seo-check-status <?php echo $analysis['paragraphs']['status']; ?>">
-                        <?php echo $analysis['paragraphs']['value']; ?> <?php echo $analysis['paragraphs']['icon']; ?>
+                    <span><?php esc_html_e('Paragraphs', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['paragraphs']['status']); ?>">
+                        <?php echo esc_html($analysis['paragraphs']['value']); ?> <?php echo esc_html($analysis['paragraphs']['icon']); ?>
                     </span>
                 </div>
                 <div class="seo-check">
-                    <span>Headings</span>
-                    <span class="seo-check-status <?php echo $analysis['headings']['status']; ?>">
-                        <?php echo $analysis['headings']['value']; ?> <?php echo $analysis['headings']['icon']; ?>
+                    <span><?php esc_html_e('Headings', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['headings']['status']); ?>">
+                        <?php echo esc_html($analysis['headings']['value']); ?> <?php echo esc_html($analysis['headings']['icon']); ?>
                     </span>
                 </div>
                 <div class="seo-check">
-                    <span>Reading Level</span>
-                    <span class="seo-check-status <?php echo $analysis['readability']['status']; ?>">
-                        <?php echo $analysis['readability']['value']; ?> <?php echo $analysis['readability']['icon']; ?>
+                    <span><?php esc_html_e('Reading Level', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['readability']['status']); ?>">
+                        <?php echo esc_html($analysis['readability']['value']); ?> <?php echo esc_html($analysis['readability']['icon']); ?>
                     </span>
                 </div>
             </div>
 
             <!-- SEO Elements -->
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">🎯 SEO Elements</h4>
+                <h4 style="margin: 0 0 10px 0;">🎯 <?php esc_html_e('SEO Elements', 'smart-seo-booster'); ?></h4>
                 <div class="seo-check">
-                    <span>Title Length</span>
-                    <span class="seo-check-status <?php echo $analysis['title']['status']; ?>">
-                        <?php echo $analysis['title']['value']; ?> chars <?php echo $analysis['title']['icon']; ?>
+                    <span><?php esc_html_e('Title Length', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['title']['status']); ?>">
+                        <?php echo esc_html($analysis['title']['value']); ?> <?php esc_html_e('chars', 'smart-seo-booster'); ?> <?php echo esc_html($analysis['title']['icon']); ?>
                     </span>
                 </div>
                 <div class="seo-check">
-                    <span>Meta Description</span>
-                    <span class="seo-check-status <?php echo $analysis['description']['status']; ?>">
-                        <?php echo $analysis['description']['value']; ?> <?php echo $analysis['description']['icon']; ?>
+                    <span><?php esc_html_e('Meta Description', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['description']['status']); ?>">
+                        <?php echo esc_html($analysis['description']['value']); ?> <?php echo esc_html($analysis['description']['icon']); ?>
                     </span>
                 </div>
                 <div class="seo-check">
-                    <span>URL Structure</span>
-                    <span class="seo-check-status <?php echo $analysis['url']['status']; ?>">
-                        <?php echo $analysis['url']['value']; ?> <?php echo $analysis['url']['icon']; ?>
+                    <span><?php esc_html_e('URL Structure', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['url']['status']); ?>">
+                        <?php echo esc_html($analysis['url']['value']); ?> <?php echo esc_html($analysis['url']['icon']); ?>
                     </span>
                 </div>
             </div>
 
             <!-- Media & Links -->
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">🖼️ Media & Links</h4>
+                <h4 style="margin: 0 0 10px 0;">🖼️ <?php esc_html_e('Media & Links', 'smart-seo-booster'); ?></h4>
                 <div class="seo-check">
-                    <span>Images</span>
-                    <span class="seo-check-status <?php echo $analysis['images']['status']; ?>">
-                        <?php echo $analysis['images']['value']; ?> <?php echo $analysis['images']['icon']; ?>
+                    <span><?php esc_html_e('Images', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['images']['status']); ?>">
+                        <?php echo esc_html($analysis['images']['value']); ?> <?php echo esc_html($analysis['images']['icon']); ?>
                     </span>
                 </div>
                 <div class="seo-check">
-                    <span>Alt Text</span>
-                    <span class="seo-check-status <?php echo $analysis['alt_text']['status']; ?>">
-                        <?php echo $analysis['alt_text']['value']; ?> <?php echo $analysis['alt_text']['icon']; ?>
+                    <span><?php esc_html_e('Alt Text', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['alt_text']['status']); ?>">
+                        <?php echo esc_html($analysis['alt_text']['value']); ?> <?php echo esc_html($analysis['alt_text']['icon']); ?>
                     </span>
                 </div>
                 <div class="seo-check">
-                    <span>Internal Links</span>
-                    <span class="seo-check-status <?php echo $analysis['internal_links']['status']; ?>">
-                        <?php echo $analysis['internal_links']['value']; ?> <?php echo $analysis['internal_links']['icon']; ?>
+                    <span><?php esc_html_e('Internal Links', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['internal_links']['status']); ?>">
+                        <?php echo esc_html($analysis['internal_links']['value']); ?> <?php echo esc_html($analysis['internal_links']['icon']); ?>
                     </span>
                 </div>
                 <div class="seo-check">
-                    <span>External Links</span>
-                    <span class="seo-check-status <?php echo $analysis['external_links']['status']; ?>">
-                        <?php echo $analysis['external_links']['value']; ?> <?php echo $analysis['external_links']['icon']; ?>
+                    <span><?php esc_html_e('External Links', 'smart-seo-booster'); ?></span>
+                    <span class="seo-check-status <?php echo esc_attr($analysis['external_links']['status']); ?>">
+                        <?php echo esc_html($analysis['external_links']['value']); ?> <?php echo esc_html($analysis['external_links']['icon']); ?>
                     </span>
                 </div>
             </div>
@@ -455,11 +455,11 @@ class Smart_SEO_Score_Display {
             <!-- Recommendations -->
             <?php if (!empty($analysis['recommendations'])): ?>
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">💡 Recommendations</h4>
+                <h4 style="margin: 0 0 10px 0;">💡 <?php esc_html_e('Recommendations', 'smart-seo-booster'); ?></h4>
                 <div class="seo-recommendations">
                     <ul style="margin: 0; padding-left: 20px;">
                         <?php foreach ($analysis['recommendations'] as $recommendation): ?>
-                            <li><?php echo $recommendation; ?></li>
+                            <li><?php echo esc_html($recommendation); ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -468,11 +468,11 @@ class Smart_SEO_Score_Display {
 
             <!-- Actions -->
             <div style="text-align: center; margin-top: 15px;">
-                <button type="button" class="button button-primary button-small" onclick="smartSeoRefreshScore(<?php echo $post->ID; ?>)">
-                    🔄 Refresh Analysis
+                <button type="button" class="button button-primary button-small" onclick="smartSeoRefreshScore(<?php echo absint($post->ID); ?>)">
+                    🔄 <?php esc_html_e('Refresh Analysis', 'smart-seo-booster'); ?>
                 </button>
-                <button type="button" class="button button-small" onclick="smartSeoShowFullReport(<?php echo $post->ID; ?>)" style="margin-left: 5px;">
-                    📊 Full Report
+                <button type="button" class="button button-small" onclick="smartSeoShowFullReport(<?php echo absint($post->ID); ?>)" style="margin-left: 5px;">
+                    📊 <?php esc_html_e('Full Report', 'smart-seo-booster'); ?>
                 </button>
             </div>
         </div>
@@ -663,8 +663,8 @@ class Smart_SEO_Score_Display {
             $status = self::get_score_status($score);
             
             echo '<div>';
-            echo '<strong style="color: ' . $color . '; font-size: 14px;">' . $score . '/100</strong><br>';
-            echo '<small style="color: ' . $color . ';">' . $status . '</small>';
+            echo '<strong style="color: ' . esc_attr($color) . '; font-size: 14px;">' . esc_html($score) . '/100</strong><br>';
+            echo '<small style="color: ' . esc_attr($color) . ';">' . esc_html($status) . '</small>';
             echo '</div>';
         }
     }
@@ -717,52 +717,52 @@ class Smart_SEO_Score_Display {
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
                 <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-                    <div style="font-size: 48px; font-weight: bold; color: <?php echo $color; ?>;"><?php echo $score; ?>/100</div>
-                    <div style="font-size: 18px; font-weight: bold; color: <?php echo $color; ?>;"><?php echo $status; ?></div>
+                    <div style="font-size: 48px; font-weight: bold; color: <?php echo esc_attr($color); ?>;"><?php echo esc_html($score); ?>/100</div>
+                    <div style="font-size: 18px; font-weight: bold; color: <?php echo esc_attr($color); ?>;"><?php echo esc_html($status); ?></div>
                 </div>
                 <div style="padding: 20px;">
-                    <h4>Quick Stats</h4>
+                    <h4><?php esc_html_e('Quick Stats', 'smart-seo-booster'); ?></h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li><strong>Published:</strong> <?php echo get_the_date('M j, Y', $post); ?></li>
-                        <li><strong>Last Modified:</strong> <?php echo get_the_modified_date('M j, Y', $post); ?></li>
-                        <li><strong>Word Count:</strong> <?php echo $analysis['word_count']['value']; ?> words</li>
-                        <li><strong>Reading Time:</strong> <?php echo ceil($analysis['word_count']['value'] / 200); ?> minutes</li>
+                        <li><strong><?php esc_html_e('Published:', 'smart-seo-booster'); ?></strong> <?php echo esc_html(get_the_date('M j, Y', $post)); ?></li>
+                        <li><strong><?php esc_html_e('Last Modified:', 'smart-seo-booster'); ?></strong> <?php echo esc_html(get_the_modified_date('M j, Y', $post)); ?></li>
+                        <li><strong><?php esc_html_e('Word Count:', 'smart-seo-booster'); ?></strong> <?php echo esc_html($analysis['word_count']['value']); ?> <?php esc_html_e('words', 'smart-seo-booster'); ?></li>
+                        <li><strong><?php esc_html_e('Reading Time:', 'smart-seo-booster'); ?></strong> <?php echo esc_html(ceil($analysis['word_count']['value'] / 200)); ?> <?php esc_html_e('minutes', 'smart-seo-booster'); ?></li>
                     </ul>
                 </div>
             </div>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div>
-                    <h4>📝 Content Quality</h4>
+                    <h4>📝 <?php esc_html_e('Content Quality', 'smart-seo-booster'); ?></h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Word Count</td><td style="text-align: right;"><span class="<?php echo $analysis['word_count']['status']; ?>"><?php echo $analysis['word_count']['value']; ?> <?php echo $analysis['word_count']['icon']; ?></span></td></tr>
-                        <tr><td>Paragraphs</td><td style="text-align: right;"><span class="<?php echo $analysis['paragraphs']['status']; ?>"><?php echo $analysis['paragraphs']['value']; ?> <?php echo $analysis['paragraphs']['icon']; ?></span></td></tr>
-                        <tr><td>Headings</td><td style="text-align: right;"><span class="<?php echo $analysis['headings']['status']; ?>"><?php echo $analysis['headings']['value']; ?> <?php echo $analysis['headings']['icon']; ?></span></td></tr>
-                        <tr><td>Readability</td><td style="text-align: right;"><span class="<?php echo $analysis['readability']['status']; ?>"><?php echo $analysis['readability']['value']; ?> <?php echo $analysis['readability']['icon']; ?></span></td></tr>
+                        <tr><td><?php esc_html_e('Word Count', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['word_count']['status']); ?>"><?php echo esc_html($analysis['word_count']['value']); ?> <?php echo esc_html($analysis['word_count']['icon']); ?></span></td></tr>
+                        <tr><td><?php esc_html_e('Paragraphs', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['paragraphs']['status']); ?>"><?php echo esc_html($analysis['paragraphs']['value']); ?> <?php echo esc_html($analysis['paragraphs']['icon']); ?></span></td></tr>
+                        <tr><td><?php esc_html_e('Headings', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['headings']['status']); ?>"><?php echo esc_html($analysis['headings']['value']); ?> <?php echo esc_html($analysis['headings']['icon']); ?></span></td></tr>
+                        <tr><td><?php esc_html_e('Readability', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['readability']['status']); ?>"><?php echo esc_html($analysis['readability']['value']); ?> <?php echo esc_html($analysis['readability']['icon']); ?></span></td></tr>
                     </table>
                     
-                    <h4>🎯 SEO Elements</h4>
+                    <h4>🎯 <?php esc_html_e('SEO Elements', 'smart-seo-booster'); ?></h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Title Length</td><td style="text-align: right;"><span class="<?php echo $analysis['title']['status']; ?>"><?php echo $analysis['title']['value']; ?> <?php echo $analysis['title']['icon']; ?></span></td></tr>
-                        <tr><td>Meta Description</td><td style="text-align: right;"><span class="<?php echo $analysis['description']['status']; ?>"><?php echo $analysis['description']['value']; ?> <?php echo $analysis['description']['icon']; ?></span></td></tr>
-                        <tr><td>URL Structure</td><td style="text-align: right;"><span class="<?php echo $analysis['url']['status']; ?>"><?php echo $analysis['url']['value']; ?> <?php echo $analysis['url']['icon']; ?></span></td></tr>
+                        <tr><td><?php esc_html_e('Title Length', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['title']['status']); ?>"><?php echo esc_html($analysis['title']['value']); ?> <?php echo esc_html($analysis['title']['icon']); ?></span></td></tr>
+                        <tr><td><?php esc_html_e('Meta Description', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['description']['status']); ?>"><?php echo esc_html($analysis['description']['value']); ?> <?php echo esc_html($analysis['description']['icon']); ?></span></td></tr>
+                        <tr><td><?php esc_html_e('URL Structure', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['url']['status']); ?>"><?php echo esc_html($analysis['url']['value']); ?> <?php echo esc_html($analysis['url']['icon']); ?></span></td></tr>
                     </table>
                 </div>
                 
                 <div>
-                    <h4>🖼️ Media & Links</h4>
+                    <h4>🖼️ <?php esc_html_e('Media & Links', 'smart-seo-booster'); ?></h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Images</td><td style="text-align: right;"><span class="<?php echo $analysis['images']['status']; ?>"><?php echo $analysis['images']['value']; ?> <?php echo $analysis['images']['icon']; ?></span></td></tr>
-                        <tr><td>Alt Text Coverage</td><td style="text-align: right;"><span class="<?php echo $analysis['alt_text']['status']; ?>"><?php echo $analysis['alt_text']['value']; ?> <?php echo $analysis['alt_text']['icon']; ?></span></td></tr>
-                        <tr><td>Internal Links</td><td style="text-align: right;"><span class="<?php echo $analysis['internal_links']['status']; ?>"><?php echo $analysis['internal_links']['value']; ?> <?php echo $analysis['internal_links']['icon']; ?></span></td></tr>
-                        <tr><td>External Links</td><td style="text-align: right;"><span class="<?php echo $analysis['external_links']['status']; ?>"><?php echo $analysis['external_links']['value']; ?> <?php echo $analysis['external_links']['icon']; ?></span></td></tr>
+                        <tr><td><?php esc_html_e('Images', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['images']['status']); ?>"><?php echo esc_html($analysis['images']['value']); ?> <?php echo esc_html($analysis['images']['icon']); ?></span></td></tr>
+                        <tr><td><?php esc_html_e('Alt Text Coverage', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['alt_text']['status']); ?>"><?php echo esc_html($analysis['alt_text']['value']); ?> <?php echo esc_html($analysis['alt_text']['icon']); ?></span></td></tr>
+                        <tr><td><?php esc_html_e('Internal Links', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['internal_links']['status']); ?>"><?php echo esc_html($analysis['internal_links']['value']); ?> <?php echo esc_html($analysis['internal_links']['icon']); ?></span></td></tr>
+                        <tr><td><?php esc_html_e('External Links', 'smart-seo-booster'); ?></td><td style="text-align: right;"><span class="<?php echo esc_attr($analysis['external_links']['status']); ?>"><?php echo esc_html($analysis['external_links']['value']); ?> <?php echo esc_html($analysis['external_links']['icon']); ?></span></td></tr>
                     </table>
                     
                     <?php if (!empty($analysis['recommendations'])): ?>
                     <h4>💡 Priority Recommendations</h4>
                     <ol style="padding-left: 20px;">
                         <?php foreach (array_slice($analysis['recommendations'], 0, 5) as $recommendation): ?>
-                            <li style="margin-bottom: 5px;"><?php echo $recommendation; ?></li>
+                            <li style="margin-bottom: 5px;"><?php echo esc_html($recommendation); ?></li>
                         <?php endforeach; ?>
                     </ol>
                     <?php endif; ?>

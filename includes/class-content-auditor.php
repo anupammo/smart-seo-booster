@@ -114,14 +114,21 @@ class Smart_SEO_Content_Auditor {
         $score_class = $score >= 75 ? 'notice-success' : ($score >= 50 ? 'notice-warning' : 'notice-error');
         $score_emoji = $score >= 75 ? '🎉' : ($score >= 50 ? '⚠️' : '❌');
         
-        echo "<div class='notice {$score_class}'>";
-        echo "<p><strong>{$score_emoji} SEO Score: {$score}/100</strong></p>";
-        echo "<p><strong>Stats:</strong> Words: {$word_count} | Headings: {$headings} | Images: {$images} | Alt Texts: {$alts}</p>";
+        $output = '<div class="notice ' . esc_attr($score_class) . '">';
+        $output .= '<p><strong>' . esc_html($score_emoji) . ' ' . esc_html__('SEO Score:', 'smart-seo-booster') . ' ' . esc_html($score) . '/100</strong></p>';
+        $output .= '<p><strong>' . esc_html__('Stats:', 'smart-seo-booster') . '</strong> ' . 
+             esc_html__('Words:', 'smart-seo-booster') . ' ' . esc_html($word_count) . ' | ' .
+             esc_html__('Headings:', 'smart-seo-booster') . ' ' . esc_html($headings) . ' | ' .
+             esc_html__('Images:', 'smart-seo-booster') . ' ' . esc_html($images) . ' | ' .
+             esc_html__('Alt Texts:', 'smart-seo-booster') . ' ' . esc_html($alts) . '</p>';
         
         if (!empty($recommendations)) {
-            echo "<p><strong>Recommendations:</strong> " . implode(' • ', $recommendations) . "</p>";
+            $escaped_recommendations = array_map('esc_html', $recommendations);
+            $output .= '<p><strong>' . esc_html__('Recommendations:', 'smart-seo-booster') . '</strong> ' . implode(' • ', $escaped_recommendations) . '</p>';
         }
         
-        echo "</div>";
+        $output .= '</div>';
+        
+        echo wp_kses_post($output);
     }
 }

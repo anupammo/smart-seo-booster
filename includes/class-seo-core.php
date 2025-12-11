@@ -62,20 +62,21 @@ class Smart_SEO_Core {
         }
         
         // Sanitize and output meta tags
-        $title = esc_html($title);
+        $title = esc_attr($title);
         $desc = esc_attr($desc);
         
-        echo "<meta name='description' content='{$desc}' />\n";
+        echo '<meta name="description" content="' . esc_attr($desc) . '" />' . "\n";
         
         // Add Open Graph tags if enabled
         if (!empty($options['enable_og_tags'])) {
-            echo "<meta property='og:title' content='{$title}' />\n";
-            echo "<meta property='og:description' content='{$desc}' />\n";
-            echo "<meta property='og:type' content='" . (is_singular('post') ? 'article' : 'website') . "' />\n";
-            echo "<meta property='og:url' content='" . esc_url(get_permalink()) . "' />\n";
+            echo '<meta property="og:title" content="' . esc_attr($title) . '" />' . "\n";
+            echo '<meta property="og:description" content="' . esc_attr($desc) . '" />' . "\n";
+            $og_type = is_singular('post') ? 'article' : 'website';
+            echo '<meta property="og:type" content="' . esc_attr($og_type) . '" />' . "\n";
+            echo '<meta property="og:url" content="' . esc_url(get_permalink()) . '" />' . "\n";
             
             // Add site name
-            echo "<meta property='og:site_name' content='" . esc_attr(get_bloginfo('name')) . "' />\n";
+            echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '" />' . "\n";
         }
     }
 }

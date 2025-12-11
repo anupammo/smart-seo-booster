@@ -34,35 +34,35 @@ defined('ABSPATH') || exit;
                         <li>✅ Enable Meta Tags for title and description optimization</li>
                         <li>✅ Enable Content Audit for real-time SEO feedback</li>
                     </ul>
-                    <a href="<?php echo admin_url('admin.php?page=smart-seo'); ?>" class="button button-primary">Go to Settings</a>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=smart-seo')); ?>" class="button button-primary"><?php esc_html_e('Go to Settings', 'smart-seo-booster'); ?></a>
                 </div>
             </div>
 
             <div class="step-card">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3>📊 Run Your First Audit</h3>
-                    <p>Check your site's SEO performance with our comprehensive audit:</p>
+                    <h3>📊 <?php esc_html_e('Run Your First Audit', 'smart-seo-booster'); ?></h3>
+                    <p><?php esc_html_e("Check your site's SEO performance with our comprehensive audit:", 'smart-seo-booster'); ?></p>
                     <ul>
-                        <li>📈 View overall site statistics</li>
-                        <li>🎯 Get specific improvement recommendations</li>
-                        <li>📝 Identify content gaps and opportunities</li>
+                        <li>📈 <?php esc_html_e('View overall site statistics', 'smart-seo-booster'); ?></li>
+                        <li>🎯 <?php esc_html_e('Get specific improvement recommendations', 'smart-seo-booster'); ?></li>
+                        <li>📝 <?php esc_html_e('Identify content gaps and opportunities', 'smart-seo-booster'); ?></li>
                     </ul>
-                    <a href="<?php echo admin_url('admin.php?page=smart-seo-audit'); ?>" class="button button-primary">View Audit Report</a>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=smart-seo-audit')); ?>" class="button button-primary"><?php esc_html_e('View Audit Report', 'smart-seo-booster'); ?></a>
                 </div>
             </div>
 
             <div class="step-card">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h3>✍️ Optimize Your Content</h3>
-                    <p>Use our real-time feedback while editing posts and pages:</p>
+                    <h3>✍️ <?php esc_html_e('Optimize Your Content', 'smart-seo-booster'); ?></h3>
+                    <p><?php esc_html_e('Use our real-time feedback while editing posts and pages:', 'smart-seo-booster'); ?></p>
                     <ul>
-                        <li>📝 SEO score appears in the editor</li>
-                        <li>💡 Get instant recommendations</li>
-                        <li>🔗 Monitor internal links automatically</li>
+                        <li>📝 <?php esc_html_e('SEO score appears in the editor', 'smart-seo-booster'); ?></li>
+                        <li>💡 <?php esc_html_e('Get instant recommendations', 'smart-seo-booster'); ?></li>
+                        <li>🔗 <?php esc_html_e('Monitor internal links automatically', 'smart-seo-booster'); ?></li>
                     </ul>
-                    <a href="<?php echo admin_url('edit.php'); ?>" class="button button-primary">Edit Posts</a>
+                    <a href="<?php echo esc_url(admin_url('edit.php')); ?>" class="button button-primary"><?php esc_html_e('Edit Posts', 'smart-seo-booster'); ?></a>
                 </div>
             </div>
         </div>
@@ -373,14 +373,17 @@ defined('ABSPATH') || exit;
             <div class="trouble-item">
                 <h4>🔗 Internal links not being detected</h4>
                 <div class="solution">
-                    <p><strong>Requirements for link detection:</strong></p>
+                    <p><strong><?php esc_html_e('Requirements for link detection:', 'smart-seo-booster'); ?></strong></p>
                     <ul>
-                        <li>Links must point to your domain (<?php echo home_url(); ?>)</li>
-                        <li>Links must be properly formatted HTML anchor tags</li>
-                        <li>"Enable Link Analysis" must be checked in settings</li>
+                        <li><?php
+                            /* translators: %s: The site's home URL */
+                            echo esc_html(sprintf(__('Links must point to your domain (%s)', 'smart-seo-booster'), home_url()));
+                        ?></li>
+                        <li><?php esc_html_e('Links must be properly formatted HTML anchor tags', 'smart-seo-booster'); ?></li>
+                        <li><?php esc_html_e('"Enable Link Analysis" must be checked in settings', 'smart-seo-booster'); ?></li>
                     </ul>
-                    <p><strong>Example of detectable link:</strong></p>
-                    <code>&lt;a href="<?php echo home_url('/about'); ?>"&gt;About Us&lt;/a&gt;</code>
+                    <p><strong><?php esc_html_e('Example of detectable link:', 'smart-seo-booster'); ?></strong></p>
+                    <code>&lt;a href="<?php echo esc_html(home_url('/about')); ?>"&gt;<?php esc_html_e('About Us', 'smart-seo-booster'); ?>&lt;/a&gt;</code>
                 </div>
             </div>
 
@@ -399,15 +402,15 @@ defined('ABSPATH') || exit;
         </div>
 
         <div class="debug-info">
-            <h3>🐛 Debug Information</h3>
-            <p>If you need support, please include this information:</p>
+            <h3>🐛 <?php esc_html_e('Debug Information', 'smart-seo-booster'); ?></h3>
+            <p><?php esc_html_e('If you need support, please include this information:', 'smart-seo-booster'); ?></p>
             <div class="debug-box">
-                <strong>WordPress Version:</strong> <?php echo get_bloginfo('version'); ?><br>
-                <strong>PHP Version:</strong> <?php echo PHP_VERSION; ?><br>
-                <strong>Plugin Version:</strong> 1.0.0<br>
-                <strong>Active Theme:</strong> <?php echo wp_get_theme()->get('Name'); ?><br>
-                <strong>Site URL:</strong> <?php echo home_url(); ?><br>
-                <strong>Admin URL:</strong> <?php echo admin_url(); ?>
+                <strong><?php esc_html_e('WordPress Version:', 'smart-seo-booster'); ?></strong> <?php echo esc_html(get_bloginfo('version')); ?><br>
+                <strong><?php esc_html_e('PHP Version:', 'smart-seo-booster'); ?></strong> <?php echo esc_html(PHP_VERSION); ?><br>
+                <strong><?php esc_html_e('Plugin Version:', 'smart-seo-booster'); ?></strong> 1.0.0<br>
+                <strong><?php esc_html_e('Active Theme:', 'smart-seo-booster'); ?></strong> <?php echo esc_html(wp_get_theme()->get('Name')); ?><br>
+                <strong><?php esc_html_e('Site URL:', 'smart-seo-booster'); ?></strong> <?php echo esc_url(home_url()); ?><br>
+                <strong><?php esc_html_e('Admin URL:', 'smart-seo-booster'); ?></strong> <?php echo esc_url(admin_url()); ?>
             </div>
         </div>
     </div>

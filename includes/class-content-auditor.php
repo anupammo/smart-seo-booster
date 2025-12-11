@@ -10,7 +10,11 @@ class Smart_SEO_Content_Auditor {
         if (!is_admin() || !function_exists('get_current_screen')) return;
         
         $screen = get_current_screen();
-        if (!$screen || !$screen->is_block_editor()) return;
+        if (!$screen) return;
+        
+        // Check if in block editor (Gutenberg)
+        $is_block_editor = method_exists($screen, 'is_block_editor') ? $screen->is_block_editor() : false;
+        if (!$is_block_editor && !in_array($screen->base, ['post', 'page'])) return;
 
         global $post;
         if (!$post) return;

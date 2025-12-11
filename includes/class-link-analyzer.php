@@ -7,8 +7,14 @@ class Smart_SEO_Link_Analyzer {
     }
 
     public static function show_link_summary() {
-        $screen = function_exists('get_current_screen') ? get_current_screen() : null;
-        if (!is_admin() || !$screen || !$screen->is_block_editor()) return;
+        if (!is_admin() || !function_exists('get_current_screen')) return;
+        
+        $screen = get_current_screen();
+        if (!$screen) return;
+        
+        // Check if in block editor (Gutenberg)
+        $is_block_editor = method_exists($screen, 'is_block_editor') ? $screen->is_block_editor() : false;
+        if (!$is_block_editor && !in_array($screen->base, ['post', 'page'])) return;
 
         global $post;
         if (!$post) return;

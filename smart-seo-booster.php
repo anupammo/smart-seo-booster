@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Plugin Name: Smart SEO Booster
  * Description: Modular SEO plugin with schema injection, content audit, and internal link analysis.

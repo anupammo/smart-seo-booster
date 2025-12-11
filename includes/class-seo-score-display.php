@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 defined('ABSPATH') || exit;
 
 class Smart_SEO_Score_Display {

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Smart SEO Meta Fields Class
  * 

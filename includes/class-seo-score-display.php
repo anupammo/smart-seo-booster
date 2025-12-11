@@ -313,27 +313,27 @@ class Smart_SEO_Score_Display {
             
             echo '<div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px;">';
             echo '<strong>Average Score: <span style="color: ' . esc_attr($avg_color) . ';">' . absint($avg_score) . '/100</span></strong>';
-            echo '<div>';
-            echo '<strong style="color: ' . esc_attr( $color ) . '; font-size: 14px;">' . absint( $score ) . '/100</strong><br>';
-            echo '<small style="color: ' . esc_attr( $color ) . ';">' . esc_html( $status ) . '</small>';
             echo '</div>';
+        } else {
+            echo '<p>No content found.</p>';
+        }
         
         echo '<div style="margin-top: 15px; text-align: center;">';
         echo '<a href="' . esc_url( admin_url('admin.php?page=smart-seo-audit') ) . '" class="button button-primary">View Full Audit Report</a>';
-                    <strong style="font-size: 18px; color: <?php echo esc_attr( $color ); ?>;"><?php echo absint( $score ); ?></strong>
+        echo '</div>';
         echo '</div>';
     }
     
-            <p><strong style="color: <?php echo esc_attr( $color ); ?>;"><?php echo esc_html( $status ); ?></strong></p>
+    public static function add_seo_score_metabox() {
         $post_types = ['post', 'page'];
         foreach ($post_types as $post_type) {
             add_meta_box(
                 'smart_seo_score',
-                'ðŸ“Š SEO Score',
+                '📊 SEO Score',
                 [__CLASS__, 'seo_score_metabox_content'],
                 $post_type,
                 'side',
-                    <?php echo absint( $analysis['word_count']['value'] ); ?> words <?php echo esc_html( $analysis['word_count']['icon'] ); ?>
+                'high'
             );
         }
     }

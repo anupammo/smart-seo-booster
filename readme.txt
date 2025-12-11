@@ -1,7 +1,8 @@
 === Smart SEO Booster ===
 Contributors: anupam-mondal  
 Tags: seo, schema, json-ld, content audit, wordpress seo  
-Requires at least: 5.2  
+Requires at least: 5.9  
+Requires PHP: 8.0
 Tested up to: 6.9
 Stable tag: 1.0.1  
 License: GPLv2 or later  

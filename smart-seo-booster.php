@@ -6,6 +6,9 @@
  * Author: Anupam Mondal
  * License: GPL2+
  * Text Domain: smart-seo-booster
+ * Requires at least: 5.9
+ * Requires PHP: 8.0
+ * Tested up to: 6.9
  */
 
 defined('ABSPATH') || exit;

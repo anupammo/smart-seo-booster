@@ -5,6 +5,8 @@
  * 
  * @package SmartSEOBooster
  * @since 2.1.0
+ * 
+ * phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
  */
 
 // Prevent direct access
@@ -107,24 +109,24 @@ $ssb_post_ids = get_posts($ssb_args);
 $ssb_posts_analyzed = count($ssb_post_ids);
 
 // Analyze each post for comprehensive SEO factors
-foreach ($ssb_post_ids as $post_id) {
+foreach ($ssb_post_ids as $ssb_post_id) {
     // Get post content and URL (sanitized for security)
-    $ssb_post_content = wp_kses_post(get_post_field('post_content', $post_id));
-    $ssb_post_url = esc_url(get_permalink($post_id));
+    $ssb_post_content = wp_kses_post(get_post_field('post_content', $ssb_post_id));
+    $ssb_post_url = esc_url(get_permalink($ssb_post_id));
     
     // 1. Check if page is blocked from indexing
-    $ssb_meta_robots = get_post_meta($post_id, '_yoast_wpseo_meta-robots-noindex', true);
-    if ($ssb_meta_robots === '1' || get_post_meta($post_id, '_aioseop_noindex', true)) {
+    $ssb_meta_robots = get_post_meta($ssb_post_id, '_yoast_wpseo_meta-robots-noindex', true);
+    if ($ssb_meta_robots === '1' || get_post_meta($ssb_post_id, '_aioseop_noindex', true)) {
         $ssb_pages_blocked_indexing++;
     }
     
     // 2. Document has a <title> element
-    $title = get_the_title($post_id);
-    $ssb_seo_title = get_post_meta($post_id, '_yoast_wpseo_title', true);
+    $ssb_title = get_the_title($ssb_post_id);
+    $ssb_seo_title = get_post_meta($ssb_post_id, '_yoast_wpseo_title', true);
     if (empty($ssb_seo_title)) {
-        $ssb_seo_title = get_post_meta($post_id, '_aioseop_title', true);
+        $ssb_seo_title = get_post_meta($ssb_post_id, '_aioseop_title', true);
     }
-    $ssb_final_title = !empty($ssb_seo_title) ? $ssb_seo_title : $title;
+    $ssb_final_title = !empty($ssb_seo_title) ? $ssb_seo_title : $ssb_title;
     
     if (empty($ssb_final_title)) {
         $ssb_title_tags_missing++;
@@ -136,9 +138,9 @@ foreach ($ssb_post_ids as $post_id) {
     }
     
     // 3. Document has a meta description
-    $ssb_meta_description = get_post_meta($post_id, '_yoast_wpseo_metadesc', true);
+    $ssb_meta_description = get_post_meta($ssb_post_id, '_yoast_wpseo_metadesc', true);
     if (empty($ssb_meta_description)) {
-        $ssb_meta_description = get_post_meta($post_id, '_aioseop_description', true);
+        $ssb_meta_description = get_post_meta($ssb_post_id, '_aioseop_description', true);
     }
     if (empty($ssb_meta_description)) {
         $ssb_meta_descriptions_missing++;
@@ -156,9 +158,9 @@ foreach ($ssb_post_ids as $post_id) {
     }
     
     // 5. Links have descriptive text
-    preg_match_all('/<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)<\/a>/i', $ssb_post_content, $link_matches, PREG_SET_ORDER);
-    foreach ($link_matches as $link) {
-        $ssb_link_text = wp_strip_all_tags($link[2]);
+    preg_match_all('/<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)<\/a>/i', $ssb_post_content, $ssb_link_matches, PREG_SET_ORDER);
+    foreach ($ssb_link_matches as $ssb_link) {
+        $ssb_link_text = wp_strip_all_tags($ssb_link[2]);
         $ssb_generic_texts = ['click here', 'read more', 'here', 'link', 'more', 'continue reading'];
         if (empty(trim($ssb_link_text)) || in_array(strtolower(trim($ssb_link_text)), $ssb_generic_texts)) {
             $ssb_links_without_descriptive_text++;
@@ -166,18 +168,18 @@ foreach ($ssb_post_ids as $post_id) {
     }
     
     // 6. Links are crawlable (check for rel="nofollow" and javascript:void)
-    foreach ($link_matches as $link) {
-        if (preg_match('/rel=["\'].*nofollow.*["\']|href=["\']javascript:|href=["\']#/', $link[0])) {
+    foreach ($ssb_link_matches as $ssb_link) {
+        if (preg_match('/rel=["\'].*nofollow.*["\']|href=["\']javascript:|href=["\']#/', $ssb_link[0])) {
             $ssb_non_crawlable_links++;
         }
     }
     
     // 7. Document has a valid rel=canonical
-    $ssb_canonical = get_post_meta($post_id, '_yoast_wpseo_canonical', true);
+    $ssb_canonical = get_post_meta($ssb_post_id, '_yoast_wpseo_canonical', true);
     if (empty($ssb_canonical)) {
-        $ssb_canonical = get_post_meta($post_id, '_aioseop_canonical_url', true);
+        $ssb_canonical = get_post_meta($ssb_post_id, '_aioseop_canonical_url', true);
     }
-    if (empty($ssb_canonical) && $ssb_post_url !== get_permalink($post_id)) {
+    if (empty($ssb_canonical) && $ssb_post_url !== get_permalink($ssb_post_id)) {
         $ssb_canonical_issues++;
     }
     
@@ -190,15 +192,15 @@ foreach ($ssb_post_ids as $post_id) {
     }
     
     // 9. Image elements have [alt] attributes
-    preg_match_all('/<img[^>]+>/i', $ssb_post_content, $images);
-    foreach ($images[0] as $ssb_img) {
+    preg_match_all('/<img[^>]+>/i', $ssb_post_content, $ssb_images);
+    foreach ($ssb_images[0] as $ssb_img) {
         if (!preg_match('/alt\s*=\s*["\'][^"\']*["\']/', $ssb_img)) {
             $ssb_images_missing_alt++;
         }
     }
     
     // 10. Document has a valid hreflang (check if multilingual setup exists)
-    $ssb_hreflang = get_post_meta($post_id, '_yoast_wpseo_hreflang', true);
+    $ssb_hreflang = get_post_meta($ssb_post_id, '_yoast_wpseo_hreflang', true);
     if (function_exists('pll_the_languages') || function_exists('icl_get_languages') || class_exists('WPSEO_Language_Utils')) {
         if (empty($ssb_hreflang)) {
             $ssb_hreflang_issues++;
@@ -208,9 +210,9 @@ foreach ($ssb_post_ids as $post_id) {
     // COMPREHENSIVE SEO CHECKLIST ANALYSIS
     
     // Extract focus keyword (from Yoast or other SEO plugins)
-    $ssb_focus_keyword = get_post_meta($post_id, '_yoast_wpseo_focuskw', true);
+    $ssb_focus_keyword = get_post_meta($ssb_post_id, '_yoast_wpseo_focuskw', true);
     if (empty($ssb_focus_keyword)) {
-        $ssb_focus_keyword = get_post_meta($post_id, '_aioseop_keywords', true);
+        $ssb_focus_keyword = get_post_meta($ssb_post_id, '_aioseop_keywords', true);
     }
     
     if (!empty($ssb_focus_keyword)) {
@@ -253,10 +255,10 @@ foreach ($ssb_post_ids as $post_id) {
     }
     
     // 16. Image optimization analysis
-    preg_match_all('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $ssb_post_content, $image_matches, PREG_SET_ORDER);
-    $ssb_total_images += count($image_matches);
+    preg_match_all('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $ssb_post_content, $ssb_image_matches, PREG_SET_ORDER);
+    $ssb_total_images += count($ssb_image_matches);
     
-    foreach ($image_matches as $ssb_img_match) {
+    foreach ($ssb_image_matches as $ssb_img_match) {
         $ssb_img_src = $ssb_img_match[1];
         $ssb_img_filename = basename(wp_parse_url($ssb_img_src, PHP_URL_PATH));
         
@@ -277,13 +279,13 @@ foreach ($ssb_post_ids as $post_id) {
     }
     
     // 17. Internal linking analysis
-    preg_match_all('/<a[^>]+href=["\']([^"\']+)["\'][^>]*>/i', $ssb_post_content, $all_links, PREG_SET_ORDER);
+    preg_match_all('/<a[^>]+href=["\']([^"\']+)["\'][^>]*>/i', $ssb_post_content, $ssb_all_links, PREG_SET_ORDER);
     $ssb_internal_link_count = 0;
     $ssb_external_link_count = 0;
     $ssb_broken_links = 0;
     
-    foreach ($all_links as $link) {
-        $ssb_href = $link[1];
+    foreach ($ssb_all_links as $ssb_link) {
+        $ssb_href = $ssb_link[1];
         
         // Check if internal link
         if (strpos($ssb_href, home_url()) !== false || (strpos($ssb_href, '/') === 0 && strpos($ssb_href, '//') !== 0)) {
@@ -324,7 +326,7 @@ foreach ($ssb_post_ids as $post_id) {
     }
     
     // 18. URL structure analysis
-    $ssb_post_slug = get_post_field('post_name', $post_id);
+    $ssb_post_slug = get_post_field('post_name', $ssb_post_id);
     if (strlen($ssb_post_slug) > 60 || substr_count($ssb_post_url, '/') > 5) {
         $ssb_pages_with_long_urls++;
     }
@@ -334,7 +336,7 @@ foreach ($ssb_post_ids as $post_id) {
     
     // Check for Yoast schema
     if (function_exists('YoastSEO')) {
-        $ssb_yoast_schema = get_post_meta($post_id, '_yoast_wpseo_schema_page_type', true);
+        $ssb_yoast_schema = get_post_meta($ssb_post_id, '_yoast_wpseo_schema_page_type', true);
         if (!empty($ssb_yoast_schema)) {
             $ssb_has_schema = true;
         }
@@ -353,9 +355,9 @@ foreach ($ssb_post_ids as $post_id) {
     }
     
     // Check for Open Graph tags (social media optimization)
-    $ssb_og_title = get_post_meta($post_id, '_yoast_wpseo_opengraph-title', true);
-    $ssb_og_description = get_post_meta($post_id, '_yoast_wpseo_opengraph-description', true);
-    $ssb_og_image = get_post_meta($post_id, '_yoast_wpseo_opengraph-image', true);
+    $ssb_og_title = get_post_meta($ssb_post_id, '_yoast_wpseo_opengraph-title', true);
+    $ssb_og_description = get_post_meta($ssb_post_id, '_yoast_wpseo_opengraph-description', true);
+    $ssb_og_image = get_post_meta($ssb_post_id, '_yoast_wpseo_opengraph-image', true);
     
     if (empty($ssb_og_title) && empty($ssb_og_description) && empty($ssb_og_image)) {
         $ssb_missing_og_tags_count++;
@@ -366,19 +368,19 @@ foreach ($ssb_post_ids as $post_id) {
         'post_type' => array('post', 'page'),
         'post_status' => 'publish',
         'posts_per_page' => 6,
-        's' => substr($title, 0, 20),
+        's' => substr($ssb_title, 0, 20),
         'fields' => 'ids'
     ));
     
     if (count($ssb_similar_titles) > 0) {
         foreach ($ssb_similar_titles as $ssb_similar_id) {
             // Skip the current post
-            if ($ssb_similar_id === $post_id) {
+            if ($ssb_similar_id === $ssb_post_id) {
                 continue;
             }
             
             $ssb_similar_title = get_the_title($ssb_similar_id);
-            $ssb_similarity = similar_text(strtolower($title), strtolower($ssb_similar_title));
+            $ssb_similarity = similar_text(strtolower($ssb_title), strtolower($ssb_similar_title));
             if ($ssb_similarity > 80) {
                 $ssb_duplicate_content_issues++;
                 break;
@@ -427,28 +429,28 @@ if ($ssb_overall_score >= 90) {
 $ssb_indexing_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_blocked_indexing / $ssb_posts_analyzed) * 100) : 100;
 $ssb_title_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_without_title / $ssb_posts_analyzed) * 100) : 100;
 $ssb_meta_desc_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_without_meta_desc / $ssb_posts_analyzed) * 100) : 100;
-$http_status_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_non_200_status / $ssb_posts_analyzed) * 100) : 100;
-$alt_text_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_images_missing_alt / ($ssb_posts_analyzed * 5)) * 100) : 100; // Assume avg 5 images per page
-$robots_score = $ssb_robots_txt_valid ? 100 : 0;
+$ssb_http_status_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_non_200_status / $ssb_posts_analyzed) * 100) : 100;
+$ssb_alt_text_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_images_missing_alt / ($ssb_posts_analyzed * 5)) * 100) : 100; // Assume avg 5 images per page
+$ssb_robots_score = $ssb_robots_txt_valid ? 100 : 0;
 $ssb_canonical_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_canonical_issues / $ssb_posts_analyzed) * 100) : 100;
-$h1_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_h1_tags_missing / $ssb_posts_analyzed) * 100) : 100;
+$ssb_h1_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_h1_tags_missing / $ssb_posts_analyzed) * 100) : 100;
 
 // New comprehensive SEO scores
-$keyword_optimization_score = $ssb_posts_analyzed > 0 ? max(0, 100 - (($ssb_keyword_in_title_missing + $ssb_keyword_in_meta_desc_missing + $ssb_keyword_in_first_100_words_missing) / ($ssb_posts_analyzed * 3)) * 100) : 100;
-$content_quality_score = $ssb_posts_analyzed > 0 ? max(0, 100 - (($ssb_short_content_pages + $ssb_pages_without_headings) / ($ssb_posts_analyzed * 2)) * 100) : 100;
-$image_optimization_score = $ssb_total_images > 0 ? max(0, 100 - (($ssb_images_without_descriptive_names + $ssb_images_without_optimization) / ($ssb_total_images * 2)) * 100) : 100;
-$internal_linking_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_without_internal_links / $ssb_posts_analyzed) * 100) : 100;
-$external_links_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_without_external_links / $ssb_posts_analyzed) * 100) : 100;
-$schema_markup_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_without_schema / $ssb_posts_analyzed) * 100) : 100;
-$social_media_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_missing_og_tags_count / $ssb_posts_analyzed) * 100) : 100;
-$technical_seo_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_technical_issues_count / ($ssb_posts_analyzed * 4)) * 100) : 100;
-$content_uniqueness_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_duplicate_content_issues / $ssb_posts_analyzed) * 100) : 100;
+$ssb_keyword_optimization_score = $ssb_posts_analyzed > 0 ? max(0, 100 - (($ssb_keyword_in_title_missing + $ssb_keyword_in_meta_desc_missing + $ssb_keyword_in_first_100_words_missing) / ($ssb_posts_analyzed * 3)) * 100) : 100;
+$ssb_content_quality_score = $ssb_posts_analyzed > 0 ? max(0, 100 - (($ssb_short_content_pages + $ssb_pages_without_headings) / ($ssb_posts_analyzed * 2)) * 100) : 100;
+$ssb_image_optimization_score = $ssb_total_images > 0 ? max(0, 100 - (($ssb_images_without_descriptive_names + $ssb_images_without_optimization) / ($ssb_total_images * 2)) * 100) : 100;
+$ssb_internal_linking_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_without_internal_links / $ssb_posts_analyzed) * 100) : 100;
+$ssb_external_links_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_without_external_links / $ssb_posts_analyzed) * 100) : 100;
+$ssb_schema_markup_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_pages_without_schema / $ssb_posts_analyzed) * 100) : 100;
+$ssb_social_media_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_missing_og_tags_count / $ssb_posts_analyzed) * 100) : 100;
+$ssb_technical_seo_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_technical_issues_count / ($ssb_posts_analyzed * 4)) * 100) : 100;
+$ssb_content_uniqueness_score = $ssb_posts_analyzed > 0 ? max(0, 100 - ($ssb_duplicate_content_issues / $ssb_posts_analyzed) * 100) : 100;
 
 // Calculate average content statistics
-$avg_words_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_words / $ssb_posts_analyzed) : 0;
-$avg_internal_links_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_internal_links / $ssb_posts_analyzed, 1) : 0;
-$avg_external_links_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_external_links / $ssb_posts_analyzed, 1) : 0;
-$avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_posts_analyzed, 1) : 0;
+$ssb_avg_words_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_words / $ssb_posts_analyzed) : 0;
+$ssb_avg_internal_links_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_internal_links / $ssb_posts_analyzed, 1) : 0;
+$ssb_avg_external_links_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_external_links / $ssb_posts_analyzed, 1) : 0;
+$ssb_avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_posts_analyzed, 1) : 0;
 ?>
 
 <div class="wrap smart-seo-wrapper">
@@ -550,7 +552,7 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
                 <?php esc_html_e('HTTP Status Codes', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($ssb_pages_non_200_status == 0 ? 'score-good' : 'score-poor'); ?>">
-                <?php echo esc_html(round($http_status_score)); ?>%
+                <?php echo esc_html(round($ssb_http_status_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo esc_html($ssb_pages_non_200_status); ?> <?php esc_html_e('pages with non-200 status codes', 'smart-seo-booster'); ?>
@@ -592,7 +594,7 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
                 <?php esc_html_e('Robots.txt Validity', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($ssb_robots_txt_valid ? 'score-good' : 'score-poor'); ?>">
-                <?php echo esc_html($robots_score); ?>%
+                <?php echo esc_html($ssb_robots_score); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo $ssb_robots_txt_valid ? esc_html__('Valid and accessible', 'smart-seo-booster') : esc_html__('Missing or invalid', 'smart-seo-booster'); ?>
@@ -606,7 +608,7 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
                 <?php esc_html_e('Image Alt Attributes', 'smart-seo-booster'); ?>
             </div>
             <div class="ps-metric-value <?php echo esc_attr($ssb_images_missing_alt == 0 ? 'score-good' : ($ssb_images_missing_alt <= 10 ? 'score-needs-improvement' : 'score-poor')); ?>">
-                <?php echo esc_html(round($alt_text_score)); ?>%
+                <?php echo esc_html(round($ssb_alt_text_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo esc_html($ssb_images_missing_alt); ?> <?php esc_html_e('images missing alt text', 'smart-seo-booster'); ?>
@@ -646,11 +648,11 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
         <!-- Keyword Optimization Metric -->
         <div class="ps-metric-card">
             <div class="ps-metric-title">
-                <span class="status-icon <?php echo esc_attr($keyword_optimization_score >= 80 ? 'good' : ($keyword_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                <span class="status-icon <?php echo esc_attr($ssb_keyword_optimization_score >= 80 ? 'good' : ($ssb_keyword_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
                 <?php esc_html_e('Keyword Optimization', 'smart-seo-booster'); ?>
             </div>
-            <div class="ps-metric-value <?php echo esc_attr($keyword_optimization_score >= 80 ? 'score-good' : ($keyword_optimization_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
-                <?php echo esc_html(round($keyword_optimization_score)); ?>%
+            <div class="ps-metric-value <?php echo esc_attr($ssb_keyword_optimization_score >= 80 ? 'score-good' : ($ssb_keyword_optimization_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
+                <?php echo esc_html(round($ssb_keyword_optimization_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo $ssb_keyword_in_title_missing > 0 ? esc_html($ssb_keyword_in_title_missing) . ' ' . esc_html__('pages missing keywords in title', 'smart-seo-booster') : esc_html__('All pages optimized', 'smart-seo-booster'); ?>
@@ -660,11 +662,11 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
         <!-- Content Quality Metric -->
         <div class="ps-metric-card">
             <div class="ps-metric-title">
-                <span class="status-icon <?php echo esc_attr($content_quality_score >= 80 ? 'good' : ($content_quality_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                <span class="status-icon <?php echo esc_attr($ssb_content_quality_score >= 80 ? 'good' : ($ssb_content_quality_score >= 60 ? 'warning' : 'error')); ?>"></span>
                 <?php esc_html_e('Content Quality', 'smart-seo-booster'); ?>
             </div>
-            <div class="ps-metric-value <?php echo esc_attr($content_quality_score >= 80 ? 'score-good' : ($content_quality_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
-                <?php echo esc_html(round($content_quality_score)); ?>%
+            <div class="ps-metric-value <?php echo esc_attr($ssb_content_quality_score >= 80 ? 'score-good' : ($ssb_content_quality_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
+                <?php echo esc_html(round($ssb_content_quality_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo $ssb_short_content_count > 0 ? esc_html($ssb_short_content_count) . ' ' . esc_html__('pages with short content', 'smart-seo-booster') : esc_html__('Content length optimal', 'smart-seo-booster'); ?>
@@ -674,11 +676,11 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
         <!-- Image Optimization Metric -->
         <div class="ps-metric-card">
             <div class="ps-metric-title">
-                <span class="status-icon <?php echo esc_attr($image_optimization_score >= 80 ? 'good' : ($image_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                <span class="status-icon <?php echo esc_attr($ssb_image_optimization_score >= 80 ? 'good' : ($ssb_image_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
                 <?php esc_html_e('Image Optimization', 'smart-seo-booster'); ?>
             </div>
-            <div class="ps-metric-value <?php echo esc_attr($image_optimization_score >= 80 ? 'score-good' : ($image_optimization_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
-                <?php echo esc_html(round($image_optimization_score)); ?>%
+            <div class="ps-metric-value <?php echo esc_attr($ssb_image_optimization_score >= 80 ? 'score-good' : ($ssb_image_optimization_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
+                <?php echo esc_html(round($ssb_image_optimization_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo $ssb_large_images_count > 0 ? esc_html($ssb_large_images_count) . ' ' . esc_html__('large unoptimized images', 'smart-seo-booster') : esc_html__('Images optimized', 'smart-seo-booster'); ?>
@@ -688,11 +690,11 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
         <!-- Internal Linking Metric -->
         <div class="ps-metric-card">
             <div class="ps-metric-title">
-                <span class="status-icon <?php echo esc_attr($internal_linking_score >= 80 ? 'good' : ($internal_linking_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                <span class="status-icon <?php echo esc_attr($ssb_internal_linking_score >= 80 ? 'good' : ($ssb_internal_linking_score >= 60 ? 'warning' : 'error')); ?>"></span>
                 <?php esc_html_e('Internal Linking', 'smart-seo-booster'); ?>
             </div>
-            <div class="ps-metric-value <?php echo esc_attr($internal_linking_score >= 80 ? 'score-good' : ($internal_linking_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
-                <?php echo esc_html(round($internal_linking_score)); ?>%
+            <div class="ps-metric-value <?php echo esc_attr($ssb_internal_linking_score >= 80 ? 'score-good' : ($ssb_internal_linking_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
+                <?php echo esc_html(round($ssb_internal_linking_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo $ssb_poor_internal_linking_count > 0 ? esc_html($ssb_poor_internal_linking_count) . ' ' . esc_html__('pages with poor internal linking', 'smart-seo-booster') : esc_html__('Internal linking optimized', 'smart-seo-booster'); ?>
@@ -702,11 +704,11 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
         <!-- External Links Metric -->
         <div class="ps-metric-card">
             <div class="ps-metric-title">
-                <span class="status-icon <?php echo esc_attr($external_links_score >= 80 ? 'good' : ($external_links_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                <span class="status-icon <?php echo esc_attr($ssb_external_links_score >= 80 ? 'good' : ($ssb_external_links_score >= 60 ? 'warning' : 'error')); ?>"></span>
                 <?php esc_html_e('External Links', 'smart-seo-booster'); ?>
             </div>
-            <div class="ps-metric-value <?php echo esc_attr($external_links_score >= 80 ? 'score-good' : ($external_links_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
-                <?php echo esc_html(round($external_links_score)); ?>%
+            <div class="ps-metric-value <?php echo esc_attr($ssb_external_links_score >= 80 ? 'score-good' : ($ssb_external_links_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
+                <?php echo esc_html(round($ssb_external_links_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo $ssb_broken_external_links_count > 0 ? esc_html($ssb_broken_external_links_count) . ' ' . esc_html__('broken external links found', 'smart-seo-booster') : esc_html__('All external links working', 'smart-seo-booster'); ?>
@@ -716,11 +718,11 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
         <!-- Schema Markup Metric -->
         <div class="ps-metric-card">
             <div class="ps-metric-title">
-                <span class="status-icon <?php echo esc_attr($schema_markup_score >= 80 ? 'good' : ($schema_markup_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                <span class="status-icon <?php echo esc_attr($ssb_schema_markup_score >= 80 ? 'good' : ($ssb_schema_markup_score >= 60 ? 'warning' : 'error')); ?>"></span>
                 <?php esc_html_e('Schema Markup', 'smart-seo-booster'); ?>
             </div>
-            <div class="ps-metric-value <?php echo esc_attr($schema_markup_score >= 80 ? 'score-good' : ($schema_markup_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
-                <?php echo esc_html(round($schema_markup_score)); ?>%
+            <div class="ps-metric-value <?php echo esc_attr($ssb_schema_markup_score >= 80 ? 'score-good' : ($ssb_schema_markup_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
+                <?php echo esc_html(round($ssb_schema_markup_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo $ssb_missing_schema_count > 0 ? esc_html($ssb_missing_schema_count) . ' ' . esc_html__('pages missing schema markup', 'smart-seo-booster') : esc_html__('Schema markup implemented', 'smart-seo-booster'); ?>
@@ -730,11 +732,11 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
         <!-- Social Media Optimization Metric -->
         <div class="ps-metric-card">
             <div class="ps-metric-title">
-                <span class="status-icon <?php echo esc_attr($social_media_score >= 80 ? 'good' : ($social_media_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                <span class="status-icon <?php echo esc_attr($ssb_social_media_score >= 80 ? 'good' : ($ssb_social_media_score >= 60 ? 'warning' : 'error')); ?>"></span>
                 <?php esc_html_e('Social Media Tags', 'smart-seo-booster'); ?>
             </div>
-            <div class="ps-metric-value <?php echo esc_attr($social_media_score >= 80 ? 'score-good' : ($social_media_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
-                <?php echo esc_html(round($social_media_score)); ?>%
+            <div class="ps-metric-value <?php echo esc_attr($ssb_social_media_score >= 80 ? 'score-good' : ($ssb_social_media_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
+                <?php echo esc_html(round($ssb_social_media_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo $ssb_missing_og_tags_count > 0 ? esc_html($ssb_missing_og_tags_count) . ' ' . esc_html__('pages missing Open Graph tags', 'smart-seo-booster') : esc_html__('Social tags optimized', 'smart-seo-booster'); ?>
@@ -744,11 +746,11 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
         <!-- Technical SEO Metric -->
         <div class="ps-metric-card">
             <div class="ps-metric-title">
-                <span class="status-icon <?php echo esc_attr($technical_seo_score >= 80 ? 'good' : ($technical_seo_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                <span class="status-icon <?php echo esc_attr($ssb_technical_seo_score >= 80 ? 'good' : ($ssb_technical_seo_score >= 60 ? 'warning' : 'error')); ?>"></span>
                 <?php esc_html_e('Technical SEO', 'smart-seo-booster'); ?>
             </div>
-            <div class="ps-metric-value <?php echo esc_attr($technical_seo_score >= 80 ? 'score-good' : ($technical_seo_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
-                <?php echo esc_html(round($technical_seo_score)); ?>%
+            <div class="ps-metric-value <?php echo esc_attr($ssb_technical_seo_score >= 80 ? 'score-good' : ($ssb_technical_seo_score >= 60 ? 'score-needs-improvement' : 'score-poor')); ?>">
+                <?php echo esc_html(round($ssb_technical_seo_score)); ?>%
             </div>
             <div class="ps-metric-description">
                 <?php echo $ssb_technical_issues_count > 0 ? esc_html($ssb_technical_issues_count) . ' ' . esc_html__('technical issues found', 'smart-seo-booster') : esc_html__('Technical SEO optimized', 'smart-seo-booster'); ?>
@@ -1149,7 +1151,7 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
                                 <?php echo $ssb_pages_non_200_status == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Fix', 'smart-seo-booster'); ?>
                             </td>
                             <td><?php echo esc_html($ssb_pages_non_200_status); ?> <?php esc_html_e('non-200 responses', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($http_status_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_http_status_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Link Descriptive Text', 'smart-seo-booster'); ?></strong></td>
@@ -1176,7 +1178,7 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
                                 <?php echo $ssb_robots_txt_valid ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Fix', 'smart-seo-booster'); ?>
                             </td>
                             <td><?php echo $ssb_robots_txt_valid ? esc_html__('Valid and accessible', 'smart-seo-booster') : esc_html__('Missing or invalid', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html($robots_score); ?>%</td>
+                            <td><?php echo esc_html($ssb_robots_score); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Image Alt Attributes', 'smart-seo-booster'); ?></strong></td>
@@ -1185,7 +1187,7 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
                                 <?php echo $ssb_images_missing_alt == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Work', 'smart-seo-booster'); ?>
                             </td>
                             <td><?php echo esc_html($ssb_images_missing_alt); ?> <?php esc_html_e('missing alt text', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($alt_text_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_alt_text_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Canonical URLs', 'smart-seo-booster'); ?></strong></td>
@@ -1214,79 +1216,79 @@ $avg_images_per_page = $ssb_posts_analyzed > 0 ? round($ssb_total_images / $ssb_
                                 <?php echo $ssb_h1_tags_missing == 0 ? esc_html__('Good', 'smart-seo-booster') : esc_html__('Needs Work', 'smart-seo-booster'); ?>
                             </td>
                             <td><?php echo esc_html($ssb_h1_tags_missing); ?> <?php esc_html_e('missing H1 tags', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($h1_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_h1_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Keyword Optimization', 'smart-seo-booster'); ?></strong></td>
                             <td>
-                                <span class="status-icon <?php echo esc_attr($keyword_optimization_score >= 80 ? 'good' : ($keyword_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                                <?php echo $keyword_optimization_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($keyword_optimization_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
+                                <span class="status-icon <?php echo esc_attr($ssb_keyword_optimization_score >= 80 ? 'good' : ($ssb_keyword_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                                <?php echo $ssb_keyword_optimization_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($ssb_keyword_optimization_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
                             <td><?php echo esc_html($ssb_keyword_in_title_missing); ?> <?php esc_html_e('pages with poor keyword optimization', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($keyword_optimization_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_keyword_optimization_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Content Quality', 'smart-seo-booster'); ?></strong></td>
                             <td>
-                                <span class="status-icon <?php echo esc_attr($content_quality_score >= 80 ? 'good' : ($content_quality_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                                <?php echo $content_quality_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($content_quality_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
+                                <span class="status-icon <?php echo esc_attr($ssb_content_quality_score >= 80 ? 'good' : ($ssb_content_quality_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                                <?php echo $ssb_content_quality_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($ssb_content_quality_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
                             <td><?php echo esc_html($ssb_short_content_count); ?> <?php esc_html_e('pages with short content', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($content_quality_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_content_quality_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Image Optimization', 'smart-seo-booster'); ?></strong></td>
                             <td>
-                                <span class="status-icon <?php echo esc_attr($image_optimization_score >= 80 ? 'good' : ($image_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                                <?php echo $image_optimization_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($image_optimization_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
+                                <span class="status-icon <?php echo esc_attr($ssb_image_optimization_score >= 80 ? 'good' : ($ssb_image_optimization_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                                <?php echo $ssb_image_optimization_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($ssb_image_optimization_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
                             <td><?php echo esc_html($ssb_large_images_count); ?> <?php esc_html_e('large unoptimized images', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($image_optimization_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_image_optimization_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Internal Linking', 'smart-seo-booster'); ?></strong></td>
                             <td>
-                                <span class="status-icon <?php echo esc_attr($internal_linking_score >= 80 ? 'good' : ($internal_linking_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                                <?php echo $internal_linking_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($internal_linking_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
+                                <span class="status-icon <?php echo esc_attr($ssb_internal_linking_score >= 80 ? 'good' : ($ssb_internal_linking_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                                <?php echo $ssb_internal_linking_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($ssb_internal_linking_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
                             <td><?php echo esc_html($ssb_poor_internal_linking_count); ?> <?php esc_html_e('pages with poor internal linking', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($internal_linking_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_internal_linking_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('External Links', 'smart-seo-booster'); ?></strong></td>
                             <td>
-                                <span class="status-icon <?php echo esc_attr($external_links_score >= 80 ? 'good' : ($external_links_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                                <?php echo $external_links_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($external_links_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
+                                <span class="status-icon <?php echo esc_attr($ssb_external_links_score >= 80 ? 'good' : ($ssb_external_links_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                                <?php echo $ssb_external_links_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($ssb_external_links_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
                             <td><?php echo esc_html($ssb_broken_external_links_count); ?> <?php esc_html_e('broken external links', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($external_links_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_external_links_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Schema Markup', 'smart-seo-booster'); ?></strong></td>
                             <td>
-                                <span class="status-icon <?php echo esc_attr($schema_markup_score >= 80 ? 'good' : ($schema_markup_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                                <?php echo $schema_markup_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($schema_markup_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
+                                <span class="status-icon <?php echo esc_attr($ssb_schema_markup_score >= 80 ? 'good' : ($ssb_schema_markup_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                                <?php echo $ssb_schema_markup_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($ssb_schema_markup_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
                             <td><?php echo esc_html($ssb_missing_schema_count); ?> <?php esc_html_e('pages missing schema markup', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($schema_markup_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_schema_markup_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Social Media Tags', 'smart-seo-booster'); ?></strong></td>
                             <td>
-                                <span class="status-icon <?php echo esc_attr($social_media_score >= 80 ? 'good' : ($social_media_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                                <?php echo $social_media_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($social_media_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
+                                <span class="status-icon <?php echo esc_attr($ssb_social_media_score >= 80 ? 'good' : ($ssb_social_media_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                                <?php echo $ssb_social_media_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($ssb_social_media_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
                             <td><?php echo esc_html($ssb_missing_og_tags_count); ?> <?php esc_html_e('pages missing Open Graph tags', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($social_media_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_social_media_score)); ?>%</td>
                         </tr>
                         <tr>
                             <td><strong><?php esc_html_e('Technical SEO', 'smart-seo-booster'); ?></strong></td>
                             <td>
-                                <span class="status-icon <?php echo esc_attr($technical_seo_score >= 80 ? 'good' : ($technical_seo_score >= 60 ? 'warning' : 'error')); ?>"></span>
-                                <?php echo $technical_seo_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($technical_seo_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
+                                <span class="status-icon <?php echo esc_attr($ssb_technical_seo_score >= 80 ? 'good' : ($ssb_technical_seo_score >= 60 ? 'warning' : 'error')); ?>"></span>
+                                <?php echo $ssb_technical_seo_score >= 80 ? esc_html__('Good', 'smart-seo-booster') : ($ssb_technical_seo_score >= 60 ? esc_html__('Needs Work', 'smart-seo-booster') : esc_html__('Poor', 'smart-seo-booster')); ?>
                             </td>
                             <td><?php echo esc_html($ssb_technical_issues_count); ?> <?php esc_html_e('technical issues found', 'smart-seo-booster'); ?></td>
-                            <td><?php echo esc_html(round($technical_seo_score)); ?>%</td>
+                            <td><?php echo esc_html(round($ssb_technical_seo_score)); ?>%</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1378,6 +1380,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <?php esc_html_e('Thank you for using Smart SEO Booster. For support and documentation, visit our website.', 'smart-seo-booster'); ?>
     </p>
 </div>
+
 
 
 

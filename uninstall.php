@@ -35,9 +35,32 @@ delete_site_option('smart_seo_options');
 delete_transient('smart_seo_audit_cache');
 delete_transient('smart_seo_schema_cache');
 
-// Optional: Clean up post meta data (uncomment if needed)
-// global $wpdb;
-// $wpdb->query("DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE '_smart_seo_%'");
+/**
+ * Optional: Clean up post meta data
+ * 
+ * Uncomment the following code to remove all Smart SEO meta fields from posts.
+ * WARNING: This will permanently delete all SEO meta data for posts/pages.
+ */
+/*
+global $wpdb;
+$wpdb->query(
+    $wpdb->prepare(
+        "DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE %s",
+        $wpdb->esc_like('_smart_seo_') . '%'
+    )
+);
+*/
 
-// Optional: Clean up user meta (uncomment if needed)
-// $wpdb->query("DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'smart_seo_%'");
+/**
+ * Optional: Clean up user meta
+ * 
+ * Uncomment the following code to remove all Smart SEO user preferences.
+ */
+/*
+$wpdb->query(
+    $wpdb->prepare(
+        "DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE %s",
+        $wpdb->esc_like('smart_seo_') . '%'
+    )
+);
+*/

@@ -108,9 +108,9 @@ $ssb_posts_analyzed = count($ssb_post_ids);
 
 // Analyze each post for comprehensive SEO factors
 foreach ($ssb_post_ids as $post_id) {
-    // Get post content and URL
-    $ssb_post_content = get_post_field('post_content', $post_id);
-    $ssb_post_url = get_permalink($post_id);
+    // Get post content and URL (sanitized for security)
+    $ssb_post_content = wp_kses_post(get_post_field('post_content', $post_id));
+    $ssb_post_url = esc_url(get_permalink($post_id));
     
     // 1. Check if page is blocked from indexing
     $ssb_meta_robots = get_post_meta($post_id, '_yoast_wpseo_meta-robots-noindex', true);

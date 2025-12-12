@@ -1,9 +1,25 @@
 <?php
+/**
+ * Smart SEO Booster - Help Page Template
+ * 
+ * @package SmartSEOBooster
+ * @since 2.1.0
+ */
+
 defined('ABSPATH') || exit;
+
+// Security check - verify user capabilities
+if (!current_user_can('manage_options')) {
+    wp_die(
+        esc_html__('You do not have sufficient permissions to access this page.', 'smart-seo-booster'),
+        esc_html__('Access Denied', 'smart-seo-booster'),
+        ['response' => 403]
+    );
+}
 ?>
 
 <div class="wrap smart-seo-help">
-    <h1>🚀 Smart SEO Booster - Help & Documentation</h1>
+    <h1><?php esc_html_e('Smart SEO Booster - Help & Documentation', 'smart-seo-booster'); ?></h1>
     
     <div class="help-navigation">
         <nav class="nav-tab-wrapper">

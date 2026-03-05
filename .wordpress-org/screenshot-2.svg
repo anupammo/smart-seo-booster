@@ -1,0 +1,92 @@
+<svg width="1280" height="720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="screen2-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f0f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1280" height="720" fill="url(#screen2-bg)"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="1280" height="60" fill="#0073aa"/>
+  <text x="40" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF">
+    SEO Audit - Detailed Analysis
+  </text>
+  
+  <!-- Main Content -->
+  <rect x="40" y="100" width="1200" height="580" rx="8" fill="#FFFFFF" stroke="#dcdcde" stroke-width="1"/>
+  
+  <!-- Audit Items -->
+  <g transform="translate(80, 140)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e1e1e">
+      20+ Point SEO Analysis
+    </text>
+    
+    <!-- Pass Items -->
+    <g transform="translate(0, 40)">
+      <rect x="0" y="0" width="560" height="50" rx="4" fill="#d4edda" stroke="#c3e6cb" stroke-width="1"/>
+      <text x="45" y="15" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#155724">✓ Title Tag Present</text>
+      <text x="45" y="35" font-family="Arial, sans-serif" font-size="12" fill="#155724">Optimal length: 58 characters</text>
+    </g>
+    
+    <g transform="translate(0, 100)">
+      <rect x="0" y="0" width="560" height="50" rx="4" fill="#d4edda" stroke="#c3e6cb" stroke-width="1"/>
+      <text x="45" y="15" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#155724">✓ Meta Description</text>
+      <text x="45" y="35" font-family="Arial, sans-serif" font-size="12" fill="#155724">Well optimized: 155 characters</text>
+    </g>
+    
+    <g transform="translate(0, 160)">
+      <rect x="0" y="0" width="560" height="50" rx="4" fill="#d4edda" stroke="#c3e6cb" stroke-width="1"/>
+      <text x="45" y="15" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#155724">✓ Heading Structure</text>
+      <text x="45" y="35" font-family="Arial, sans-serif" font-size="12" fill="#155724">Proper H1, H2, H3 hierarchy</text>
+    </g>
+    
+    <!-- Warning Items -->
+    <g transform="translate(0, 220)">
+      <rect x="0" y="0" width="560" height="50" rx="4" fill="#fff3cd" stroke="#ffeaa7" stroke-width="1"/>
+      <text x="45" y="15" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#856404">⚠ Image Alt Text</text>
+      <text x="45" y="35" font-family="Arial, sans-serif" font-size="12" fill="#856404">2 images missing alt attributes</text>
+    </g>
+    
+    <!-- Right Column -->
+    <g transform="translate(600, 0)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e1e1e">
+        Recommendations
+      </text>
+      
+      <rect x="0" y="20" width="540" height="280" rx="4" fill="#f8f9fa" stroke="#dcdcde" stroke-width="1"/>
+      
+      <text x="20" y="50" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e1e1e">
+        Improvements Suggested:
+      </text>
+      
+      <text x="20" y="80" font-family="Arial, sans-serif" font-size="13" fill="#1e1e1e">
+        • Add schema markup for better SERP display
+      </text>
+      <text x="20" y="105" font-family="Arial, sans-serif" font-size="13" fill="#1e1e1e">
+        • Optimize images for faster loading
+      </text>
+      <text x="20" y="130" font-family="Arial, sans-serif" font-size="13" fill="#1e1e1e">
+        • Include focus keyword in first paragraph
+      </text>
+      <text x="20" y="155" font-family="Arial, sans-serif" font-size="13" fill="#1e1e1e">
+        • Add internal links to related content
+      </text>
+      <text x="20" y="180" font-family="Arial, sans-serif" font-size="13" fill="#1e1e1e">
+        • Consider adding FAQ schema
+      </text>
+      
+      <rect x="20" y="210" width="500" height="40" rx="4" fill="#0073aa"/>
+      <text x="270" y="235" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+        Apply Recommendations
+      </text>
+    </g>
+  </g>
+  
+  <!-- Footer -->
+  <text x="640" y="700" font-family="Arial, sans-serif" font-size="12" fill="#757575" text-anchor="middle">
+    Smart SEO Booster v2.1.0 - SEO Audit Results
+  </text>
+</svg>

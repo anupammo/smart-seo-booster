@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-class Smart_SEO_Core {
+class anupamwp_ssb_Core {
     public static function init() {
         // Use wp_head for both classic and block themes
         add_action('wp_head', [__CLASS__, 'inject_meta_tags'], 1);
@@ -11,14 +11,14 @@ class Smart_SEO_Core {
     }
     
     public static function modify_title_parts($title_parts) {
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         if (empty($options['enable_meta_tags'])) return $title_parts;
         
         // Custom title optimization for different post types
         if (is_singular()) {
             global $post;
             if ($post) {
-                $custom_title = get_post_meta($post->ID, '_smart_seo_title', true);
+                $custom_title = get_post_meta($post->ID, '_anupamwp_ssb_title', true);
                 if (!empty($custom_title)) {
                     $title_parts['title'] = $custom_title;
                 }
@@ -31,7 +31,7 @@ class Smart_SEO_Core {
     public static function inject_meta_tags() {
         if (is_admin()) return;
 
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         
         // Check if meta tags are enabled
         if (empty($options['enable_meta_tags'])) return;
@@ -41,8 +41,8 @@ class Smart_SEO_Core {
         
         // Only output if we don't have custom meta fields (to avoid duplication)
         if (is_singular() && $post) {
-            $custom_title = get_post_meta($post->ID, '_smart_seo_title', true);
-            $custom_description = get_post_meta($post->ID, '_smart_seo_description', true);
+            $custom_title = get_post_meta($post->ID, '_anupamwp_ssb_title', true);
+            $custom_description = get_post_meta($post->ID, '_anupamwp_ssb_description', true);
             
             // If custom meta fields exist, let the meta fields class handle output
             if ($custom_title || $custom_description) {

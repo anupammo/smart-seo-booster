@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-class Smart_SEO_Link_Analyzer {
+class anupamwp_ssb_Link_Analyzer {
     public static function init() {
     }
 
@@ -11,7 +11,7 @@ class Smart_SEO_Link_Analyzer {
         $screen = get_current_screen();
         if (!$screen || !$screen->is_block_editor()) return;
 
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         if (empty($options['enable_link_analysis'])) return;
 
         global $post;

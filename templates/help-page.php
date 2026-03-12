@@ -18,7 +18,7 @@ if (!current_user_can('manage_options')) {
 }
 ?>
 
-<div class="wrap smart-seo-help">
+<div class="wrap smart-seo-help smart-seo-help-wrapper">
     <h1><?php esc_html_e('Smart SEO Booster - Help & Documentation', 'smart-seo-booster'); ?></h1>
     
     <div class="help-navigation">
@@ -468,7 +468,7 @@ if (!current_user_can('manage_options')) {
 
             <div class="faq-item">
                 <h3>🔄 Can I export/import settings?</h3>
-                <p>Currently, settings are stored in your WordPress database. For migrations, you can copy the 'smart_seo_options' option using database tools or plugins like WP Migrate DB.</p>
+                <p>Currently, settings are stored in your WordPress database. For migrations, you can copy the 'anupamwp_ssb_options' option using database tools or plugins like WP Migrate DB.</p>
             </div>
 
             <div class="faq-item">
@@ -534,11 +534,10 @@ if (!current_user_can('manage_options')) {
         <?php printf(
             /* translators: %s: plugin version */
             esc_html__('version %s - Developed with ❤️ for better WordPress SEO', 'smart-seo-booster'),
-            esc_html(SMART_SEO_VERSION)
+            esc_html(ANUPAMWP_SSB_VERSION)
         ); ?>
     </p>
     <p style="margin: 5px 0 0 0; color: #666; font-size: 12px;">
         <?php esc_html_e('Thank you for using Smart SEO Booster. For support and documentation, visit our website.', 'smart-seo-booster'); ?>
     </p>
-</div>
 </div>

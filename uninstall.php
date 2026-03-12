@@ -24,16 +24,16 @@ if (!current_user_can('activate_plugins')) {
  */
 
 // Delete plugin settings
-delete_option('smart_seo_options');
-delete_option('smart_seo_version');
-delete_option('smart_seo_installed_date');
+delete_option('anupamwp_ssb_options');
+delete_option('anupamwp_ssb_version');
+delete_option('anupamwp_ssb_installed_date');
 
 // Delete site options (for multisite)
-delete_site_option('smart_seo_options');
+delete_site_option('anupamwp_ssb_options');
 
 // Clean up any transients
-delete_transient('smart_seo_audit_cache');
-delete_transient('smart_seo_schema_cache');
+delete_transient('anupamwp_ssb_audit_cache');
+delete_transient('anupamwp_ssb_schema_cache');
 
 /**
  * Optional: Clean up post meta data
@@ -46,7 +46,7 @@ global $wpdb;
 $wpdb->query(
     $wpdb->prepare(
         "DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE %s",
-        $wpdb->esc_like('_smart_seo_') . '%'
+        $wpdb->esc_like('_anupamwp_ssb_') . '%'
     )
 );
 */
@@ -60,7 +60,7 @@ $wpdb->query(
 $wpdb->query(
     $wpdb->prepare(
         "DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE %s",
-        $wpdb->esc_like('smart_seo_') . '%'
+        $wpdb->esc_like('anupamwp_ssb_') . '%'
     )
 );
 */

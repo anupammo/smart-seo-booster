@@ -14,11 +14,11 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Class Smart_SEO_Admin_UI
+ * Class anupamwp_ssb_Admin_UI
  * 
  * Manages WordPress admin interface for Smart SEO Booster
  */
-class Smart_SEO_Admin_UI {
+class anupamwp_ssb_Admin_UI {
     
     /**
      * Initialize admin UI hooks
@@ -87,8 +87,8 @@ class Smart_SEO_Admin_UI {
      */
     public static function register_settings() {
         register_setting(
-            'smart_seo_settings',
-            'smart_seo_options',
+            'anupamwp_ssb_settings',
+            'anupamwp_ssb_options',
             [
                 'type' => 'array',
                 'sanitize_callback' => [__CLASS__, 'sanitize_settings'],
@@ -145,8 +145,8 @@ class Smart_SEO_Admin_UI {
             
             <form method="post" action="options.php" class="smart-seo-settings-form">
                 <?php
-                settings_fields('smart_seo_settings');
-                do_settings_sections('smart_seo');
+                settings_fields('anupamwp_ssb_settings');
+                do_settings_sections('anupamwp_ssb');
                 submit_button(
                     esc_html__('Save SEO Settings', 'smart-seo-booster'),
                     'primary',
@@ -164,7 +164,7 @@ class Smart_SEO_Admin_UI {
                     <?php printf(
                         /* translators: %s: plugin version */
                         esc_html__('version %s - Developed with ❤️ for better WordPress SEO', 'smart-seo-booster'),
-                        esc_html(SMART_SEO_VERSION)
+                        esc_html(ANUPAMWP_SSB_VERSION)
                     ); ?>
                 </p>
                 <p style="margin: 5px 0 0 0; color: #666; font-size: 12px;">
@@ -189,12 +189,12 @@ class Smart_SEO_Admin_UI {
         // Verify nonce if this is a form submission
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $nonce = isset($_POST['_wpnonce']) ? sanitize_text_field(wp_unslash($_POST['_wpnonce'])) : '';
-            if (!wp_verify_nonce($nonce, 'smart_seo_audit_action')) {
+            if (!wp_verify_nonce($nonce, 'anupamwp_ssb_audit_action')) {
                 wp_die(esc_html__('Security check failed. Please try again.', 'smart-seo-booster'));
             }
         }
 
-        $template_file = SMART_SEO_PLUGIN_DIR . 'templates/audit-report.php';
+        $template_file = ANUPAMWP_SSB_PLUGIN_DIR . 'templates/audit-report.php';
         if (file_exists($template_file)) {
             include $template_file;
         } else {
@@ -213,7 +213,7 @@ class Smart_SEO_Admin_UI {
             wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'smart-seo-booster'));
         }
 
-        $template_file = SMART_SEO_PLUGIN_DIR . 'templates/help-page.php';
+        $template_file = ANUPAMWP_SSB_PLUGIN_DIR . 'templates/help-page.php';
         if (file_exists($template_file)) {
             include $template_file;
         } else {
@@ -236,9 +236,9 @@ class Smart_SEO_Admin_UI {
         // Enqueue CSS with version for cache busting
         wp_enqueue_style(
             'smart-seo-admin',
-            SMART_SEO_PLUGIN_URL . 'css/admin.css',
+            ANUPAMWP_SSB_PLUGIN_URL . 'css/admin.css',
             [],
-            SMART_SEO_VERSION,
+            ANUPAMWP_SSB_VERSION,
             'all'
         );
 

@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-class Smart_SEO_Settings {
+class anupamwp_ssb_Settings {
     public static function init() {
         add_action('admin_init', [__CLASS__, 'register_settings']);
         add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue_settings_scripts']);
@@ -31,7 +31,7 @@ class Smart_SEO_Settings {
                 
                 var button = $(this);
                 var fieldName = button.data('field');
-                var inputField = $('input[name=\"smart_seo_options[' + fieldName + ']\"]');
+                var inputField = $('input[name=\"anupamwp_ssb_options[' + fieldName + ']\"]');
                 
                 if (mediaUploader) {
                     mediaUploader.open();
@@ -203,24 +203,24 @@ class Smart_SEO_Settings {
     }
 
     public static function register_settings() {
-        register_setting('smart_seo_settings', 'smart_seo_options', [
+        register_setting('anupamwp_ssb_settings', 'anupamwp_ssb_options', [
             'sanitize_callback' => [__CLASS__, 'sanitize_options']
         ]);
         
         // Schema Settings Section
         add_settings_section(
-            'smart_seo_schema', 
+            'anupamwp_ssb_schema', 
             'Schema Markup Settings', 
             [__CLASS__, 'schema_section_callback'], 
-            'smart_seo'
+            'anupamwp_ssb'
         );
         
         add_settings_field(
             'enable_schema', 
             'Enable Schema Markup', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_schema', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_schema', 
             ['name' => 'enable_schema', 'description' => 'Automatically inject JSON-LD schema markup']
         );
         
@@ -228,8 +228,8 @@ class Smart_SEO_Settings {
             'default_schema_type', 
             'Default Schema Type', 
             [__CLASS__, 'select'], 
-            'smart_seo', 
-            'smart_seo_schema', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_schema', 
             [
                 'name' => 'default_schema_type',
                 'options' => [
@@ -243,18 +243,18 @@ class Smart_SEO_Settings {
 
         // Meta Tags Section
         add_settings_section(
-            'smart_seo_meta', 
+            'anupamwp_ssb_meta', 
             'Meta Tags Settings', 
             [__CLASS__, 'meta_section_callback'], 
-            'smart_seo'
+            'anupamwp_ssb'
         );
         
         add_settings_field(
             'enable_meta_tags', 
             'Enable Meta Tags', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_meta', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_meta', 
             ['name' => 'enable_meta_tags', 'description' => 'Inject title and description meta tags']
         );
         
@@ -262,8 +262,8 @@ class Smart_SEO_Settings {
             'enable_og_tags', 
             'Enable Open Graph Tags', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_meta', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_meta', 
             ['name' => 'enable_og_tags', 'description' => 'Add Open Graph meta tags for social media sharing']
         );
         
@@ -271,25 +271,25 @@ class Smart_SEO_Settings {
             'default_description', 
             'Default Meta Description', 
             [__CLASS__, 'textarea'], 
-            'smart_seo', 
-            'smart_seo_meta', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_meta', 
             ['name' => 'default_description', 'description' => 'Used when post/page has no excerpt or content']
         );
 
         // Content Audit Section
         add_settings_section(
-            'smart_seo_audit', 
+            'anupamwp_ssb_audit', 
             'Content Audit Settings', 
             [__CLASS__, 'audit_section_callback'], 
-            'smart_seo'
+            'anupamwp_ssb'
         );
         
         add_settings_field(
             'enable_content_audit', 
             'Enable Content Audit', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_audit', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_audit', 
             ['name' => 'enable_content_audit', 'description' => 'Show SEO audit notices in post editor']
         );
         
@@ -297,8 +297,8 @@ class Smart_SEO_Settings {
             'min_word_count', 
             'Minimum Word Count', 
             [__CLASS__, 'number'], 
-            'smart_seo', 
-            'smart_seo_audit', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_audit', 
             ['name' => 'min_word_count', 'default' => 300, 'description' => 'Minimum words for good SEO score']
         );
         
@@ -306,25 +306,25 @@ class Smart_SEO_Settings {
             'enable_link_analysis', 
             'Enable Link Analysis', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_audit', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_audit', 
             ['name' => 'enable_link_analysis', 'description' => 'Analyze internal links in content']
         );
 
         // Meta Fields Section
         add_settings_section(
-            'smart_seo_meta_fields', 
+            'anupamwp_ssb_meta_fields', 
             'Custom Meta Fields Settings', 
             [__CLASS__, 'meta_fields_section_callback'], 
-            'smart_seo'
+            'anupamwp_ssb'
         );
 
         add_settings_field(
             'enable_custom_meta_fields', 
             'Enable Custom Meta Fields', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_meta_fields', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_meta_fields', 
             ['name' => 'enable_custom_meta_fields', 'description' => 'Show custom meta fields metabox in post/page editor']
         );
 
@@ -332,8 +332,8 @@ class Smart_SEO_Settings {
             'meta_fields_post_types', 
             'Enabled Post Types', 
             [__CLASS__, 'post_types_checkboxes'], 
-            'smart_seo', 
-            'smart_seo_meta_fields', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_meta_fields', 
             ['name' => 'meta_fields_post_types', 'description' => 'Select which post types should have SEO meta fields']
         );
 
@@ -341,25 +341,25 @@ class Smart_SEO_Settings {
             'default_og_image', 
             'Default Open Graph Image', 
             [__CLASS__, 'image_upload'], 
-            'smart_seo', 
-            'smart_seo_meta_fields', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_meta_fields', 
             ['name' => 'default_og_image', 'description' => 'Default image for social media sharing (1200x630px recommended)']
         );
 
         // Social Media Section
         add_settings_section(
-            'smart_seo_social', 
+            'anupamwp_ssb_social', 
             'Social Media Settings', 
             [__CLASS__, 'social_section_callback'], 
-            'smart_seo'
+            'anupamwp_ssb'
         );
 
         add_settings_field(
             'enable_twitter_cards', 
             'Enable Twitter Cards', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_social', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_social', 
             ['name' => 'enable_twitter_cards', 'description' => 'Add Twitter Card meta tags']
         );
 
@@ -367,8 +367,8 @@ class Smart_SEO_Settings {
             'default_twitter_card_type', 
             'Default Twitter Card Type', 
             [__CLASS__, 'select'], 
-            'smart_seo', 
-            'smart_seo_social', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_social', 
             [
                 'name' => 'default_twitter_card_type',
                 'options' => [
@@ -385,8 +385,8 @@ class Smart_SEO_Settings {
             'twitter_site', 
             'Twitter Site Handle', 
             [__CLASS__, 'text'], 
-            'smart_seo', 
-            'smart_seo_social', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_social', 
             ['name' => 'twitter_site', 'description' => 'Your website\'s Twitter handle (e.g., @yoursite)']
         );
 
@@ -394,25 +394,25 @@ class Smart_SEO_Settings {
             'facebook_app_id', 
             'Facebook App ID', 
             [__CLASS__, 'text'], 
-            'smart_seo', 
-            'smart_seo_social', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_social', 
             ['name' => 'facebook_app_id', 'description' => 'Facebook App ID for social analytics']
         );
 
         // Advanced SEO Section
         add_settings_section(
-            'smart_seo_advanced', 
+            'anupamwp_ssb_advanced', 
             'Advanced SEO Settings', 
             [__CLASS__, 'advanced_section_callback'], 
-            'smart_seo'
+            'anupamwp_ssb'
         );
 
         add_settings_field(
             'enable_schema_breadcrumbs', 
             'Enable Schema Breadcrumbs', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_advanced', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_advanced', 
             ['name' => 'enable_schema_breadcrumbs', 'description' => 'Add breadcrumb schema markup']
         );
 
@@ -420,8 +420,8 @@ class Smart_SEO_Settings {
             'enable_auto_canonical', 
             'Auto-Generate Canonical URLs', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_advanced', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_advanced', 
             ['name' => 'enable_auto_canonical', 'description' => 'Automatically add canonical URLs to prevent duplicate content']
         );
 
@@ -429,8 +429,8 @@ class Smart_SEO_Settings {
             'robots_txt_enhancement', 
             'Enhance Robots.txt', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_advanced', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_advanced', 
             ['name' => 'robots_txt_enhancement', 'description' => 'Add SEO-friendly rules to robots.txt']
         );
 
@@ -438,8 +438,8 @@ class Smart_SEO_Settings {
             'xml_sitemap_generation', 
             'Generate XML Sitemap', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_advanced', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_advanced', 
             ['name' => 'xml_sitemap_generation', 'description' => 'Automatically generate and update XML sitemap']
         );
 
@@ -447,8 +447,8 @@ class Smart_SEO_Settings {
             'focus_keyword_analysis', 
             'Enable Focus Keyword Analysis', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_advanced', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_advanced', 
             ['name' => 'focus_keyword_analysis', 'description' => 'Real-time keyword density and optimization analysis']
         );
 
@@ -456,25 +456,25 @@ class Smart_SEO_Settings {
             'max_keyword_density', 
             'Maximum Keyword Density (%)', 
             [__CLASS__, 'number'], 
-            'smart_seo', 
-            'smart_seo_advanced', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_advanced', 
             ['name' => 'max_keyword_density', 'default' => 2.5, 'step' => 0.1, 'description' => 'Maximum keyword density before warning (recommended: 2.5%)']
         );
 
         // Performance Section
         add_settings_section(
-            'smart_seo_performance', 
+            'anupamwp_ssb_performance', 
             'Performance & Display Settings', 
             [__CLASS__, 'performance_section_callback'], 
-            'smart_seo'
+            'anupamwp_ssb'
         );
 
         add_settings_field(
             'enable_seo_score_column', 
             'Show SEO Score in Post Lists', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_performance', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_performance', 
             ['name' => 'enable_seo_score_column', 'description' => 'Display SEO scores in posts/pages admin lists']
         );
 
@@ -482,8 +482,8 @@ class Smart_SEO_Settings {
             'enable_admin_bar_score', 
             'Show SEO Score in Admin Bar', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_performance', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_performance', 
             ['name' => 'enable_admin_bar_score', 'description' => 'Display current page SEO score in admin bar']
         );
 
@@ -491,8 +491,8 @@ class Smart_SEO_Settings {
             'cache_seo_analysis', 
             'Cache SEO Analysis Results', 
             [__CLASS__, 'checkbox'], 
-            'smart_seo', 
-            'smart_seo_performance', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_performance', 
             ['name' => 'cache_seo_analysis', 'description' => 'Cache analysis results for better performance']
         );
 
@@ -500,30 +500,30 @@ class Smart_SEO_Settings {
             'analysis_cache_duration', 
             'Cache Duration (hours)', 
             [__CLASS__, 'number'], 
-            'smart_seo', 
-            'smart_seo_performance', 
+            'anupamwp_ssb', 
+            'anupamwp_ssb_performance', 
             ['name' => 'analysis_cache_duration', 'default' => 24, 'description' => 'How long to cache SEO analysis results']
         );
     }
 
     public static function checkbox($args) {
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $checked = isset($options[$args['name']]) && $options[$args['name']] ? 'checked' : '';
         $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
         echo '<label>';
-        echo '<input type="checkbox" name="smart_seo_options[' . esc_attr($args['name']) . ']" value="1" ' . esc_attr($checked) . ' />';
+        echo '<input type="checkbox" name="anupamwp_ssb_options[' . esc_attr($args['name']) . ']" value="1" ' . esc_attr($checked) . ' />';
         echo ' ' . esc_html__('Enable this option', 'smart-seo-booster');
         echo '</label>';
         echo wp_kses_post($description);
     }
     
     public static function select($args) {
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $current = isset($options[$args['name']]) ? $options[$args['name']] : '';
         $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo '<select name="smart_seo_options[' . esc_attr($args['name']) . ']">';
+        echo '<select name="anupamwp_ssb_options[' . esc_attr($args['name']) . ']">';
         foreach ($args['options'] as $value => $label) {
             $selected = selected($current, $value, false);
             echo '<option value="' . esc_attr($value) . '" ' . esc_attr($selected) . '>' . esc_html($label) . '</option>';
@@ -533,35 +533,35 @@ class Smart_SEO_Settings {
     }
     
     public static function textarea($args) {
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $value = isset($options[$args['name']]) ? esc_textarea($options[$args['name']]) : '';
         $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo '<textarea name="smart_seo_options[' . esc_attr($args['name']) . ']" rows="3" cols="50" class="large-text">' . esc_textarea($value) . '</textarea>';
+        echo '<textarea name="anupamwp_ssb_options[' . esc_attr($args['name']) . ']" rows="3" cols="50" class="large-text">' . esc_textarea($value) . '</textarea>';
         echo wp_kses_post($description);
     }
     
     public static function number($args) {
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $value = isset($options[$args['name']]) ? floatval($options[$args['name']]) : ($args['default'] ?? 0);
         $step = isset($args['step']) ? floatval($args['step']) : 1;
         $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo '<input type="number" name="smart_seo_options[' . esc_attr($args['name']) . ']" value="' . esc_attr($value) . '" min="0" step="' . esc_attr($step) . '" class="small-text" />';
+        echo '<input type="number" name="anupamwp_ssb_options[' . esc_attr($args['name']) . ']" value="' . esc_attr($value) . '" min="0" step="' . esc_attr($step) . '" class="small-text" />';
         echo wp_kses_post($description);
     }
 
     public static function text($args) {
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $value = isset($options[$args['name']]) ? esc_attr($options[$args['name']]) : '';
         $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
-        echo '<input type="text" name="smart_seo_options[' . esc_attr($args['name']) . ']" value="' . esc_attr($value) . '" class="regular-text" />';
+        echo '<input type="text" name="anupamwp_ssb_options[' . esc_attr($args['name']) . ']" value="' . esc_attr($value) . '" class="regular-text" />';
         echo wp_kses_post($description);
     }
 
     public static function post_types_checkboxes($args) {
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $selected_types = isset($options[$args['name']]) ? $options[$args['name']] : ['post', 'page'];
         $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
@@ -571,7 +571,7 @@ class Smart_SEO_Settings {
         foreach ($post_types as $post_type) {
             $checked = in_array($post_type->name, $selected_types) ? 'checked' : '';
             echo '<label style="display: block; margin-bottom: 5px;">';
-            echo '<input type="checkbox" name="smart_seo_options[' . esc_attr($args['name']) . '][]" value="' . esc_attr($post_type->name) . '" ' . esc_attr($checked) . ' />';
+            echo '<input type="checkbox" name="anupamwp_ssb_options[' . esc_attr($args['name']) . '][]" value="' . esc_attr($post_type->name) . '" ' . esc_attr($checked) . ' />';
             echo ' ' . esc_html($post_type->label);
             echo '</label>';
         }
@@ -580,12 +580,12 @@ class Smart_SEO_Settings {
     }
 
     public static function image_upload($args) {
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $value = isset($options[$args['name']]) ? esc_url($options[$args['name']]) : '';
         $description = isset($args['description']) ? '<p class="description">' . wp_kses_post($args['description']) . '</p>' : '';
         
         echo '<div class="seo-image-upload-field">';
-        echo '<input type="url" name="smart_seo_options[' . esc_attr($args['name']) . ']" value="' . esc_url($value) . '" class="regular-text" />';
+        echo '<input type="url" name="anupamwp_ssb_options[' . esc_attr($args['name']) . ']" value="' . esc_url($value) . '" class="regular-text" />';
         echo '<button type="button" class="button seo-upload-image-btn" data-field="' . esc_attr($args['name']) . '">' . esc_html__('Upload Image', 'smart-seo-booster') . '</button>';
         
         if ($value) {

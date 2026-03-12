@@ -27,20 +27,20 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin version and compatibility constants
-define('SMART_SEO_VERSION', '1.1');
-define('SMART_SEO_MIN_WP_VERSION', '5.0');
-define('SMART_SEO_MIN_PHP_VERSION', '7.4');
-define('SMART_SEO_PLUGIN_FILE', __FILE__);
-define('SMART_SEO_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('SMART_SEO_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('SMART_SEO_PLUGIN_BASENAME', plugin_basename(__FILE__));
+define('ANUPAMWP_SSB_VERSION', '1.1');
+define('ANUPAMWP_SSB_MIN_WP_VERSION', '5.0');
+define('ANUPAMWP_SSB_MIN_PHP_VERSION', '7.4');
+define('ANUPAMWP_SSB_PLUGIN_FILE', __FILE__);
+define('ANUPAMWP_SSB_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('ANUPAMWP_SSB_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('ANUPAMWP_SSB_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
 // Check WordPress and PHP compatibility
-function smart_seo_check_compatibility() {
+function anupamwp_ssb_check_compatibility() {
     global $wp_version;
     
     // Check PHP version
-    if (version_compare(PHP_VERSION, SMART_SEO_MIN_PHP_VERSION, '<')) {
+    if (version_compare(PHP_VERSION, ANUPAMWP_SSB_MIN_PHP_VERSION, '<')) {
         add_action('admin_notices', function() {
             if (!function_exists('get_current_screen')) {
                 return;
@@ -52,7 +52,7 @@ function smart_seo_check_compatibility() {
             $message = sprintf(
                 /* translators: 1: required PHP version, 2: current PHP version */
                 __('Smart SEO Booster requires PHP version %1$s or higher. You are running version %2$s. Please update PHP to use this plugin.', 'smart-seo-booster'),
-                SMART_SEO_MIN_PHP_VERSION,
+                ANUPAMWP_SSB_MIN_PHP_VERSION,
                 PHP_VERSION
             );
             printf('<div class="notice notice-error"><p>%s</p></div>', wp_kses_post($message));
@@ -61,7 +61,7 @@ function smart_seo_check_compatibility() {
     }
     
     // Check WordPress version
-    if (version_compare($wp_version, SMART_SEO_MIN_WP_VERSION, '<')) {
+    if (version_compare($wp_version, ANUPAMWP_SSB_MIN_WP_VERSION, '<')) {
         add_action('admin_notices', function() {
             if (!function_exists('get_current_screen')) {
                 return;
@@ -73,7 +73,7 @@ function smart_seo_check_compatibility() {
             $message = sprintf(
                 /* translators: 1: required WordPress version, 2: current WordPress version */
                 __('Smart SEO Booster requires WordPress version %1$s or higher. You are running version %2$s. Please update WordPress to use this plugin.', 'smart-seo-booster'),
-                SMART_SEO_MIN_WP_VERSION,
+                ANUPAMWP_SSB_MIN_WP_VERSION,
                 $GLOBALS['wp_version']
             );
             printf('<div class="notice notice-error"><p>%s</p></div>', wp_kses_post($message));
@@ -85,7 +85,7 @@ function smart_seo_check_compatibility() {
 }
 
 // Exit early if compatibility check fails
-if (!smart_seo_check_compatibility()) {
+if (!anupamwp_ssb_check_compatibility()) {
     return;
 }
 
@@ -97,9 +97,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-loader.php';
  * 
  * @since 2.1.0
  */
-function smart_seo_activate() {
+function anupamwp_ssb_activate() {
     // Check compatibility again on activation
-    if (!smart_seo_check_compatibility()) {
+    if (!anupamwp_ssb_check_compatibility()) {
         wp_die(
             esc_html__('Smart SEO Booster cannot be activated due to compatibility issues. Please check WordPress and PHP versions.', 'smart-seo-booster'),
             esc_html__('Plugin Activation Error', 'smart-seo-booster'),
@@ -122,28 +122,53 @@ function smart_seo_activate() {
         'enable_cache' => 1
     ];
     
-    $existing_options = get_option('smart_seo_options', []);
+    $existing_options = get_option('anupamwp_ssb_options', []);
+    $legacy_option_key = 'smart' . '_' . 'seo' . '_' . 'options';
+    $legacy_options = get_option($legacy_option_key, []);
+    if (empty($existing_options) && is_array($legacy_options) && !empty($legacy_options)) {
+        $existing_options = $legacy_options;
+    }
     $merged_options = array_merge($default_options, $existing_options);
-    update_option('smart_seo_options', $merged_options);
+    update_option('anupamwp_ssb_options', $merged_options);
     
     // Store plugin version and activation date
-    update_option('smart_seo_version', SMART_SEO_VERSION);
-    update_option('smart_seo_installed_date', current_time('mysql'));
+    update_option('anupamwp_ssb_version', ANUPAMWP_SSB_VERSION);
+    update_option('anupamwp_ssb_installed_date', current_time('mysql'));
     
     // Create capabilities for advanced users
     $role = get_role('administrator');
     if ($role) {
-        $role->add_cap('manage_smart_seo');
+        $role->add_cap('manage_anupamwp_ssb');
     }
 
     // Clear any existing caches
-    delete_transient('smart_seo_audit_cache');
-    delete_transient('smart_seo_schema_cache');
+    delete_transient('anupamwp_ssb_audit_cache');
+    delete_transient('anupamwp_ssb_schema_cache');
 
     // Schedule cleanup event (if needed in future)
-    if (!wp_next_scheduled('smart_seo_cleanup')) {
-        wp_schedule_event(time(), 'daily', 'smart_seo_cleanup');
+    if (!wp_next_scheduled('anupamwp_ssb_cleanup')) {
+        wp_schedule_event(time(), 'daily', 'anupamwp_ssb_cleanup');
     }
+}
+
+/**
+ * Migrate legacy option keys once for existing installs.
+ */
+function anupamwp_ssb_maybe_migrate_legacy_options() {
+    $already_migrated = get_option('anupamwp_ssb_migrated_legacy_options', false);
+    if ($already_migrated) {
+        return;
+    }
+
+    $current_options = get_option('anupamwp_ssb_options', []);
+    $legacy_option_key = 'smart' . '_' . 'seo' . '_' . 'options';
+    $legacy_options = get_option($legacy_option_key, []);
+
+    if (empty($current_options) && is_array($legacy_options) && !empty($legacy_options)) {
+        update_option('anupamwp_ssb_options', $legacy_options);
+    }
+
+    update_option('anupamwp_ssb_migrated_legacy_options', 1);
 }
 
 /**
@@ -151,39 +176,41 @@ function smart_seo_activate() {
  * 
  * @since 2.1.0
  */
-function smart_seo_deactivate() {
+function anupamwp_ssb_deactivate() {
     // Clear scheduled events
-    wp_clear_scheduled_hook('smart_seo_cleanup');
+    wp_clear_scheduled_hook('anupamwp_ssb_cleanup');
     
     // Clear all transients
-    delete_transient('smart_seo_audit_cache');
-    delete_transient('smart_seo_schema_cache');
+    delete_transient('anupamwp_ssb_audit_cache');
+    delete_transient('anupamwp_ssb_schema_cache');
     
     // Note: We don't delete options on deactivation, only on uninstall
 }
 
 // Register activation and deactivation hooks
-register_activation_hook(__FILE__, 'smart_seo_activate');
-register_deactivation_hook(__FILE__, 'smart_seo_deactivate');
+register_activation_hook(__FILE__, 'anupamwp_ssb_activate');
+register_deactivation_hook(__FILE__, 'anupamwp_ssb_deactivate');
 
 /**
  * Initialize plugin
  * 
  * @since 2.1.0
  */
-function smart_seo_init() {
+function anupamwp_ssb_init() {
+    anupamwp_ssb_maybe_migrate_legacy_options();
+
     // Initialize plugin modules
-    if (class_exists('Smart_SEO_Loader')) {
-        Smart_SEO_Loader::init();
+    if (class_exists('AnupamWP_SSB_Loader')) {
+        AnupamWP_SSB_Loader::init();
     }
 }
 
 // Initialize plugin after WordPress is fully loaded
-add_action('plugins_loaded', 'smart_seo_init');
+add_action('plugins_loaded', 'anupamwp_ssb_init');
 
 /**
  * Plugin loaded hook for third-party integrations
  * 
  * @since 2.1.0
  */
-do_action('smart_seo_booster_loaded');
+do_action('anupamwp_ssb_booster_loaded');

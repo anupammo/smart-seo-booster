@@ -27,36 +27,36 @@
         }
         
         // Setup counters
-        $('#smart_seo_title').on('input', function() {
-            updateCounter('smart_seo_title', 'title-counter', 30, 60);
+        $('#anupamwp_ssb_title').on('input', function() {
+            updateCounter('anupamwp_ssb_title', 'title-counter', 30, 60);
             updatePreview();
         });
         
-        $('#smart_seo_description').on('input', function() {
-            updateCounter('smart_seo_description', 'description-counter', 120, 160);
+        $('#anupamwp_ssb_description').on('input', function() {
+            updateCounter('anupamwp_ssb_description', 'description-counter', 120, 160);
             updatePreview();
         });
         
-        $('#smart_seo_og_title').on('input', function() {
-            updateCounter('smart_seo_og_title', 'og-title-counter', 40, 60);
+        $('#anupamwp_ssb_og_title').on('input', function() {
+            updateCounter('anupamwp_ssb_og_title', 'og-title-counter', 40, 60);
             updateSocialPreview();
         });
         
-        $('#smart_seo_og_description').on('input', function() {
-            updateCounter('smart_seo_og_description', 'og-description-counter', 130, 160);
+        $('#anupamwp_ssb_og_description').on('input', function() {
+            updateCounter('anupamwp_ssb_og_description', 'og-description-counter', 130, 160);
             updateSocialPreview();
         });
         
         // Initial counter updates
-        updateCounter('smart_seo_title', 'title-counter', 30, 60);
-        updateCounter('smart_seo_description', 'description-counter', 120, 160);
-        updateCounter('smart_seo_og_title', 'og-title-counter', 40, 60);
-        updateCounter('smart_seo_og_description', 'og-description-counter', 130, 160);
+        updateCounter('anupamwp_ssb_title', 'title-counter', 30, 60);
+        updateCounter('anupamwp_ssb_description', 'description-counter', 120, 160);
+        updateCounter('anupamwp_ssb_og_title', 'og-title-counter', 40, 60);
+        updateCounter('anupamwp_ssb_og_description', 'og-description-counter', 130, 160);
         
         // Update search preview
         function updatePreview() {
-            var title = $('#smart_seo_title').val() || 'Your SEO Title';
-            var description = $('#smart_seo_description').val() || 'Your meta description will appear here...';
+            var title = $('#anupamwp_ssb_title').val() || 'Your SEO Title';
+            var description = $('#anupamwp_ssb_description').val() || 'Your meta description will appear here...';
             
             $('#preview-title').text(title);
             $('#preview-description').text(description);
@@ -64,10 +64,10 @@
         
         // Update social preview
         function updateSocialPreview() {
-            var ogTitle = $('#smart_seo_og_title').val() || 'Your OG Title';
-            var ogDescription = $('#smart_seo_og_description').val() || 'Your OG description...';
-            var twitterTitle = $('#smart_seo_twitter_title').val() || ogTitle;
-            var twitterDescription = $('#smart_seo_twitter_description').val() || ogDescription;
+            var ogTitle = $('#anupamwp_ssb_og_title').val() || 'Your OG Title';
+            var ogDescription = $('#anupamwp_ssb_og_description').val() || 'Your OG description...';
+            var twitterTitle = $('#anupamwp_ssb_twitter_title').val() || ogTitle;
+            var twitterDescription = $('#anupamwp_ssb_twitter_description').val() || ogDescription;
             
             $('#facebook-preview-title').text(ogTitle);
             $('#facebook-preview-desc').text(ogDescription);
@@ -94,7 +94,7 @@
             
             mediaUploader.on('select', function() {
                 var attachment = mediaUploader.state().get('selection').first().toJSON();
-                $('#smart_seo_og_image').val(attachment.url);
+                $('#anupamwp_ssb_og_image').val(attachment.url);
                 $('#og-image-preview').html('<img src="' + attachment.url + '" alt="OG Image Preview">');
                 updateSocialPreview();
             });
@@ -113,7 +113,7 @@
             
             mediaUploader.on('select', function() {
                 var attachment = mediaUploader.state().get('selection').first().toJSON();
-                $('#smart_seo_twitter_image').val(attachment.url);
+                $('#anupamwp_ssb_twitter_image').val(attachment.url);
                 $('#twitter-image-preview').html('<img src="' + attachment.url + '" alt="Twitter Image Preview">');
                 updateSocialPreview();
             });
@@ -122,7 +122,7 @@
         });
         
         // Focus keyword analysis
-        $('#smart_seo_focus_keyword').on('input', function() {
+        $('#anupamwp_ssb_focus_keyword').on('input', function() {
             var keyword = $(this).val();
             if (keyword.length > 2) {
                 analyzeKeyword(keyword);
@@ -140,8 +140,8 @@
                 content = $('#content').val() || '';
             }
             
-            var title = $('#smart_seo_title').val() || $('#title').val() || '';
-            var description = $('#smart_seo_description').val() || '';
+            var title = $('#anupamwp_ssb_title').val() || $('#title').val() || '';
+            var description = $('#anupamwp_ssb_description').val() || '';
             
             // Calculate keyword density
             var keywordRegex = new RegExp(keyword.toLowerCase(), 'gi');
@@ -177,10 +177,10 @@
             
             $('#seo-analysis-content').html('<p>Loading comprehensive SEO analysis...</p>');
             
-            $.post(smartSeoBoosterMeta.ajaxUrl, {
-                action: 'smart_seo_get_full_seo_report',
+            $.post(anupamwpSsbMeta.ajaxUrl, {
+                action: 'anupamwp_ssb_get_full_seo_report',
                 post_id: postId,
-                nonce: smartSeoBoosterMeta.nonce
+                nonce: anupamwpSsbMeta.nonce
             }, function(response) {
                 if (response.success) {
                     $('#seo-analysis-content').html(response.data.html);

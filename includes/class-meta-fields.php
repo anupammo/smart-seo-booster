@@ -14,11 +14,11 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Class Smart_SEO_Meta_Fields
+ * Class anupamwp_ssb_Meta_Fields
  * 
  * Manages SEO meta fields for posts and pages
  */
-class Smart_SEO_Meta_Fields {
+class anupamwp_ssb_Meta_Fields {
     
     /**
      * Initialize meta fields functionality
@@ -52,7 +52,7 @@ class Smart_SEO_Meta_Fields {
         
         foreach ($post_types as $post_type) {
             add_meta_box(
-                'smart_seo_meta_fields',
+                'anupamwp_ssb_meta_fields',
                 '🎯 SEO Meta Tags & Social Preview',
                 [__CLASS__, 'meta_fields_metabox_content'],
                 $post_type,
@@ -70,32 +70,32 @@ class Smart_SEO_Meta_Fields {
      */
     public static function meta_fields_metabox_content($post) {
         // Add nonce for security
-        wp_nonce_field('smart_seo_meta_nonce', 'smart_seo_meta_nonce_field');
+        wp_nonce_field('anupamwp_ssb_meta_nonce', 'anupamwp_ssb_meta_nonce_field');
         
         // Get current values
-        $meta_title = get_post_meta($post->ID, '_smart_seo_title', true);
-        $meta_description = get_post_meta($post->ID, '_smart_seo_description', true);
-        $meta_keywords = get_post_meta($post->ID, '_smart_seo_keywords', true);
-        $canonical_url = get_post_meta($post->ID, '_smart_seo_canonical', true);
-        $robots_meta = get_post_meta($post->ID, '_smart_seo_robots', true);
+        $meta_title = get_post_meta($post->ID, '_anupamwp_ssb_title', true);
+        $meta_description = get_post_meta($post->ID, '_anupamwp_ssb_description', true);
+        $meta_keywords = get_post_meta($post->ID, '_anupamwp_ssb_keywords', true);
+        $canonical_url = get_post_meta($post->ID, '_anupamwp_ssb_canonical', true);
+        $robots_meta = get_post_meta($post->ID, '_anupamwp_ssb_robots', true);
         
         // OG Tags
-        $og_title = get_post_meta($post->ID, '_smart_seo_og_title', true);
-        $og_description = get_post_meta($post->ID, '_smart_seo_og_description', true);
-        $og_image = get_post_meta($post->ID, '_smart_seo_og_image', true);
-        $og_type = get_post_meta($post->ID, '_smart_seo_og_type', true) ?: 'article';
+        $og_title = get_post_meta($post->ID, '_anupamwp_ssb_og_title', true);
+        $og_description = get_post_meta($post->ID, '_anupamwp_ssb_og_description', true);
+        $og_image = get_post_meta($post->ID, '_anupamwp_ssb_og_image', true);
+        $og_type = get_post_meta($post->ID, '_anupamwp_ssb_og_type', true) ?: 'article';
         
         // Twitter Cards
-        $twitter_card = get_post_meta($post->ID, '_smart_seo_twitter_card', true) ?: 'summary_large_image';
-        $twitter_title = get_post_meta($post->ID, '_smart_seo_twitter_title', true);
-        $twitter_description = get_post_meta($post->ID, '_smart_seo_twitter_description', true);
-        $twitter_image = get_post_meta($post->ID, '_smart_seo_twitter_image', true);
+        $twitter_card = get_post_meta($post->ID, '_anupamwp_ssb_twitter_card', true) ?: 'summary_large_image';
+        $twitter_title = get_post_meta($post->ID, '_anupamwp_ssb_twitter_title', true);
+        $twitter_description = get_post_meta($post->ID, '_anupamwp_ssb_twitter_description', true);
+        $twitter_image = get_post_meta($post->ID, '_anupamwp_ssb_twitter_image', true);
         
         // Schema markup
-        $schema_type = get_post_meta($post->ID, '_smart_seo_schema_type', true) ?: 'Article';
+        $schema_type = get_post_meta($post->ID, '_anupamwp_ssb_schema_type', true) ?: 'Article';
         
         // Focus keyword
-        $focus_keyword = get_post_meta($post->ID, '_smart_seo_focus_keyword', true);
+        $focus_keyword = get_post_meta($post->ID, '_anupamwp_ssb_focus_keyword', true);
         
         // Defaults
         if (empty($meta_title)) $meta_title = $post->post_title;
@@ -119,8 +119,8 @@ class Smart_SEO_Meta_Fields {
             <!-- Basic SEO Tab -->
             <div class="seo-tab-content active" id="basic-tab">
                 <div class="seo-field-group">
-                    <label for="smart_seo_focus_keyword">🎯 Focus Keyword</label>
-                    <input type="text" id="smart_seo_focus_keyword" name="smart_seo_focus_keyword" value="<?php echo esc_attr($focus_keyword); ?>" placeholder="Enter your target keyword">
+                    <label for="anupamwp_ssb_focus_keyword">🎯 Focus Keyword</label>
+                    <input type="text" id="anupamwp_ssb_focus_keyword" name="anupamwp_ssb_focus_keyword" value="<?php echo esc_attr($focus_keyword); ?>" placeholder="Enter your target keyword">
                     <div class="seo-field-help">The main keyword you want this content to rank for.</div>
                     <div id="keyword-analysis" class="seo-keyword-analysis" style="display: none;">
                         <div id="keyword-density"></div>
@@ -128,22 +128,22 @@ class Smart_SEO_Meta_Fields {
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_title">📄 SEO Title</label>
-                    <input type="text" id="smart_seo_title" name="smart_seo_title" value="<?php echo esc_attr($meta_title); ?>" placeholder="Enter SEO title">
+                    <label for="anupamwp_ssb_title">📄 SEO Title</label>
+                    <input type="text" id="anupamwp_ssb_title" name="anupamwp_ssb_title" value="<?php echo esc_attr($meta_title); ?>" placeholder="Enter SEO title">
                     <div class="seo-field-counter" id="title-counter">0 characters (30-60 optimal)</div>
                     <div class="seo-field-help">This title will appear in search engine results. Keep it between 30-60 characters.</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_description">📝 Meta Description</label>
-                    <textarea id="smart_seo_description" name="smart_seo_description" placeholder="Enter meta description"><?php echo esc_textarea($meta_description); ?></textarea>
+                    <label for="anupamwp_ssb_description">📝 Meta Description</label>
+                    <textarea id="anupamwp_ssb_description" name="anupamwp_ssb_description" placeholder="Enter meta description"><?php echo esc_textarea($meta_description); ?></textarea>
                     <div class="seo-field-counter" id="description-counter">0 characters (120-160 optimal)</div>
                     <div class="seo-field-help">A brief description that appears in search results. Keep it between 120-160 characters.</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_keywords">🏷️ Meta Keywords</label>
-                    <input type="text" id="smart_seo_keywords" name="smart_seo_keywords" value="<?php echo esc_attr($meta_keywords); ?>" placeholder="keyword1, keyword2, keyword3">
+                    <label for="anupamwp_ssb_keywords">🏷️ Meta Keywords</label>
+                    <input type="text" id="anupamwp_ssb_keywords" name="anupamwp_ssb_keywords" value="<?php echo esc_attr($meta_keywords); ?>" placeholder="keyword1, keyword2, keyword3">
                     <div class="seo-field-help">Comma-separated keywords related to your content. Limited SEO value but can be useful for internal organization.</div>
                 </div>
                 
@@ -163,21 +163,21 @@ class Smart_SEO_Meta_Fields {
                 <h4>📘 Open Graph (Facebook, LinkedIn)</h4>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_og_title">📄 OG Title</label>
-                    <input type="text" id="smart_seo_og_title" name="smart_seo_og_title" value="<?php echo esc_attr($og_title); ?>" placeholder="Open Graph title">
+                    <label for="anupamwp_ssb_og_title">📄 OG Title</label>
+                    <input type="text" id="anupamwp_ssb_og_title" name="anupamwp_ssb_og_title" value="<?php echo esc_attr($og_title); ?>" placeholder="Open Graph title">
                     <div class="seo-field-counter" id="og-title-counter">0 characters (40-60 optimal)</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_og_description">📝 OG Description</label>
-                    <textarea id="smart_seo_og_description" name="smart_seo_og_description" placeholder="Open Graph description"><?php echo esc_textarea($og_description); ?></textarea>
+                    <label for="anupamwp_ssb_og_description">📝 OG Description</label>
+                    <textarea id="anupamwp_ssb_og_description" name="anupamwp_ssb_og_description" placeholder="Open Graph description"><?php echo esc_textarea($og_description); ?></textarea>
                     <div class="seo-field-counter" id="og-description-counter">0 characters (130-160 optimal)</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_og_image">🖼️ OG Image</label>
+                    <label for="anupamwp_ssb_og_image">🖼️ OG Image</label>
                     <div class="seo-image-upload">
-                        <input type="url" id="smart_seo_og_image" name="smart_seo_og_image" value="<?php echo esc_url($og_image); ?>" placeholder="Image URL">
+                        <input type="url" id="anupamwp_ssb_og_image" name="anupamwp_ssb_og_image" value="<?php echo esc_url($og_image); ?>" placeholder="Image URL">
                         <button type="button" class="button" id="upload-og-image">Upload Image</button>
                     </div>
                     <div class="seo-image-preview" id="og-image-preview">
@@ -191,8 +191,8 @@ class Smart_SEO_Meta_Fields {
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_og_type">📋 OG Type</label>
-                    <select id="smart_seo_og_type" name="smart_seo_og_type">
+                    <label for="anupamwp_ssb_og_type">📋 OG Type</label>
+                    <select id="anupamwp_ssb_og_type" name="anupamwp_ssb_og_type">
                         <option value="article" <?php selected($og_type, 'article'); ?>>Article</option>
                         <option value="website" <?php selected($og_type, 'website'); ?>>Website</option>
                         <option value="product" <?php selected($og_type, 'product'); ?>>Product</option>
@@ -204,8 +204,8 @@ class Smart_SEO_Meta_Fields {
                 <h4 style="margin-top: 30px;">🐦 Twitter Cards</h4>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_twitter_card">📋 Card Type</label>
-                    <select id="smart_seo_twitter_card" name="smart_seo_twitter_card">
+                    <label for="anupamwp_ssb_twitter_card">📋 Card Type</label>
+                    <select id="anupamwp_ssb_twitter_card" name="anupamwp_ssb_twitter_card">
                         <option value="summary" <?php selected($twitter_card, 'summary'); ?>>Summary</option>
                         <option value="summary_large_image" <?php selected($twitter_card, 'summary_large_image'); ?>>Summary Large Image</option>
                         <option value="app" <?php selected($twitter_card, 'app'); ?>>App</option>
@@ -214,19 +214,19 @@ class Smart_SEO_Meta_Fields {
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_twitter_title">📄 Twitter Title</label>
-                    <input type="text" id="smart_seo_twitter_title" name="smart_seo_twitter_title" value="<?php echo esc_attr($twitter_title); ?>" placeholder="Twitter title">
+                    <label for="anupamwp_ssb_twitter_title">📄 Twitter Title</label>
+                    <input type="text" id="anupamwp_ssb_twitter_title" name="anupamwp_ssb_twitter_title" value="<?php echo esc_attr($twitter_title); ?>" placeholder="Twitter title">
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_twitter_description">📝 Twitter Description</label>
-                    <textarea id="smart_seo_twitter_description" name="smart_seo_twitter_description" placeholder="Twitter description"><?php echo esc_textarea($twitter_description); ?></textarea>
+                    <label for="anupamwp_ssb_twitter_description">📝 Twitter Description</label>
+                    <textarea id="anupamwp_ssb_twitter_description" name="anupamwp_ssb_twitter_description" placeholder="Twitter description"><?php echo esc_textarea($twitter_description); ?></textarea>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_twitter_image">🖼️ Twitter Image</label>
+                    <label for="anupamwp_ssb_twitter_image">🖼️ Twitter Image</label>
                     <div class="seo-image-upload">
-                        <input type="url" id="smart_seo_twitter_image" name="smart_seo_twitter_image" value="<?php echo esc_url($twitter_image); ?>" placeholder="Image URL">
+                        <input type="url" id="anupamwp_ssb_twitter_image" name="anupamwp_ssb_twitter_image" value="<?php echo esc_url($twitter_image); ?>" placeholder="Image URL">
                         <button type="button" class="button" id="upload-twitter-image">Upload Image</button>
                     </div>
                     <div class="seo-image-preview" id="twitter-image-preview">
@@ -276,14 +276,14 @@ class Smart_SEO_Meta_Fields {
             <!-- Advanced Tab -->
             <div class="seo-tab-content" id="advanced-tab">
                 <div class="seo-field-group">
-                    <label for="smart_seo_canonical">🔗 Canonical URL</label>
-                    <input type="url" id="smart_seo_canonical" name="smart_seo_canonical" value="<?php echo esc_url($canonical_url); ?>" placeholder="https://example.com/page">
+                    <label for="anupamwp_ssb_canonical">🔗 Canonical URL</label>
+                    <input type="url" id="anupamwp_ssb_canonical" name="anupamwp_ssb_canonical" value="<?php echo esc_url($canonical_url); ?>" placeholder="https://example.com/page">
                     <div class="seo-field-help">The preferred URL for this content. Helps prevent duplicate content issues.</div>
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_robots">🤖 Robots Meta</label>
-                    <select id="smart_seo_robots" name="smart_seo_robots">
+                    <label for="anupamwp_ssb_robots">🤖 Robots Meta</label>
+                    <select id="anupamwp_ssb_robots" name="anupamwp_ssb_robots">
                         <option value="index,follow" <?php selected($robots_meta, 'index,follow'); ?>>Index, Follow (Default)</option>
                         <option value="noindex,follow" <?php selected($robots_meta, 'noindex,follow'); ?>>No Index, Follow</option>
                         <option value="index,nofollow" <?php selected($robots_meta, 'index,nofollow'); ?>>Index, No Follow</option>
@@ -295,8 +295,8 @@ class Smart_SEO_Meta_Fields {
                 </div>
                 
                 <div class="seo-field-group">
-                    <label for="smart_seo_schema_type">📋 Schema Type</label>
-                    <select id="smart_seo_schema_type" name="smart_seo_schema_type">
+                    <label for="anupamwp_ssb_schema_type">📋 Schema Type</label>
+                    <select id="anupamwp_ssb_schema_type" name="anupamwp_ssb_schema_type">
                         <option value="Article" <?php selected($schema_type, 'Article'); ?>>Article</option>
                         <option value="BlogPosting" <?php selected($schema_type, 'BlogPosting'); ?>>Blog Posting</option>
                         <option value="NewsArticle" <?php selected($schema_type, 'NewsArticle'); ?>>News Article</option>
@@ -334,8 +334,8 @@ class Smart_SEO_Meta_Fields {
      */
     public static function save_seo_meta_fields($post_id) {
         // Check nonce
-        if (!isset($_POST['smart_seo_meta_nonce_field']) || 
-            !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['smart_seo_meta_nonce_field'])), 'smart_seo_meta_nonce')) {
+        if (!isset($_POST['anupamwp_ssb_meta_nonce_field']) || 
+            !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['anupamwp_ssb_meta_nonce_field'])), 'anupamwp_ssb_meta_nonce')) {
             return;
         }
         
@@ -351,21 +351,21 @@ class Smart_SEO_Meta_Fields {
         
         // List of meta fields to save
         $meta_fields = [
-            'smart_seo_title',
-            'smart_seo_description', 
-            'smart_seo_keywords',
-            'smart_seo_canonical',
-            'smart_seo_robots',
-            'smart_seo_og_title',
-            'smart_seo_og_description',
-            'smart_seo_og_image',
-            'smart_seo_og_type',
-            'smart_seo_twitter_card',
-            'smart_seo_twitter_title',
-            'smart_seo_twitter_description',
-            'smart_seo_twitter_image',
-            'smart_seo_schema_type',
-            'smart_seo_focus_keyword'
+            'anupamwp_ssb_title',
+            'anupamwp_ssb_description', 
+            'anupamwp_ssb_keywords',
+            'anupamwp_ssb_canonical',
+            'anupamwp_ssb_robots',
+            'anupamwp_ssb_og_title',
+            'anupamwp_ssb_og_description',
+            'anupamwp_ssb_og_image',
+            'anupamwp_ssb_og_type',
+            'anupamwp_ssb_twitter_card',
+            'anupamwp_ssb_twitter_title',
+            'anupamwp_ssb_twitter_description',
+            'anupamwp_ssb_twitter_image',
+            'anupamwp_ssb_schema_type',
+            'anupamwp_ssb_focus_keyword'
         ];
         
         // Save each field
@@ -374,12 +374,12 @@ class Smart_SEO_Meta_Fields {
                 $value = sanitize_text_field(wp_unslash($_POST[$field]));
                 
                 // Special handling for textarea fields
-                if (in_array($field, ['smart_seo_description', 'smart_seo_og_description', 'smart_seo_twitter_description'])) {
+                if (in_array($field, ['anupamwp_ssb_description', 'anupamwp_ssb_og_description', 'anupamwp_ssb_twitter_description'])) {
                     $value = sanitize_textarea_field(wp_unslash($_POST[$field]));
                 }
                 
                 // Special handling for URL fields
-                if (in_array($field, ['smart_seo_canonical', 'smart_seo_og_image', 'smart_seo_twitter_image'])) {
+                if (in_array($field, ['anupamwp_ssb_canonical', 'anupamwp_ssb_og_image', 'anupamwp_ssb_twitter_image'])) {
                     $value = esc_url_raw(wp_unslash($_POST[$field]));
                 }
                 
@@ -399,7 +399,7 @@ class Smart_SEO_Meta_Fields {
             return;
         }
 
-        wp_register_style('smart-seo-meta-fields-inline', false, [], SMART_SEO_VERSION);
+        wp_register_style('smart-seo-meta-fields-inline', false, [], ANUPAMWP_SSB_VERSION);
         wp_enqueue_style('smart-seo-meta-fields-inline');
 
         $meta_fields_css = "
@@ -448,14 +448,14 @@ class Smart_SEO_Meta_Fields {
             'smart-seo-meta-fields',
             plugin_dir_url(dirname(__FILE__)) . 'js/meta-fields.js',
             ['jquery', 'media-upload'],
-            SMART_SEO_VERSION,
+            ANUPAMWP_SSB_VERSION,
             true
         );
         
         // Localize script with AJAX URL and nonce for security
-        wp_localize_script('smart-seo-meta-fields', 'smartSeoBoosterMeta', [
+        wp_localize_script('smart-seo-meta-fields', 'anupamwpSsbMeta', [
             'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('smart_seo_nonce')
+            'nonce' => wp_create_nonce('anupamwp_ssb_nonce')
         ]);
         
         // Add minimal inline script for tab switching only
@@ -492,23 +492,23 @@ class Smart_SEO_Meta_Fields {
         if (!$post) return;
         
         // Get meta values
-        $meta_title = get_post_meta($post->ID, '_smart_seo_title', true);
-        $meta_description = get_post_meta($post->ID, '_smart_seo_description', true);
-        $meta_keywords = get_post_meta($post->ID, '_smart_seo_keywords', true);
-        $canonical_url = get_post_meta($post->ID, '_smart_seo_canonical', true);
-        $robots_meta = get_post_meta($post->ID, '_smart_seo_robots', true);
+        $meta_title = get_post_meta($post->ID, '_anupamwp_ssb_title', true);
+        $meta_description = get_post_meta($post->ID, '_anupamwp_ssb_description', true);
+        $meta_keywords = get_post_meta($post->ID, '_anupamwp_ssb_keywords', true);
+        $canonical_url = get_post_meta($post->ID, '_anupamwp_ssb_canonical', true);
+        $robots_meta = get_post_meta($post->ID, '_anupamwp_ssb_robots', true);
         
         // OG Tags
-        $og_title = get_post_meta($post->ID, '_smart_seo_og_title', true);
-        $og_description = get_post_meta($post->ID, '_smart_seo_og_description', true);
-        $og_image = get_post_meta($post->ID, '_smart_seo_og_image', true);
-        $og_type = get_post_meta($post->ID, '_smart_seo_og_type', true);
+        $og_title = get_post_meta($post->ID, '_anupamwp_ssb_og_title', true);
+        $og_description = get_post_meta($post->ID, '_anupamwp_ssb_og_description', true);
+        $og_image = get_post_meta($post->ID, '_anupamwp_ssb_og_image', true);
+        $og_type = get_post_meta($post->ID, '_anupamwp_ssb_og_type', true);
         
         // Twitter Cards
-        $twitter_card = get_post_meta($post->ID, '_smart_seo_twitter_card', true);
-        $twitter_title = get_post_meta($post->ID, '_smart_seo_twitter_title', true);
-        $twitter_description = get_post_meta($post->ID, '_smart_seo_twitter_description', true);
-        $twitter_image = get_post_meta($post->ID, '_smart_seo_twitter_image', true);
+        $twitter_card = get_post_meta($post->ID, '_anupamwp_ssb_twitter_card', true);
+        $twitter_title = get_post_meta($post->ID, '_anupamwp_ssb_twitter_title', true);
+        $twitter_description = get_post_meta($post->ID, '_anupamwp_ssb_twitter_description', true);
+        $twitter_image = get_post_meta($post->ID, '_anupamwp_ssb_twitter_image', true);
         
         // Output meta description
         if ($meta_description) {
@@ -570,21 +570,21 @@ class Smart_SEO_Meta_Fields {
      */
     public static function register_meta_fields_for_rest() {
         $meta_fields = [
-            'smart_seo_title',
-            'smart_seo_description',
-            'smart_seo_keywords',
-            'smart_seo_canonical',
-            'smart_seo_robots',
-            'smart_seo_og_title',
-            'smart_seo_og_description',
-            'smart_seo_og_image',
-            'smart_seo_og_type',
-            'smart_seo_twitter_card',
-            'smart_seo_twitter_title',
-            'smart_seo_twitter_description',
-            'smart_seo_twitter_image',
-            'smart_seo_schema_type',
-            'smart_seo_focus_keyword'
+            'anupamwp_ssb_title',
+            'anupamwp_ssb_description',
+            'anupamwp_ssb_keywords',
+            'anupamwp_ssb_canonical',
+            'anupamwp_ssb_robots',
+            'anupamwp_ssb_og_title',
+            'anupamwp_ssb_og_description',
+            'anupamwp_ssb_og_image',
+            'anupamwp_ssb_og_type',
+            'anupamwp_ssb_twitter_card',
+            'anupamwp_ssb_twitter_title',
+            'anupamwp_ssb_twitter_description',
+            'anupamwp_ssb_twitter_image',
+            'anupamwp_ssb_schema_type',
+            'anupamwp_ssb_focus_keyword'
         ];
         
         foreach ($meta_fields as $field) {

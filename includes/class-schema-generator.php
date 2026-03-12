@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-class Smart_SEO_Schema_Generator {
+class anupamwp_ssb_Schema_Generator {
     public static function init() {
         add_action('wp_footer', [__CLASS__, 'output_schema']);
     }
@@ -9,7 +9,7 @@ class Smart_SEO_Schema_Generator {
     public static function output_schema() {
         if (is_admin()) return;
 
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         if (empty($options['enable_schema'])) return;
 
         $schema_type = self::detect_schema_type();
@@ -20,11 +20,15 @@ class Smart_SEO_Schema_Generator {
         $schema_data = require $schema_file;
         if (!is_array($schema_data)) return;
 
-        echo "<script type='application/ld+json'>" . wp_json_encode($schema_data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
+        $schema_json = wp_json_encode($schema_data);
+        if (!$schema_json) return;
+
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-LD must remain raw JSON inside script tag.
+        echo '<script type="application/ld+json">' . wp_kses($schema_json, []) . "</script>\n";
     }
 
     private static function detect_schema_type() {
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $default_type = isset($options['default_schema_type']) ? $options['default_schema_type'] : 'organization';
         
         // Support for custom post types

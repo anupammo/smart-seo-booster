@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-class Smart_SEO_Loader {
+class anupamwp_ssb_Loader {
     public static function init() {
         require_once plugin_dir_path(__FILE__) . 'class-settings.php';
         require_once plugin_dir_path(__FILE__) . 'class-admin-ui.php';
@@ -12,13 +12,13 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-seo-score-display.php';
         require_once plugin_dir_path(__FILE__) . 'class-meta-fields.php';
 
-        Smart_SEO_Settings::init();
-        Smart_SEO_Admin_UI::init();
-        Smart_SEO_Core::init();
-        Smart_SEO_Schema_Generator::init();
-        Smart_SEO_Content_Auditor::init();
-        Smart_SEO_Link_Analyzer::init();
-        Smart_SEO_Score_Display::init();
-        Smart_SEO_Meta_Fields::init();
+        anupamwp_ssb_Settings::init();
+        anupamwp_ssb_Admin_UI::init();
+        anupamwp_ssb_Core::init();
+        anupamwp_ssb_Schema_Generator::init();
+        anupamwp_ssb_Content_Auditor::init();
+        anupamwp_ssb_Link_Analyzer::init();
+        anupamwp_ssb_Score_Display::init();
+        anupamwp_ssb_Meta_Fields::init();
     }
 }

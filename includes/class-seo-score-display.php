@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-class Smart_SEO_Score_Display {
+class anupamwp_ssb_Score_Display {
     
     public static function init() {
         // Add admin bar SEO score
@@ -20,8 +20,8 @@ class Smart_SEO_Score_Display {
         add_action('manage_pages_custom_column', [__CLASS__, 'display_seo_score_column'], 10, 2);
         
         // Add AJAX handlers for SEO analysis
-        add_action('wp_ajax_smart_seo_get_seo_score', [__CLASS__, 'ajax_get_seo_score']);
-        add_action('wp_ajax_smart_seo_get_full_seo_report', [__CLASS__, 'ajax_get_full_seo_report']);
+        add_action('wp_ajax_anupamwp_ssb_get_seo_score', [__CLASS__, 'ajax_get_seo_score']);
+        add_action('wp_ajax_anupamwp_ssb_get_full_seo_report', [__CLASS__, 'ajax_get_full_seo_report']);
         
         // Enqueue scripts for real-time updates
         add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue_score_scripts']);
@@ -31,7 +31,7 @@ class Smart_SEO_Score_Display {
         $post = get_post($post_id);
         if (!$post) return 0;
         
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
@@ -110,7 +110,7 @@ class Smart_SEO_Score_Display {
         $post = get_post($post_id);
         if (!$post) return null;
         
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
@@ -268,7 +268,7 @@ class Smart_SEO_Score_Display {
     
     public static function add_dashboard_widget() {
         wp_add_dashboard_widget(
-            'smart_seo_dashboard',
+            'anupamwp_ssb_dashboard',
             '📈 Smart SEO Overview',
             [__CLASS__, 'dashboard_widget_content']
         );
@@ -328,7 +328,7 @@ class Smart_SEO_Score_Display {
         $post_types = ['post', 'page'];
         foreach ($post_types as $post_type) {
             add_meta_box(
-                'smart_seo_score',
+                'anupamwp_ssb_score',
                 '📊 SEO Score',
                 [__CLASS__, 'seo_score_metabox_content'],
                 $post_type,
@@ -510,7 +510,7 @@ class Smart_SEO_Score_Display {
         }
         
         // Options
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         // Analysis Results
@@ -658,7 +658,7 @@ class Smart_SEO_Score_Display {
     }
     
     public static function ajax_get_seo_score() {
-        check_ajax_referer('smart_seo_nonce', 'nonce');
+        check_ajax_referer('anupamwp_ssb_nonce', 'nonce');
         
         $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
         if (!$post_id || !current_user_can('edit_post', $post_id)) {
@@ -680,7 +680,7 @@ class Smart_SEO_Score_Display {
      * AJAX handler for full SEO report
      */
     public static function ajax_get_full_seo_report() {
-        check_ajax_referer('smart_seo_nonce', 'nonce');
+        check_ajax_referer('anupamwp_ssb_nonce', 'nonce');
         
         $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
         if (!$post_id || !current_user_can('edit_post', $post_id)) {
@@ -773,7 +773,7 @@ class Smart_SEO_Score_Display {
     
     public static function enqueue_score_scripts($hook) {
         if (in_array($hook, ['post.php', 'post-new.php', 'edit.php'])) {
-            wp_register_style('smart-seo-score-display-inline', false, [], SMART_SEO_VERSION);
+            wp_register_style('smart-seo-score-display-inline', false, [], ANUPAMWP_SSB_VERSION);
             wp_enqueue_style('smart-seo-score-display-inline');
 
             $score_css = "
@@ -794,6 +794,9 @@ class Smart_SEO_Score_Display {
             wp_add_inline_style('smart-seo-score-display-inline', $score_css);
 
             wp_enqueue_script('jquery');
+            $ajax_action_score = wp_json_encode('anupamwp_ssb_get_seo_score');
+            $ajax_action_report = wp_json_encode('anupamwp_ssb_get_full_seo_report');
+            $ajax_nonce = wp_json_encode(wp_create_nonce('anupamwp_ssb_nonce'));
             
             $script = "
             function smartSeoRefreshScore(postId) {
@@ -802,9 +805,9 @@ class Smart_SEO_Score_Display {
                 button.text('🔄 Refreshing...').prop('disabled', true);
                 
                 jQuery.post(ajaxurl, {
-                    action: 'smart_seo_get_seo_score',
+                    action: {$ajax_action_score},
                     post_id: postId,
-                    nonce: '" . wp_create_nonce('smart_seo_nonce') . "'
+                    nonce: {$ajax_nonce}
                 }, function(response) {
                     if (response.success) {
                         location.reload(); // Reload to show updated analysis
@@ -872,9 +875,9 @@ class Smart_SEO_Score_Display {
                 
                 // Load full report data
                 jQuery.post(ajaxurl, {
-                    action: 'smart_seo_get_full_seo_report',
+                    action: {$ajax_action_report},
                     post_id: postId,
-                    nonce: '" . wp_create_nonce('smart_seo_nonce') . "'
+                    nonce: {$ajax_nonce}
                 }, function(response) {
                     if (response.success) {
                         content.html(response.data.html + closeBtn[0].outerHTML);

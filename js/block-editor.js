@@ -41,7 +41,7 @@
             });
             
             let score = 0;
-            const minWords = smartSeoBoosterData.minWordCount || 300;
+            const minWords = anupamwpSsbData.minWordCount || 300;
             
             // Word count scoring (30 points)
             if (wordCount >= minWords) score += 30;

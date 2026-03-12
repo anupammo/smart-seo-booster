@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-class Smart_SEO_Content_Auditor {
+class anupamwp_ssb_Content_Auditor {
     public static function init() {
         add_action('enqueue_block_editor_assets', [__CLASS__, 'enqueue_block_editor_assets']);
         add_action('rest_api_init', [__CLASS__, 'register_rest_endpoints']);
@@ -10,7 +10,7 @@ class Smart_SEO_Content_Auditor {
     public static function enqueue_block_editor_assets() {
         if (!current_user_can('edit_posts')) return;
         
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         if (empty($options['enable_content_audit'])) return;
         
         // Register and enqueue the block editor script
@@ -18,19 +18,19 @@ class Smart_SEO_Content_Auditor {
             'smart-seo-block-editor',
             plugin_dir_url(__FILE__) . '../js/block-editor.js',
             ['wp-blocks', 'wp-element', 'wp-data', 'wp-plugins', 'wp-edit-post', 'wp-i18n'],
-            SMART_SEO_VERSION,
+            ANUPAMWP_SSB_VERSION,
             true
         );
         
-        wp_localize_script('smart-seo-block-editor', 'smartSeoBoosterData', [
-            'restUrl' => rest_url('smart-seo/v1/'),
+        wp_localize_script('smart-seo-block-editor', 'anupamwpSsbData', [
+            'restUrl' => rest_url('anupamwp-ssb/v1/'),
             'nonce' => wp_create_nonce('wp_rest'),
             'minWordCount' => isset($options['min_word_count']) ? intval($options['min_word_count']) : 300
         ]);
     }
     
     public static function register_rest_endpoints() {
-        register_rest_route('smart-seo/v1', '/score/(?P<id>\d+)', [
+        register_rest_route('anupamwp-ssb/v1', '/score/(?P<id>\d+)', [
             'methods' => 'GET',
             'callback' => [__CLASS__, 'rest_get_seo_score'],
             'permission_callback' => function($request) {
@@ -54,7 +54,7 @@ class Smart_SEO_Content_Auditor {
             return new WP_Error('post_not_found', 'Post not found', ['status' => 404]);
         }
         
-        $score_data = Smart_SEO_Score_Display::calculate_detailed_seo_score($post_id);
+        $score_data = anupamwp_ssb_Score_Display::calculate_detailed_seo_score($post_id);
         
         return rest_ensure_response($score_data);
     }
@@ -62,7 +62,7 @@ class Smart_SEO_Content_Auditor {
     public static function show_audit_summary() {
         if (!is_admin() || !function_exists('get_current_screen')) return;
         
-        $options = get_option('smart_seo_options', []);
+        $options = get_option('anupamwp_ssb_options', []);
         if (empty($options['enable_content_audit'])) return;
         
         $screen = get_current_screen();

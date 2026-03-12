@@ -5,7 +5,8 @@
  * Description: Comprehensive SEO plugin with advanced content audit, schema markup, internal link analysis, and PageSpeed Insights-style reporting. Compatible with WordPress 5.0+ through 6.9+ and modern block themes.
  * Version: 1.1
  * Author: Anupam Mondal
- * Author URI: https://github.com/anupammo
+ * Author URI: https://anupammondal.in/
+ * Author Profile: https://profiles.wordpress.org/anupamwp/
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: smart-seo-booster
@@ -17,6 +18,7 @@
  * @package SmartSEOBooster
  * @author Anupam Mondal
  * @license GPL-2.0+
+ * @link https://profiles.wordpress.org/anupamwp/
  * @link https://anupammondal.in/wordpress-plugin/smart-seo-booster
  * @copyright 2025 Anupam Mondal
  */

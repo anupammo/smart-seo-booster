@@ -153,7 +153,9 @@ Yes, we provide support through the WordPress.org support forums. For priority s
 
 == Changelog ==
 
-= 1.1 (2026-03-04) =
+= 1.1 (2026-03-12) =
+* Official WordPress.org directory release published
+* Added standard SVN stable tag alignment for 1.1
 * Compliance update for WordPress.org review
 * Prefixed AJAX action names and localized JS globals to avoid collisions
 * Moved inline JS/CSS output to WordPress enqueue APIs
@@ -184,6 +186,11 @@ For support and feature requests:
 
 * **WordPress Support Forum**: [Support Forum](https://wordpress.org/support/plugin/smart-seo-booster/)
 * **GitHub Repository**: [GitHub Issues](https://github.com/anupammo/smart-seo-booster/issues)
+* **Dedicated Plugin Page**: [Smart SEO Booster](https://anupammondal.in/wordpress-plugin/smart-seo-booster)
+* **Portfolio Website**: [Anupam Mondal](https://anupammondal.in/)
+* **WordPress Developer Profile**: [anupamwp](https://profiles.wordpress.org/anupamwp/)
+* **Facebook**: [Anupam Mondal](https://www.facebook.com/anupammondal.in/)
+* **LinkedIn**: [Anupam Mondal](https://www.linkedin.com/company/anupammondal)
 * **Documentation**: Available in the plugin's Help section
 
 == Contributing ==
@@ -196,7 +203,10 @@ Smart SEO Booster does not collect or transmit any personal data. All analysis i
 
 == Credits ==
 
-* Developed by [Anupam Mondal](https://github.com/anupammo)
+* Developed by [Anupam Mondal](https://anupammondal.in/)
+* WordPress Profile: [anupamwp](https://profiles.wordpress.org/anupamwp/)
+* Facebook: [Anupam Mondal](https://www.facebook.com/anupammondal.in/)
+* LinkedIn: [Anupam Mondal](https://www.linkedin.com/company/anupammondal)
 * Inspired by Google PageSpeed Insights interface design
 * Built with WordPress coding standards and best practices
 

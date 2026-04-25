@@ -173,6 +173,3 @@ This plugin is licensed under the `[Looks like the result wasn't safe to show. L
 ---
 
 **Made with ❤️ for the WordPress community**  
-```
-
----

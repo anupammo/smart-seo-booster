@@ -57,7 +57,7 @@ Comprehensive WordPress SEO plugin with advanced content audit, schema markup, a
 4. Click **Install Now** and then **Activate**  
 
 ### Manual Installation
-1. Download the latest release from [Releases](https://github.com/anupammo/smart-seo-booster/releases)  
+1. Download the latest release from [Releases](https://github.com/anupammo/smart-seo-booster/releases/tag/r1.1)  
 2. Upload the plugin files to `/wp-content/plugins/smart-seo-booster/`  
 3. Activate the plugin through the **Plugins** menu in WordPress  
 
@@ -126,7 +126,7 @@ We welcome contributions! Please see our `[Looks like the result wasn't safe to 
 
 ## 🐛 Bug Reports
 
-Found a bug? Please create an issue [(github.com in Bing)](https://www.bing.com/search?q="https%3A%2F%2Fgithub.com%2Fanupammo%2Fsmart-seo-booster%2Fissues%2Fnew") with:
+Found a bug? Please create an issue [(github.com)](https://github.com/anupammo/smart-seo-booster/issues) with:
 - WordPress version  
 - PHP version  
 - Plugin version  
@@ -159,7 +159,8 @@ This plugin is licensed under the `[Looks like the result wasn't safe to show. L
 
 **Anupam Mondal**  
 - GitHub: [@anupammo](https://github.com/anupammo)  
-- WordPress.org: [anupammo](https://profiles.wordpress.org/anupammo/)  
+- WordPress.org: [anupammo](https://profiles.wordpress.org/anupammo/)
+- Website: [anupammondal.in](https://anupammondal.in/wordpress-plugin/smart-seo-booster)  
 
 ---
 

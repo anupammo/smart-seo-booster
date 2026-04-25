@@ -65,3 +65,114 @@ Comprehensive WordPress SEO plugin with advanced content audit, schema markup, a
 ```bash
 cd wp-content/plugins/
 git clone https://github.com/anupammo/smart-seo-booster.git
+```
+
+---
+
+## 🎯 Quick Start
+
+1. **Activate the Plugin** in your WordPress admin  
+2. **Navigate to SEO Settings** in your admin menu  
+3. **Run Your First Audit** by clicking "Audit Report"  
+4. **Review Recommendations** and implement improvements  
+5. **Monitor Progress** with regular audits  
+
+---
+
+## 📊 SEO Analysis Features
+
+### Content Analysis (20+ Factors)
+- Title tag optimization  
+- Meta description quality  
+- Content length and structure  
+- Keyword optimization  
+- Heading structure (H1–H6)  
+- Internal linking quality  
+- External link validation  
+- Image optimization  
+- Alt text analysis  
+
+### Technical SEO
+- Robots.txt validation  
+- Canonical URL analysis  
+- SSL certificate check  
+- URL structure optimization  
+- Schema markup detection  
+- Social media tags  
+- Page speed considerations  
+
+### Reporting
+- Overall SEO score  
+- Individual metric scores  
+- Color-coded status indicators  
+- Actionable recommendations  
+- Detailed opportunities list  
+- Progress tracking  
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our `[Looks like the result wasn't safe to show. Let's switch things up and try something else!]` for details.
+
+### Development Workflow
+1. Fork the repository  
+2. Create a feature branch  
+3. Make your changes  
+4. Add tests if applicable  
+5. Submit a pull request  
+
+---
+
+## 🐛 Bug Reports
+
+Found a bug? Please create an issue [(github.com in Bing)](https://www.bing.com/search?q="https%3A%2F%2Fgithub.com%2Fanupammo%2Fsmart-seo-booster%2Fissues%2Fnew") with:
+- WordPress version  
+- PHP version  
+- Plugin version  
+- Steps to reproduce  
+- Expected vs actual behavior  
+
+---
+
+## 📈 Changelog
+
+### [2.1.0] – 2025-01-04
+- **Added**: WordPress 6.8 compatibility  
+- **Added**: Comprehensive 20+ point SEO analysis  
+- **Added**: PageSpeed Insights-style interface  
+- **Added**: Advanced security enhancements  
+- **Improved**: Performance and code quality  
+- **Fixed**: All PHP warnings and notices  
+
+See `[Looks like the result wasn't safe to show. Let's switch things up and try something else!]` for complete version history.
+
+---
+
+## 📄 License
+
+This plugin is licensed under the `[Looks like the result wasn't safe to show. Let's switch things up and try something else!]`.
+
+---
+
+## 👨‍💻 Author
+
+**Anupam Mondal**  
+- GitHub: [@anupammo](https://github.com/anupammo)  
+- WordPress.org: [anupammo](https://profiles.wordpress.org/anupammo/)  
+
+---
+
+## 🔗 Links
+
+- WordPress Plugin Directory [(wordpress.org in Bing)](https://www.bing.com/search?q="https%3A%2F%2Fwordpress.org%2Fplugins%2Fsmart-seo-booster%2F")  
+- Documentation [(github.com in Bing)](https://www.bing.com/search?q="https%3A%2F%2Fgithub.com%2Fanupammo%2Fsmart-seo-booster%2Fwiki")  
+- [Support Forum](https://wordpress.org/support/plugin/smart-seo-booster/)  
+- [Issue Tracker](https://github.com/anupammo/smart-seo-booster/issues)  
+
+---
+
+**Made with ❤️ for the WordPress community**  
+```
+
+---

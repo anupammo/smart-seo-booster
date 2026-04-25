@@ -3,7 +3,7 @@
 [![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/License-GPL%20v2%2B-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-2.1.0-orange.svg)](https://github.com/anupammo/smart-seo-booster/releases)
+[![Version](https://img.shields.io/badge/Version-1.1-orange.svg)](https://github.com/anupammo/smart-seo-booster/releases)
 
 Comprehensive WordPress SEO plugin with advanced content audit, schema markup, and PageSpeed Insights-style reporting for better search engine optimization.
 

@@ -64,7 +64,9 @@ class Smart_SEO_Importer {
             echo '<input type="hidden" name="action" value="smart_seo_import" />';
             echo '<input type="hidden" name="source" value="' . esc_attr( $auto_source ) . '" />';
             echo '<input type="hidden" name="offset" value="' . esc_attr( $auto_offset ) . '" />';
-            echo '<noscript>' . get_submit_button( __( 'Continue', 'smart-seo-booster' ) ) . '</noscript>';
+            echo '<noscript>';
+            submit_button( __( 'Continue', 'smart-seo-booster' ) );
+            echo '</noscript>';
             echo '</form>';
             echo '<script>document.getElementById("smart-seo-auto").submit();</script>';
             echo '</div>';
@@ -110,28 +112,38 @@ class Smart_SEO_Importer {
 
     /**
      * Whether any posts carry meta from the given source.
+     * Uses WP_Query (no direct DB) with a short-lived cache.
      */
     private static function source_available( $source ) {
-        global $wpdb;
-        $map  = self::map( $source );
-        $keys = array_keys( $map );
+        $keys = array_keys( self::map( $source ) );
         if ( empty( $keys ) ) {
             return false;
         }
-        $placeholders = implode( ',', array_fill( 0, count( $keys ), '%s' ) );
-        // Cached lightweight existence check.
+
         $cache_key = 'smart_seo_import_has_' . $source;
         $found     = wp_cache_get( $cache_key, 'smart_seo' );
-        if ( false === $found ) {
-            $found = (int) $wpdb->get_var(
-                $wpdb->prepare(
-                    "SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key IN ($placeholders) AND meta_value <> '' LIMIT 1", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- placeholders built from fixed key count
-                    $keys
-                )
-            );
-            wp_cache_set( $cache_key, $found, 'smart_seo', 300 );
+        if ( false !== $found ) {
+            return (bool) $found;
         }
-        return $found > 0;
+
+        $meta_query = [ 'relation' => 'OR' ];
+        foreach ( $keys as $key ) {
+            $meta_query[] = [ 'key' => $key, 'compare' => 'EXISTS' ];
+        }
+
+        $query = new WP_Query([
+            'post_type'      => 'any',
+            'post_status'    => 'any',
+            'posts_per_page' => 1,
+            'fields'         => 'ids',
+            'no_found_rows'  => true,
+            'meta_query'     => $meta_query, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- one-off admin existence check, cached
+        ]);
+
+        $found = ! empty( $query->posts );
+        wp_cache_set( $cache_key, $found ? 1 : 0, 'smart_seo', 300 );
+
+        return $found;
     }
 
     public static function handle() {

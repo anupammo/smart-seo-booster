@@ -5,7 +5,7 @@
 Smart SEO Booster gives you every SEO fundamental that actually moves rankings — meta tags, Open Graph & Twitter Cards, JSON-LD schema, XML sitemaps, breadcrumbs, and real-time content scoring — in one clean, modular plugin with **no bloat, no upsell walls, and no complex add-ons**.
 
 [![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/anupammo/smart-seo-booster)
-[![WordPress](https://img.shields.io/badge/WordPress-5.9%E2%80%936.9-21759b.svg)](https://wordpress.org/)
+[![WordPress](https://img.shields.io/badge/WordPress-5.9%E2%80%937.0-21759b.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-8.0%2B-777bb4.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-GPLv2%2B-green.svg)](LICENSE)
 
@@ -120,7 +120,7 @@ cp -r smart-seo-booster /path/to/wp-content/plugins/
 wp plugin activate smart-seo-booster
 ```
 
-**Requirements:** WordPress 5.9+ · PHP 8.0+ · Tested up to WordPress 6.9
+**Requirements:** WordPress 5.9+ · PHP 8.0+ · Tested up to WordPress 7.0
 
 ---
 
@@ -214,7 +214,7 @@ Run before **every** WordPress.org submission or update.
 - [ ] PHPCS with `WordPress-Extra` ruleset passes
 - [ ] No PHP notices/warnings with `WP_DEBUG` on
 - [ ] Tested on PHP 8.0, 8.1, 8.2, 8.3
-- [ ] Tested on WordPress 5.9 (min) and latest (6.9)
+- [ ] Tested on WordPress 5.9 (min) and latest (7.0)
 
 ### Security
 - [ ] All output escaped at the sink

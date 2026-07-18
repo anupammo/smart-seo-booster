@@ -1,217 +1,253 @@
 # Smart SEO Booster
 
-**A comprehensive WordPress SEO plugin designed for optimal performance and extensibility**
+**The lightweight, complete SEO toolkit for WordPress — fast by design, powerful by default.**
 
-WordPress plugin that enhances SEO with features like title/meta optimization, schema markup injection, content auditing, and internal link analysis. Built with a clean, modular architecture following WordPress best practices.
+Smart SEO Booster gives you every SEO fundamental that actually moves rankings — meta tags, Open Graph & Twitter Cards, JSON-LD schema, XML sitemaps, breadcrumbs, and real-time content scoring — in one clean, modular plugin with **no bloat, no upsell walls, and no complex add-ons**.
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/anupammo/smart-seo-booster)
-[![License](https://img.shields.io/badge/license-GPL2+-green.svg)](LICENSE)
-[![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue.svg)](https://wordpress.org/)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/anupammo/smart-seo-booster)
+[![WordPress](https://img.shields.io/badge/WordPress-5.9%E2%80%936.9-21759b.svg)](https://wordpress.org/)
+[![PHP](https://img.shields.io/badge/PHP-8.0%2B-777bb4.svg)](https://www.php.net/)
+[![License](https://img.shields.io/badge/license-GPLv2%2B-green.svg)](LICENSE)
 
-## 🚀 Features
-
-### ✅ Core SEO Features
-- **Meta Tags Management**: Automatic title and description injection
-- **Schema Markup**: JSON-LD structured data for better search visibility
-- **Content Auditing**: Real-time SEO analysis with actionable insights
-- **Internal Link Analysis**: Track and optimize internal linking structure
-- **Admin Dashboard**: Clean, intuitive settings interface
-
-### 🎯 Schema Types Supported
-- **Article Schema**: For blog posts and articles
-- **Organization Schema**: For business information
-- **Local Business Schema**: For location-based businesses
-- **FAQ Schema**: For FAQ pages
-- **Profile Page Schema**: For author/profile pages
-
-### 📊 Audit Metrics
-- Word count analysis
-- Heading structure evaluation
-- Image alt text validation
-- Internal link assessment
-- Schema markup status
-
-## 🔧 Installation
-
-### Method 1: WordPress Admin (Recommended)
-1. Download the plugin ZIP file
-2. Go to **Plugins > Add New** in WordPress admin
-3. Click **Upload Plugin** and select the ZIP file
-4. Activate the plugin
-
-### Method 2: Manual Installation
-1. Upload the `smart-seo-booster` folder to `/wp-content/plugins/`
-2. Activate the plugin through WordPress admin
-
-### Method 3: Development Setup
-```bash
-# Clone the repository
-git clone https://github.com/anupammo/smart-seo-booster.git
-
-# Move to WordPress plugins directory
-mv smart-seo-booster /path/to/wordpress/wp-content/plugins/
-
-# Activate via WP-CLI (optional)
-wp plugin activate smart-seo-booster
-```
-
-## 🎛️ Configuration
-
-### Basic Setup
-1. Navigate to **Smart SEO** in WordPress admin
-2. Enable **Schema Markup** in settings
-3. Configure additional options as needed
-
-### Advanced Configuration
-The plugin automatically detects page types and applies appropriate schema:
-- Blog posts → Article schema
-- FAQ pages → FAQ schema
-- About pages → Profile schema
-- Contact/Services → Local Business schema
-- Homepage → Organization schema
-
-## 🧪 Testing Features
-
-### 1. Test Schema Markup
-```bash
-# View page source and look for JSON-LD script tags
-# Or use Google's Rich Results Test
-https://search.google.com/test/rich-results
-```
-
-### 2. Test Content Auditor
-1. Edit any post/page in WordPress
-2. Check for SEO audit notices in the editor
-3. Verify metrics: word count, headings, images, links
-
-### 3. Test Admin Interface
-1. Go to **Smart SEO** menu
-2. Access **Audit Report** submenu
-3. Verify settings are saved correctly
-
-### 4. Test Link Analyzer
-1. Create content with internal links
-2. Check admin notices for link analysis
-3. Verify internal link counting accuracy
-
-## 📁 Project Structure
-
-```
-smart-seo-booster/
-├── 📄 smart-seo-booster.php      # Main plugin file with bootstrap logic
-├── 📄 uninstall.php              # Cleanup logic for plugin deletion
-├── 📄 readme.txt                 # WordPress.org plugin description
-├── 📄 README.md                  # This documentation file
-├── 📄 LICENSE                    # GPL2+ license file
-├── 📂 includes/                  # Core PHP classes
-│   ├── 🔧 class-loader.php       # Autoloader for modular classes
-│   ├── 🎨 class-admin-ui.php     # Admin panel UI and menu logic
-│   ├── ⚡ class-seo-core.php     # Core SEO functionality
-│   ├── 📋 class-schema-generator.php # JSON-LD schema builder
-│   ├── 🔍 class-content-auditor.php  # Content analysis engine
-│   ├── 🔗 class-link-analyzer.php    # Internal link analysis
-│   └── ⚙️ class-settings.php     # Plugin settings management
-├── 📂 templates/                 # UI templates
-│   └── 📊 audit-report.php       # SEO audit report interface
-├── 📂 schema/                    # JSON-LD schema templates
-│   ├── 📰 article-schema.php     # Article schema template
-│   ├── ❓ faq-schema.php         # FAQ schema template
-│   ├── 🏢 local-business-schema.php # Local business schema
-│   ├── 🏛️ organization-schema.php   # Organization schema
-│   └── 👤 profile-page-schema.php   # Profile page schema
-├── 📂 css/                       # Stylesheets
-│   └── 🎨 admin.css              # Admin interface styles
-└── 📂 languages/                 # Internationalization
-    └── 🌐 smart-seo-booster.pot  # Translation template
-```
-
-## 🔧 Development Principles
-
-### 🎯 **Modularity**
-Each feature is isolated in separate classes for easy maintenance and extension.
-
-### 📈 **Scalability**
-Schema templates are reusable and dynamically injected based on page context.
-
-### ⚡ **Performance**
-Minimal WordPress compatibility using native hooks and lightweight operations.
-
-### 🔒 **Security**
-- Input sanitization via `esc_html()`, `sanitize_text_field()`
-- Nonce verification for admin forms
-- Proper capability checks
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**❌ Plugin Activation Error**
-```
-Fatal error: Cannot redeclare Smart_SEO_Admin_UI::init()
-```
-**✅ Solution**: This has been fixed in the latest version. Ensure you're using the updated files.
-
-**❌ Schema Not Appearing**
-- Verify schema is enabled in settings
-- Check page type matches schema conditions
-- Use browser dev tools to inspect page source
-
-**❌ Admin Menu Missing**
-- Ensure user has `manage_options` capability
-- Check for plugin conflicts
-- Verify all files are uploaded correctly
-
-### Debug Mode
-Enable WordPress debug mode for detailed error logging:
-```php
-// In wp-config.php
-define('WP_DEBUG', true);
-define('WP_DEBUG_LOG', true);
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 Changelog
-
-### Version 1.0.0
-- ✅ Initial release
-- ✅ Core SEO functionality with enhanced meta tags
-- ✅ Schema markup generation (5 types supported)
-- ✅ Advanced content auditing system with SEO scoring
-- ✅ Admin interface with improved styling
-- ✅ Internal link analysis
-- ✅ Open Graph meta tags for social sharing
-- ✅ Comprehensive testing framework
-- ✅ Fixed duplicate method declaration issue
-
-### Recent Improvements
-- **Enhanced Meta Tags**: Added Open Graph tags for better social media sharing
-- **Advanced Content Auditor**: Now provides SEO scoring and actionable recommendations
-- **Improved Admin UI**: Enhanced styling with better visual feedback
-- **Comprehensive Testing**: Added detailed testing guide and automated validation
-- **Better Error Handling**: Improved code safety and WordPress compatibility
-
-## 📄 License
-
-This project is licensed under the GPL2+ License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
-
-**Anupam Mondal**
-- GitHub: [@anupammo](https://github.com/anupammo)
-
-## 🙏 Acknowledgments
-
-- WordPress community for best practices
-- Schema.org for structured data standards
-- Contributors and testers
+> 🎯 **Mission:** Deliver 90% of what Rank Math and Yoast do, at 10% of the weight — the SEO plugin you set up in 5 minutes and forget.
 
 ---
 
-**⭐ If this plugin helps your SEO efforts, please consider starring the repository!**
+## 📌 Table of Contents
+
+- [Why Smart SEO Booster](#-why-smart-seo-booster)
+- [Feature Matrix](#-feature-matrix-current-vs-planned)
+- [Competitive Positioning](#-competitive-positioning-2026)
+- [Installation](#-installation)
+- [Architecture](#-architecture)
+- [Development Roadmap](#-development-roadmap)
+- [Release Checklist](#-release-checklist)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## 🚀 Why Smart SEO Booster
+
+| Principle | What it means for you |
+|-----------|----------------------|
+| **⚡ Lightweight** | Native WordPress hooks only. No jQuery bloat, no external calls, no tracking. Target: < 50 KB footprint, zero measurable TTFB impact. |
+| **🧩 Modular** | Every feature is an isolated class. Enable only what you need. |
+| **🔒 Secure** | Escaped output, sanitized input, nonce-verified forms, capability checks — audited against WordPress.org Plugin Check. |
+| **🎨 Modern UI** | Clean, WordPress-native admin styling. No confusing dashboards, no dark patterns. |
+| **🆓 Genuinely free** | All core SEO features are free forever. No feature is held hostage behind a "Pro" nag. |
+
+---
+
+## 📊 Feature Matrix (Current vs Planned)
+
+### ✅ Available now (v2.1)
+
+- **Meta tags** — automatic title & meta description injection
+- **Open Graph & Twitter Cards** — per-post social preview with live editor
+- **Per-post SEO meta box** — tabbed UI: Basic / Social / Advanced / Analysis
+- **JSON-LD schema** — Article, FAQ, LocalBusiness, Organization, ProfilePage
+- **Content auditor** — word count, headings, image alt coverage
+- **SEO score engine** — admin bar badge, dashboard widget, post-list column, per-post metabox
+- **Internal link analysis** — counts internal links per post
+- **Canonical URLs & robots meta** — per-post control
+- **Focus keyword analysis** — density + placement checks in the editor
+
+### 🛠️ Planned (see [Roadmap](#-development-roadmap))
+
+- **XML Sitemaps** — posts, pages, CPTs, images *(critical parity feature)*
+- **Breadcrumbs** — shortcode, block & `BreadcrumbList` schema
+- **Global title/meta templates** — `%%title%%`, `%%sitename%%`, `%%sep%%` variables
+- **Dynamic per-post schema** — wire the schema-type selector to real output
+- **Auto meta description** — smart fallback from excerpt/content
+- **Redirection manager** — simple 301/302 + 404 log
+- **Search-engine verification** — Google / Bing / Pinterest meta fields
+- **Featured-image OG fallback** — never ship a blank social preview
+- **Sitewide noindex controls** — archives, tags, search, paginated pages
+
+---
+
+## 🥊 Competitive Positioning (2026)
+
+Smart SEO Booster competes in the **lightweight/automated lane** — alongside Slim SEO and The SEO Framework — not the heavyweight Rank Math/Yoast lane. Our edge: **automation of Slim SEO + the visual editor UX of Rank Math, without the weight of either.**
+
+| Capability | Smart SEO Booster (target v2.5) | Slim SEO | The SEO Framework | Rank Math (Free) | Yoast (Free) |
+|---|---|---|---|---|---|
+| Meta title/description | ✅ | ✅ | ✅ | ✅ | ✅ |
+| OG / Twitter Cards | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Live social/search preview | ✅ | ➖ | ➖ | ✅ | ✅ |
+| JSON-LD schema | ✅ (10+ types) | ✅ | ✅ | ✅ (18+ types) | ✅ (limited) |
+| XML sitemap | 🛠️ planned | ✅ | ✅ | ✅ | ✅ |
+| Breadcrumbs | 🛠️ planned | ✅ | ✅ | ✅ | ✅ |
+| Content/SEO scoring | ✅ | ➖ | ➖ | ✅ | ✅ |
+| Redirection manager | 🛠️ planned | ➖ (Pro) | ➖ | ✅ | ➖ (Premium) |
+| Settings-light automation | ✅ | ✅✅ | ✅ | ➖ | ➖ |
+| Weight / performance | ✅✅ | ✅✅ | ✅✅ | ➖ | ➖ |
+| Free & no upsell nags | ✅ | ✅ | ✅ | ➖ | ➖ |
+
+**Takeaway:** Closing the **XML sitemap + breadcrumbs** gap is the single highest-priority work — they are table-stakes every competitor ships free, and their absence is the #1 reason a lightweight SEO plugin gets uninstalled.
+
+*Sources: [WordPress.org SEO plugin listings](https://wordpress.org/plugins/), [Slim SEO](https://wordpress.org/plugins/slim-seo/), [Rank Math](https://wordpress.org/plugins/seo-by-rank-math/), 2026 comparison reviews.*
+
+---
+
+## 🔧 Installation
+
+### From WordPress admin (recommended once published)
+1. **Plugins → Add New → Upload Plugin**
+2. Select the `smart-seo-booster.zip` file → **Install Now** → **Activate**
+3. Go to **Smart SEO** in the admin menu and run the setup
+
+### Manual
+```bash
+# Copy the plugin into your WordPress install
+cp -r smart-seo-booster /path/to/wp-content/plugins/
+
+# Or via WP-CLI
+wp plugin activate smart-seo-booster
+```
+
+**Requirements:** WordPress 5.9+ · PHP 8.0+ · Tested up to WordPress 6.9
+
+---
+
+## 🏗️ Architecture
+
+```
+smart-seo-booster/
+├── smart-seo-booster.php        # Bootstrap + plugin header
+├── uninstall.php                # Clean removal of options & post meta
+├── readme.txt                   # WordPress.org listing
+├── includes/                    # Core modules (one class = one concern)
+│   ├── class-loader.php         # Module registrar
+│   ├── class-settings.php       # Options API + settings page
+│   ├── class-admin-ui.php       # Admin menus & pages
+│   ├── class-seo-core.php       # Front-end meta output
+│   ├── class-meta-fields.php    # Per-post SEO meta box
+│   ├── class-schema-generator.php  # JSON-LD dispatcher
+│   ├── class-content-auditor.php   # Content analysis
+│   ├── class-seo-score-display.php # Scoring UI surfaces
+│   └── class-link-analyzer.php     # Internal link analysis
+├── schema/                      # JSON-LD templates (dynamic)
+├── templates/                   # Admin view templates
+├── css/  ·  js/                 # Enqueued assets (no inline blobs)
+└── languages/                   # i18n (.pot)
+```
+
+**Design rules**
+- Each module exposes a static `init()` registered in `class-loader.php`.
+- All output escaped at the sink (`esc_html`, `esc_attr`, `esc_url`, `wp_json_encode`).
+- All input sanitized on the way in; every form nonce-verified.
+- Assets enqueued via `wp_enqueue_*` with the version constant for cache-busting — **no inline `<style>`/`<script>` blobs.**
+
+---
+
+## 🗺️ Development Roadmap
+
+The road to **5,000 downloads** is four phases. Each phase is independently shippable and raises the plugin's WordPress.org rating and retention.
+
+### 🔴 Phase 1 — Foundation & Fixes *(v2.1.x → v2.2)*  ·  **Priority: CRITICAL**
+> Goal: a rock-solid, consistent, spotless base. Ship nothing new until these are clean.
+
+- [ ] **Fix version consistency** — header, constant, `readme.txt`, and `@since` tags all agree (`2.1.0`)
+- [ ] **Fix emoji encoding (mojibake)** — replace corrupted `ðŸŽ¯`/`âœ…` byte sequences with proper UTF-8 emoji or dashicons
+- [ ] **De-duplicate meta output** — `class-seo-core.php` and `class-meta-fields.php` both emit `og:*`/description on singular views; consolidate into one authority
+- [ ] **Move inline CSS/JS to enqueued assets** — remove `wp_add_inline_script` mega-strings and inline `<style>` blocks
+- [ ] **Remove/enqueue dead code** — `js/block-editor.js` is shipped but never enqueued
+- [ ] **Dynamic Article schema** — remove hardcoded author name; pull from post author
+- [ ] **Pass WordPress.org Plugin Check** with zero errors/warnings
+- [ ] **Consolidate documentation** — fold the 15+ scattered `*.md` dev notes into this README + `/docs`
+
+### 🟠 Phase 2 — Parity Features *(v2.3)*  ·  **Priority: HIGH**
+> Goal: close every "table-stakes" gap so no reviewer can say "but it doesn't even have X".
+
+- [ ] **XML Sitemap** — posts, pages, CPTs, images; `/sitemap.xml`; robots.txt reference
+- [ ] **Breadcrumbs** — function, shortcode, block + `BreadcrumbList` JSON-LD
+- [ ] **Per-post schema wiring** — connect the existing schema-type selector to real output
+- [ ] **Global meta templates** — `%%title%% %%sep%% %%sitename%%` variable system
+- [ ] **Auto meta description** — excerpt → trimmed content fallback
+- [ ] **Featured-image OG fallback**
+- [ ] **Search-engine verification fields** — Google / Bing / Pinterest
+
+### 🟡 Phase 3 — Modern UX & Trust *(v2.4)*  ·  **Priority: MEDIUM**
+> Goal: make it *feel* premium so first-time users leave 5-star reviews.
+
+- [ ] **Setup wizard** — 4-step onboarding (site type, defaults, verification, done)
+- [ ] **Redesigned settings** — tabbed, card-based, WP-native, fully responsive
+- [ ] **Global noindex controls** — archives, tags, search, paginated pages
+- [ ] **Accessibility pass** — WCAG 2.1 AA, keyboard nav, screen-reader labels
+- [ ] **Block-editor sidebar plugin** — native Gutenberg SEO panel (replaces classic metabox on modern editor)
+- [ ] **Full i18n** — updated `.pot`, RTL-safe CSS
+
+### 🟢 Phase 4 — Differentiators *(v2.5+)*  ·  **Priority: GROWTH**
+> Goal: give people a reason to *choose you over Slim SEO*.
+
+- [ ] **Redirection manager** — 301/302 + 404 log (kept simple, no external DB bloat)
+- [ ] **Bulk SEO editor** — edit titles/descriptions across posts in one screen
+- [ ] **Local SEO block** — LocalBusiness with hours/geo
+- [ ] **WooCommerce basics** — Product schema, OG for products
+- [ ] **Import from Yoast/Rank Math** — one-click migration (removes switching friction)
+
+---
+
+## ✅ Release Checklist
+
+Run before **every** WordPress.org submission or update.
+
+### Code quality
+- [ ] `Plugin Check` plugin: **0 errors, 0 warnings**
+- [ ] PHPCS with `WordPress-Extra` ruleset passes
+- [ ] No PHP notices/warnings with `WP_DEBUG` on
+- [ ] Tested on PHP 8.0, 8.1, 8.2, 8.3
+- [ ] Tested on WordPress 5.9 (min) and latest (6.9)
+
+### Security
+- [ ] All output escaped at the sink
+- [ ] All input sanitized + validated
+- [ ] All forms nonce-verified; all handlers capability-checked
+- [ ] No direct file access (`defined('ABSPATH') || exit;` in every file)
+- [ ] `uninstall.php` removes all options and post meta
+
+### Compliance & assets
+- [ ] `readme.txt` header valid ([readme validator](https://wordpress.org/plugins/developers/readme-validator/))
+- [ ] Version bumped everywhere (header, constant, `readme.txt`, `@since`)
+- [ ] `Stable tag` matches the packaged version
+- [ ] Changelog + upgrade notice written
+- [ ] Screenshots current (`assets/screenshot-*.png`)
+- [ ] Banner + icon present (`assets/banner-1544x500.png`, `assets/icon-256x256.png`)
+- [ ] All strings translatable with the `smart-seo-booster` text domain
+- [ ] No trademarked terms misused; no external calls without disclosure
+
+### Functional smoke test
+- [ ] Activate on a clean install — no fatal errors
+- [ ] Schema validates in [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [ ] Sitemap loads and validates
+- [ ] Social preview validates in Facebook/X debuggers
+- [ ] Deactivate/reactivate/uninstall cycle is clean
+
+---
+
+## 🤝 Contributing
+
+1. Fork and branch: `git checkout -b feature/your-feature`
+2. Follow [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/)
+3. Keep modules isolated — one class, one responsibility
+4. Add/update the `.pot` for any new strings
+5. Run Plugin Check before opening a PR
+6. Open a pull request against `main`
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide, and [STRATEGY.md](STRATEGY.md) for the growth plan behind this roadmap.
+
+---
+
+## 📄 License
+
+GPLv2 or later — see [LICENSE](LICENSE).
+
+## 👨‍💻 Author
+
+**Anupam Mondal** — Full-Stack Developer & SEO Consultant · [@anupammo](https://github.com/anupammo)
+
+---
+
+<sub>⭐ If Smart SEO Booster helps your site, a WordPress.org review and a GitHub star go a long way toward that 5K milestone.</sub>

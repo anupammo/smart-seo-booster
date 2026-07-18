@@ -15,6 +15,11 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-sitemap.php';
         require_once plugin_dir_path(__FILE__) . 'class-breadcrumbs.php';
         require_once plugin_dir_path(__FILE__) . 'class-setup-wizard.php';
+        require_once plugin_dir_path(__FILE__) . 'class-redirects.php';
+        require_once plugin_dir_path(__FILE__) . 'class-bulk-editor.php';
+        require_once plugin_dir_path(__FILE__) . 'class-importer.php';
+        require_once plugin_dir_path(__FILE__) . 'class-woocommerce.php';
+        require_once plugin_dir_path(__FILE__) . 'class-local-seo.php';
 
         Smart_SEO_Settings::init();
         Smart_SEO_Admin_UI::init();
@@ -27,5 +32,10 @@ class Smart_SEO_Loader {
         Smart_SEO_Sitemap::init();
         Smart_SEO_Breadcrumbs::init();
         Smart_SEO_Setup_Wizard::init();
+        Smart_SEO_Redirects::init();
+        Smart_SEO_Bulk_Editor::init();
+        Smart_SEO_Importer::init();
+        Smart_SEO_WooCommerce::init();
+        Smart_SEO_Local_SEO::init();
     }
 }

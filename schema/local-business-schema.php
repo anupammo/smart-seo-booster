@@ -32,6 +32,23 @@ if ( ! empty( $smart_seo_options['business_phone'] ) ) {
     $smart_seo_business['telephone'] = sanitize_text_field( $smart_seo_options['business_phone'] );
 }
 
+// Geo coordinates.
+if ( ! empty( $smart_seo_options['business_lat'] ) && ! empty( $smart_seo_options['business_lng'] ) ) {
+    $smart_seo_business['geo'] = [
+        "@type"     => "GeoCoordinates",
+        "latitude"  => sanitize_text_field( $smart_seo_options['business_lat'] ),
+        "longitude" => sanitize_text_field( $smart_seo_options['business_lng'] ),
+    ];
+}
+
+// Opening hours (one rule per line, e.g. "Mo-Fr 09:00-17:00").
+if ( ! empty( $smart_seo_options['business_hours'] ) ) {
+    $smart_seo_hours = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $smart_seo_options['business_hours'] ) ) ) );
+    if ( ! empty( $smart_seo_hours ) ) {
+        $smart_seo_business['openingHours'] = array_map( 'sanitize_text_field', $smart_seo_hours );
+    }
+}
+
 /**
  * Filter the LocalBusiness JSON-LD schema before output.
  *

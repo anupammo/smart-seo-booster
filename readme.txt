@@ -4,7 +4,7 @@ Tags: seo, xml sitemap, schema, open graph, breadcrumbs
 Requires at least: 5.9
 Requires PHP: 8.0
 Tested up to: 6.9
-Stable tag: 2.4.0
+Stable tag: 2.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,11 @@ Smart SEO Booster is a lightweight, modular plugin that gives you every SEO fund
 * Real-time SEO score: admin bar badge, dashboard widget, post-list column, per-post analysis
 * Search-engine verification for Google, Bing, Pinterest & Yandex
 * Content audit: word count, headings, image alt coverage, internal links
+* One-click import from Yoast SEO and Rank Math (never overwrites your work)
+* Redirection manager (301/302/307) with a 404 log
+* Bulk SEO editor to edit titles & descriptions across posts at once
+* WooCommerce Product schema and product Open Graph tags
+* Local SEO shortcode/block with LocalBusiness schema (geo & opening hours)
 * Lightweight, no external calls, translation-ready
 
 Built by Anupam Mondal — Full Stack Developer & SEO Consultant — to automate clarity and boost discoverability.
@@ -52,6 +57,14 @@ No. It uses minimal hooks and outputs schema only in the footer.
 3. Schema markup preview
 
 == Changelog ==
+
+= 2.5.0 =
+* Feature: One-click import from Yoast SEO and Rank Math (batched; never overwrites existing values)
+* Feature: Redirection manager — 301/302/307 redirects with a 404 log and one-click redirect creation
+* Feature: Bulk SEO editor to edit titles and meta descriptions across content on one screen
+* Feature: WooCommerce Product schema (offers, availability, SKU, ratings) and product Open Graph tags
+* Feature: Local SEO — [smart_seo_local_business] shortcode and block; LocalBusiness schema with geo and opening hours
+* Improvement: Open Graph type is now filterable (smart_seo_og_type)
 
 = 2.4.0 =
 * Feature: 4-step setup wizard for guided onboarding on activation
@@ -95,6 +108,9 @@ No. It uses minimal hooks and outputs schema only in the footer.
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.5.0 =
+Adds import from Yoast/Rank Math, a redirection manager with 404 log, a bulk SEO editor, WooCommerce product schema, and Local SEO.
 
 = 2.4.0 =
 Adds a setup wizard, a native block-editor SEO sidebar, a redesigned tabbed settings screen, and global no-index controls.

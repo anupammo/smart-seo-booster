@@ -38,6 +38,33 @@ class Smart_SEO_Admin_UI {
 
         add_submenu_page(
             'smart-seo',
+            __( 'Redirections', 'smart-seo-booster' ),
+            __( 'Redirections', 'smart-seo-booster' ),
+            'manage_options',
+            'smart-seo-redirects',
+            [ 'Smart_SEO_Redirects', 'render_page' ]
+        );
+
+        add_submenu_page(
+            'smart-seo',
+            __( 'Bulk SEO Editor', 'smart-seo-booster' ),
+            __( 'Bulk Editor', 'smart-seo-booster' ),
+            'edit_others_posts',
+            'smart-seo-bulk',
+            [ 'Smart_SEO_Bulk_Editor', 'render_page' ]
+        );
+
+        add_submenu_page(
+            'smart-seo',
+            __( 'Import SEO Data', 'smart-seo-booster' ),
+            __( 'Import', 'smart-seo-booster' ),
+            'manage_options',
+            'smart-seo-import',
+            [ 'Smart_SEO_Importer', 'render_page' ]
+        );
+
+        add_submenu_page(
+            'smart-seo',
             __( 'Setup Wizard', 'smart-seo-booster' ),
             __( 'Setup Wizard', 'smart-seo-booster' ),
             'manage_options',
@@ -129,8 +156,8 @@ class Smart_SEO_Admin_UI {
             );
         }
 
-        // Settings/wizard styling.
-        if ($hook === 'toplevel_page_smart-seo' || $hook === 'smart-seo_page_smart-seo-setup') {
+        // Settings/wizard/tools styling — all plugin admin pages.
+        if (strpos($hook, 'smart-seo') !== false) {
             wp_enqueue_style(
                 'smart-seo-settings',
                 plugin_dir_url(__FILE__) . '../css/settings.css',

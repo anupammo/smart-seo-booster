@@ -41,8 +41,13 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 
 ## 📊 Feature Matrix (Current vs Planned)
 
-### ✅ Available now (v2.4)
+### ✅ Available now (v2.5)
 
+- **Import from Yoast / Rank Math** — one-click, batched migration that never overwrites your work
+- **Redirection manager** — 301/302/307 + a 404 log with one-click redirect creation
+- **Bulk SEO editor** — edit titles & descriptions across your content on one screen
+- **WooCommerce** — Product schema + product OG tags (auto-active when WooCommerce is)
+- **Local SEO** — business shortcode/block + LocalBusiness schema with geo & opening hours
 - **Setup wizard** — 4-step guided onboarding on first activation
 - **Block-editor sidebar** — native Gutenberg SEO panel with live snippet preview + tabbed classic metabox
 - **Tabbed, card-based settings** — accessible (WAI-ARIA), responsive, RTL-safe
@@ -62,13 +67,14 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 - **Canonical URLs & robots meta** — per-post control
 - **Focus keyword analysis** — density + placement checks in the editor
 
-### 🛠️ Planned (see [Roadmap](#-development-roadmap))
+### 🔭 Future ideas (post-roadmap)
 
-- **Redirection manager** — simple 301/302 + 404 log
-- **Bulk SEO editor** — edit titles/descriptions across posts in one screen
-- **Local SEO block** — LocalBusiness with hours/geo
-- **WooCommerce basics** — Product schema & OG for products
-- **Import from Yoast/Rank Math** — one-click migration
+All four roadmap phases are complete. Candidate future work:
+
+- **Video & News sitemaps**, sitemap caching
+- **Link-suggestion** helper in the editor
+- **Multiple** LocalBusiness locations
+- **Google Search Console** read-only insights
 
 ---
 
@@ -85,7 +91,9 @@ Smart SEO Booster competes in the **lightweight/automated lane** — alongside S
 | XML sitemap | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Breadcrumbs | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Content/SEO scoring | ✅ | ➖ | ➖ | ✅ | ✅ |
-| Redirection manager | 🛠️ planned | ➖ (Pro) | ➖ | ✅ | ➖ (Premium) |
+| Redirection manager | ✅ | ➖ (Pro) | ➖ | ✅ | ➖ (Premium) |
+| Import from Yoast/Rank Math | ✅ | ✅ | ✅ | ✅ | ✅ |
+| WooCommerce product schema | ✅ | ✅ | ➖ | ✅ | ➖ (Premium) |
 | Settings-light automation | ✅ | ✅✅ | ✅ | ➖ | ➖ |
 | Weight / performance | ✅✅ | ✅✅ | ✅✅ | ➖ | ➖ |
 | Free & no upsell nags | ✅ | ✅ | ✅ | ➖ | ➖ |
@@ -186,14 +194,14 @@ The road to **5,000 downloads** is four phases. Each phase is independently ship
 - [x] **Block-editor sidebar** — `js/block-editor.js`: native Gutenberg `PluginSidebar` (Search Appearance / Social / Advanced) bound to REST meta, with live snippet preview; classic metabox auto-hidden on the block editor
 - [x] **Full i18n** — regenerated `.pot` (139 strings), `wp_set_script_translations` for the sidebar, RTL-safe CSS (logical properties) on the new UI
 
-### 🟢 Phase 4 — Differentiators *(v2.5+)*  ·  **Priority: GROWTH**
-> Goal: give people a reason to *choose you over Slim SEO*.
+### ✅ Phase 4 — Differentiators *(v2.5.0)*  ·  **COMPLETE**
+> Goal: give people a reason to *choose you over Slim SEO*. — **Done.**
 
-- [ ] **Redirection manager** — 301/302 + 404 log (kept simple, no external DB bloat)
-- [ ] **Bulk SEO editor** — edit titles/descriptions across posts in one screen
-- [ ] **Local SEO block** — LocalBusiness with hours/geo
-- [ ] **WooCommerce basics** — Product schema, OG for products
-- [ ] **Import from Yoast/Rank Math** — one-click migration (removes switching friction)
+- [x] **Redirection manager** — `class-redirects.php`: 301/302/307 redirects + capped 404 log with one-click "create redirect", stored in options (no custom tables); path normalization unit-tested for trailing-slash idempotency
+- [x] **Bulk SEO editor** — `class-bulk-editor.php`: paginated screen to edit SEO titles & descriptions across posts/pages, per-post capability-checked
+- [x] **Local SEO** — `class-local-seo.php`: `[smart_seo_local_business]` shortcode **and** a dynamic Gutenberg block; LocalBusiness schema enriched with geo coordinates + opening hours from settings
+- [x] **WooCommerce basics** — `class-woocommerce.php` (loads only when WC is active): Product JSON-LD (offers, availability, SKU, aggregateRating) + `og:type=product` and price/availability OG tags
+- [x] **Import from Yoast/Rank Math** — `class-importer.php`: batched one-click migration of titles, descriptions, social tags, canonicals & robots; never overwrites existing values (removes the #1 switching barrier)
 
 ---
 

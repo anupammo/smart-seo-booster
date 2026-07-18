@@ -140,6 +140,13 @@ class Smart_SEO_Core {
         $og_desc  = $og_desc ?: $desc;
         $og_type  = $post_id ? get_post_meta($post_id, '_smart_seo_og_type', true) : '';
         $og_type  = $og_type ?: (is_singular('post') ? 'article' : 'website');
+        /**
+         * Filter the Open Graph type. Extensions (e.g. WooCommerce) use this
+         * to set 'product' on the right templates.
+         *
+         * @param string $og_type
+         */
+        $og_type  = apply_filters('smart_seo_og_type', $og_type);
         $og_image = self::resolve_og_image($post_id);
         $og_url   = $is_singular ? get_permalink($post_id) : home_url('/');
 

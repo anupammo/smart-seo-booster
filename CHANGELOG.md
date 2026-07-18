@@ -5,6 +5,19 @@ All notable changes to Smart SEO Booster will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2026-07-18
+
+### Added
+- One-click importer from Yoast SEO and Rank Math — batched migration of titles, descriptions, social tags, canonicals and robots; never overwrites existing Smart SEO values
+- Redirection manager: 301/302/307 redirects plus a capped 404 log with one-click "create redirect" (stored in options, no custom tables)
+- Bulk SEO editor: paginated screen to edit SEO titles and meta descriptions across posts and pages
+- WooCommerce integration (auto-active when WooCommerce is present): Product JSON-LD with offers/availability/SKU/ratings and product Open Graph tags
+- Local SEO: `[smart_seo_local_business]` shortcode and a dynamic block; LocalBusiness schema enriched with geo coordinates and opening hours
+
+### Changed
+- Open Graph type is now filterable via `smart_seo_og_type`
+- Uninstall now removes redirect, 404-log and rewrite-version options
+
 ## [2.4.0] - 2026-07-18
 
 ### Added

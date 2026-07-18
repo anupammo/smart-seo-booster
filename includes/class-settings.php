@@ -74,6 +74,9 @@ class Smart_SEO_Settings {
                     'business_region'      => [ 'type' => 'text', 'label' => __( 'Region / state', 'smart-seo-booster' ), 'class' => 'regular-text' ],
                     'business_postal'      => [ 'type' => 'text', 'label' => __( 'Postal code', 'smart-seo-booster' ), 'class' => 'small-text' ],
                     'business_country'     => [ 'type' => 'text', 'label' => __( 'Country code', 'smart-seo-booster' ), 'class' => 'small-text', 'desc' => __( 'Two-letter code, e.g. US, GB, IN.', 'smart-seo-booster' ) ],
+                    'business_hours'       => [ 'type' => 'textarea', 'label' => __( 'Opening hours', 'smart-seo-booster' ), 'desc' => __( 'One rule per line, e.g. Mo-Fr 09:00-17:00', 'smart-seo-booster' ) ],
+                    'business_lat'         => [ 'type' => 'text', 'label' => __( 'Latitude', 'smart-seo-booster' ), 'class' => 'small-text' ],
+                    'business_lng'         => [ 'type' => 'text', 'label' => __( 'Longitude', 'smart-seo-booster' ), 'class' => 'small-text' ],
                 ],
             ],
         ];

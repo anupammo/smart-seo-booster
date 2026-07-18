@@ -24,6 +24,11 @@ class Smart_SEO_Schema_Generator {
             return;
         }
 
+        // WooCommerce product pages are handled by the dedicated integration.
+        if (function_exists('is_product') && is_product()) {
+            return;
+        }
+
         $schema_data = null;
 
         // 1. Per-post selection.

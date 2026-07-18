@@ -7,6 +7,9 @@ defined('WP_UNINSTALL_PLUGIN') || exit;
 
 // Delete plugin options.
 delete_option('smart_seo_options');
+delete_option('smart_seo_redirects');
+delete_option('smart_seo_404_log');
+delete_option('smart_seo_rewrite_v');
 
 // Delete all per-post SEO meta (uses the core API — no direct DB queries).
 $smart_seo_meta_keys = [

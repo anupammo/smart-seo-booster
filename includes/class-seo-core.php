@@ -14,6 +14,62 @@ class Smart_SEO_Core {
     public static function init() {
         add_action('wp_head', [__CLASS__, 'inject_meta_tags'], 1);
         add_filter('pre_get_document_title', [__CLASS__, 'filter_document_title']);
+        add_filter('wp_robots', [__CLASS__, 'filter_robots']);
+    }
+
+    /**
+     * Central robots directive control: per-post robots meta + global no-index rules.
+     *
+     * @param array $robots wp_robots directive array.
+     * @return array
+     */
+    public static function filter_robots($robots) {
+        $options = get_option('smart_seo_options', []);
+
+        // Per-post robots (from the SEO meta box).
+        if (is_singular()) {
+            $post = get_queried_object();
+            if ($post instanceof WP_Post) {
+                $directive = get_post_meta($post->ID, '_smart_seo_robots', true);
+                if ($directive) {
+                    if (strpos($directive, 'noindex') !== false) {
+                        $robots['noindex'] = true;
+                    }
+                    if (strpos($directive, 'nofollow') !== false) {
+                        $robots['nofollow'] = true;
+                    }
+                    if (strpos($directive, 'noarchive') !== false) {
+                        $robots['noarchive'] = true;
+                    }
+                    if (strpos($directive, 'nosnippet') !== false) {
+                        $robots['nosnippet'] = true;
+                    }
+                }
+            }
+        }
+
+        // Global no-index rules for low-value archive views.
+        $rules = [
+            'noindex_archives'  => is_category() || is_tag() || is_tax(),
+            'noindex_author'    => is_author(),
+            'noindex_date'      => is_date(),
+            'noindex_search'    => is_search(),
+            'noindex_paginated' => is_paged(),
+        ];
+        foreach ($rules as $key => $matches) {
+            if ($matches && !empty($options[$key])) {
+                $robots['noindex'] = true;
+            }
+        }
+
+        if (!empty($robots['noindex'])) {
+            unset($robots['index']);
+            if (empty($robots['nofollow'])) {
+                $robots['follow'] = true;
+            }
+        }
+
+        return $robots;
     }
 
     /**
@@ -75,7 +131,7 @@ class Smart_SEO_Core {
         }
 
         $keywords = $post_id ? get_post_meta($post_id, '_smart_seo_keywords', true) : '';
-        $robots   = $post_id ? get_post_meta($post_id, '_smart_seo_robots', true) : '';
+        // Robots directives are handled centrally via the wp_robots filter.
 
         // Open Graph
         $og_title = $post_id ? get_post_meta($post_id, '_smart_seo_og_title', true) : '';
@@ -103,9 +159,6 @@ class Smart_SEO_Core {
         }
         if ($keywords) {
             printf('<meta name="keywords" content="%s" />' . "\n", esc_attr($keywords));
-        }
-        if ($robots) {
-            printf('<meta name="robots" content="%s" />' . "\n", esc_attr($robots));
         }
         if ($canonical) {
             printf('<link rel="canonical" href="%s" />' . "\n", esc_url($canonical));

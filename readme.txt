@@ -4,7 +4,7 @@ Tags: seo, xml sitemap, schema, open graph, breadcrumbs
 Requires at least: 5.9
 Requires PHP: 8.0
 Tested up to: 6.9
-Stable tag: 2.3.0
+Stable tag: 2.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,15 @@ No. It uses minimal hooks and outputs schema only in the footer.
 
 == Changelog ==
 
+= 2.4.0 =
+* Feature: 4-step setup wizard for guided onboarding on activation
+* Feature: Native Gutenberg (block editor) SEO sidebar with live search preview
+* Feature: Redesigned tabbed, card-based settings screen (accessible & responsive)
+* Feature: Global no-index controls for archives, author, date, search and paginated pages
+* Improvement: Robots directives now handled centrally via the wp_robots filter (no duplicate tags)
+* Improvement: Accessibility — WAI-ARIA tabs with full keyboard support on settings and the SEO metabox
+* Improvement: Regenerated translation template (.pot); block sidebar is translation-ready
+
 = 2.3.0 =
 * Feature: XML sitemaps — index + per-type sitemaps (posts, pages, CPTs) with images, at /sitemap.xml, referenced from robots.txt
 * Feature: Breadcrumbs — shortcode, template tag, and BreadcrumbList JSON-LD
@@ -86,6 +95,9 @@ No. It uses minimal hooks and outputs schema only in the footer.
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.4.0 =
+Adds a setup wizard, a native block-editor SEO sidebar, a redesigned tabbed settings screen, and global no-index controls.
 
 = 2.3.0 =
 Adds XML sitemaps, breadcrumbs, per-post schema types, title/meta templates, and search-engine verification. After updating, visit Settings → Permalinks once if /sitemap.xml does not load.

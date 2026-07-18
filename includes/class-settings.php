@@ -52,6 +52,17 @@ class Smart_SEO_Settings {
                     'verify_yandex'    => [ 'type' => 'text', 'label' => __( 'Yandex', 'smart-seo-booster' ), 'class' => 'regular-text' ],
                 ],
             ],
+            'smart_seo_indexing' => [
+                'title'  => __( 'Indexing', 'smart-seo-booster' ),
+                'desc'   => __( 'Tell search engines not to index low-value archive pages. Links are still followed.', 'smart-seo-booster' ),
+                'fields' => [
+                    'noindex_archives'  => [ 'type' => 'checkbox', 'label' => __( 'No-index category, tag &amp; taxonomy archives', 'smart-seo-booster' ) ],
+                    'noindex_author'    => [ 'type' => 'checkbox', 'label' => __( 'No-index author archives', 'smart-seo-booster' ) ],
+                    'noindex_date'      => [ 'type' => 'checkbox', 'label' => __( 'No-index date archives', 'smart-seo-booster' ) ],
+                    'noindex_search'    => [ 'type' => 'checkbox', 'label' => __( 'No-index search results', 'smart-seo-booster' ) ],
+                    'noindex_paginated' => [ 'type' => 'checkbox', 'label' => __( 'No-index paginated pages (page 2, 3…)', 'smart-seo-booster' ) ],
+                ],
+            ],
             'smart_seo_schema_data' => [
                 'title'  => __( 'Schema Details', 'smart-seo-booster' ),
                 'desc'   => __( 'Optional data used to enrich Organization and LocalBusiness schema.', 'smart-seo-booster' ),

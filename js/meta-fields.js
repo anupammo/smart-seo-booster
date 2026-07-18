@@ -9,17 +9,51 @@
 	var data = window.SmartSEOMeta || { ajaxUrl: window.ajaxurl, nonce: '' };
 
 	$( function () {
-		// Tab switching
-		$( '.seo-tab-btn' ).on( 'click', function () {
-			var tab = $( this ).data( 'tab' );
-			$( '.seo-tab-btn' ).removeClass( 'active' );
-			$( '.seo-tab-content' ).removeClass( 'active' );
-			$( this ).addClass( 'active' );
-			$( '#' + tab + '-tab' ).addClass( 'active' );
+		// Tab switching (ARIA tabs pattern).
+		var $tabs = $( '.seo-tab-btn' );
 
+		function activateTab( $btn, setFocus ) {
+			var tab = $btn.data( 'tab' );
+			$tabs.removeClass( 'active' ).attr( { 'aria-selected': 'false', tabindex: '-1' } );
+			$( '.seo-tab-content' ).removeClass( 'active' ).prop( 'hidden', true );
+			$btn.addClass( 'active' ).attr( { 'aria-selected': 'true', tabindex: '0' } );
+			$( '#' + tab + '-tab' ).addClass( 'active' ).prop( 'hidden', false );
+
+			if ( setFocus ) {
+				$btn.trigger( 'focus' );
+			}
 			if ( tab === 'analysis' ) {
 				loadSeoAnalysis();
 			}
+		}
+
+		$tabs.on( 'click', function () {
+			activateTab( $( this ), false );
+		} );
+
+		$tabs.on( 'keydown', function ( e ) {
+			var i = $tabs.index( this );
+			var next;
+			switch ( e.key ) {
+				case 'ArrowRight':
+				case 'ArrowDown':
+					next = ( i + 1 ) % $tabs.length;
+					break;
+				case 'ArrowLeft':
+				case 'ArrowUp':
+					next = ( i - 1 + $tabs.length ) % $tabs.length;
+					break;
+				case 'Home':
+					next = 0;
+					break;
+				case 'End':
+					next = $tabs.length - 1;
+					break;
+				default:
+					return;
+			}
+			e.preventDefault();
+			activateTab( $tabs.eq( next ), true );
 		} );
 
 		// Character counters

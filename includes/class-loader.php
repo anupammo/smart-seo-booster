@@ -14,6 +14,7 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-seo-score-display.php';
         require_once plugin_dir_path(__FILE__) . 'class-sitemap.php';
         require_once plugin_dir_path(__FILE__) . 'class-breadcrumbs.php';
+        require_once plugin_dir_path(__FILE__) . 'class-setup-wizard.php';
 
         Smart_SEO_Settings::init();
         Smart_SEO_Admin_UI::init();
@@ -25,5 +26,6 @@ class Smart_SEO_Loader {
         Smart_SEO_Score_Display::init();
         Smart_SEO_Sitemap::init();
         Smart_SEO_Breadcrumbs::init();
+        Smart_SEO_Setup_Wizard::init();
     }
 }

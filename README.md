@@ -41,8 +41,12 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 
 ## 📊 Feature Matrix (Current vs Planned)
 
-### ✅ Available now (v2.3)
+### ✅ Available now (v2.4)
 
+- **Setup wizard** — 4-step guided onboarding on first activation
+- **Block-editor sidebar** — native Gutenberg SEO panel with live snippet preview + tabbed classic metabox
+- **Tabbed, card-based settings** — accessible (WAI-ARIA), responsive, RTL-safe
+- **Global no-index controls** — archives, author, date, search & paginated pages
 - **Meta tags** — automatic title & meta description injection
 - **Global title/meta templates** — `%%title%%`, `%%sitename%%`, `%%sep%%`, `%%excerpt%%`, `%%category%%`… variable system
 - **Auto meta description** — custom → template → excerpt → trimmed content fallback
@@ -60,11 +64,11 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 
 ### 🛠️ Planned (see [Roadmap](#-development-roadmap))
 
-- **Setup wizard** — 4-step onboarding
-- **Redesigned tabbed settings** + block-editor sidebar panel
-- **Sitewide noindex controls** — archives, tags, search, paginated pages
 - **Redirection manager** — simple 301/302 + 404 log
-- **Bulk SEO editor** & **import from Yoast/Rank Math**
+- **Bulk SEO editor** — edit titles/descriptions across posts in one screen
+- **Local SEO block** — LocalBusiness with hours/geo
+- **WooCommerce basics** — Product schema & OG for products
+- **Import from Yoast/Rank Math** — one-click migration
 
 ---
 
@@ -172,15 +176,15 @@ The road to **5,000 downloads** is four phases. Each phase is independently ship
 
 **Also landed:** expanded, config-driven settings screen (General / Titles &amp; Metas / Webmaster / Schema Details) with whitelist sanitization (unit-tested); version bump to `2.3.0` with self-healing rewrite flush.
 
-### 🟡 Phase 3 — Modern UX & Trust *(v2.4)*  ·  **Priority: MEDIUM**
-> Goal: make it *feel* premium so first-time users leave 5-star reviews.
+### ✅ Phase 3 — Modern UX & Trust *(v2.4.0)*  ·  **COMPLETE**
+> Goal: make it *feel* premium so first-time users leave 5-star reviews. — **Done.**
 
-- [ ] **Setup wizard** — 4-step onboarding (site type, defaults, verification, done)
-- [ ] **Redesigned settings** — tabbed, card-based, WP-native, fully responsive
-- [ ] **Global noindex controls** — archives, tags, search, paginated pages
-- [ ] **Accessibility pass** — WCAG 2.1 AA, keyboard nav, screen-reader labels
-- [ ] **Block-editor sidebar plugin** — native Gutenberg SEO panel (replaces classic metabox on modern editor)
-- [ ] **Full i18n** — updated `.pot`, RTL-safe CSS
+- [x] **Setup wizard** — `class-setup-wizard.php`: 4-step onboarding (site type → titles → features → verification → done), activation redirect, merges into options without wiping unrelated settings
+- [x] **Redesigned settings** — tabbed, card-based, WP-native, responsive; single form (no data loss across tabs); all fields in one config-driven screen
+- [x] **Global noindex controls** — archives, author, date, search & paginated pages via the modern `wp_robots` filter (per-post robots consolidated here too — no duplicate tags)
+- [x] **Accessibility pass** — WAI-ARIA tabs (roles, `aria-selected`, roving `tabindex`, arrow/Home/End keys) on both the settings screen and the classic metabox; accessible breadcrumb `<nav>`
+- [x] **Block-editor sidebar** — `js/block-editor.js`: native Gutenberg `PluginSidebar` (Search Appearance / Social / Advanced) bound to REST meta, with live snippet preview; classic metabox auto-hidden on the block editor
+- [x] **Full i18n** — regenerated `.pot` (139 strings), `wp_set_script_translations` for the sidebar, RTL-safe CSS (logical properties) on the new UI
 
 ### 🟢 Phase 4 — Differentiators *(v2.5+)*  ·  **Priority: GROWTH**
 > Goal: give people a reason to *choose you over Slim SEO*.

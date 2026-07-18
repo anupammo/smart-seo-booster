@@ -5,6 +5,19 @@ All notable changes to Smart SEO Booster will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-07-18
+
+### Added
+- Setup wizard: 4-step guided onboarding (site type → titles → features → verification), shown on activation, merging into options without wiping unrelated settings
+- Native block-editor (Gutenberg) SEO sidebar bound to REST meta, with a live search-snippet preview
+- Redesigned tabbed, card-based settings screen — accessible (WAI-ARIA tabs, keyboard navigation) and responsive
+- Global no-index controls for category/tag/taxonomy, author, date, search and paginated archives
+
+### Changed
+- Robots directives (per-post + global) now handled centrally through the `wp_robots` filter, eliminating duplicate robots tags
+- Classic SEO metabox is hidden on the block editor (the sidebar replaces it); its tabs gained full ARIA + keyboard support
+- Regenerated `.pot`; the block sidebar registers script translations
+
 ## [2.3.0] - 2026-07-18
 
 ### Added

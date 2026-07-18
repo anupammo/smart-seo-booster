@@ -26,14 +26,17 @@ class Smart_SEO_Meta_Fields {
      * @since 2.1.0
      */
     public static function init() {
-        // Add meta boxes
+        // Add meta boxes (classic editor only — the block editor uses the sidebar).
         add_action('add_meta_boxes', [__CLASS__, 'add_seo_meta_boxes']);
-        
+
         // Save meta fields
         add_action('save_post', [__CLASS__, 'save_seo_meta_fields']);
-        
-        // Enqueue scripts and styles
+
+        // Enqueue scripts and styles for the classic metabox.
         add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue_meta_scripts']);
+
+        // Native block-editor sidebar.
+        add_action('enqueue_block_editor_assets', [__CLASS__, 'enqueue_block_sidebar']);
 
         // Front-end meta output is handled centrally by Smart_SEO_Core to avoid
         // duplicate tags. This class only manages the admin editing UI + REST.
@@ -41,15 +44,52 @@ class Smart_SEO_Meta_Fields {
         // Add meta fields to REST API for block editor
         add_action('init', [__CLASS__, 'register_meta_fields_for_rest']);
     }
-    
+
+    /**
+     * Whether the current admin screen uses the block editor.
+     *
+     * @return bool
+     */
+    private static function is_block_editor() {
+        if ( ! function_exists('get_current_screen') ) {
+            return false;
+        }
+        $screen = get_current_screen();
+        return $screen && method_exists($screen, 'is_block_editor') && $screen->is_block_editor();
+    }
+
+    /**
+     * Enqueue the Gutenberg SEO sidebar.
+     *
+     * @since 2.4.0
+     */
+    public static function enqueue_block_sidebar() {
+        $ver = defined('SMART_SEO_BOOSTER_VERSION') ? SMART_SEO_BOOSTER_VERSION : false;
+        wp_enqueue_script(
+            'smart-seo-block-editor',
+            plugin_dir_url(__FILE__) . '../js/block-editor.js',
+            ['wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n'],
+            $ver,
+            true
+        );
+        if ( function_exists('wp_set_script_translations') ) {
+            wp_set_script_translations('smart-seo-block-editor', 'smart-seo-booster');
+        }
+    }
+
     /**
      * Add SEO meta boxes to post/page edit screens
-     * 
+     *
      * @since 2.1.0
      */
     public static function add_seo_meta_boxes() {
+        // On the block editor the native sidebar replaces this metabox.
+        if ( self::is_block_editor() ) {
+            return;
+        }
+
         $post_types = ['post', 'page'];
-        
+
         foreach ($post_types as $post_type) {
             add_meta_box(
                 'smart_seo_meta_fields',
@@ -110,15 +150,15 @@ class Smart_SEO_Meta_Fields {
         <div class="smart-seo-meta-fields">
             
             <!-- Tab Navigation -->
-            <div class="seo-tab-nav">
-                <button type="button" class="seo-tab-btn active" data-tab="basic">📝 Basic SEO</button>
-                <button type="button" class="seo-tab-btn" data-tab="social">📱 Social Media</button>
-                <button type="button" class="seo-tab-btn" data-tab="advanced">⚙️ Advanced</button>
-                <button type="button" class="seo-tab-btn" data-tab="analysis">📊 Analysis</button>
+            <div class="seo-tab-nav" role="tablist" aria-label="<?php esc_attr_e( 'SEO settings', 'smart-seo-booster' ); ?>">
+                <button type="button" class="seo-tab-btn active" data-tab="basic" role="tab" id="seo-tab-basic" aria-controls="basic-tab" aria-selected="true" tabindex="0">📝 <?php esc_html_e( 'Basic SEO', 'smart-seo-booster' ); ?></button>
+                <button type="button" class="seo-tab-btn" data-tab="social" role="tab" id="seo-tab-social" aria-controls="social-tab" aria-selected="false" tabindex="-1">📱 <?php esc_html_e( 'Social Media', 'smart-seo-booster' ); ?></button>
+                <button type="button" class="seo-tab-btn" data-tab="advanced" role="tab" id="seo-tab-advanced" aria-controls="advanced-tab" aria-selected="false" tabindex="-1">⚙️ <?php esc_html_e( 'Advanced', 'smart-seo-booster' ); ?></button>
+                <button type="button" class="seo-tab-btn" data-tab="analysis" role="tab" id="seo-tab-analysis" aria-controls="analysis-tab" aria-selected="false" tabindex="-1">📊 <?php esc_html_e( 'Analysis', 'smart-seo-booster' ); ?></button>
             </div>
             
             <!-- Basic SEO Tab -->
-            <div class="seo-tab-content active" id="basic-tab">
+            <div class="seo-tab-content active" id="basic-tab" role="tabpanel" aria-labelledby="seo-tab-basic">
                 <div class="seo-field-group">
                     <label for="smart_seo_focus_keyword">🎯 Focus Keyword</label>
                     <input type="text" id="smart_seo_focus_keyword" name="smart_seo_focus_keyword" value="<?php echo esc_attr($focus_keyword); ?>" placeholder="Enter your target keyword">
@@ -160,7 +200,7 @@ class Smart_SEO_Meta_Fields {
             </div>
             
             <!-- Social Media Tab -->
-            <div class="seo-tab-content" id="social-tab">
+            <div class="seo-tab-content" id="social-tab" role="tabpanel" aria-labelledby="seo-tab-social" hidden>
                 <h4>📘 Open Graph (Facebook, LinkedIn)</h4>
                 
                 <div class="seo-field-group">
@@ -275,7 +315,7 @@ class Smart_SEO_Meta_Fields {
             </div>
             
             <!-- Advanced Tab -->
-            <div class="seo-tab-content" id="advanced-tab">
+            <div class="seo-tab-content" id="advanced-tab" role="tabpanel" aria-labelledby="seo-tab-advanced" hidden>
                 <div class="seo-field-group">
                     <label for="smart_seo_canonical">🔗 Canonical URL</label>
                     <input type="url" id="smart_seo_canonical" name="smart_seo_canonical" value="<?php echo esc_url($canonical_url); ?>" placeholder="https://example.com/page">
@@ -318,7 +358,7 @@ class Smart_SEO_Meta_Fields {
             </div>
             
             <!-- Analysis Tab -->
-            <div class="seo-tab-content" id="analysis-tab">
+            <div class="seo-tab-content" id="analysis-tab" role="tabpanel" aria-labelledby="seo-tab-analysis" hidden>
                 <div id="seo-analysis-content">
                     <p>Loading SEO analysis...</p>
                 </div>
@@ -403,6 +443,11 @@ class Smart_SEO_Meta_Fields {
      */
     public static function enqueue_meta_scripts($hook) {
         if (!in_array($hook, ['post.php', 'post-new.php'])) {
+            return;
+        }
+
+        // The block editor uses the sidebar; skip the classic metabox assets there.
+        if (self::is_block_editor()) {
             return;
         }
 

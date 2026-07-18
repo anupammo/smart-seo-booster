@@ -1,32 +1,134 @@
 <?php
 defined('ABSPATH') || exit;
 
+/**
+ * Front-end meta output authority.
+ *
+ * This is the single source of truth for <head> SEO tags (description,
+ * canonical, robots, Open Graph, Twitter Cards). Per-post overrides from the
+ * SEO meta box are merged with automatic fallbacks so every page ships one
+ * clean, non-duplicated set of tags.
+ */
 class Smart_SEO_Core {
+
     public static function init() {
         add_action('wp_head', [__CLASS__, 'inject_meta_tags'], 1);
     }
 
     public static function inject_meta_tags() {
-        if (is_admin()) return;
+        if (is_admin()) {
+            return;
+        }
 
-        // Get current post/page data
-        global $post;
-        $title = is_singular() && $post ? get_the_title() : get_bloginfo('name');
-        $desc_raw = is_singular() && $post ? $post->post_content : get_bloginfo('description');
-        $desc_clean = wp_strip_all_tags( $desc_raw );
-        $desc = is_singular() && $post ? wp_trim_words( $desc_clean, 20 ) : $desc_clean;
-        
-        // Sanitize and output meta tags (escape at output site)
-        printf('<meta name="description" content="%s" />' . "\n", esc_attr( $desc ));
-        
-        // Add Open Graph tags for better social sharing
-        printf('<meta property="og:title" content="%s" />' . "\n", esc_attr( $title ));
-        printf('<meta property="og:description" content="%s" />' . "\n", esc_attr( $desc ));
-        echo '<meta property="og:type" content="' . esc_attr( is_singular('post') ? 'article' : 'website' ) . '" />' . "\n";
-        echo '<meta property="og:url" content="' . esc_url(get_permalink()) . '" />' . "\n";
-        
-        // Add site name
-        echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '" />' . "\n";
+        $is_singular = is_singular();
+        $post        = $is_singular ? get_queried_object() : null;
+        $post_id     = ($post instanceof WP_Post) ? $post->ID : 0;
+
+        // --- Resolve values: per-post override → automatic fallback ---------
+        $title = $is_singular ? get_the_title($post_id) : get_bloginfo('name');
+        $desc  = self::resolve_description($is_singular, $post, $post_id);
+
+        $canonical = $post_id ? get_post_meta($post_id, '_smart_seo_canonical', true) : '';
+        if (!$canonical && $is_singular) {
+            $canonical = get_permalink($post_id);
+        }
+
+        $keywords = $post_id ? get_post_meta($post_id, '_smart_seo_keywords', true) : '';
+        $robots   = $post_id ? get_post_meta($post_id, '_smart_seo_robots', true) : '';
+
+        // Open Graph
+        $og_title = $post_id ? get_post_meta($post_id, '_smart_seo_og_title', true) : '';
+        $og_title = $og_title ?: $title;
+        $og_desc  = $post_id ? get_post_meta($post_id, '_smart_seo_og_description', true) : '';
+        $og_desc  = $og_desc ?: $desc;
+        $og_type  = $post_id ? get_post_meta($post_id, '_smart_seo_og_type', true) : '';
+        $og_type  = $og_type ?: (is_singular('post') ? 'article' : 'website');
+        $og_image = self::resolve_og_image($post_id);
+        $og_url   = $is_singular ? get_permalink($post_id) : home_url('/');
+
+        // Twitter
+        $tw_card  = $post_id ? get_post_meta($post_id, '_smart_seo_twitter_card', true) : '';
+        $tw_card  = $tw_card ?: 'summary_large_image';
+        $tw_title = $post_id ? get_post_meta($post_id, '_smart_seo_twitter_title', true) : '';
+        $tw_title = $tw_title ?: $og_title;
+        $tw_desc  = $post_id ? get_post_meta($post_id, '_smart_seo_twitter_description', true) : '';
+        $tw_desc  = $tw_desc ?: $og_desc;
+        $tw_image = $post_id ? get_post_meta($post_id, '_smart_seo_twitter_image', true) : '';
+        $tw_image = $tw_image ?: $og_image;
+
+        // --- Output (each tag exactly once) ---------------------------------
+        if ($desc) {
+            printf('<meta name="description" content="%s" />' . "\n", esc_attr($desc));
+        }
+        if ($keywords) {
+            printf('<meta name="keywords" content="%s" />' . "\n", esc_attr($keywords));
+        }
+        if ($robots) {
+            printf('<meta name="robots" content="%s" />' . "\n", esc_attr($robots));
+        }
+        if ($canonical) {
+            printf('<link rel="canonical" href="%s" />' . "\n", esc_url($canonical));
+        }
+
+        // Open Graph
+        printf('<meta property="og:title" content="%s" />' . "\n", esc_attr($og_title));
+        if ($og_desc) {
+            printf('<meta property="og:description" content="%s" />' . "\n", esc_attr($og_desc));
+        }
+        printf('<meta property="og:type" content="%s" />' . "\n", esc_attr($og_type));
+        printf('<meta property="og:url" content="%s" />' . "\n", esc_url($og_url));
+        printf('<meta property="og:site_name" content="%s" />' . "\n", esc_attr(get_bloginfo('name')));
+        if ($og_image) {
+            printf('<meta property="og:image" content="%s" />' . "\n", esc_url($og_image));
+        }
+
+        // Twitter Cards
+        printf('<meta name="twitter:card" content="%s" />' . "\n", esc_attr($tw_card));
+        printf('<meta name="twitter:title" content="%s" />' . "\n", esc_attr($tw_title));
+        if ($tw_desc) {
+            printf('<meta name="twitter:description" content="%s" />' . "\n", esc_attr($tw_desc));
+        }
+        if ($tw_image) {
+            printf('<meta name="twitter:image" content="%s" />' . "\n", esc_url($tw_image));
+        }
+    }
+
+    /**
+     * Resolve the meta description: custom field → excerpt → trimmed content → tagline.
+     */
+    private static function resolve_description($is_singular, $post, $post_id) {
+        if ($is_singular && $post_id) {
+            $custom = get_post_meta($post_id, '_smart_seo_description', true);
+            if ($custom) {
+                return $custom;
+            }
+            if ($post instanceof WP_Post && $post->post_excerpt) {
+                return wp_strip_all_tags($post->post_excerpt);
+            }
+            if ($post instanceof WP_Post) {
+                return wp_trim_words(wp_strip_all_tags($post->post_content), 30, '…');
+            }
+        }
+        return wp_strip_all_tags(get_bloginfo('description'));
+    }
+
+    /**
+     * Resolve the OG image: custom field → featured image → none.
+     */
+    private static function resolve_og_image($post_id) {
+        if (!$post_id) {
+            return '';
+        }
+        $custom = get_post_meta($post_id, '_smart_seo_og_image', true);
+        if ($custom) {
+            return $custom;
+        }
+        if (has_post_thumbnail($post_id)) {
+            $src = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), 'large');
+            if ($src && !empty($src[0])) {
+                return $src[0];
+            }
+        }
+        return '';
     }
 }
-

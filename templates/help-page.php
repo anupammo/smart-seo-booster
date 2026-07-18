@@ -3,7 +3,7 @@ defined('ABSPATH') || exit;
 ?>
 
 <div class="wrap smart-seo-help">
-    <h1>ðŸš€ Smart SEO Booster - Help & Documentation</h1>
+    <h1>🚀 Smart SEO Booster - Help & Documentation</h1>
     
     <div class="help-navigation">
         <nav class="nav-tab-wrapper">
@@ -19,7 +19,7 @@ defined('ABSPATH') || exit;
     <!-- Getting Started Tab -->
     <div id="getting-started" class="help-tab-content active">
         <div class="help-hero">
-            <h2>ðŸŽ¯ Welcome to Smart SEO Booster!</h2>
+            <h2>🎯 Welcome to Smart SEO Booster!</h2>
             <p>Your comprehensive SEO solution for WordPress. Get started in just 3 simple steps!</p>
         </div>
 
@@ -27,12 +27,12 @@ defined('ABSPATH') || exit;
             <div class="step-card">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h3>ðŸ“‹ Configure Basic Settings</h3>
-                    <p>Navigate to <strong>Smart SEO â†’ Settings</strong> and enable the features you want:</p>
+                    <h3>📋 Configure Basic Settings</h3>
+                    <p>Navigate to <strong>Smart SEO → Settings</strong> and enable the features you want:</p>
                     <ul>
-                        <li>âœ… Enable Schema Markup for better search visibility</li>
-                        <li>âœ… Enable Meta Tags for title and description optimization</li>
-                        <li>âœ… Enable Content Audit for real-time SEO feedback</li>
+                        <li>✅ Enable Schema Markup for better search visibility</li>
+                        <li>✅ Enable Meta Tags for title and description optimization</li>
+                        <li>✅ Enable Content Audit for real-time SEO feedback</li>
                     </ul>
                     <a href="<?php echo esc_url( admin_url('admin.php?page=smart-seo') ); ?>" class="button button-primary">Go to Settings</a>
                 </div>
@@ -41,12 +41,12 @@ defined('ABSPATH') || exit;
             <div class="step-card">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3>ðŸ“Š Run Your First Audit</h3>
+                    <h3>📊 Run Your First Audit</h3>
                     <p>Check your site's SEO performance with our comprehensive audit:</p>
                     <ul>
-                        <li>ðŸ“ˆ View overall site statistics</li>
-                        <li>ðŸŽ¯ Get specific improvement recommendations</li>
-                        <li>ðŸ“ Identify content gaps and opportunities</li>
+                        <li>📈 View overall site statistics</li>
+                        <li>🎯 Get specific improvement recommendations</li>
+                        <li>📝 Identify content gaps and opportunities</li>
                     </ul>
                     <a href="<?php echo esc_url( admin_url('admin.php?page=smart-seo-audit') ); ?>" class="button button-primary">View Audit Report</a>
                 </div>
@@ -55,12 +55,12 @@ defined('ABSPATH') || exit;
             <div class="step-card">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h3>âœï¸ Optimize Your Content</h3>
+                    <h3>✍️ Optimize Your Content</h3>
                     <p>Use our real-time feedback while editing posts and pages:</p>
                     <ul>
-                        <li>ðŸ“ SEO score appears in the editor</li>
-                        <li>ðŸ’¡ Get instant recommendations</li>
-                        <li>ðŸ”— Monitor internal links automatically</li>
+                        <li>📝 SEO score appears in the editor</li>
+                        <li>💡 Get instant recommendations</li>
+                        <li>🔗 Monitor internal links automatically</li>
                     </ul>
                     <a href="<?php echo esc_url( admin_url('edit.php') ); ?>" class="button button-primary">Edit Posts</a>
                 </div>
@@ -68,22 +68,22 @@ defined('ABSPATH') || exit;
         </div>
 
         <div class="quick-tips">
-            <h3>ðŸ’¡ Quick Tips for Success</h3>
+            <h3>💡 Quick Tips for Success</h3>
             <div class="tips-grid">
                 <div class="tip-card">
-                    <h4>ðŸŽ¯ Content Length</h4>
+                    <h4>🎯 Content Length</h4>
                     <p>Aim for at least 300 words per post. Longer content (500+ words) typically ranks better.</p>
                 </div>
                 <div class="tip-card">
-                    <h4>ðŸ“‹ Use Headings</h4>
+                    <h4>📋 Use Headings</h4>
                     <p>Structure your content with H2, H3, H4 tags. This helps both readers and search engines.</p>
                 </div>
                 <div class="tip-card">
-                    <h4>ðŸ–¼ï¸ Image Alt Text</h4>
+                    <h4>🖼️ Image Alt Text</h4>
                     <p>Always add descriptive alt text to images for accessibility and SEO benefits.</p>
                 </div>
                 <div class="tip-card">
-                    <h4>ðŸ”— Internal Links</h4>
+                    <h4>🔗 Internal Links</h4>
                     <p>Link to other relevant pages on your site to improve navigation and SEO.</p>
                 </div>
             </div>
@@ -92,10 +92,10 @@ defined('ABSPATH') || exit;
 
     <!-- Settings Guide Tab -->
     <div id="settings-guide" class="help-tab-content">
-        <h2>âš™ï¸ Complete Settings Guide</h2>
+        <h2>⚙️ Complete Settings Guide</h2>
         
         <div class="settings-section">
-            <h3>ðŸ“± Schema Markup Settings</h3>
+            <h3>📱 Schema Markup Settings</h3>
             <div class="setting-item">
                 <h4>Enable Schema Markup</h4>
                 <p>Automatically adds structured data (JSON-LD) to your pages, helping search engines understand your content better. This can result in rich snippets in search results.</p>
@@ -116,7 +116,7 @@ defined('ABSPATH') || exit;
         </div>
 
         <div class="settings-section">
-            <h3>ðŸ·ï¸ Meta Tags Settings</h3>
+            <h3>🏷️ Meta Tags Settings</h3>
             <div class="setting-item">
                 <h4>Enable Meta Tags</h4>
                 <p>Automatically generates optimized title and description meta tags for better search visibility.</p>
@@ -134,7 +134,7 @@ defined('ABSPATH') || exit;
         </div>
 
         <div class="settings-section">
-            <h3>ðŸ” Content Audit Settings</h3>
+            <h3>🔍 Content Audit Settings</h3>
             <div class="setting-item">
                 <h4>Enable Content Audit</h4>
                 <p>Shows real-time SEO feedback while editing posts and pages in the WordPress editor.</p>
@@ -154,7 +154,7 @@ defined('ABSPATH') || exit;
 
     <!-- Schema Markup Tab -->
     <div id="schema-markup" class="help-tab-content">
-        <h2>ðŸ—ï¸ Understanding Schema Markup</h2>
+        <h2>🏗️ Understanding Schema Markup</h2>
         
         <div class="schema-intro">
             <p>Schema markup is structured data that helps search engines understand your content better. Smart SEO Booster automatically adds the right schema based on your page type.</p>
@@ -162,7 +162,7 @@ defined('ABSPATH') || exit;
 
         <div class="schema-types">
             <div class="schema-card">
-                <h3>ðŸ“° Article Schema</h3>
+                <h3>📰 Article Schema</h3>
                 <p><strong>Applied to:</strong> Blog posts and articles</p>
                 <p><strong>Benefits:</strong> Rich snippets, author information, publish dates</p>
                 <div class="schema-example">
@@ -177,7 +177,7 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="schema-card">
-                <h3>ðŸ¢ Organization Schema</h3>
+                <h3>🏢 Organization Schema</h3>
                 <p><strong>Applied to:</strong> Homepage and about pages</p>
                 <p><strong>Benefits:</strong> Brand recognition, social media links</p>
                 <div class="schema-example">
@@ -192,7 +192,7 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="schema-card">
-                <h3>ðŸ“ Local Business Schema</h3>
+                <h3>📍 Local Business Schema</h3>
                 <p><strong>Applied to:</strong> Contact and service pages</p>
                 <p><strong>Benefits:</strong> Local search visibility, Google My Business integration</p>
                 <div class="schema-example">
@@ -207,7 +207,7 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="schema-card">
-                <h3>â“ FAQ Schema</h3>
+                <h3>❓ FAQ Schema</h3>
                 <p><strong>Applied to:</strong> FAQ pages and Q&A content</p>
                 <p><strong>Benefits:</strong> Featured snippets, expandable search results</p>
                 <div class="schema-example">
@@ -222,7 +222,7 @@ defined('ABSPATH') || exit;
         </div>
 
         <div class="schema-testing">
-            <h3>ðŸ§ª Testing Your Schema</h3>
+            <h3>🧪 Testing Your Schema</h3>
             <p>Use these tools to verify your schema markup is working correctly:</p>
             <ul>
                 <li><a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a></li>
@@ -234,7 +234,7 @@ defined('ABSPATH') || exit;
 
     <!-- Content Audit Tab -->
     <div id="content-audit" class="help-tab-content">
-        <h2>ðŸ“Š Content Audit Guide</h2>
+        <h2>📊 Content Audit Guide</h2>
         
         <div class="audit-overview">
             <p>Our content audit system provides real-time feedback to help you create SEO-optimized content. Here's how to interpret and use the feedback:</p>
@@ -242,21 +242,21 @@ defined('ABSPATH') || exit;
 
         <div class="audit-metrics">
             <div class="metric-card">
-                <h3>ðŸ“ Word Count Analysis</h3>
+                <h3>📝 Word Count Analysis</h3>
                 <div class="metric-details">
                     <p><strong>What it measures:</strong> Total words in your content (excluding HTML tags)</p>
                     <p><strong>Scoring:</strong></p>
                     <ul>
-                        <li>ðŸŸ¢ <strong>300+ words:</strong> Good foundation for SEO</li>
-                        <li>ðŸŸ¡ <strong>200-299 words:</strong> Consider adding more content</li>
-                        <li>ðŸ”´ <strong>Under 200 words:</strong> Too short for effective SEO</li>
+                        <li>🟢 <strong>300+ words:</strong> Good foundation for SEO</li>
+                        <li>🟡 <strong>200-299 words:</strong> Consider adding more content</li>
+                        <li>🔴 <strong>Under 200 words:</strong> Too short for effective SEO</li>
                     </ul>
                     <p><strong>Pro tip:</strong> Longer content (500+ words) typically performs better in search results.</p>
                 </div>
             </div>
 
             <div class="metric-card">
-                <h3>ðŸ“‹ Heading Structure</h3>
+                <h3>📋 Heading Structure</h3>
                 <div class="metric-details">
                     <p><strong>What it measures:</strong> Use of H1, H2, H3, H4, H5, H6 tags</p>
                     <p><strong>Best practices:</strong></p>
@@ -271,21 +271,21 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="metric-card">
-                <h3>ðŸ–¼ï¸ Image Optimization</h3>
+                <h3>🖼️ Image Optimization</h3>
                 <div class="metric-details">
                     <p><strong>What it measures:</strong> Images with proper alt text attributes</p>
                     <p><strong>Scoring:</strong></p>
                     <ul>
-                        <li>ðŸŸ¢ <strong>100% coverage:</strong> All images have alt text</li>
-                        <li>ðŸŸ¡ <strong>70-99% coverage:</strong> Most images optimized</li>
-                        <li>ðŸ”´ <strong>Under 70%:</strong> Many images missing alt text</li>
+                        <li>🟢 <strong>100% coverage:</strong> All images have alt text</li>
+                        <li>🟡 <strong>70-99% coverage:</strong> Most images optimized</li>
+                        <li>🔴 <strong>Under 70%:</strong> Many images missing alt text</li>
                     </ul>
                     <p><strong>How to add alt text:</strong> In the WordPress media library, add descriptive text in the "Alt Text" field.</p>
                 </div>
             </div>
 
             <div class="metric-card">
-                <h3>ðŸ”— Internal Link Analysis</h3>
+                <h3>🔗 Internal Link Analysis</h3>
                 <div class="metric-details">
                     <p><strong>What it measures:</strong> Links to other pages on your website</p>
                     <p><strong>Recommendations:</strong></p>
@@ -301,30 +301,30 @@ defined('ABSPATH') || exit;
         </div>
 
         <div class="seo-score-guide">
-            <h3>ðŸŽ¯ Understanding Your SEO Score</h3>
+            <h3>🎯 Understanding Your SEO Score</h3>
             <div class="score-breakdown">
                 <div class="score-range">
                     <span class="score-indicator excellent">90-100</span>
                     <div>
-                        <strong>Excellent:</strong> Your content is well-optimized for SEO. Great job! ðŸŽ‰
+                        <strong>Excellent:</strong> Your content is well-optimized for SEO. Great job! 🎉
                     </div>
                 </div>
                 <div class="score-range">
                     <span class="score-indicator good">75-89</span>
                     <div>
-                        <strong>Good:</strong> Solid SEO foundation with room for minor improvements. âœ…
+                        <strong>Good:</strong> Solid SEO foundation with room for minor improvements. ✅
                     </div>
                 </div>
                 <div class="score-range">
                     <span class="score-indicator okay">50-74</span>
                     <div>
-                        <strong>Needs Work:</strong> Several areas need attention to improve SEO performance. âš ï¸
+                        <strong>Needs Work:</strong> Several areas need attention to improve SEO performance. ⚠️
                     </div>
                 </div>
                 <div class="score-range">
                     <span class="score-indicator poor">0-49</span>
                     <div>
-                        <strong>Poor:</strong> Significant SEO issues that should be addressed immediately. âŒ
+                        <strong>Poor:</strong> Significant SEO issues that should be addressed immediately. ❌
                     </div>
                 </div>
             </div>
@@ -333,13 +333,13 @@ defined('ABSPATH') || exit;
 
     <!-- Troubleshooting Tab -->
     <div id="troubleshooting" class="help-tab-content">
-        <h2>ðŸ”§ Troubleshooting Guide</h2>
+        <h2>🔧 Troubleshooting Guide</h2>
         
         <div class="troubleshooting-section">
             <h3>Common Issues & Solutions</h3>
             
             <div class="trouble-item">
-                <h4>âŒ Schema markup not appearing in search results</h4>
+                <h4>❌ Schema markup not appearing in search results</h4>
                 <div class="solution">
                     <p><strong>Possible causes:</strong></p>
                     <ul>
@@ -358,7 +358,7 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="trouble-item">
-                <h4>ðŸ“Š SEO audit notices not showing in editor</h4>
+                <h4>📊 SEO audit notices not showing in editor</h4>
                 <div class="solution">
                     <p><strong>Check these settings:</strong></p>
                     <ol>
@@ -371,7 +371,7 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="trouble-item">
-                <h4>ðŸ”— Internal links not being detected</h4>
+                <h4>🔗 Internal links not being detected</h4>
                 <div class="solution">
                     <p><strong>Requirements for link detection:</strong></p>
                     <ul>
@@ -385,7 +385,7 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="trouble-item">
-                <h4>ðŸŽ¨ Admin styles not loading properly</h4>
+                <h4>🎨 Admin styles not loading properly</h4>
                 <div class="solution">
                     <p><strong>Try these steps:</strong></p>
                     <ol>
@@ -399,7 +399,7 @@ defined('ABSPATH') || exit;
         </div>
 
         <div class="debug-info">
-            <h3>ðŸ› Debug Information</h3>
+            <h3>🐛 Debug Information</h3>
             <p>If you need support, please include this information:</p>
             <div class="debug-box">
                 <strong>WordPress Version:</strong> <?php echo esc_html( get_bloginfo('version') ); ?><br>
@@ -414,69 +414,69 @@ defined('ABSPATH') || exit;
 
     <!-- FAQ Tab -->
     <div id="faq" class="help-tab-content">
-        <h2>â“ Frequently Asked Questions</h2>
+        <h2>❓ Frequently Asked Questions</h2>
         
         <div class="faq-section">
             <div class="faq-item">
-                <h3>ðŸš€ Will this plugin slow down my website?</h3>
+                <h3>🚀 Will this plugin slow down my website?</h3>
                 <p>No! Smart SEO Booster is designed for performance. It uses minimal resources and only loads admin scripts on admin pages. The schema markup and meta tags add negligible overhead to your pages.</p>
             </div>
 
             <div class="faq-item">
-                <h3>ðŸ”§ Can I use this with other SEO plugins?</h3>
+                <h3>🔧 Can I use this with other SEO plugins?</h3>
                 <p>While it's possible, we recommend using Smart SEO Booster as your primary SEO solution to avoid conflicts. If you must use multiple plugins, disable overlapping features (like schema markup or meta tags) in one of them.</p>
             </div>
 
             <div class="faq-item">
-                <h3>ðŸ“± Does it work with mobile and responsive themes?</h3>
+                <h3>📱 Does it work with mobile and responsive themes?</h3>
                 <p>Absolutely! The plugin works with all properly coded WordPress themes, including mobile-responsive and block themes. The admin interface is also fully responsive.</p>
             </div>
 
             <div class="faq-item">
-                <h3>ðŸŒ Is the plugin translation-ready?</h3>
+                <h3>🌍 Is the plugin translation-ready?</h3>
                 <p>Yes! Smart SEO Booster includes translation files and is ready for internationalization. You can translate it into any language using WordPress translation tools.</p>
             </div>
 
             <div class="faq-item">
-                <h3>ðŸ“Š How often should I check the audit report?</h3>
+                <h3>📊 How often should I check the audit report?</h3>
                 <p>We recommend checking the audit report monthly or after making significant content changes. The real-time feedback in the editor is more important for day-to-day content creation.</p>
             </div>
 
             <div class="faq-item">
-                <h3>ðŸŽ¯ What's the difference between this and Yoast SEO?</h3>
+                <h3>🎯 What's the difference between this and Yoast SEO?</h3>
                 <p>Smart SEO Booster focuses on automation and simplicity. While Yoast offers more manual controls, our plugin automatically handles schema markup, provides cleaner interfaces, and offers real-time scoring without cluttering your editor.</p>
             </div>
 
             <div class="faq-item">
-                <h3>ðŸ”„ Can I export/import settings?</h3>
+                <h3>🔄 Can I export/import settings?</h3>
                 <p>Currently, settings are stored in your WordPress database. For migrations, you can copy the 'smart_seo_options' option using database tools or plugins like WP Migrate DB.</p>
             </div>
 
             <div class="faq-item">
-                <h3>ðŸ“ˆ How long before I see SEO improvements?</h3>
+                <h3>📈 How long before I see SEO improvements?</h3>
                 <p>SEO is a long-term strategy. You might see technical improvements (like schema markup) reflected in search results within 2-4 weeks, but significant ranking improvements typically take 3-6 months of consistent optimization.</p>
             </div>
         </div>
 
         <div class="support-section">
-            <h3>ðŸ¤ Need More Help?</h3>
+            <h3>🤝 Need More Help?</h3>
             <p>If you can't find the answer you're looking for, here are additional resources:</p>
             <div class="support-links">
                 <a href="https://github.com/anupammo/smart-seo-booster" target="_blank" class="support-link">
-                    ðŸ“š GitHub Documentation
+                    📚 GitHub Documentation
                 </a>
                 <a href="https://github.com/anupammo/smart-seo-booster/issues" target="_blank" class="support-link">
-                    ðŸ› Report a Bug
+                    🐛 Report a Bug
                 </a>
                 <a href="https://wordpress.org/support/plugin/smart-seo-booster/" target="_blank" class="support-link">
-                    ðŸ’¬ WordPress Support Forum
+                    💬 WordPress Support Forum
                 </a>
             </div>
         </div>
 
         <!-- Developer Services Section -->
         <div class="developer-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin: 30px 0; text-align: center;">
-            <h3 style="color: white; margin-bottom: 15px;">ðŸš€ Need Professional WordPress & SEO Services?</h3>
+            <h3 style="color: white; margin-bottom: 15px;">🚀 Need Professional WordPress & SEO Services?</h3>
             <div style="display: grid; grid-template-columns: 80px 1fr; gap: 20px; align-items: center; max-width: 600px; margin: 0 auto;">
                 <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">
                     AM
@@ -489,7 +489,7 @@ defined('ABSPATH') || exit;
                         <a href="https://anupammondal.in/?utm_source=smart-seo-booster&utm_medium=plugin&utm_campaign=help-page" 
                            target="_blank" 
                            style="background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; border: 1px solid rgba(255,255,255,0.3);">
-                            ðŸŒ Visit Website
+                            🌐 Visit Website
                         </a>
                         <a href="https://anupammondal.in/contact/?utm_source=smart-seo-booster&utm_medium=plugin&utm_campaign=help-contact" 
                            target="_blank" 
@@ -501,7 +501,7 @@ defined('ABSPATH') || exit;
             </div>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
                 <p style="margin: 0; font-size: 13px; opacity: 0.8;">
-                    Services: Custom Development â€¢ SEO Optimization â€¢ Plugin Development â€¢ Performance Optimization â€¢ Technical Support
+                    Services: Custom Development • SEO Optimization • Plugin Development • Performance Optimization • Technical Support
                 </p>
             </div>
         </div>
@@ -561,7 +561,7 @@ jQuery(document).ready(function($) {
         <strong><?php esc_html_e('Smart SEO Booster', 'smart-seo-booster'); ?></strong> 
         <?php printf(
             /* translators: %s: plugin version */
-            esc_html__('version %s - Developed with â¤ï¸ for better WordPress SEO', 'smart-seo-booster'),
+            esc_html__('version %s - Developed with ❤️ for better WordPress SEO', 'smart-seo-booster'),
             esc_html(SMART_SEO_VERSION)
         ); ?>
     </p>

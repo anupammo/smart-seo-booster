@@ -56,7 +56,7 @@ class Smart_SEO_Content_Auditor {
         }
         
         $score_class = $score >= 75 ? 'notice-success' : ($score >= 50 ? 'notice-warning' : 'notice-error');
-        $score_emoji = $score >= 75 ? 'ðŸŽ‰' : ($score >= 50 ? 'âš ï¸' : 'âŒ');
+        $score_emoji = $score >= 75 ? '🎉' : ($score >= 50 ? '⚠️' : '❌');
         
         // Restrict the CSS class to an allowed whitelist and escape output.
         $allowed_notice_classes = [ 'notice-success', 'notice-warning', 'notice-error' ];
@@ -70,7 +70,7 @@ class Smart_SEO_Content_Auditor {
         echo '<p><strong>' . esc_html__( 'Stats:', 'smart-seo-booster' ) . '</strong> ' . sprintf( esc_html__( 'Words: %1$d | Headings: %2$d | Images: %3$d | Alt Texts: %4$d', 'smart-seo-booster' ), absint( $word_count ), absint( $headings ), absint( $images ), absint( $alts ) ) . '</p>';
         
         if (!empty($recommendations)) {
-            echo "<p><strong>" . esc_html__( 'Recommendations:', 'smart-seo-booster' ) . "</strong> " . esc_html( implode( ' â€¢ ', $recommendations ) ) . "</p>";
+            echo "<p><strong>" . esc_html__( 'Recommendations:', 'smart-seo-booster' ) . "</strong> " . esc_html( implode( ' • ', $recommendations ) ) . "</p>";
         }
         
         echo "</div>";

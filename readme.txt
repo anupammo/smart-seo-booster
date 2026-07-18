@@ -4,7 +4,7 @@ Tags: seo, schema, json-ld, content audit, wordpress seo
 Requires at least: 5.9  
 Requires PHP: 8.0
 Tested up to: 6.9
-Stable tag: 1.0.1  
+Stable tag: 2.1.0
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -49,6 +49,17 @@ No. It uses minimal hooks and outputs schema only in the footer.
 
 == Changelog ==
 
+= 2.1.0 =
+* Feature: Per-post SEO meta box with live search & social previews (Basic / Social / Advanced / Analysis tabs)
+* Feature: SEO score engine — admin bar badge, dashboard widget, post-list column, and per-post metabox
+* Feature: Open Graph & Twitter Card fields with featured-image fallback
+* Feature: Automatic meta description (custom field → excerpt → trimmed content)
+* Improvement: Consolidated all front-end meta output into a single authority to eliminate duplicate tags
+* Improvement: De-personalized and made all JSON-LD schema templates dynamic and filterable
+* Improvement: Moved admin CSS/JS into properly enqueued asset files (no inline blobs)
+* Fix: Corrected UTF-8 emoji encoding across the admin interface
+* Fix: Aligned plugin version across header, constant, and readme
+
 = 1.0.1 =
 * Security: Added ABSPATH checks to all schema files
 * Security: Added path traversal protection in schema file loading
@@ -62,6 +73,9 @@ No. It uses minimal hooks and outputs schema only in the footer.
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+Major update: per-post SEO controls, live previews, SEO scoring, dynamic schema, and cleaner meta output. Recommended for all users.
 
 = 1.0.1 =
 Security and stability update. Recommended for all users. Fixes fatal error and adds enterprise-level security hardening.

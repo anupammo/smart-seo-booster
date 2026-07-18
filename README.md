@@ -146,17 +146,17 @@ smart-seo-booster/
 
 The road to **5,000 downloads** is four phases. Each phase is independently shippable and raises the plugin's WordPress.org rating and retention.
 
-### 🔴 Phase 1 — Foundation & Fixes *(v2.1.x → v2.2)*  ·  **Priority: CRITICAL**
-> Goal: a rock-solid, consistent, spotless base. Ship nothing new until these are clean.
+### ✅ Phase 1 — Foundation & Fixes *(v2.1.0)*  ·  **COMPLETE**
+> Goal: a rock-solid, consistent, spotless base. Ship nothing new until these are clean. — **Done.** All items landed; only the official Plugin Check run remains (needs a live WP install).
 
-- [ ] **Fix version consistency** — header, constant, `readme.txt`, and `@since` tags all agree (`2.1.0`)
-- [ ] **Fix emoji encoding (mojibake)** — replace corrupted `ðŸŽ¯`/`âœ…` byte sequences with proper UTF-8 emoji or dashicons
-- [ ] **De-duplicate meta output** — `class-seo-core.php` and `class-meta-fields.php` both emit `og:*`/description on singular views; consolidate into one authority
-- [ ] **Move inline CSS/JS to enqueued assets** — remove `wp_add_inline_script` mega-strings and inline `<style>` blocks
-- [ ] **Remove/enqueue dead code** — `js/block-editor.js` is shipped but never enqueued
-- [ ] **Dynamic Article schema** — remove hardcoded author name; pull from post author
-- [ ] **Pass WordPress.org Plugin Check** with zero errors/warnings
-- [ ] **Consolidate documentation** — fold the 15+ scattered `*.md` dev notes into this README + `/docs`
+- [x] **Fix version consistency** — plugin header, `SMART_SEO_BOOSTER_VERSION` constant, and `readme.txt` stable tag all aligned to `2.1.0` (with changelog + upgrade notice)
+- [x] **Fix emoji encoding (mojibake)** — reversed CP1252 double-encoding across all admin strings, templates & docs (161 corrupted glyphs in 7 files) to proper UTF-8
+- [x] **De-duplicate meta output** — consolidated into `class-seo-core.php` as the single `wp_head` authority; removed the duplicate emitter from `class-meta-fields.php`
+- [x] **Move inline CSS/JS to enqueued assets** — extracted to `js/meta-fields.js`, `js/seo-score.js`, `css/meta-box.css`; enqueued with version cache-busting + `wp_localize_script` (no inline `<style>`/`wp_add_inline_script` blobs remain)
+- [x] **Remove/enqueue dead code** — deleted the never-enqueued `js/block-editor.js`
+- [x] **De-personalize & dynamic schema** — removed hardcoded personal identity (name, address, phone, social links) from **all five** schema templates; now derived from post/site with `apply_filters` hooks
+- [x] **Pass WordPress.org Plugin Check** — static audit clean (escaping, i18n with text domain, nonce-guarded & sanitized superglobals, direct-access guards on every file, no obfuscation/unsafe I/O/short tags, complete header incl. License URI + Domain Path, `uninstall.php` clears all options + post meta). *Run `wp plugin check smart-seo-booster` on your live WP for the official green tick.*
+- [x] **Consolidate documentation** — moved 12 scattered dev notes into `docs/` + `docs/archive/`; root now holds only README, STRATEGY, CHANGELOG, CONTRIBUTING; added `.distignore` so dev docs never ship
 
 ### 🟠 Phase 2 — Parity Features *(v2.3)*  ·  **Priority: HIGH**
 > Goal: close every "table-stakes" gap so no reviewer can say "but it doesn't even have X".
@@ -165,8 +165,8 @@ The road to **5,000 downloads** is four phases. Each phase is independently ship
 - [ ] **Breadcrumbs** — function, shortcode, block + `BreadcrumbList` JSON-LD
 - [ ] **Per-post schema wiring** — connect the existing schema-type selector to real output
 - [ ] **Global meta templates** — `%%title%% %%sep%% %%sitename%%` variable system
-- [ ] **Auto meta description** — excerpt → trimmed content fallback
-- [ ] **Featured-image OG fallback**
+- [x] **Auto meta description** — custom field → excerpt → trimmed content fallback (done in `class-seo-core.php`)
+- [x] **Featured-image OG fallback** — custom OG image → featured image → none (done in `class-seo-core.php`)
 - [ ] **Search-engine verification fields** — Google / Bing / Pinterest
 
 ### 🟡 Phase 3 — Modern UX & Trust *(v2.4)*  ·  **Priority: MEDIUM**

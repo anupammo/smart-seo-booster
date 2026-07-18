@@ -255,7 +255,7 @@ class Smart_SEO_Score_Display {
         $wp_admin_bar->add_node([
             'id' => 'smart-seo-score',
             'title' => sprintf(
-                '<span style="color: %s;">ðŸ“Š SEO: %d/100</span>',
+                '<span style="color: %s;">📊 SEO: %d/100</span>',
                 esc_attr( $color ),
                 absint( $score )
             ),
@@ -269,7 +269,7 @@ class Smart_SEO_Score_Display {
     public static function add_dashboard_widget() {
         wp_add_dashboard_widget(
             'smart_seo_dashboard',
-            'ðŸ“ˆ Smart SEO Overview',
+            '📈 Smart SEO Overview',
             [__CLASS__, 'dashboard_widget_content']
         );
     }
@@ -345,17 +345,6 @@ class Smart_SEO_Score_Display {
         $analysis = self::smart_seo_get_detailed_seo_analysis($post);
         ?>
         <div class="smart-seo-score-metabox">
-            <style>
-                .seo-section { margin-bottom: 15px; border-bottom: 1px solid #e5e7eb; padding-bottom: 10px; }
-                .seo-section:last-child { border-bottom: none; }
-                .seo-check { display: flex; justify-content: space-between; align-items: center; margin: 5px 0; }
-                .seo-check-status { font-weight: bold; }
-                .seo-good { color: #059669; }
-                .seo-warning { color: #d97706; }
-                .seo-error { color: #dc2626; }
-                .seo-score-big { font-size: 24px; font-weight: bold; text-align: center; }
-                .seo-recommendations { background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 10px; }
-            </style>
 
             <!-- Overall Score -->
             <div class="seo-section" style="text-align: center;">
@@ -370,7 +359,7 @@ class Smart_SEO_Score_Display {
 
             <!-- Content Analysis -->
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">ðŸ“ Content Analysis</h4>
+                <h4 style="margin: 0 0 10px 0;">📝 Content Analysis</h4>
                 <div class="seo-check">
                     <span>Word Count</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['word_count']['status'] ?? '' ); ?>">
@@ -399,7 +388,7 @@ class Smart_SEO_Score_Display {
 
             <!-- SEO Elements -->
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">ðŸŽ¯ SEO Elements</h4>
+                <h4 style="margin: 0 0 10px 0;">🎯 SEO Elements</h4>
                 <div class="seo-check">
                     <span>Title Length</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['title']['status'] ?? '' ); ?>">
@@ -422,7 +411,7 @@ class Smart_SEO_Score_Display {
 
             <!-- Media & Links -->
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">ðŸ–¼ï¸ Media & Links</h4>
+                <h4 style="margin: 0 0 10px 0;">🖼️ Media & Links</h4>
                 <div class="seo-check">
                     <span>Images</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['images']['status'] ?? '' ); ?>">
@@ -452,7 +441,7 @@ class Smart_SEO_Score_Display {
             <!-- Recommendations -->
             <?php if (!empty($analysis['recommendations']) && is_array($analysis['recommendations'])): ?>
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">ðŸ’¡ Recommendations</h4>
+                <h4 style="margin: 0 0 10px 0;">💡 Recommendations</h4>
                 <div class="seo-recommendations">
                     <ul style="margin: 0; padding-left: 20px;">
                         <?php foreach ($analysis['recommendations'] as $recommendation): ?>
@@ -466,10 +455,10 @@ class Smart_SEO_Score_Display {
             <!-- Actions -->
             <div style="text-align: center; margin-top: 15px;">
                 <button type="button" class="button button-primary button-small" onclick="smartSeoRefreshScore(<?php echo absint( $post->ID ); ?>)">
-                    ðŸ”„ Refresh Analysis
+                    🔄 Refresh Analysis
                 </button>
                 <button type="button" class="button button-small" onclick="smartSeoShowFullReport(<?php echo absint( $post->ID ); ?>)" style="margin-left: 5px;">
-                    ðŸ“Š Full Report
+                    📊 Full Report
                 </button>
             </div>
         </div>
@@ -527,57 +516,57 @@ class Smart_SEO_Score_Display {
             'word_count' => [
                 'value' => $word_count,
                 'status' => $word_count >= $min_words ? 'seo-good' : ($word_count >= ($min_words * 0.7) ? 'seo-warning' : 'seo-error'),
-                'icon' => $word_count >= $min_words ? 'âœ…' : ($word_count >= ($min_words * 0.7) ? 'âš ï¸' : 'âŒ')
+                'icon' => $word_count >= $min_words ? '✅' : ($word_count >= ($min_words * 0.7) ? '⚠️' : '❌')
             ],
             'paragraphs' => [
                 'value' => $paragraph_count,
                 'status' => $paragraph_count >= 3 ? 'seo-good' : ($paragraph_count >= 2 ? 'seo-warning' : 'seo-error'),
-                'icon' => $paragraph_count >= 3 ? 'âœ…' : ($paragraph_count >= 2 ? 'âš ï¸' : 'âŒ')
+                'icon' => $paragraph_count >= 3 ? '✅' : ($paragraph_count >= 2 ? '⚠️' : '❌')
             ],
             'headings' => [
                 'value' => $heading_count,
                 'status' => $heading_count >= 2 ? 'seo-good' : ($heading_count >= 1 ? 'seo-warning' : 'seo-error'),
-                'icon' => $heading_count >= 2 ? 'âœ…' : ($heading_count >= 1 ? 'âš ï¸' : 'âŒ')
+                'icon' => $heading_count >= 2 ? '✅' : ($heading_count >= 1 ? '⚠️' : '❌')
             ],
             'readability' => [
                 'value' => self::smart_seo_calculate_readability_score($content),
                 'status' => 'seo-good', // Simplified for now
-                'icon' => 'âœ…'
+                'icon' => '✅'
             ],
             'title' => [
                 'value' => $title_length,
                 'status' => ($title_length >= 30 && $title_length <= 60) ? 'seo-good' : (($title_length >= 20 && $title_length <= 80) ? 'seo-warning' : 'seo-error'),
-                'icon' => ($title_length >= 30 && $title_length <= 60) ? 'âœ…' : (($title_length >= 20 && $title_length <= 80) ? 'âš ï¸' : 'âŒ')
+                'icon' => ($title_length >= 30 && $title_length <= 60) ? '✅' : (($title_length >= 20 && $title_length <= 80) ? '⚠️' : '❌')
             ],
             'description' => [
                 'value' => $description_length > 0 ? $description_length . ' chars' : 'Missing',
                 'status' => ($description_length >= 120 && $description_length <= 160) ? 'seo-good' : (($description_length >= 100 && $description_length <= 200) ? 'seo-warning' : 'seo-error'),
-                'icon' => ($description_length >= 120 && $description_length <= 160) ? 'âœ…' : (($description_length >= 100 && $description_length <= 200) ? 'âš ï¸' : 'âŒ')
+                'icon' => ($description_length >= 120 && $description_length <= 160) ? '✅' : (($description_length >= 100 && $description_length <= 200) ? '⚠️' : '❌')
             ],
             'url' => [
                 'value' => strlen($slug) <= 50 ? 'Good' : 'Too long',
                 'status' => strlen($slug) <= 50 ? 'seo-good' : 'seo-warning',
-                'icon' => strlen($slug) <= 50 ? 'âœ…' : 'âš ï¸'
+                'icon' => strlen($slug) <= 50 ? '✅' : '⚠️'
             ],
             'images' => [
                 'value' => $image_count,
                 'status' => $image_count > 0 ? 'seo-good' : 'seo-warning',
-                'icon' => $image_count > 0 ? 'âœ…' : 'âš ï¸'
+                'icon' => $image_count > 0 ? '✅' : '⚠️'
             ],
             'alt_text' => [
                 'value' => $image_count > 0 ? $alt_count . '/' . $image_count : 'N/A',
                 'status' => $image_count === 0 ? 'seo-good' : ($alt_count === $image_count ? 'seo-good' : ($alt_count >= ($image_count * 0.7) ? 'seo-warning' : 'seo-error')),
-                'icon' => $image_count === 0 ? 'âœ…' : ($alt_count === $image_count ? 'âœ…' : ($alt_count >= ($image_count * 0.7) ? 'âš ï¸' : 'âŒ'))
+                'icon' => $image_count === 0 ? '✅' : ($alt_count === $image_count ? '✅' : ($alt_count >= ($image_count * 0.7) ? '⚠️' : '❌'))
             ],
             'internal_links' => [
                 'value' => $internal_links,
                 'status' => $internal_links >= 2 ? 'seo-good' : ($internal_links >= 1 ? 'seo-warning' : 'seo-error'),
-                'icon' => $internal_links >= 2 ? 'âœ…' : ($internal_links >= 1 ? 'âš ï¸' : 'âŒ')
+                'icon' => $internal_links >= 2 ? '✅' : ($internal_links >= 1 ? '⚠️' : '❌')
             ],
             'external_links' => [
                 'value' => $external_links,
                 'status' => $external_links >= 1 ? 'seo-good' : 'seo-warning',
-                'icon' => $external_links >= 1 ? 'âœ…' : 'âš ï¸'
+                'icon' => $external_links >= 1 ? '✅' : '⚠️'
             ]
         ];
         
@@ -649,7 +638,7 @@ class Smart_SEO_Score_Display {
     }
     
     public static function smart_seo_add_seo_score_column($columns) {
-        $columns['seo_score'] = 'ðŸ“Š SEO Score';
+        $columns['seo_score'] = '📊 SEO Score';
         return $columns;
     }
     
@@ -715,7 +704,7 @@ class Smart_SEO_Score_Display {
         ob_start();
         ?>
         <div class="smart-seo-full-report">
-            <h2 style="margin-top: 0;">ðŸ“Š Complete SEO Analysis</h2>
+            <h2 style="margin-top: 0;">📊 Complete SEO Analysis</h2>
             <h3><?php echo esc_html($post->post_title); ?></h3>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
@@ -736,7 +725,7 @@ class Smart_SEO_Score_Display {
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div>
-                    <h4>ðŸ“ Content Quality</h4>
+                    <h4>📝 Content Quality</h4>
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr><td>Word Count</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['word_count']['status'] ?? '' ); ?>"><?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> <?php echo esc_html( $analysis['word_count']['icon'] ?? '' ); ?></span></td></tr>
                         <tr><td>Paragraphs</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['paragraphs']['status'] ?? '' ); ?>"><?php echo isset($analysis['paragraphs']['value']) ? absint( $analysis['paragraphs']['value'] ) : 0; ?> <?php echo esc_html( $analysis['paragraphs']['icon'] ?? '' ); ?></span></td></tr>
@@ -744,7 +733,7 @@ class Smart_SEO_Score_Display {
                         <tr><td>Readability</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['readability']['status'] ?? '' ); ?>"><?php echo esc_html( $analysis['readability']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['readability']['icon'] ?? '' ); ?></span></td></tr>
                     </table>
                     
-                    <h4>ðŸŽ¯ SEO Elements</h4>
+                    <h4>🎯 SEO Elements</h4>
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr><td>Title Length</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['title']['status'] ); ?>"><?php echo isset($analysis['title']['value']) ? absint( $analysis['title']['value'] ) : 0; ?> <?php echo esc_html( $analysis['title']['icon'] ); ?></span></td></tr>
                         <tr><td>Meta Description</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['description']['status'] ); ?>"><?php echo esc_html( $analysis['description']['value'] ); ?> <?php echo esc_html( $analysis['description']['icon'] ); ?></span></td></tr>
@@ -753,7 +742,7 @@ class Smart_SEO_Score_Display {
                 </div>
                 
                 <div>
-                    <h4>ðŸ–¼ï¸ Media & Links</h4>
+                    <h4>🖼️ Media & Links</h4>
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr><td>Images</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['images']['status'] ); ?>"><?php echo isset($analysis['images']['value']) ? absint( $analysis['images']['value'] ) : 0; ?> <?php echo esc_html( $analysis['images']['icon'] ); ?></span></td></tr>
                         <tr><td>Alt Text Coverage</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['alt_text']['status'] ); ?>"><?php echo esc_html( $analysis['alt_text']['value'] ); ?> <?php echo esc_html( $analysis['alt_text']['icon'] ); ?></span></td></tr>
@@ -762,7 +751,7 @@ class Smart_SEO_Score_Display {
                     </table>
                     
                     <?php if (!empty($analysis['recommendations'])): ?>
-                    <h4>ðŸ’¡ Priority Recommendations</h4>
+                    <h4>💡 Priority Recommendations</h4>
                     <ol style="padding-left: 20px;">
                         <?php foreach (array_slice($analysis['recommendations'], 0, 5) as $recommendation): ?>
                             <li style="margin-bottom: 5px;"><?php echo esc_html( $recommendation ); ?></li>
@@ -773,17 +762,11 @@ class Smart_SEO_Score_Display {
             </div>
             
             <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-                <button type="button" class="button button-primary" onclick="window.print()">ðŸ–¨ï¸ Print Report</button>
+                <button type="button" class="button button-primary" onclick="window.print()">🖨️ Print Report</button>
                 <button type="button" class="button" onclick="jQuery('#smart-seo-modal').remove()">Close</button>
             </div>
         </div>
         
-        <style>
-            .smart-seo-full-report table td { padding: 8px; border-bottom: 1px solid #f0f0f0; }
-            .smart-seo-full-report .seo-good { color: #059669; font-weight: bold; }
-            .smart-seo-full-report .seo-warning { color: #d97706; font-weight: bold; }
-            .smart-seo-full-report .seo-error { color: #dc2626; font-weight: bold; }
-        </style>
         <?php
         
         $html = ob_get_clean();
@@ -794,124 +777,20 @@ class Smart_SEO_Score_Display {
     }
     
     public static function smart_seo_enqueue_score_scripts($hook) {
-        if (in_array($hook, ['post.php', 'post-new.php', 'edit.php'])) {
-            wp_enqueue_script('jquery');
-            
-            $script = "
-            function smartSeoRefreshScore(postId) {
-                const button = jQuery('button:contains(\"Refresh Analysis\")');
-                const originalText = button.text();
-                button.text('ðŸ”„ Refreshing...').prop('disabled', true);
-                
-                jQuery.post(ajaxurl, {
-                    action: 'get_seo_score',
-                    post_id: postId,
-                    nonce: '" . wp_create_nonce('smart_seo_nonce') . "'
-                }, function(response) {
-                    if (response.success) {
-                        location.reload(); // Reload to show updated analysis
-                    } else {
-                        alert('Error refreshing SEO analysis. Please try again.');
-                        button.text(originalText).prop('disabled', false);
-                    }
-                }).fail(function() {
-                    alert('Error refreshing SEO analysis. Please try again.');
-                    button.text(originalText).prop('disabled', false);
-                });
-            }
-            
-            function smartSeoShowFullReport(postId) {
-                // Create a modal/popup with detailed SEO report
-                const modal = jQuery('<div>', {
-                    id: 'smart-seo-modal',
-                    css: {
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'rgba(0,0,0,0.7)',
-                        zIndex: 999999,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }
-                });
-                
-                const content = jQuery('<div>', {
-                    css: {
-                        backgroundColor: 'white',
-                        padding: '30px',
-                        borderRadius: '8px',
-                        maxWidth: '800px',
-                        maxHeight: '80vh',
-                        overflow: 'auto',
-                        position: 'relative'
-                    },
-                    html: '<div style=\"text-align: center;\"><h2>ðŸ“Š Full SEO Report</h2><p>Loading detailed analysis...</p></div>'
-                });
-                
-                const closeBtn = jQuery('<button>', {
-                    text: 'Ã—',
-                    css: {
-                        position: 'absolute',
-                        top: '10px',
-                        right: '15px',
-                        background: 'none',
-                        border: 'none',
-                        fontSize: '24px',
-                        cursor: 'pointer',
-                        color: '#666'
-                    },
-                    click: function() {
-                        modal.remove();
-                    }
-                });
-                
-                content.append(closeBtn);
-                modal.append(content);
-                jQuery('body').append(modal);
-                
-                // Load full report data
-                jQuery.post(ajaxurl, {
-                    action: 'get_full_seo_report',
-                    post_id: postId,
-                    nonce: '" . wp_create_nonce('smart_seo_nonce') . "'
-                }, function(response) {
-                    if (response.success) {
-                        content.html(response.data.html + closeBtn[0].outerHTML);
-                    } else {
-                        content.html('<h2>Error</h2><p>Could not load SEO report.</p>' + closeBtn[0].outerHTML);
-                    }
-                }).fail(function() {
-                    content.html('<h2>Error</h2><p>Could not load SEO report.</p>' + closeBtn[0].outerHTML);
-                });
-                
-                // Close modal when clicking outside
-                modal.click(function(e) {
-                    if (e.target === modal[0]) {
-                        modal.remove();
-                    }
-                });
-            }
-            
-            // Auto-refresh score when content changes (for block editor)
-            if (typeof wp !== 'undefined' && wp.data) {
-                let timeout;
-                wp.data.subscribe(() => {
-                    clearTimeout(timeout);
-                    timeout = setTimeout(() => {
-                        const postId = wp.data.select('core/editor').getCurrentPostId();
-                        if (postId && jQuery('.smart-seo-score-metabox').length) {
-                            // Could add real-time updates here without full reload
-                            // smartSeoRefreshScore(postId);
-                        }
-                    }, 3000); // Check every 3 seconds instead of 1
-                });
-            }
-            ";
-            
-            wp_add_inline_script('jquery', $script);
+        if (!in_array($hook, ['post.php', 'post-new.php', 'edit.php'])) {
+            return;
         }
+
+        $ver     = defined('SMART_SEO_BOOSTER_VERSION') ? SMART_SEO_BOOSTER_VERSION : false;
+        $css_url = plugin_dir_url(__FILE__) . '../css/meta-box.css';
+        $js_url  = plugin_dir_url(__FILE__) . '../js/seo-score.js';
+
+        wp_enqueue_style('smart-seo-meta-box', $css_url, [], $ver);
+
+        wp_enqueue_script('smart-seo-score', $js_url, ['jquery'], $ver, true);
+        wp_localize_script('smart-seo-score', 'SmartSEOScore', [
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('smart_seo_nonce'),
+        ]);
     }
 }

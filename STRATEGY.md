@@ -20,7 +20,7 @@ A deep scan of the current codebase (branch `v2.1`) shows a **structurally sound
 2. **No breadcrumbs** — second most-expected feature in the lightweight lane.
 3. **Duplicate meta output** — `class-seo-core.php` and `class-meta-fields.php` both emit `description`/`og:*` on singular pages, producing double tags (an SEO defect reviewers will flag).
 4. **Static schema** — Article schema hardcodes the author name; the per-post schema selector isn't wired to output.
-5. **Emoji mojibake** — corrupted UTF-8 (`ðŸŽ¯`, `âœ…`) throughout admin strings looks broken and unprofessional.
+5. **Emoji mojibake** — corrupted UTF-8 (`🎯`, `✅`) throughout admin strings looks broken and unprofessional.
 6. **Inline CSS/JS blobs** — against WordPress.org best practices; hurts Plugin Check and caching.
 7. **Version drift** — header says `1.0.1`, code says `@since 2.1.0`, branch is `v2.1`.
 8. **Documentation sprawl** — 15+ dev-diary `.md` files that confuse rather than help.

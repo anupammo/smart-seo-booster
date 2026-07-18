@@ -2,10 +2,12 @@
 /**
  * Plugin Name: Smart SEO Booster
  * Description: Modular SEO plugin with schema injection, content audit, and internal link analysis.
- * Version: 1.0.1
+ * Version: 2.1.0
  * Author: Anupam Mondal
- * License: GPL2+
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: smart-seo-booster
+ * Domain Path: /languages
  * Requires at least: 5.9
  * Requires PHP: 8.0
  * Tested up to: 6.9
@@ -15,7 +17,7 @@ defined('ABSPATH') || exit;
 
 // Define plugin version constant for cache busting in enqueued assets.
 if (!defined('SMART_SEO_BOOSTER_VERSION')) {
-    define('SMART_SEO_BOOSTER_VERSION', '1.0.1');
+    define('SMART_SEO_BOOSTER_VERSION', '2.1.0');
 }
 
 // Autoload classes

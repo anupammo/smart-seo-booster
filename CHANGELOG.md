@@ -5,6 +5,20 @@ All notable changes to Smart SEO Booster will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-07-18
+
+### Added
+- XML sitemaps: index + per-type sitemaps (posts, pages, CPTs) with images at `/sitemap.xml`, referenced from robots.txt; option to disable the core WordPress sitemap
+- Breadcrumbs: `smart_seo_breadcrumbs()` template tag, `[smart_seo_breadcrumbs]` shortcode, and `BreadcrumbList` JSON-LD
+- Per-post schema type selector wired to real JSON-LD output (14 types; Article-family built richly, others via a valid generic builder)
+- Global title & meta description templates with a variable system (`%%title%%`, `%%sitename%%`, `%%sep%%`, `%%excerpt%%`, `%%category%%`, and more)
+- Search-engine verification meta tags for Google, Bing, Pinterest and Yandex
+- Expanded, config-driven settings screen (General, Titles & Metas, Webmaster, Schema Details) with whitelist sanitization
+
+### Changed
+- Organization and LocalBusiness schema now populated from plugin settings
+- Version bumped to 2.3.0 with a self-healing rewrite-rule flush so `/sitemap.xml` resolves after updates
+
 ## [2.1.0] - 2025-01-04
 
 ### Added

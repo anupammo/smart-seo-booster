@@ -13,6 +13,42 @@ class Smart_SEO_Core {
 
     public static function init() {
         add_action('wp_head', [__CLASS__, 'inject_meta_tags'], 1);
+        add_filter('pre_get_document_title', [__CLASS__, 'filter_document_title']);
+    }
+
+    /**
+     * Apply the per-post SEO title, then the global title template.
+     * Returns '' to let WordPress compute the title normally.
+     *
+     * @param string $title Incoming (usually empty) title.
+     * @return string
+     */
+    public static function filter_document_title($title) {
+        if (is_admin()) {
+            return $title;
+        }
+
+        if (is_singular()) {
+            $post    = get_queried_object();
+            $post_id = ($post instanceof WP_Post) ? $post->ID : 0;
+
+            if ($post_id) {
+                $custom = get_post_meta($post_id, '_smart_seo_title', true);
+                if ($custom) {
+                    return $custom;
+                }
+            }
+
+            $options = get_option('smart_seo_options', []);
+            if (!empty($options['title_template'])) {
+                $parsed = Smart_SEO_Meta_Templates::parse($options['title_template'], $post instanceof WP_Post ? $post : null);
+                if ($parsed !== '') {
+                    return $parsed;
+                }
+            }
+        }
+
+        return $title;
     }
 
     public static function inject_meta_tags() {
@@ -23,6 +59,11 @@ class Smart_SEO_Core {
         $is_singular = is_singular();
         $post        = $is_singular ? get_queried_object() : null;
         $post_id     = ($post instanceof WP_Post) ? $post->ID : 0;
+
+        // Webmaster verification tags (homepage).
+        if (is_front_page()) {
+            self::output_verification();
+        }
 
         // --- Resolve values: per-post override → automatic fallback ---------
         $title = $is_singular ? get_the_title($post_id) : get_bloginfo('name');
@@ -102,6 +143,15 @@ class Smart_SEO_Core {
             if ($custom) {
                 return $custom;
             }
+
+            $options = get_option('smart_seo_options', []);
+            if (!empty($options['description_template'])) {
+                $parsed = Smart_SEO_Meta_Templates::parse($options['description_template'], $post instanceof WP_Post ? $post : null);
+                if ($parsed !== '') {
+                    return $parsed;
+                }
+            }
+
             if ($post instanceof WP_Post && $post->post_excerpt) {
                 return wp_strip_all_tags($post->post_excerpt);
             }
@@ -110,6 +160,28 @@ class Smart_SEO_Core {
             }
         }
         return wp_strip_all_tags(get_bloginfo('description'));
+    }
+
+    /**
+     * Output webmaster verification meta tags on the homepage.
+     */
+    private static function output_verification() {
+        $options = get_option('smart_seo_options', []);
+        $map = [
+            'verify_google'    => 'google-site-verification',
+            'verify_bing'      => 'msvalidate.01',
+            'verify_pinterest' => 'p:domain_verify',
+            'verify_yandex'    => 'yandex-verification',
+        ];
+        foreach ($map as $key => $meta_name) {
+            if (!empty($options[$key])) {
+                printf(
+                    '<meta name="%s" content="%s" />' . "\n",
+                    esc_attr($meta_name),
+                    esc_attr($options[$key])
+                );
+            }
+        }
     }
 
     /**

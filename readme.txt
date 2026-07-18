@@ -1,26 +1,30 @@
 === Smart SEO Booster ===
-Contributors: anupam-mondal  
-Tags: seo, schema, json-ld, content audit, wordpress seo  
-Requires at least: 5.9  
+Contributors: anupam-mondal
+Tags: seo, xml sitemap, schema, open graph, breadcrumbs
+Requires at least: 5.9
 Requires PHP: 8.0
 Tested up to: 6.9
-Stable tag: 2.1.0
-License: GPLv2 or later  
-License URI: https://www.gnu.org/licenses/gpl-2.0.html  
+Stable tag: 2.3.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Modular SEO plugin with schema injection, content audit, and internal link analysis. Built for clarity, automation, and performance.
+Lightweight, complete SEO — meta tags, schema, XML sitemaps, breadcrumbs, social previews & content scoring. Fast, automated, no bloat, no upsells.
 
 == Description ==
 
-Smart SEO Booster is a lightweight, modular plugin designed to improve your website's SEO with minimal effort. It automatically injects JSON-LD schema, audits content structure, and analyzes internal links — all from a clean admin interface.
+Smart SEO Booster is a lightweight, modular plugin that gives you every SEO fundamental that actually moves rankings — without the bloat or upsell walls of the big plugins. It automates titles, meta descriptions, Open Graph & Twitter Cards, JSON-LD schema, XML sitemaps and breadcrumbs, and shows you a live search/social preview with a real-time content score right in the editor.
 
 **Features:**
-* Dynamic JSON-LD schema for Article, FAQ, LocalBusiness, Organization, and ProfilePage
-* Title and meta description injection
-* Content audit: word count, headings, image alt coverage
-* Internal link analysis
-* Admin dashboard with audit report
-* Localization-ready
+* XML sitemaps (posts, pages, custom post types & images) at /sitemap.xml, referenced from robots.txt
+* Breadcrumbs via shortcode `[smart_seo_breadcrumbs]`, template tag, and BreadcrumbList schema
+* JSON-LD schema — 14 per-post types (Article, BlogPosting, Product, Recipe, Event, HowTo, and more)
+* Automatic titles & meta descriptions with a template variable system (%%title%%, %%sitename%%, %%sep%%, %%excerpt%%…)
+* Open Graph & Twitter Cards with live preview and featured-image fallback
+* Per-post SEO meta box: focus keyword, canonical, robots, social — with live Google & social previews
+* Real-time SEO score: admin bar badge, dashboard widget, post-list column, per-post analysis
+* Search-engine verification for Google, Bing, Pinterest & Yandex
+* Content audit: word count, headings, image alt coverage, internal links
+* Lightweight, no external calls, translation-ready
 
 Built by Anupam Mondal — Full Stack Developer & SEO Consultant — to automate clarity and boost discoverability.
 
@@ -49,6 +53,15 @@ No. It uses minimal hooks and outputs schema only in the footer.
 
 == Changelog ==
 
+= 2.3.0 =
+* Feature: XML sitemaps — index + per-type sitemaps (posts, pages, CPTs) with images, at /sitemap.xml, referenced from robots.txt
+* Feature: Breadcrumbs — shortcode, template tag, and BreadcrumbList JSON-LD
+* Feature: Per-post schema type selector now wired to real JSON-LD output (14 types)
+* Feature: Global title & meta description templates with variables (%%title%%, %%sitename%%, %%sep%%, %%excerpt%%, and more)
+* Feature: Search-engine verification fields for Google, Bing, Pinterest and Yandex
+* Improvement: Expanded, config-driven settings screen (General, Titles & Metas, Webmaster, Schema Details) with whitelist sanitization
+* Improvement: Organization and LocalBusiness schema now populated from settings
+
 = 2.1.0 =
 * Feature: Per-post SEO meta box with live search & social previews (Basic / Social / Advanced / Analysis tabs)
 * Feature: SEO score engine — admin bar badge, dashboard widget, post-list column, and per-post metabox
@@ -73,6 +86,9 @@ No. It uses minimal hooks and outputs schema only in the footer.
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.3.0 =
+Adds XML sitemaps, breadcrumbs, per-post schema types, title/meta templates, and search-engine verification. After updating, visit Settings → Permalinks once if /sitemap.xml does not load.
 
 = 2.1.0 =
 Major update: per-post SEO controls, live previews, SEO scoring, dynamic schema, and cleaner meta output. Recommended for all users.

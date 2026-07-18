@@ -16,11 +16,16 @@ if ( $smart_seo_logo ) {
 
 /**
  * Social/profile URLs for the site's Organization schema (sameAs).
- * Empty by default — site owners supply their own via this filter or future settings.
+ * Pulled from the plugin settings (one URL per line); also filterable.
  *
  * @param string[] $urls List of absolute profile URLs.
  */
-$smart_seo_same_as = apply_filters( 'smart_seo_organization_same_as', [] );
+$smart_seo_org_options = get_option( 'smart_seo_options', [] );
+$smart_seo_same_as     = [];
+if ( ! empty( $smart_seo_org_options['organization_same_as'] ) ) {
+    $smart_seo_same_as = preg_split( '/\r\n|\r|\n/', $smart_seo_org_options['organization_same_as'] );
+}
+$smart_seo_same_as = apply_filters( 'smart_seo_organization_same_as', $smart_seo_same_as );
 $smart_seo_same_as = array_values( array_filter( array_map( 'esc_url_raw', (array) $smart_seo_same_as ) ) );
 if ( ! empty( $smart_seo_same_as ) ) {
     $smart_seo_org['sameAs'] = $smart_seo_same_as;

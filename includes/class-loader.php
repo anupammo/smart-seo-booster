@@ -3,6 +3,7 @@ defined('ABSPATH') || exit;
 
 class Smart_SEO_Loader {
     public static function init() {
+        require_once plugin_dir_path(__FILE__) . 'class-meta-templates.php';
         require_once plugin_dir_path(__FILE__) . 'class-settings.php';
         require_once plugin_dir_path(__FILE__) . 'class-admin-ui.php';
         require_once plugin_dir_path(__FILE__) . 'class-seo-core.php';
@@ -11,6 +12,8 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-link-analyzer.php';
         require_once plugin_dir_path(__FILE__) . 'class-meta-fields.php';
         require_once plugin_dir_path(__FILE__) . 'class-seo-score-display.php';
+        require_once plugin_dir_path(__FILE__) . 'class-sitemap.php';
+        require_once plugin_dir_path(__FILE__) . 'class-breadcrumbs.php';
 
         Smart_SEO_Settings::init();
         Smart_SEO_Admin_UI::init();
@@ -20,6 +23,7 @@ class Smart_SEO_Loader {
         Smart_SEO_Link_Analyzer::init();
         Smart_SEO_Meta_Fields::init();
         Smart_SEO_Score_Display::init();
+        Smart_SEO_Sitemap::init();
+        Smart_SEO_Breadcrumbs::init();
     }
 }
-

@@ -41,29 +41,30 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 
 ## 📊 Feature Matrix (Current vs Planned)
 
-### ✅ Available now (v2.1)
+### ✅ Available now (v2.3)
 
 - **Meta tags** — automatic title & meta description injection
-- **Open Graph & Twitter Cards** — per-post social preview with live editor
+- **Global title/meta templates** — `%%title%%`, `%%sitename%%`, `%%sep%%`, `%%excerpt%%`, `%%category%%`… variable system
+- **Auto meta description** — custom → template → excerpt → trimmed content fallback
+- **Open Graph & Twitter Cards** — per-post social preview + featured-image OG fallback
 - **Per-post SEO meta box** — tabbed UI: Basic / Social / Advanced / Analysis
-- **JSON-LD schema** — Article, FAQ, LocalBusiness, Organization, ProfilePage
-- **Content auditor** — word count, headings, image alt coverage
+- **XML Sitemaps** — index + per-type sitemaps for posts, pages & CPTs, with images; `/sitemap.xml` + robots.txt reference
+- **Breadcrumbs** — template tag, `[smart_seo_breadcrumbs]` shortcode & `BreadcrumbList` JSON-LD
+- **JSON-LD schema** — 14 per-post types wired to the meta-box selector (Article, BlogPosting, Product, Recipe, Event, HowTo…) + context templates
+- **Search-engine verification** — Google, Bing, Pinterest & Yandex meta tags
 - **SEO score engine** — admin bar badge, dashboard widget, post-list column, per-post metabox
+- **Content auditor** — word count, headings, image alt coverage
 - **Internal link analysis** — counts internal links per post
 - **Canonical URLs & robots meta** — per-post control
 - **Focus keyword analysis** — density + placement checks in the editor
 
 ### 🛠️ Planned (see [Roadmap](#-development-roadmap))
 
-- **XML Sitemaps** — posts, pages, CPTs, images *(critical parity feature)*
-- **Breadcrumbs** — shortcode, block & `BreadcrumbList` schema
-- **Global title/meta templates** — `%%title%%`, `%%sitename%%`, `%%sep%%` variables
-- **Dynamic per-post schema** — wire the schema-type selector to real output
-- **Auto meta description** — smart fallback from excerpt/content
-- **Redirection manager** — simple 301/302 + 404 log
-- **Search-engine verification** — Google / Bing / Pinterest meta fields
-- **Featured-image OG fallback** — never ship a blank social preview
+- **Setup wizard** — 4-step onboarding
+- **Redesigned tabbed settings** + block-editor sidebar panel
 - **Sitewide noindex controls** — archives, tags, search, paginated pages
+- **Redirection manager** — simple 301/302 + 404 log
+- **Bulk SEO editor** & **import from Yoast/Rank Math**
 
 ---
 
@@ -77,8 +78,8 @@ Smart SEO Booster competes in the **lightweight/automated lane** — alongside S
 | OG / Twitter Cards | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Live social/search preview | ✅ | ➖ | ➖ | ✅ | ✅ |
 | JSON-LD schema | ✅ (10+ types) | ✅ | ✅ | ✅ (18+ types) | ✅ (limited) |
-| XML sitemap | 🛠️ planned | ✅ | ✅ | ✅ | ✅ |
-| Breadcrumbs | 🛠️ planned | ✅ | ✅ | ✅ | ✅ |
+| XML sitemap | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Breadcrumbs | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Content/SEO scoring | ✅ | ➖ | ➖ | ✅ | ✅ |
 | Redirection manager | 🛠️ planned | ➖ (Pro) | ➖ | ✅ | ➖ (Premium) |
 | Settings-light automation | ✅ | ✅✅ | ✅ | ➖ | ➖ |
@@ -158,16 +159,18 @@ The road to **5,000 downloads** is four phases. Each phase is independently ship
 - [x] **Pass WordPress.org Plugin Check** — static audit clean (escaping, i18n with text domain, nonce-guarded & sanitized superglobals, direct-access guards on every file, no obfuscation/unsafe I/O/short tags, complete header incl. License URI + Domain Path, `uninstall.php` clears all options + post meta). *Run `wp plugin check smart-seo-booster` on your live WP for the official green tick.*
 - [x] **Consolidate documentation** — moved 12 scattered dev notes into `docs/` + `docs/archive/`; root now holds only README, STRATEGY, CHANGELOG, CONTRIBUTING; added `.distignore` so dev docs never ship
 
-### 🟠 Phase 2 — Parity Features *(v2.3)*  ·  **Priority: HIGH**
-> Goal: close every "table-stakes" gap so no reviewer can say "but it doesn't even have X".
+### ✅ Phase 2 — Parity Features *(v2.3.0)*  ·  **COMPLETE**
+> Goal: close every "table-stakes" gap so no reviewer can say "but it doesn't even have X". — **Done.**
 
-- [ ] **XML Sitemap** — posts, pages, CPTs, images; `/sitemap.xml`; robots.txt reference
-- [ ] **Breadcrumbs** — function, shortcode, block + `BreadcrumbList` JSON-LD
-- [ ] **Per-post schema wiring** — connect the existing schema-type selector to real output
-- [ ] **Global meta templates** — `%%title%% %%sep%% %%sitename%%` variable system
-- [x] **Auto meta description** — custom field → excerpt → trimmed content fallback (done in `class-seo-core.php`)
-- [x] **Featured-image OG fallback** — custom OG image → featured image → none (done in `class-seo-core.php`)
-- [ ] **Search-engine verification fields** — Google / Bing / Pinterest
+- [x] **XML Sitemap** — `class-sitemap.php`: index + per-type sitemaps (posts/pages/CPTs) with images, paginated at 1,000 URLs, honors per-post noindex, `Sitemap:` line in robots.txt, optional disable of core WP sitemap
+- [x] **Breadcrumbs** — `class-breadcrumbs.php`: `smart_seo_breadcrumbs()` template tag, `[smart_seo_breadcrumbs]` shortcode, accessible `<nav>` markup + `BreadcrumbList` JSON-LD
+- [x] **Per-post schema wiring** — `class-schema-generator.php` now reads the meta-box `_smart_seo_schema_type` selector; Article-family built richly, other types via a valid generic builder (verified: valid JSON-LD, HTML-clean)
+- [x] **Global meta templates** — `class-meta-templates.php` variable parser (`%%title%%`/`%%sep%%`/`%%sitename%%`/`%%excerpt%%`/…) wired into document title + meta description (unit-tested, incl. dangling-separator collapse)
+- [x] **Auto meta description** — custom → template → excerpt → trimmed content fallback (`class-seo-core.php`)
+- [x] **Featured-image OG fallback** — custom OG image → featured image → none (`class-seo-core.php`)
+- [x] **Search-engine verification fields** — Google, Bing, Pinterest & Yandex meta tags on the homepage
+
+**Also landed:** expanded, config-driven settings screen (General / Titles &amp; Metas / Webmaster / Schema Details) with whitelist sanitization (unit-tested); version bump to `2.3.0` with self-healing rewrite flush.
 
 ### 🟡 Phase 3 — Modern UX & Trust *(v2.4)*  ·  **Priority: MEDIUM**
 > Goal: make it *feel* premium so first-time users leave 5-star reviews.

@@ -1,9 +1,11 @@
 <?php
 /**
  * Plugin Name: Smart SEO Booster
+ * Plugin URI: https://anupammondal.in/wordpress-plugin/smart-seo-booster
  * Description: Lightweight, complete SEO — meta tags, schema, XML sitemaps, breadcrumbs, social previews & content scoring. Fast, automated, no bloat.
  * Version: 2.6.0
  * Author: Anupam Mondal
+ * Author URI: https://anupammondal.in
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: smart-seo-booster
@@ -18,6 +20,17 @@ defined('ABSPATH') || exit;
 // Define plugin version constant for cache busting in enqueued assets.
 if (!defined('SMART_SEO_BOOSTER_VERSION')) {
     define('SMART_SEO_BOOSTER_VERSION', '2.6.0');
+}
+
+// Developer credit / portfolio links.
+if (!defined('SMART_SEO_BOOSTER_URL')) {
+    define('SMART_SEO_BOOSTER_URL', 'https://anupammondal.in/wordpress-plugin/smart-seo-booster');
+}
+if (!defined('SMART_SEO_BOOSTER_AUTHOR_URL')) {
+    define('SMART_SEO_BOOSTER_AUTHOR_URL', 'https://anupammondal.in');
+}
+if (!defined('SMART_SEO_BOOSTER_FILE')) {
+    define('SMART_SEO_BOOSTER_FILE', __FILE__);
 }
 
 // Autoload classes

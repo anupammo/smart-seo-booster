@@ -32,6 +32,7 @@ class Smart_SEO_Settings {
                     'breadcrumb_separator'  => [ 'type' => 'text', 'label' => __( 'Breadcrumb separator', 'smart-seo-booster' ), 'default' => '/', 'class' => 'small-text' ],
                     'breadcrumb_home_label' => [ 'type' => 'text', 'label' => __( 'Breadcrumb home label', 'smart-seo-booster' ), 'default' => __( 'Home', 'smart-seo-booster' ), 'class' => 'regular-text' ],
                     'auto_image_alt'     => [ 'type' => 'checkbox', 'label' => __( 'Auto-add missing image alt text', 'smart-seo-booster' ), 'desc' => __( 'Fills empty alt attributes from the image or post title on the front end.', 'smart-seo-booster' ) ],
+                    'frontend_credit'    => [ 'type' => 'checkbox', 'label' => __( 'Show a small credit link in the footer', 'smart-seo-booster' ), 'desc' => __( 'Optional. Displays “SEO by Smart SEO Booster” linking to the developer. Off by default.', 'smart-seo-booster' ) ],
                     'min_word_count'     => [ 'type' => 'number', 'label' => __( 'Minimum word count', 'smart-seo-booster' ), 'default' => 300 ],
                 ],
             ],

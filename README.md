@@ -267,7 +267,8 @@ GPLv2 or later — see [LICENSE](LICENSE).
 
 ## 👨‍💻 Author
 
-**Anupam Mondal** — Full-Stack Developer & SEO Consultant · [@anupammo](https://github.com/anupammo)
+**Anupam Mondal** — Full-Stack Developer & SEO Consultant
+· [Portfolio](https://anupammondal.in) · [Plugin page](https://anupammondal.in/wordpress-plugin/smart-seo-booster) · [@anupammo](https://github.com/anupammo)
 
 ---
 

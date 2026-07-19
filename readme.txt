@@ -38,6 +38,8 @@ Smart SEO Booster is a lightweight, modular plugin that gives you every SEO fund
 
 Built by Anupam Mondal — Full Stack Developer & SEO Consultant — to automate clarity and boost discoverability.
 
+Developer & documentation: https://anupammondal.in/wordpress-plugin/smart-seo-booster
+
 == Installation ==
 
 1. Upload the plugin folder to `/wp-content/plugins/`

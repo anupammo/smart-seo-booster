@@ -25,6 +25,7 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-geo.php';
         require_once plugin_dir_path(__FILE__) . 'class-image-seo.php';
         require_once plugin_dir_path(__FILE__) . 'class-blocks.php';
+        require_once plugin_dir_path(__FILE__) . 'class-credits.php';
 
         Smart_SEO_Settings::init();
         Smart_SEO_Admin_UI::init();
@@ -46,5 +47,6 @@ class Smart_SEO_Loader {
         Smart_SEO_GEO::init();
         Smart_SEO_Image_SEO::init();
         Smart_SEO_Blocks::init();
+        Smart_SEO_Credits::init();
     }
 }

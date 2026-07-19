@@ -31,7 +31,7 @@ class Smart_SEO_Analytics {
                 'smart-seo-ga4',
                 'https://www.googletagmanager.com/gtag/js?id=' . rawurlencode( $ga ),
                 [],
-                null,
+                SMART_SEO_BOOSTER_VERSION,
                 false
             );
             wp_add_inline_script(

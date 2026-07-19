@@ -5,7 +5,7 @@
 Smart SEO Booster gives you every SEO fundamental that actually moves rankings — meta tags, Open Graph & Twitter Cards, JSON-LD schema, XML sitemaps, breadcrumbs, and real-time content scoring — in one clean, modular plugin with **no bloat, no upsell walls, and no complex add-ons**.
 
 [![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/anupammo/smart-seo-booster)
-[![WordPress](https://img.shields.io/badge/WordPress-5.9%E2%80%937.0-21759b.svg)](https://wordpress.org/)
+[![WordPress](https://img.shields.io/badge/WordPress-5.9%E2%80%937.0.2-21759b.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-8.0%2B-777bb4.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-GPLv2%2B-green.svg)](LICENSE)
 
@@ -41,7 +41,7 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 
 ## 📊 Feature Matrix (Current vs Planned)
 
-### ✅ Available now (v2.6)
+### ✅ Available now (v2.1)
 
 - **SEO Audit dashboard** — site-wide score gauge, distribution chart, opportunities & lowest-scoring list (professional Dashicon UI, no emoji)
 - **Analytics** — Google Analytics 4 + Microsoft Clarity, loaded only when configured
@@ -126,7 +126,7 @@ cp -r smart-seo-booster /path/to/wp-content/plugins/
 wp plugin activate smart-seo-booster
 ```
 
-**Requirements:** WordPress 5.9+ · PHP 8.0+ · Tested up to WordPress 7.0
+**Requirements:** WordPress 5.9+ · PHP 8.0+ · Tested up to WordPress 7.0.2
 
 ---
 
@@ -177,7 +177,7 @@ The road to **5,000 downloads** is four phases. Each phase is independently ship
 - [x] **Pass WordPress.org Plugin Check** — static audit clean (escaping, i18n with text domain, nonce-guarded & sanitized superglobals, direct-access guards on every file, no obfuscation/unsafe I/O/short tags, complete header incl. License URI + Domain Path, `uninstall.php` clears all options + post meta). *Run `wp plugin check smart-seo-booster` on your live WP for the official green tick.*
 - [x] **Consolidate documentation** — moved 12 scattered dev notes into `docs/` + `docs/archive/`; root now holds only README, STRATEGY, CHANGELOG, CONTRIBUTING; added `.distignore` so dev docs never ship
 
-### ✅ Phase 2 — Parity Features *(v2.3.0)*  ·  **COMPLETE**
+### ✅ Phase 2 — Parity Features *(2.1.0)*  ·  **COMPLETE**
 > Goal: close every "table-stakes" gap so no reviewer can say "but it doesn't even have X". — **Done.**
 
 - [x] **XML Sitemap** — `class-sitemap.php`: index + per-type sitemaps (posts/pages/CPTs) with images, paginated at 1,000 URLs, honors per-post noindex, `Sitemap:` line in robots.txt, optional disable of core WP sitemap
@@ -188,9 +188,9 @@ The road to **5,000 downloads** is four phases. Each phase is independently ship
 - [x] **Featured-image OG fallback** — custom OG image → featured image → none (`class-seo-core.php`)
 - [x] **Search-engine verification fields** — Google, Bing, Pinterest & Yandex meta tags on the homepage
 
-**Also landed:** expanded, config-driven settings screen (General / Titles &amp; Metas / Webmaster / Schema Details) with whitelist sanitization (unit-tested); version bump to `2.3.0` with self-healing rewrite flush.
+**Also landed:** expanded, config-driven settings screen (General / Titles &amp; Metas / Webmaster / Schema Details) with whitelist sanitization (unit-tested); self-healing rewrite flush.
 
-### ✅ Phase 3 — Modern UX & Trust *(v2.4.0)*  ·  **COMPLETE**
+### ✅ Phase 3 — Modern UX & Trust *(2.1.0)*  ·  **COMPLETE**
 > Goal: make it *feel* premium so first-time users leave 5-star reviews. — **Done.**
 
 - [x] **Setup wizard** — `class-setup-wizard.php`: 4-step onboarding (site type → titles → features → verification → done), activation redirect, merges into options without wiping unrelated settings
@@ -200,7 +200,7 @@ The road to **5,000 downloads** is four phases. Each phase is independently ship
 - [x] **Block-editor sidebar** — `js/block-editor.js`: native Gutenberg `PluginSidebar` (Search Appearance / Social / Advanced) bound to REST meta, with live snippet preview; classic metabox auto-hidden on the block editor
 - [x] **Full i18n** — regenerated `.pot` (139 strings), `wp_set_script_translations` for the sidebar, RTL-safe CSS (logical properties) on the new UI
 
-### ✅ Phase 4 — Differentiators *(v2.5.0)*  ·  **COMPLETE**
+### ✅ Phase 4 — Differentiators *(2.1.0)*  ·  **COMPLETE**
 > Goal: give people a reason to *choose you over Slim SEO*. — **Done.**
 
 - [x] **Redirection manager** — `class-redirects.php`: 301/302/307 redirects + capped 404 log with one-click "create redirect", stored in options (no custom tables); path normalization unit-tested for trailing-slash idempotency
@@ -220,7 +220,7 @@ Run before **every** WordPress.org submission or update.
 - [ ] PHPCS with `WordPress-Extra` ruleset passes
 - [ ] No PHP notices/warnings with `WP_DEBUG` on
 - [ ] Tested on PHP 8.0, 8.1, 8.2, 8.3
-- [ ] Tested on WordPress 5.9 (min) and latest (7.0)
+- [ ] Tested on WordPress 5.9 (min) and latest (7.0.2)
 
 ### Security
 - [ ] All output escaped at the sink

@@ -5,101 +5,30 @@ All notable changes to Smart SEO Booster will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.6.0] - 2026-07-19
+## [2.1.0] - 2026-07-19
+
+Complete SEO toolkit release. All capabilities below ship together in 2.1.0.
 
 ### Added
-- Site-wide SEO Audit dashboard: average-score gauge, score-distribution chart, opportunity list, and lowest-scoring content — with a design-system UI
-- Google Analytics 4 (gtag) and Microsoft Clarity integration, loaded only when an ID is set; option to exclude logged-in admins
-- Baidu site verification (alongside Google/Bing/Yandex/Pinterest)
-- GEO / AI SEO: `/llms.txt` endpoint for AI assistants, AI-crawler training opt-out in robots.txt (GPTBot, Google-Extended, ClaudeBot, CCBot, …), optional `speakable` structured data
-- Automatic image alt text on the front end (from image/post title) with an audit of images missing alt
-- Blocks: social share, call-to-action, breadcrumb, and publish/updated dates; block patterns (article footer, CTA banner, breadcrumb bar)
-- Publish/modified dates added to structured data across all schema types
+- Per-post SEO meta box (live search & social previews) and an SEO score engine (admin bar, dashboard widget, post-list column, per-post analysis)
+- Automatic titles & meta descriptions with a template variable system; Open Graph & Twitter Cards with featured-image fallback; single de-duplicated meta output
+- XML sitemaps (posts, pages, CPTs, images) at /sitemap.xml + robots.txt reference
+- Breadcrumbs (shortcode, template tag, block, BreadcrumbList JSON-LD)
+- JSON-LD schema: 14 per-post types, dynamic/de-personalized/filterable, with publish & modified dates on all types
+- Global no-index controls via the wp_robots filter; redirection manager (301/302/307) + 404 log; one-click import from Yoast SEO and Rank Math
+- Site-wide SEO audit dashboard (score gauge, distribution chart, opportunities, lowest-scoring list)
+- Google Analytics 4 & Microsoft Clarity; verification for Google, Bing, Yandex, Baidu, Pinterest
+- GEO / AI SEO: /llms.txt, AI-crawler training opt-out, optional speakable data
+- Automatic image alt text with a missing-alt audit; WooCommerce Product schema & OG; Local SEO shortcode/block
+- Native Gutenberg SEO sidebar; 4-step setup wizard; blocks (social share, CTA, breadcrumb, dates) with patterns; bulk SEO editor
+- Developer credit (Plugin URI / Author URI, admin footer, opt-in front-end link)
 
 ### Changed
-- Professional admin design system (color theme, typography, SVG charts); replaced all emoji with Dashicons
-- Removed unused `templates/help-page.php`
+- Professional, accessible admin UI (WAI-ARIA tabs, Dashicons instead of emoji, RTL-safe); properly enqueued assets; translation-ready
 
 ### Fixed
-- SEO Audit report rendered blank because it required a current post; it is now a proper site-wide report
-
-## [2.5.0] - 2026-07-18
-
-### Added
-- One-click importer from Yoast SEO and Rank Math — batched migration of titles, descriptions, social tags, canonicals and robots; never overwrites existing Smart SEO values
-- Redirection manager: 301/302/307 redirects plus a capped 404 log with one-click "create redirect" (stored in options, no custom tables)
-- Bulk SEO editor: paginated screen to edit SEO titles and meta descriptions across posts and pages
-- WooCommerce integration (auto-active when WooCommerce is present): Product JSON-LD with offers/availability/SKU/ratings and product Open Graph tags
-- Local SEO: `[smart_seo_local_business]` shortcode and a dynamic block; LocalBusiness schema enriched with geo coordinates and opening hours
-
-### Changed
-- Open Graph type is now filterable via `smart_seo_og_type`
-- Uninstall now removes redirect, 404-log and rewrite-version options
-
-## [2.4.0] - 2026-07-18
-
-### Added
-- Setup wizard: 4-step guided onboarding (site type → titles → features → verification), shown on activation, merging into options without wiping unrelated settings
-- Native block-editor (Gutenberg) SEO sidebar bound to REST meta, with a live search-snippet preview
-- Redesigned tabbed, card-based settings screen — accessible (WAI-ARIA tabs, keyboard navigation) and responsive
-- Global no-index controls for category/tag/taxonomy, author, date, search and paginated archives
-
-### Changed
-- Robots directives (per-post + global) now handled centrally through the `wp_robots` filter, eliminating duplicate robots tags
-- Classic SEO metabox is hidden on the block editor (the sidebar replaces it); its tabs gained full ARIA + keyboard support
-- Regenerated `.pot`; the block sidebar registers script translations
-
-## [2.3.0] - 2026-07-18
-
-### Added
-- XML sitemaps: index + per-type sitemaps (posts, pages, CPTs) with images at `/sitemap.xml`, referenced from robots.txt; option to disable the core WordPress sitemap
-- Breadcrumbs: `smart_seo_breadcrumbs()` template tag, `[smart_seo_breadcrumbs]` shortcode, and `BreadcrumbList` JSON-LD
-- Per-post schema type selector wired to real JSON-LD output (14 types; Article-family built richly, others via a valid generic builder)
-- Global title & meta description templates with a variable system (`%%title%%`, `%%sitename%%`, `%%sep%%`, `%%excerpt%%`, `%%category%%`, and more)
-- Search-engine verification meta tags for Google, Bing, Pinterest and Yandex
-- Expanded, config-driven settings screen (General, Titles & Metas, Webmaster, Schema Details) with whitelist sanitization
-
-### Changed
-- Organization and LocalBusiness schema now populated from plugin settings
-- Version bumped to 2.3.0 with a self-healing rewrite-rule flush so `/sitemap.xml` resolves after updates
-
-## [2.1.0] - 2025-01-04
-
-### Added
-- WordPress 6.8 compatibility and testing
-- Comprehensive 20+ point SEO analysis framework
-- PageSpeed Insights-style modern interface design
-- Advanced content quality assessment algorithms
-- Image optimization analysis and recommendations
-- Social media optimization checks (Open Graph, Twitter Cards)
-- Technical SEO validation (robots.txt, SSL, URL structure)
-- Security enhancements with proper nonce verification
-- Input sanitization and output escaping throughout
-- Comprehensive error handling and user feedback
-- Enhanced WordPress coding standards compliance
-- Performance optimizations for large sites
-
-### Improved
-- Security: Added nonce verification for all form submissions
-- Security: Implemented proper input sanitization and output escaping
-- Security: Enhanced user capability checks throughout admin area
-- Performance: Optimized database queries and caching
-- UI/UX: Modern WordPress admin design consistency
-- Accessibility: Enhanced keyboard navigation and screen reader support
-- Code quality: Full PSR-12 and WordPress coding standards compliance
-
-### Fixed
-- All PHP warnings and notices in audit report template
-- Undefined variable errors in comprehensive analysis
-- Compatibility issues with latest WordPress versions
-- Template file loading with proper security checks
-- Asset loading with proper versioning for cache busting
-
-### Security
-- Implemented WordPress security best practices
-- Added proper user capability verification
-- Enhanced data validation and sanitization
-- Prevented direct file access throughout plugin
+- SEO Audit report no longer renders blank (now a site-wide report)
+- Corrected UTF-8 emoji encoding; aligned version across header, constant and readme
 
 ## [2.0.0] - 2025-01-01
 

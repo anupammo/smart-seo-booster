@@ -61,7 +61,7 @@ class Smart_SEO_Meta_Fields {
     /**
      * Enqueue the Gutenberg SEO sidebar.
      *
-     * @since 2.4.0
+     * @since 2.1.0
      */
     public static function enqueue_block_sidebar() {
         $ver = defined('SMART_SEO_BOOSTER_VERSION') ? SMART_SEO_BOOSTER_VERSION : false;

@@ -1,57 +1,151 @@
 <?php
+/**
+ * Site-wide SEO audit dashboard.
+ *
+ * @var array $smart_seo_audit Passed in by Smart_SEO_Admin_UI::render_audit_report().
+ */
 defined('ABSPATH') || exit;
 
-global $post;
-if (!$post) return;
+// Refresh cache when requested (read-only, nonce-guarded).
+$smart_seo_fresh = false;
+if ( isset( $_GET['refresh'], $_GET['_ssbnonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_ssbnonce'] ) ), 'smart_seo_audit_refresh' ) ) {
+    $smart_seo_fresh = true;
+}
 
-$smart_seo_content = $post->post_content;
-$smart_seo_word_count = str_word_count( wp_strip_all_tags( $smart_seo_content ) );
-$smart_seo_heading_count = substr_count($smart_seo_content, '<h');
-$smart_seo_image_count = substr_count($smart_seo_content, '<img');
-$smart_seo_alt_count = substr_count($smart_seo_content, 'alt=');
-$smart_seo_link_matches = [];
-$smart_seo_link_count = preg_match_all('/<a\s[^>]*href=["\']([^"\']+)["\']/i', $smart_seo_content, $smart_seo_link_matches);
+$d = Smart_SEO_Audit::gather( $smart_seo_fresh );
 
-$smart_seo_schema_enabled = get_option('smart_seo_options')['enable_schema'] ?? false;
+$smart_seo_avg   = (int) $d['avg'];
+$smart_seo_color = $smart_seo_avg >= 80 ? 'var(--ssb-good)' : ( $smart_seo_avg >= 60 ? '#22c55e' : ( $smart_seo_avg >= 40 ? 'var(--ssb-warn)' : 'var(--ssb-bad)' ) );
+$smart_seo_r     = 52;
+$smart_seo_circ  = 2 * M_PI * $smart_seo_r;
+$smart_seo_off   = $smart_seo_circ * ( 1 - $smart_seo_avg / 100 );
+
+$smart_seo_pct = static function ( $n, $total ) {
+    return $total > 0 ? round( ( $n / $total ) * 100 ) : 0;
+};
+
+/** Small stat-tile printer. */
+$smart_seo_tile = static function ( $icon, $num, $label, $mod = '' ) {
+    printf(
+        '<div class="ssb-card"><div class="ssb-stat %s"><span class="ssb-ico"><span class="dashicons dashicons-%s"></span></span><div><div class="ssb-num">%s</div><div class="ssb-lbl">%s</div></div></div></div>',
+        esc_attr( $mod ),
+        esc_attr( $icon ),
+        esc_html( $num ),
+        esc_html( $label )
+    );
+};
+
+$smart_seo_refresh_url = wp_nonce_url( admin_url( 'admin.php?page=smart-seo-audit&refresh=1' ), 'smart_seo_audit_refresh', '_ssbnonce' );
 ?>
-
 <div class="wrap">
-    <h1><?php echo esc_html__( 'Smart SEO Audit Report', 'smart-seo-booster' ); ?></h1>
-    <table class="widefat fixed striped">
-        <thead>
-            <tr>
-                <th><?php esc_html_e( 'Metric', 'smart-seo-booster' ); ?></th>
-                <th><?php esc_html_e( 'Value', 'smart-seo-booster' ); ?></th>
-                <th><?php esc_html_e( 'Status', 'smart-seo-booster' ); ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><?php esc_html_e( 'Word Count', 'smart-seo-booster' ); ?></td>
-                <td><?php echo absint( $smart_seo_word_count ); ?></td>
-                <td><?php echo $smart_seo_word_count >= 500 ? esc_html__( '✅ Good', 'smart-seo-booster' ) : esc_html__( '⚠️ Consider adding more content', 'smart-seo-booster' ); ?></td>
-            </tr>
-            <tr>
-                <td><?php esc_html_e( 'Headings', 'smart-seo-booster' ); ?></td>
-                <td><?php echo absint( $smart_seo_heading_count ); ?></td>
-                <td><?php echo $smart_seo_heading_count >= 3 ? esc_html__( '✅ Structured', 'smart-seo-booster' ) : esc_html__( '⚠️ Add more headings', 'smart-seo-booster' ); ?></td>
-            </tr>
-            <tr>
-                <td><?php esc_html_e( 'Images', 'smart-seo-booster' ); ?></td>
-                <td><?php echo absint( $smart_seo_image_count ); ?></td>
-                <td><?php echo $smart_seo_image_count === $smart_seo_alt_count ? esc_html__( '✅ All images have alt text', 'smart-seo-booster' ) : esc_html__( '⚠️ Missing alt attributes', 'smart-seo-booster' ); ?></td>
-            </tr>
-            <tr>
-                <td><?php esc_html_e( 'Internal Links', 'smart-seo-booster' ); ?></td>
-                <td><?php echo absint( count($smart_seo_link_matches[1] ?? []) ); ?></td>
-                <td><?php echo ( count($smart_seo_link_matches[1] ?? []) ) >= 5 ? esc_html__( '✅ Good linking', 'smart-seo-booster' ) : esc_html__( '⚠️ Add more internal links', 'smart-seo-booster' ); ?></td>
-            </tr>
-            <tr>
-                <td><?php esc_html_e( 'Schema Markup', 'smart-seo-booster' ); ?></td>
-                <td><?php echo $smart_seo_schema_enabled ? esc_html__( 'Enabled', 'smart-seo-booster' ) : esc_html__( 'Disabled', 'smart-seo-booster' ); ?></td>
-                <td><?php echo $smart_seo_schema_enabled ? esc_html__( '✅ Active', 'smart-seo-booster' ) : esc_html__( '⚠️ Enable in settings', 'smart-seo-booster' ); ?></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div class="ssb-app ssb-adapt">
 
+        <div class="ssb-head">
+            <h1><span class="dashicons dashicons-chart-area"></span> <?php esc_html_e( 'SEO Audit', 'smart-seo-booster' ); ?></h1>
+            <div>
+                <span class="ssb-sub">
+                    <?php
+                    /* translators: %d: number of items scanned */
+                    printf( esc_html( _n( 'Scanned %d item', 'Scanned %d items', (int) $d['total'], 'smart-seo-booster' ) ), (int) $d['total'] );
+                    ?>
+                </span>
+                <a href="<?php echo esc_url( $smart_seo_refresh_url ); ?>" class="button" style="margin-inline-start:10px;">
+                    <span class="dashicons dashicons-update" style="vertical-align:text-bottom;"></span> <?php esc_html_e( 'Refresh', 'smart-seo-booster' ); ?>
+                </a>
+            </div>
+        </div>
+
+        <div class="ssb-two-col">
+            <!-- Average score gauge -->
+            <div class="ssb-card">
+                <h2><?php esc_html_e( 'Average SEO Score', 'smart-seo-booster' ); ?></h2>
+                <div class="ssb-gauge">
+                    <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="<?php echo esc_attr( sprintf( /* translators: %d: score */ __( 'Average score %d out of 100', 'smart-seo-booster' ), $smart_seo_avg ) ); ?>">
+                        <circle cx="60" cy="60" r="<?php echo esc_attr( $smart_seo_r ); ?>" fill="none" stroke="var(--ssb-line)" stroke-width="12" />
+                        <circle cx="60" cy="60" r="<?php echo esc_attr( $smart_seo_r ); ?>" fill="none" stroke="<?php echo esc_attr( $smart_seo_color ); ?>" stroke-width="12" stroke-linecap="round"
+                            stroke-dasharray="<?php echo esc_attr( $smart_seo_circ ); ?>" stroke-dashoffset="<?php echo esc_attr( $smart_seo_off ); ?>"
+                            transform="rotate(-90 60 60)" />
+                    </svg>
+                    <div>
+                        <div class="ssb-gauge-num" style="color:<?php echo esc_attr( $smart_seo_color ); ?>;"><?php echo esc_html( $smart_seo_avg ); ?><span style="font-size:16px;color:var(--ssb-muted);">/100</span></div>
+                        <div class="ssb-gauge-cap"><?php esc_html_e( 'Across published posts &amp; pages', 'smart-seo-booster' ); ?></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Score distribution -->
+            <div class="ssb-card">
+                <h2><?php esc_html_e( 'Score Distribution', 'smart-seo-booster' ); ?></h2>
+                <div class="ssb-bars">
+                    <?php
+                    $smart_seo_rows = [
+                        'excellent' => __( 'Excellent', 'smart-seo-booster' ),
+                        'good'      => __( 'Good', 'smart-seo-booster' ),
+                        'needs'     => __( 'Needs work', 'smart-seo-booster' ),
+                        'poor'      => __( 'Poor', 'smart-seo-booster' ),
+                    ];
+                    foreach ( $smart_seo_rows as $key => $lbl ) :
+                        $count = (int) $d['buckets'][ $key ];
+                        $pct   = $smart_seo_pct( $count, $d['total'] );
+                        ?>
+                        <div class="ssb-bar-row">
+                            <span><?php echo esc_html( $lbl ); ?></span>
+                            <span class="ssb-bar-track"><span class="ssb-bar-fill <?php echo esc_attr( $key ); ?>" style="inline-size:<?php echo esc_attr( $pct ); ?>%;"></span></span>
+                            <span><?php echo esc_html( $count ); ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stat tiles -->
+        <div class="ssb-grid">
+            <?php
+            $smart_seo_tile( 'admin-page', (int) $d['total'], __( 'Published items', 'smart-seo-booster' ) );
+            $smart_seo_tile( 'format-image', (int) $d['images_no_alt'], __( 'Images missing alt', 'smart-seo-booster' ), $d['images_no_alt'] > 0 ? 'is-warn' : 'is-good' );
+            $smart_seo_tile( 'editor-alignleft', (int) $d['missing_desc'], __( 'No meta description', 'smart-seo-booster' ), $d['missing_desc'] > 0 ? 'is-warn' : 'is-good' );
+            $smart_seo_tile( 'text-page', (int) $d['thin_content'], __( 'Thin content', 'smart-seo-booster' ), $d['thin_content'] > 0 ? 'is-warn' : 'is-good' );
+            $smart_seo_tile( 'hidden', (int) $d['noindex'], __( 'No-indexed', 'smart-seo-booster' ) );
+            $smart_seo_tile( 'images-alt2', (int) $d['images_total'], __( 'Total images', 'smart-seo-booster' ) );
+            ?>
+        </div>
+
+        <div class="ssb-two-col">
+            <!-- Opportunities -->
+            <div class="ssb-card">
+                <h2><?php esc_html_e( 'Opportunities', 'smart-seo-booster' ); ?></h2>
+                <ul class="ssb-opps">
+                    <?php foreach ( $d['opportunities'] as $op ) : ?>
+                        <li class="<?php echo esc_attr( $op['level'] ); ?>">
+                            <span class="dashicons dashicons-<?php echo esc_attr( $op['icon'] ); ?>"></span>
+                            <span><?php echo esc_html( $op['text'] ); ?></span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+
+            <!-- Lowest scoring -->
+            <div class="ssb-card">
+                <h2><?php esc_html_e( 'Needs attention first', 'smart-seo-booster' ); ?></h2>
+                <table class="ssb-table">
+                    <thead><tr><th><?php esc_html_e( 'Content', 'smart-seo-booster' ); ?></th><th><?php esc_html_e( 'Score', 'smart-seo-booster' ); ?></th></tr></thead>
+                    <tbody>
+                        <?php if ( empty( $d['lowest'] ) ) : ?>
+                            <tr><td colspan="2"><?php esc_html_e( 'No published content yet.', 'smart-seo-booster' ); ?></td></tr>
+                        <?php else : ?>
+                            <?php foreach ( $d['lowest'] as $row ) :
+                                $bucket = $row['score'] >= 80 ? 'excellent' : ( $row['score'] >= 60 ? 'good' : ( $row['score'] >= 40 ? 'needs' : 'poor' ) );
+                                ?>
+                                <tr>
+                                    <td><a href="<?php echo esc_url( (string) get_edit_post_link( $row['id'] ) ); ?>"><?php echo esc_html( $row['title'] ); ?></a></td>
+                                    <td><span class="ssb-pill <?php echo esc_attr( $bucket ); ?>"><?php echo esc_html( $row['score'] ); ?></span></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

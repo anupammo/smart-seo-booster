@@ -161,7 +161,17 @@ class Smart_SEO_Admin_UI {
             wp_enqueue_style(
                 'smart-seo-settings',
                 plugin_dir_url(__FILE__) . '../css/settings.css',
-                ['smart-seo-admin'],
+                ['smart-seo-admin', 'dashicons'],
+                $ver
+            );
+        }
+
+        // Audit dashboard design system.
+        if ($hook === 'smart-seo_page_smart-seo-audit') {
+            wp_enqueue_style(
+                'smart-seo-dashboard',
+                plugin_dir_url(__FILE__) . '../css/dashboard.css',
+                ['dashicons'],
                 $ver
             );
         }

@@ -89,7 +89,8 @@ class Smart_SEO_Breadcrumbs {
      * @return string
      */
     public static function render( $args = [] ) {
-        if ( ! self::enabled() ) {
+        // Enabled globally, or forced (e.g. when placed as a block).
+        if ( ! self::enabled() && ! apply_filters( 'smart_seo_force_breadcrumbs', false ) ) {
             return '';
         }
 

@@ -31,6 +31,7 @@ class Smart_SEO_Settings {
                     'enable_breadcrumbs' => [ 'type' => 'checkbox', 'label' => __( 'Enable Breadcrumbs', 'smart-seo-booster' ), 'desc' => __( 'Use [smart_seo_breadcrumbs] or the smart_seo_breadcrumbs() template tag.', 'smart-seo-booster' ) ],
                     'breadcrumb_separator'  => [ 'type' => 'text', 'label' => __( 'Breadcrumb separator', 'smart-seo-booster' ), 'default' => '/', 'class' => 'small-text' ],
                     'breadcrumb_home_label' => [ 'type' => 'text', 'label' => __( 'Breadcrumb home label', 'smart-seo-booster' ), 'default' => __( 'Home', 'smart-seo-booster' ), 'class' => 'regular-text' ],
+                    'auto_image_alt'     => [ 'type' => 'checkbox', 'label' => __( 'Auto-add missing image alt text', 'smart-seo-booster' ), 'desc' => __( 'Fills empty alt attributes from the image or post title on the front end.', 'smart-seo-booster' ) ],
                     'min_word_count'     => [ 'type' => 'number', 'label' => __( 'Minimum word count', 'smart-seo-booster' ), 'default' => 300 ],
                 ],
             ],
@@ -44,12 +45,22 @@ class Smart_SEO_Settings {
             ],
             'smart_seo_webmaster' => [
                 'title'  => __( 'Webmaster Verification', 'smart-seo-booster' ),
-                'desc'   => __( 'Paste only the verification code (the content value), not the whole meta tag.', 'smart-seo-booster' ),
+                'desc'   => __( 'Paste only the verification code (the content value), not the whole meta tag. Google = Search Console, Bing = Webmaster Tools.', 'smart-seo-booster' ),
                 'fields' => [
-                    'verify_google'    => [ 'type' => 'text', 'label' => __( 'Google', 'smart-seo-booster' ), 'class' => 'regular-text' ],
-                    'verify_bing'      => [ 'type' => 'text', 'label' => __( 'Bing', 'smart-seo-booster' ), 'class' => 'regular-text' ],
+                    'verify_google'    => [ 'type' => 'text', 'label' => __( 'Google (Search Console)', 'smart-seo-booster' ), 'class' => 'regular-text' ],
+                    'verify_bing'      => [ 'type' => 'text', 'label' => __( 'Bing (Webmaster Tools)', 'smart-seo-booster' ), 'class' => 'regular-text' ],
                     'verify_pinterest' => [ 'type' => 'text', 'label' => __( 'Pinterest', 'smart-seo-booster' ), 'class' => 'regular-text' ],
                     'verify_yandex'    => [ 'type' => 'text', 'label' => __( 'Yandex', 'smart-seo-booster' ), 'class' => 'regular-text' ],
+                    'verify_baidu'     => [ 'type' => 'text', 'label' => __( 'Baidu', 'smart-seo-booster' ), 'class' => 'regular-text' ],
+                ],
+            ],
+            'smart_seo_analytics' => [
+                'title'  => __( 'Analytics', 'smart-seo-booster' ),
+                'desc'   => __( 'Add tracking without touching your theme. Scripts load only when an ID is set.', 'smart-seo-booster' ),
+                'fields' => [
+                    'ga4_id'                   => [ 'type' => 'text', 'label' => __( 'Google Analytics 4 ID', 'smart-seo-booster' ), 'class' => 'regular-text', 'desc' => __( 'Measurement ID, e.g. G-XXXXXXXXXX', 'smart-seo-booster' ) ],
+                    'clarity_id'               => [ 'type' => 'text', 'label' => __( 'Microsoft Clarity ID', 'smart-seo-booster' ), 'class' => 'regular-text' ],
+                    'analytics_exclude_admins' => [ 'type' => 'checkbox', 'label' => __( 'Do not track logged-in administrators', 'smart-seo-booster' ) ],
                 ],
             ],
             'smart_seo_indexing' => [
@@ -61,6 +72,15 @@ class Smart_SEO_Settings {
                     'noindex_date'      => [ 'type' => 'checkbox', 'label' => __( 'No-index date archives', 'smart-seo-booster' ) ],
                     'noindex_search'    => [ 'type' => 'checkbox', 'label' => __( 'No-index search results', 'smart-seo-booster' ) ],
                     'noindex_paginated' => [ 'type' => 'checkbox', 'label' => __( 'No-index paginated pages (page 2, 3…)', 'smart-seo-booster' ) ],
+                ],
+            ],
+            'smart_seo_ai' => [
+                'title'  => __( 'AI &amp; GEO', 'smart-seo-booster' ),
+                'desc'   => __( 'Generative Engine Optimization — help (or limit) how AI assistants use your content.', 'smart-seo-booster' ),
+                'fields' => [
+                    'enable_llms_txt'   => [ 'type' => 'checkbox', 'label' => __( 'Serve an llms.txt file', 'smart-seo-booster' ), 'desc' => __( 'A machine-readable summary of your site for AI assistants, at /llms.txt', 'smart-seo-booster' ) ],
+                    'block_ai_training' => [ 'type' => 'checkbox', 'label' => __( 'Ask AI crawlers not to train on this site', 'smart-seo-booster' ), 'desc' => __( 'Adds Disallow rules for GPTBot, Google-Extended, ClaudeBot, CCBot and others to robots.txt.', 'smart-seo-booster' ) ],
+                    'enable_speakable'  => [ 'type' => 'checkbox', 'label' => __( 'Add speakable structured data', 'smart-seo-booster' ), 'desc' => __( 'Marks the title and description as voice-assistant friendly.', 'smart-seo-booster' ) ],
                 ],
             ],
             'smart_seo_schema_data' => [

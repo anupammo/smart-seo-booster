@@ -56,7 +56,7 @@ class Smart_SEO_Content_Auditor {
         }
         
         $score_class = $score >= 75 ? 'notice-success' : ($score >= 50 ? 'notice-warning' : 'notice-error');
-        $score_emoji = $score >= 75 ? '🎉' : ($score >= 50 ? '⚠️' : '❌');
+        $score_emoji = $score >= 75 ? '<span class="dashicons dashicons-awards" style="color:#059669" aria-hidden="true"></span>' : ($score >= 50 ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>' : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>');
         
         // Restrict the CSS class to an allowed whitelist and escape output.
         $allowed_notice_classes = [ 'notice-success', 'notice-warning', 'notice-error' ];
@@ -65,7 +65,7 @@ class Smart_SEO_Content_Auditor {
         }
         echo '<div class="notice ' . esc_attr( $score_class ) . '">';
         // translators: 1: emoji icon, 2: current score, 3: maximum score
-        echo '<p><strong>' . sprintf( esc_html__( '%1$s SEO Score: %2$d/%3$d', 'smart-seo-booster' ), esc_html( $score_emoji ), absint( $score ), 100 ) . '</strong></p>';
+        echo '<p><strong>' . sprintf( esc_html__( '%1$s SEO Score: %2$d/%3$d', 'smart-seo-booster' ), wp_kses_post( $score_emoji ), absint( $score ), 100 ) . '</strong></p>';
         // translators: 1: word count, 2: heading count, 3: image count, 4: alt text count
         echo '<p><strong>' . esc_html__( 'Stats:', 'smart-seo-booster' ) . '</strong> ' . sprintf( esc_html__( 'Words: %1$d | Headings: %2$d | Images: %3$d | Alt Texts: %4$d', 'smart-seo-booster' ), absint( $word_count ), absint( $headings ), absint( $images ), absint( $alts ) ) . '</p>';
         

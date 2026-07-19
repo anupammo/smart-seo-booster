@@ -4,7 +4,7 @@ Tags: seo, xml sitemap, schema, open graph, breadcrumbs
 Requires at least: 5.9
 Requires PHP: 8.0
 Tested up to: 7.0
-Stable tag: 2.5.0
+Stable tag: 2.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,12 @@ Smart SEO Booster is a lightweight, modular plugin that gives you every SEO fund
 * Bulk SEO editor to edit titles & descriptions across posts at once
 * WooCommerce Product schema and product Open Graph tags
 * Local SEO shortcode/block with LocalBusiness schema (geo & opening hours)
-* Lightweight, no external calls, translation-ready
+* Site-wide SEO audit dashboard with score gauge, distribution chart & opportunities
+* Google Analytics 4 & Microsoft Clarity integration; Google/Bing/Yandex/Baidu/Pinterest verification
+* GEO / AI SEO: llms.txt for AI assistants, AI-crawler training opt-out, speakable data
+* Automatic image alt text; publish/updated date structured data
+* Blocks: social share, call-to-action, breadcrumb, and dates — with ready-made patterns
+* Professional admin UI with Dashicons (no emoji), translation-ready
 
 Built by Anupam Mondal — Full Stack Developer & SEO Consultant — to automate clarity and boost discoverability.
 
@@ -57,6 +62,16 @@ No. It uses minimal hooks and outputs schema only in the footer.
 3. Schema markup preview
 
 == Changelog ==
+
+= 2.6.0 =
+* Feature: Rebuilt SEO Audit as a site-wide dashboard (score gauge, distribution chart, opportunities, lowest-scoring list) — fixes the previously blank report
+* Feature: Google Analytics 4 and Microsoft Clarity integration; added Baidu verification
+* Feature: GEO / AI SEO — /llms.txt for AI assistants, AI-crawler training opt-out in robots.txt, optional speakable structured data
+* Feature: Automatic image alt text on the front end; images-missing-alt surfaced in the audit
+* Feature: Blocks — social share, call-to-action, breadcrumb, and publish/updated dates, plus block patterns
+* Feature: Publish and modified dates added to structured data for all schema types
+* Improvement: Professional admin design system; replaced all emoji with Dashicons
+* Fix: Audit report page no longer renders blank
 
 = 2.5.0 =
 * Feature: One-click import from Yoast SEO and Rank Math (batched; never overwrites existing values)
@@ -108,6 +123,9 @@ No. It uses minimal hooks and outputs schema only in the footer.
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.6.0 =
+Big update: a real SEO audit dashboard, Google Analytics 4 & Clarity, GEO/AI SEO (llms.txt), image alt automation, and new blocks (social share, CTA, breadcrumb, dates). After updating, visit Settings → Permalinks once if /llms.txt does not load.
 
 = 2.5.0 =
 Adds import from Yoast/Rank Math, a redirection manager with 404 log, a bulk SEO editor, WooCommerce product schema, and Local SEO.

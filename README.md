@@ -41,8 +41,14 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 
 ## 📊 Feature Matrix (Current vs Planned)
 
-### ✅ Available now (v2.5)
+### ✅ Available now (v2.6)
 
+- **SEO Audit dashboard** — site-wide score gauge, distribution chart, opportunities & lowest-scoring list (professional Dashicon UI, no emoji)
+- **Analytics** — Google Analytics 4 + Microsoft Clarity, loaded only when configured
+- **Webmaster verification** — Google (Search Console), Bing, Yandex, Pinterest, Baidu
+- **GEO / AI SEO** — `/llms.txt` for AI assistants, AI-crawler training opt-out, speakable data
+- **Image SEO** — automatic alt text + missing-alt audit
+- **Blocks** — social share, call-to-action, breadcrumb, publish/updated dates + patterns
 - **Import from Yoast / Rank Math** — one-click, batched migration that never overwrites your work
 - **Redirection manager** — 301/302/307 + a 404 log with one-click redirect creation
 - **Bulk SEO editor** — edit titles & descriptions across your content on one screen

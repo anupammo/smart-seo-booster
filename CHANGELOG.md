@@ -5,6 +5,24 @@ All notable changes to Smart SEO Booster will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2026-07-19
+
+### Added
+- Site-wide SEO Audit dashboard: average-score gauge, score-distribution chart, opportunity list, and lowest-scoring content — with a design-system UI
+- Google Analytics 4 (gtag) and Microsoft Clarity integration, loaded only when an ID is set; option to exclude logged-in admins
+- Baidu site verification (alongside Google/Bing/Yandex/Pinterest)
+- GEO / AI SEO: `/llms.txt` endpoint for AI assistants, AI-crawler training opt-out in robots.txt (GPTBot, Google-Extended, ClaudeBot, CCBot, …), optional `speakable` structured data
+- Automatic image alt text on the front end (from image/post title) with an audit of images missing alt
+- Blocks: social share, call-to-action, breadcrumb, and publish/updated dates; block patterns (article footer, CTA banner, breadcrumb bar)
+- Publish/modified dates added to structured data across all schema types
+
+### Changed
+- Professional admin design system (color theme, typography, SVG charts); replaced all emoji with Dashicons
+- Removed unused `templates/help-page.php`
+
+### Fixed
+- SEO Audit report rendered blank because it required a current post; it is now a proper site-wide report
+
 ## [2.5.0] - 2026-07-18
 
 ### Added

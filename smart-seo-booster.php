@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Smart SEO Booster
  * Description: Lightweight, complete SEO — meta tags, schema, XML sitemaps, breadcrumbs, social previews & content scoring. Fast, automated, no bloat.
- * Version: 2.5.0
+ * Version: 2.6.0
  * Author: Anupam Mondal
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -17,7 +17,7 @@ defined('ABSPATH') || exit;
 
 // Define plugin version constant for cache busting in enqueued assets.
 if (!defined('SMART_SEO_BOOSTER_VERSION')) {
-    define('SMART_SEO_BOOSTER_VERSION', '2.5.0');
+    define('SMART_SEO_BOOSTER_VERSION', '2.6.0');
 }
 
 // Autoload classes

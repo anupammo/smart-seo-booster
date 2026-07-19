@@ -255,7 +255,7 @@ class Smart_SEO_Score_Display {
         $wp_admin_bar->add_node([
             'id' => 'smart-seo-score',
             'title' => sprintf(
-                '<span style="color: %s;">📊 SEO: %d/100</span>',
+                '<span style="color: %s;"><span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> SEO: %d/100</span>',
                 esc_attr( $color ),
                 absint( $score )
             ),
@@ -269,7 +269,7 @@ class Smart_SEO_Score_Display {
     public static function add_dashboard_widget() {
         wp_add_dashboard_widget(
             'smart_seo_dashboard',
-            '📈 Smart SEO Overview',
+            '<span class="dashicons dashicons-chart-line" aria-hidden="true"></span> Smart SEO Overview',
             [__CLASS__, 'dashboard_widget_content']
         );
     }
@@ -329,7 +329,7 @@ class Smart_SEO_Score_Display {
         foreach ($post_types as $post_type) {
             add_meta_box(
                 'smart_seo_score',
-                '📊 SEO Score',
+                '<span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> SEO Score',
                 [__CLASS__, 'seo_score_metabox_content'],
                 $post_type,
                 'side',
@@ -359,81 +359,81 @@ class Smart_SEO_Score_Display {
 
             <!-- Content Analysis -->
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">📝 Content Analysis</h4>
+                <h4 style="margin: 0 0 10px 0;"><span class="dashicons dashicons-edit" aria-hidden="true"></span> Content Analysis</h4>
                 <div class="seo-check">
                     <span>Word Count</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['word_count']['status'] ?? '' ); ?>">
-                        <?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> <?php echo esc_html( $analysis['word_count']['icon'] ?? '' ); ?>
+                        <?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['word_count']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Paragraphs</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['paragraphs']['status'] ?? '' ); ?>">
-                        <?php echo isset($analysis['paragraphs']['value']) ? absint( $analysis['paragraphs']['value'] ) : 0; ?> <?php echo esc_html( $analysis['paragraphs']['icon'] ?? '' ); ?>
+                        <?php echo isset($analysis['paragraphs']['value']) ? absint( $analysis['paragraphs']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['paragraphs']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Headings</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['headings']['status'] ?? '' ); ?>">
-                        <?php echo isset($analysis['headings']['value']) ? absint( $analysis['headings']['value'] ) : 0; ?> <?php echo esc_html( $analysis['headings']['icon'] ?? '' ); ?>
+                        <?php echo isset($analysis['headings']['value']) ? absint( $analysis['headings']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['headings']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Reading Level</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['readability']['status'] ?? '' ); ?>">
-                        <?php echo esc_html( $analysis['readability']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['readability']['icon'] ?? '' ); ?>
+                        <?php echo esc_html( $analysis['readability']['value'] ?? '' ); ?> <?php echo wp_kses_post( $analysis['readability']['icon'] ?? '' ); ?>
                     </span>
                 </div>
             </div>
 
             <!-- SEO Elements -->
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">🎯 SEO Elements</h4>
+                <h4 style="margin: 0 0 10px 0;"><span class="dashicons dashicons-marker" aria-hidden="true"></span> SEO Elements</h4>
                 <div class="seo-check">
                     <span>Title Length</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['title']['status'] ?? '' ); ?>">
-                        <?php echo isset($analysis['title']['value']) ? absint( $analysis['title']['value'] ) : 0; ?> chars <?php echo esc_html( $analysis['title']['icon'] ?? '' ); ?>
+                        <?php echo isset($analysis['title']['value']) ? absint( $analysis['title']['value'] ) : 0; ?> chars <?php echo wp_kses_post( $analysis['title']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Meta Description</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['description']['status'] ?? '' ); ?>">
-                        <?php echo esc_html( $analysis['description']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['description']['icon'] ?? '' ); ?>
+                        <?php echo esc_html( $analysis['description']['value'] ?? '' ); ?> <?php echo wp_kses_post( $analysis['description']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>URL Structure</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['url']['status'] ?? '' ); ?>">
-                        <?php echo esc_html( $analysis['url']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['url']['icon'] ?? '' ); ?>
+                        <?php echo esc_html( $analysis['url']['value'] ?? '' ); ?> <?php echo wp_kses_post( $analysis['url']['icon'] ?? '' ); ?>
                     </span>
                 </div>
             </div>
 
             <!-- Media & Links -->
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">🖼️ Media & Links</h4>
+                <h4 style="margin: 0 0 10px 0;"><span class="dashicons dashicons-format-image" aria-hidden="true"></span> Media & Links</h4>
                 <div class="seo-check">
                     <span>Images</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['images']['status'] ?? '' ); ?>">
-                        <?php echo isset($analysis['images']['value']) ? absint( $analysis['images']['value'] ) : 0; ?> <?php echo esc_html( $analysis['images']['icon'] ?? '' ); ?>
+                        <?php echo isset($analysis['images']['value']) ? absint( $analysis['images']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['images']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Alt Text</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['alt_text']['status'] ?? '' ); ?>">
-                        <?php echo esc_html( $analysis['alt_text']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['alt_text']['icon'] ?? '' ); ?>
+                        <?php echo esc_html( $analysis['alt_text']['value'] ?? '' ); ?> <?php echo wp_kses_post( $analysis['alt_text']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>Internal Links</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['internal_links']['status'] ?? '' ); ?>">
-                        <?php echo isset($analysis['internal_links']['value']) ? absint( $analysis['internal_links']['value'] ) : 0; ?> <?php echo esc_html( $analysis['internal_links']['icon'] ?? '' ); ?>
+                        <?php echo isset($analysis['internal_links']['value']) ? absint( $analysis['internal_links']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['internal_links']['icon'] ?? '' ); ?>
                     </span>
                 </div>
                 <div class="seo-check">
                     <span>External Links</span>
                     <span class="seo-check-status <?php echo esc_attr( $analysis['external_links']['status'] ?? '' ); ?>">
-                        <?php echo esc_html( $analysis['external_links']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['external_links']['icon'] ?? '' ); ?>
+                        <?php echo esc_html( $analysis['external_links']['value'] ?? '' ); ?> <?php echo wp_kses_post( $analysis['external_links']['icon'] ?? '' ); ?>
                     </span>
                 </div>
             </div>
@@ -441,7 +441,7 @@ class Smart_SEO_Score_Display {
             <!-- Recommendations -->
             <?php if (!empty($analysis['recommendations']) && is_array($analysis['recommendations'])): ?>
             <div class="seo-section">
-                <h4 style="margin: 0 0 10px 0;">💡 Recommendations</h4>
+                <h4 style="margin: 0 0 10px 0;"><span class="dashicons dashicons-lightbulb" aria-hidden="true"></span> Recommendations</h4>
                 <div class="seo-recommendations">
                     <ul style="margin: 0; padding-left: 20px;">
                         <?php foreach ($analysis['recommendations'] as $recommendation): ?>
@@ -455,10 +455,10 @@ class Smart_SEO_Score_Display {
             <!-- Actions -->
             <div style="text-align: center; margin-top: 15px;">
                 <button type="button" class="button button-primary button-small" onclick="smartSeoRefreshScore(<?php echo absint( $post->ID ); ?>)">
-                    🔄 Refresh Analysis
+                    <span class="dashicons dashicons-update" aria-hidden="true"></span> Refresh Analysis
                 </button>
                 <button type="button" class="button button-small" onclick="smartSeoShowFullReport(<?php echo absint( $post->ID ); ?>)" style="margin-left: 5px;">
-                    📊 Full Report
+                    <span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> Full Report
                 </button>
             </div>
         </div>
@@ -516,57 +516,57 @@ class Smart_SEO_Score_Display {
             'word_count' => [
                 'value' => $word_count,
                 'status' => $word_count >= $min_words ? 'seo-good' : ($word_count >= ($min_words * 0.7) ? 'seo-warning' : 'seo-error'),
-                'icon' => $word_count >= $min_words ? '✅' : ($word_count >= ($min_words * 0.7) ? '⚠️' : '❌')
+                'icon' => $word_count >= $min_words ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : ($word_count >= ($min_words * 0.7) ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>' : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>')
             ],
             'paragraphs' => [
                 'value' => $paragraph_count,
                 'status' => $paragraph_count >= 3 ? 'seo-good' : ($paragraph_count >= 2 ? 'seo-warning' : 'seo-error'),
-                'icon' => $paragraph_count >= 3 ? '✅' : ($paragraph_count >= 2 ? '⚠️' : '❌')
+                'icon' => $paragraph_count >= 3 ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : ($paragraph_count >= 2 ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>' : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>')
             ],
             'headings' => [
                 'value' => $heading_count,
                 'status' => $heading_count >= 2 ? 'seo-good' : ($heading_count >= 1 ? 'seo-warning' : 'seo-error'),
-                'icon' => $heading_count >= 2 ? '✅' : ($heading_count >= 1 ? '⚠️' : '❌')
+                'icon' => $heading_count >= 2 ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : ($heading_count >= 1 ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>' : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>')
             ],
             'readability' => [
                 'value' => self::smart_seo_calculate_readability_score($content),
                 'status' => 'seo-good', // Simplified for now
-                'icon' => '✅'
+                'icon' => '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>'
             ],
             'title' => [
                 'value' => $title_length,
                 'status' => ($title_length >= 30 && $title_length <= 60) ? 'seo-good' : (($title_length >= 20 && $title_length <= 80) ? 'seo-warning' : 'seo-error'),
-                'icon' => ($title_length >= 30 && $title_length <= 60) ? '✅' : (($title_length >= 20 && $title_length <= 80) ? '⚠️' : '❌')
+                'icon' => ($title_length >= 30 && $title_length <= 60) ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : (($title_length >= 20 && $title_length <= 80) ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>' : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>')
             ],
             'description' => [
                 'value' => $description_length > 0 ? $description_length . ' chars' : 'Missing',
                 'status' => ($description_length >= 120 && $description_length <= 160) ? 'seo-good' : (($description_length >= 100 && $description_length <= 200) ? 'seo-warning' : 'seo-error'),
-                'icon' => ($description_length >= 120 && $description_length <= 160) ? '✅' : (($description_length >= 100 && $description_length <= 200) ? '⚠️' : '❌')
+                'icon' => ($description_length >= 120 && $description_length <= 160) ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : (($description_length >= 100 && $description_length <= 200) ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>' : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>')
             ],
             'url' => [
                 'value' => strlen($slug) <= 50 ? 'Good' : 'Too long',
                 'status' => strlen($slug) <= 50 ? 'seo-good' : 'seo-warning',
-                'icon' => strlen($slug) <= 50 ? '✅' : '⚠️'
+                'icon' => strlen($slug) <= 50 ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>'
             ],
             'images' => [
                 'value' => $image_count,
                 'status' => $image_count > 0 ? 'seo-good' : 'seo-warning',
-                'icon' => $image_count > 0 ? '✅' : '⚠️'
+                'icon' => $image_count > 0 ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>'
             ],
             'alt_text' => [
                 'value' => $image_count > 0 ? $alt_count . '/' . $image_count : 'N/A',
                 'status' => $image_count === 0 ? 'seo-good' : ($alt_count === $image_count ? 'seo-good' : ($alt_count >= ($image_count * 0.7) ? 'seo-warning' : 'seo-error')),
-                'icon' => $image_count === 0 ? '✅' : ($alt_count === $image_count ? '✅' : ($alt_count >= ($image_count * 0.7) ? '⚠️' : '❌'))
+                'icon' => $image_count === 0 ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : ($alt_count === $image_count ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : ($alt_count >= ($image_count * 0.7) ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>' : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>'))
             ],
             'internal_links' => [
                 'value' => $internal_links,
                 'status' => $internal_links >= 2 ? 'seo-good' : ($internal_links >= 1 ? 'seo-warning' : 'seo-error'),
-                'icon' => $internal_links >= 2 ? '✅' : ($internal_links >= 1 ? '⚠️' : '❌')
+                'icon' => $internal_links >= 2 ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : ($internal_links >= 1 ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>' : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>')
             ],
             'external_links' => [
                 'value' => $external_links,
                 'status' => $external_links >= 1 ? 'seo-good' : 'seo-warning',
-                'icon' => $external_links >= 1 ? '✅' : '⚠️'
+                'icon' => $external_links >= 1 ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>'
             ]
         ];
         
@@ -638,7 +638,7 @@ class Smart_SEO_Score_Display {
     }
     
     public static function smart_seo_add_seo_score_column($columns) {
-        $columns['seo_score'] = '📊 SEO Score';
+        $columns['seo_score'] = '<span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> SEO Score';
         return $columns;
     }
     
@@ -704,7 +704,7 @@ class Smart_SEO_Score_Display {
         ob_start();
         ?>
         <div class="smart-seo-full-report">
-            <h2 style="margin-top: 0;">📊 Complete SEO Analysis</h2>
+            <h2 style="margin-top: 0;"><span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> Complete SEO Analysis</h2>
             <h3><?php echo esc_html($post->post_title); ?></h3>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
@@ -725,33 +725,33 @@ class Smart_SEO_Score_Display {
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div>
-                    <h4>📝 Content Quality</h4>
+                    <h4><span class="dashicons dashicons-edit" aria-hidden="true"></span> Content Quality</h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Word Count</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['word_count']['status'] ?? '' ); ?>"><?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> <?php echo esc_html( $analysis['word_count']['icon'] ?? '' ); ?></span></td></tr>
-                        <tr><td>Paragraphs</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['paragraphs']['status'] ?? '' ); ?>"><?php echo isset($analysis['paragraphs']['value']) ? absint( $analysis['paragraphs']['value'] ) : 0; ?> <?php echo esc_html( $analysis['paragraphs']['icon'] ?? '' ); ?></span></td></tr>
-                        <tr><td>Headings</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['headings']['status'] ?? '' ); ?>"><?php echo isset($analysis['headings']['value']) ? absint( $analysis['headings']['value'] ) : 0; ?> <?php echo esc_html( $analysis['headings']['icon'] ?? '' ); ?></span></td></tr>
-                        <tr><td>Readability</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['readability']['status'] ?? '' ); ?>"><?php echo esc_html( $analysis['readability']['value'] ?? '' ); ?> <?php echo esc_html( $analysis['readability']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Word Count</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['word_count']['status'] ?? '' ); ?>"><?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['word_count']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Paragraphs</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['paragraphs']['status'] ?? '' ); ?>"><?php echo isset($analysis['paragraphs']['value']) ? absint( $analysis['paragraphs']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['paragraphs']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Headings</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['headings']['status'] ?? '' ); ?>"><?php echo isset($analysis['headings']['value']) ? absint( $analysis['headings']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['headings']['icon'] ?? '' ); ?></span></td></tr>
+                        <tr><td>Readability</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['readability']['status'] ?? '' ); ?>"><?php echo esc_html( $analysis['readability']['value'] ?? '' ); ?> <?php echo wp_kses_post( $analysis['readability']['icon'] ?? '' ); ?></span></td></tr>
                     </table>
                     
-                    <h4>🎯 SEO Elements</h4>
+                    <h4><span class="dashicons dashicons-marker" aria-hidden="true"></span> SEO Elements</h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Title Length</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['title']['status'] ); ?>"><?php echo isset($analysis['title']['value']) ? absint( $analysis['title']['value'] ) : 0; ?> <?php echo esc_html( $analysis['title']['icon'] ); ?></span></td></tr>
-                        <tr><td>Meta Description</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['description']['status'] ); ?>"><?php echo esc_html( $analysis['description']['value'] ); ?> <?php echo esc_html( $analysis['description']['icon'] ); ?></span></td></tr>
-                        <tr><td>URL Structure</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['url']['status'] ); ?>"><?php echo esc_html( $analysis['url']['value'] ); ?> <?php echo esc_html( $analysis['url']['icon'] ); ?></span></td></tr>
+                        <tr><td>Title Length</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['title']['status'] ); ?>"><?php echo isset($analysis['title']['value']) ? absint( $analysis['title']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['title']['icon'] ); ?></span></td></tr>
+                        <tr><td>Meta Description</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['description']['status'] ); ?>"><?php echo esc_html( $analysis['description']['value'] ); ?> <?php echo wp_kses_post( $analysis['description']['icon'] ); ?></span></td></tr>
+                        <tr><td>URL Structure</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['url']['status'] ); ?>"><?php echo esc_html( $analysis['url']['value'] ); ?> <?php echo wp_kses_post( $analysis['url']['icon'] ); ?></span></td></tr>
                     </table>
                 </div>
                 
                 <div>
-                    <h4>🖼️ Media & Links</h4>
+                    <h4><span class="dashicons dashicons-format-image" aria-hidden="true"></span> Media & Links</h4>
                     <table style="width: 100%; border-collapse: collapse;">
-                        <tr><td>Images</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['images']['status'] ); ?>"><?php echo isset($analysis['images']['value']) ? absint( $analysis['images']['value'] ) : 0; ?> <?php echo esc_html( $analysis['images']['icon'] ); ?></span></td></tr>
-                        <tr><td>Alt Text Coverage</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['alt_text']['status'] ); ?>"><?php echo esc_html( $analysis['alt_text']['value'] ); ?> <?php echo esc_html( $analysis['alt_text']['icon'] ); ?></span></td></tr>
-                        <tr><td>Internal Links</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['internal_links']['status'] ); ?>"><?php echo isset($analysis['internal_links']['value']) ? absint( $analysis['internal_links']['value'] ) : 0; ?> <?php echo esc_html( $analysis['internal_links']['icon'] ); ?></span></td></tr>
-                        <tr><td>External Links</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['external_links']['status'] ); ?>"><?php echo isset($analysis['external_links']['value']) ? absint( $analysis['external_links']['value'] ) : 0; ?> <?php echo esc_html( $analysis['external_links']['icon'] ); ?></span></td></tr>
+                        <tr><td>Images</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['images']['status'] ); ?>"><?php echo isset($analysis['images']['value']) ? absint( $analysis['images']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['images']['icon'] ); ?></span></td></tr>
+                        <tr><td>Alt Text Coverage</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['alt_text']['status'] ); ?>"><?php echo esc_html( $analysis['alt_text']['value'] ); ?> <?php echo wp_kses_post( $analysis['alt_text']['icon'] ); ?></span></td></tr>
+                        <tr><td>Internal Links</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['internal_links']['status'] ); ?>"><?php echo isset($analysis['internal_links']['value']) ? absint( $analysis['internal_links']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['internal_links']['icon'] ); ?></span></td></tr>
+                        <tr><td>External Links</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['external_links']['status'] ); ?>"><?php echo isset($analysis['external_links']['value']) ? absint( $analysis['external_links']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['external_links']['icon'] ); ?></span></td></tr>
                     </table>
                     
                     <?php if (!empty($analysis['recommendations'])): ?>
-                    <h4>💡 Priority Recommendations</h4>
+                    <h4><span class="dashicons dashicons-lightbulb" aria-hidden="true"></span> Priority Recommendations</h4>
                     <ol style="padding-left: 20px;">
                         <?php foreach (array_slice($analysis['recommendations'], 0, 5) as $recommendation): ?>
                             <li style="margin-bottom: 5px;"><?php echo esc_html( $recommendation ); ?></li>
@@ -762,7 +762,7 @@ class Smart_SEO_Score_Display {
             </div>
             
             <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-                <button type="button" class="button button-primary" onclick="window.print()">🖨️ Print Report</button>
+                <button type="button" class="button button-primary" onclick="window.print()"><span class="dashicons dashicons-printer" aria-hidden="true"></span> Print Report</button>
                 <button type="button" class="button" onclick="jQuery('#smart-seo-modal').remove()">Close</button>
             </div>
         </div>
@@ -785,7 +785,7 @@ class Smart_SEO_Score_Display {
         $css_url = plugin_dir_url(__FILE__) . '../css/meta-box.css';
         $js_url  = plugin_dir_url(__FILE__) . '../js/seo-score.js';
 
-        wp_enqueue_style('smart-seo-meta-box', $css_url, [], $ver);
+        wp_enqueue_style('smart-seo-meta-box', $css_url, ['dashicons'], $ver);
 
         wp_enqueue_script('smart-seo-score', $js_url, ['jquery'], $ver, true);
         wp_localize_script('smart-seo-score', 'SmartSEOScore', [

@@ -194,7 +194,7 @@ class Smart_SEO_Setup_Wizard {
 
     private static function render_done() {
         echo '<div class="card smart-seo-card">';
-        echo '<h2>' . esc_html__( 'You are all set! 🎉', 'smart-seo-booster' ) . '</h2>';
+        echo '<h2><span class="dashicons dashicons-awards" aria-hidden="true"></span> ' . esc_html__( 'You are all set!', 'smart-seo-booster' ) . '</h2>';
         echo '<p>' . esc_html__( 'Smart SEO Booster is configured. Here is what to do next:', 'smart-seo-booster' ) . '</p>';
         echo '<ul style="list-style:disc;margin-inline-start:20px;">';
         echo '<li>' . esc_html__( 'Edit a post and open the SEO panel to fine-tune titles and social previews.', 'smart-seo-booster' ) . '</li>';

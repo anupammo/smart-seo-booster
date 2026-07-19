@@ -232,6 +232,7 @@ class Smart_SEO_Core {
             'verify_bing'      => 'msvalidate.01',
             'verify_pinterest' => 'p:domain_verify',
             'verify_yandex'    => 'yandex-verification',
+            'verify_baidu'     => 'baidu-site-verification',
         ];
         foreach ($map as $key => $meta_name) {
             if (!empty($options[$key])) {

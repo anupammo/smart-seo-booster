@@ -127,10 +127,12 @@ class Smart_SEO_Schema_Generator {
      */
     private static function build_generic($type, $post) {
         $schema = [
-            "@context" => "https://schema.org",
-            "@type"    => $type,
-            "name"     => wp_strip_all_tags( get_the_title( $post ) ),
-            "url"      => esc_url_raw( get_permalink( $post ) ),
+            "@context"      => "https://schema.org",
+            "@type"         => $type,
+            "name"          => wp_strip_all_tags( get_the_title( $post ) ),
+            "url"           => esc_url_raw( get_permalink( $post ) ),
+            "datePublished" => get_the_date( 'c', $post ),
+            "dateModified"  => get_the_modified_date( 'c', $post ),
         ];
 
         $desc = has_excerpt( $post )

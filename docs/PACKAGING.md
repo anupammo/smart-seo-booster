@@ -59,7 +59,6 @@ Controlled by [`.distignore`](../.distignore). None of these belong in a shipped
 | `.git/`, `.github/`, `.gitignore`, `.distignore` | Version-control / build metadata |
 | `docs/` (incl. `docs/archive/`) | Development notes — not runtime |
 | `README.md`, `STRATEGY.md`, `CONTRIBUTING.md`, `CHANGELOG.md` | Dev/GitHub docs; the wp.org listing lives in `readme.txt` |
-| `templates/help-page.php` | Unused/dead template (not wired to any code) |
 | `node_modules/`, `tests/`, `*.map`, `*.zip` | Tooling / build artifacts |
 
 ---
@@ -93,7 +92,6 @@ Compress-Archive -Path $stage -DestinationPath "$src\smart-seo-booster.zip" -For
 ```bash
 cd /path/above/plugin
 rsync -a --exclude-from=smart-seo-booster/.distignore \
-      --exclude='templates/help-page.php' \
       smart-seo-booster/ build/smart-seo-booster/
 ( cd build && zip -r ../smart-seo-booster.zip smart-seo-booster )
 ```

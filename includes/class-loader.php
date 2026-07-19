@@ -12,6 +12,7 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-link-analyzer.php';
         require_once plugin_dir_path(__FILE__) . 'class-meta-fields.php';
         require_once plugin_dir_path(__FILE__) . 'class-seo-score-display.php';
+        require_once plugin_dir_path(__FILE__) . 'class-audit.php';
         require_once plugin_dir_path(__FILE__) . 'class-sitemap.php';
         require_once plugin_dir_path(__FILE__) . 'class-breadcrumbs.php';
         require_once plugin_dir_path(__FILE__) . 'class-setup-wizard.php';
@@ -20,6 +21,10 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-importer.php';
         require_once plugin_dir_path(__FILE__) . 'class-woocommerce.php';
         require_once plugin_dir_path(__FILE__) . 'class-local-seo.php';
+        require_once plugin_dir_path(__FILE__) . 'class-analytics.php';
+        require_once plugin_dir_path(__FILE__) . 'class-geo.php';
+        require_once plugin_dir_path(__FILE__) . 'class-image-seo.php';
+        require_once plugin_dir_path(__FILE__) . 'class-blocks.php';
 
         Smart_SEO_Settings::init();
         Smart_SEO_Admin_UI::init();
@@ -37,5 +42,9 @@ class Smart_SEO_Loader {
         Smart_SEO_Importer::init();
         Smart_SEO_WooCommerce::init();
         Smart_SEO_Local_SEO::init();
+        Smart_SEO_Analytics::init();
+        Smart_SEO_GEO::init();
+        Smart_SEO_Image_SEO::init();
+        Smart_SEO_Blocks::init();
     }
 }

@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Smart SEO Booster\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Copilot\n"
+
+#: includes/class-admin-ui.php:12
+msgid "Smart SEO Booster Settings"
+msgstr ""
+
+#: includes/class-admin-ui.php:13
+msgid "SEO Audit Report"
+msgstr ""
+
+#: includes/class-settings.php:20
+msgid "Enable Schema Markup"
+msgstr ""
+
+#: templates/audit-report.php:11
+msgid "Smart SEO Audit Report"
+msgstr ""
+
+#: templates/audit-report.php:15
+msgid "Word Count"
+msgstr ""
+
+#: templates/audit-report.php:16
+msgid "Headings"
+msgstr ""
+
+#: templates/audit-report.php:17
+msgid "Images"
+msgstr ""
+
+#: templates/audit-report.php:18
+msgid "Internal Links"
+msgstr ""
+
+#: templates/audit-report.php:19
+msgid "Schema Markup"
+msgstr ""

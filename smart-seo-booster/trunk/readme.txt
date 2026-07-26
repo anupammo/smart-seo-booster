@@ -1,5 +1,5 @@
 === Smart SEO Booster ===
-Contributors: anupammo
+Contributors: anupamwp
 Tags: seo, schema, xml sitemap, breadcrumbs, audit
 Requires at least: 5.9
 Requires PHP: 7.4

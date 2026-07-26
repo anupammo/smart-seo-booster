@@ -14,7 +14,7 @@ class Smart_SEO_Admin_UI {
             'manage_options',
             'smart-seo',
             [__CLASS__, 'render_settings_page'],
-            defined( 'SMART_SEO_BOOSTER_ICON_URL' ) ? SMART_SEO_BOOSTER_ICON_URL : 'dashicons-chart-line',
+            defined( 'SMART_SEO_BOOSTER_MENU_ICON' ) ? SMART_SEO_BOOSTER_MENU_ICON : 'dashicons-chart-line',
             80
         );
 

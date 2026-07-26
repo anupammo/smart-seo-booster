@@ -97,11 +97,18 @@ No. It uses minimal hooks and outputs schema only in the footer, with no externa
 
 == Screenshots ==
 
-1. Site-wide SEO Audit dashboard — average-score gauge, distribution chart and opportunities.
-2. Per-post SEO meta box with live Google and social previews.
-3. Native block-editor (Gutenberg) SEO sidebar.
-4. Tabbed settings — titles &amp; metas, webmaster verification, analytics and AI/GEO.
-5. Setup wizard for guided onboarding.
+1. Site-wide SEO Audit dashboard — average SEO score gauge, score distribution chart, and content opportunities at a glance.
+2. Native Gutenberg SEO sidebar — live Google search preview and Facebook/Twitter social preview card while you write.
+3. Full SEO score breakdown — word count, headings, alt text, internal/external links and priority recommendations for any post.
+4. Guided 4-step Setup Wizard — schema, titles, sitemaps and breadcrumbs configured in under two minutes.
+5. Step-by-step Tutorial — a Next/Previous walkthrough of every major feature, right in your dashboard.
+6. General settings — schema markup, XML sitemap, breadcrumbs and separator options in one screen.
+7. Titles &amp; Metas — template-driven SEO titles and meta descriptions with reusable variables.
+8. AI &amp; GEO settings — Generative Engine Optimization, llms.txt, and AI-crawler controls for ChatGPT, Claude and Google AI Overviews.
+9. Social Media Accounts — connect Facebook, X, LinkedIn, Instagram, YouTube and Pinterest to your Organization schema.
+10. Smart SEO blocks — breadcrumbs, social share, call-to-action, dates and Local Business, grouped in their own inserter category.
+11. Bulk SEO Editor — edit SEO titles and meta descriptions across your whole site from one table.
+12. Redirection manager with a live 404 log — catch broken links before search engines do.
 
 == Changelog ==
 

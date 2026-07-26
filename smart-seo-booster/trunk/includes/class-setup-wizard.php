@@ -99,7 +99,7 @@ class Smart_SEO_Setup_Wizard {
         $options  = get_option('smart_seo_options', []);
 
         echo '<div class="wrap smart-seo-settings smart-seo-wizard ssb-app ssb-adapt">';
-        echo '<h1><span class="dashicons dashicons-admin-generic" aria-hidden="true"></span> ' . esc_html__( 'Smart SEO Booster — Setup', 'smart-seo-booster' ) . '</h1>';
+        echo '<h1><img src="' . esc_url( SMART_SEO_BOOSTER_ICON_URL ) . '" width="26" height="26" alt="" class="ssb-h1-icon" /> ' . esc_html__( 'Smart SEO Booster — Setup', 'smart-seo-booster' ) . '</h1>';
 
         if ( $step_raw === 'done' ) {
             self::render_done();
@@ -173,7 +173,11 @@ class Smart_SEO_Setup_Wizard {
         $title = $options['title_template'] ?? '%%title%% %%sep%% %%sitename%%';
         $desc  = $options['description_template'] ?? '%%excerpt%%';
         echo '<h2>' . esc_html__( 'Titles &amp; meta descriptions', 'smart-seo-booster' ) . '</h2>';
-        echo '<p><label>' . esc_html__( 'Separator', 'smart-seo-booster' ) . '<br><input type="text" class="small-text" name="separator" value="' . esc_attr( $sep ) . '" /></label></p>';
+        echo '<p><label>' . esc_html__( 'Separator', 'smart-seo-booster' ) . '<br><select name="separator">';
+        foreach ( Smart_SEO_Settings::separator_options() as $sep_value => $sep_label ) {
+            echo '<option value="' . esc_attr( $sep_value ) . '" ' . selected( $sep, $sep_value, false ) . '>' . esc_html( $sep_label ) . '</option>';
+        }
+        echo '</select></label></p>';
         echo '<p><label>' . esc_html__( 'Title template', 'smart-seo-booster' ) . '<br><input type="text" class="large-text" name="title_template" value="' . esc_attr( $title ) . '" /></label></p>';
         echo '<p><label>' . esc_html__( 'Description template', 'smart-seo-booster' ) . '<br><input type="text" class="large-text" name="description_template" value="' . esc_attr( $desc ) . '" /></label></p>';
         echo '<p class="description">' . esc_html__( 'Variables:', 'smart-seo-booster' ) . ' <code>' . esc_html( implode( '</code> <code>', array_keys( Smart_SEO_Meta_Templates::variables() ) ) ) . '</code></p>';

@@ -14,7 +14,7 @@ class Smart_SEO_Admin_UI {
             'manage_options',
             'smart-seo',
             [__CLASS__, 'render_settings_page'],
-            'dashicons-chart-line',
+            defined( 'SMART_SEO_BOOSTER_ICON_URL' ) ? SMART_SEO_BOOSTER_ICON_URL : 'dashicons-chart-line',
             80
         );
 
@@ -71,6 +71,15 @@ class Smart_SEO_Admin_UI {
             'smart-seo-setup',
             [__CLASS__, 'render_setup_wizard']
         );
+
+        add_submenu_page(
+            'smart-seo',
+            __( 'Tutorial', 'smart-seo-booster' ),
+            __( 'Tutorial', 'smart-seo-booster' ),
+            'manage_options',
+            'smart-seo-tutorial',
+            [ 'Smart_SEO_Tutorial', 'render' ]
+        );
     }
 
     public static function render_settings_page() {
@@ -81,7 +90,7 @@ class Smart_SEO_Admin_UI {
         $sections = Smart_SEO_Settings::fields();
         ?>
         <div class="wrap smart-seo-settings ssb-app ssb-adapt">
-            <h1><span class="dashicons dashicons-chart-line" aria-hidden="true"></span> <?php echo esc_html__( 'Smart SEO Booster', 'smart-seo-booster' ); ?></h1>
+            <h1><img src="<?php echo esc_url( SMART_SEO_BOOSTER_ICON_URL ); ?>" width="26" height="26" alt="" class="ssb-h1-icon" /> <?php echo esc_html__( 'Smart SEO Booster', 'smart-seo-booster' ); ?></h1>
 
             <p>
                 <a href="<?php echo esc_url( admin_url('admin.php?page=smart-seo-setup') ); ?>" class="button">

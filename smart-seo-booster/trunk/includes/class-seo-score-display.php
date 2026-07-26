@@ -269,7 +269,7 @@ class Smart_SEO_Score_Display {
     public static function add_dashboard_widget() {
         wp_add_dashboard_widget(
             'smart_seo_dashboard',
-            '<span class="dashicons dashicons-chart-line" aria-hidden="true"></span> Smart SEO Overview',
+            '<img src="' . esc_url( SMART_SEO_BOOSTER_ICON_URL ) . '" width="18" height="18" alt="" style="vertical-align:text-bottom;border-radius:4px;" /> ' . esc_html__( 'Smart SEO Overview', 'smart-seo-booster' ),
             [__CLASS__, 'dashboard_widget_content']
         );
     }
@@ -453,12 +453,12 @@ class Smart_SEO_Score_Display {
             <?php endif; ?>
 
             <!-- Actions -->
-            <div style="text-align: center; margin-top: 15px;">
-                <button type="button" class="button button-primary button-small" onclick="smartSeoRefreshScore(<?php echo absint( $post->ID ); ?>)">
-                    <span class="dashicons dashicons-update" aria-hidden="true"></span> Refresh Analysis
+            <div class="smart-seo-score-actions">
+                <button type="button" id="smart-seo-refresh-btn" class="button button-primary" onclick="smartSeoRefreshScore(<?php echo absint( $post->ID ); ?>)">
+                    <span class="dashicons dashicons-update" aria-hidden="true"></span> <span class="smart-seo-refresh-label"><?php esc_html_e( 'Refresh Analysis', 'smart-seo-booster' ); ?></span>
                 </button>
-                <button type="button" class="button button-small" onclick="smartSeoShowFullReport(<?php echo absint( $post->ID ); ?>)" style="margin-left: 5px;">
-                    <span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> Full Report
+                <button type="button" class="button" onclick="smartSeoShowFullReport(<?php echo absint( $post->ID ); ?>)">
+                    <span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> <?php esc_html_e( 'Full Report', 'smart-seo-booster' ); ?>
                 </button>
             </div>
         </div>
@@ -700,31 +700,50 @@ class Smart_SEO_Score_Display {
         $score = self::calculate_seo_score($post_id);
         $color = self::get_score_color($score);
         $status = self::get_score_status($score);
-        
+
+        // Same circular-gauge geometry as the site-wide Audit Report, so the
+        // per-post report reads as the same product rather than a bolted-on
+        // afterthought.
+        $smart_seo_r    = 52;
+        $smart_seo_circ = 2 * M_PI * $smart_seo_r;
+        $smart_seo_off  = $smart_seo_circ * ( 1 - $score / 100 );
+
         ob_start();
         ?>
-        <div class="smart-seo-full-report">
-            <h2 style="margin-top: 0;"><span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> Complete SEO Analysis</h2>
+        <?php /* Note: intentionally .ssb-app only (no ssb-adapt) — this modal's
+         * container background is a hardcoded white div created in seo-score.js,
+         * so opting into the dark-mode ink-color override here without a matching
+         * dark background would reproduce the exact contrast bug fixed elsewhere. */ ?>
+        <div class="smart-seo-full-report ssb-app">
+            <h2 style="margin-top: 0;"><img src="<?php echo esc_url( SMART_SEO_BOOSTER_ICON_URL ); ?>" width="22" height="22" alt="" style="vertical-align:text-bottom;border-radius:4px;" /> <?php esc_html_e( 'Complete SEO Analysis', 'smart-seo-booster' ); ?></h2>
             <h3><?php echo esc_html($post->post_title); ?></h3>
-            
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-                <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-                    <div style="font-size: 48px; font-weight: bold; color: <?php echo esc_attr( $color ); ?>;"><?php echo absint( $score ); ?>/100</div>
-                    <div style="font-size: 18px; font-weight: bold; color: <?php echo esc_attr( $color ); ?>;"><?php echo esc_html( $status ); ?></div>
+                <div class="ssb-card" style="text-align: center;">
+                    <div class="ssb-gauge" style="justify-content: center;">
+                        <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="<?php echo esc_attr( sprintf( /* translators: %d: score */ __( 'Score %d out of 100', 'smart-seo-booster' ), $score ) ); ?>">
+                            <circle cx="60" cy="60" r="<?php echo esc_attr( $smart_seo_r ); ?>" fill="none" stroke="var(--ssb-line)" stroke-width="12" />
+                            <circle cx="60" cy="60" r="<?php echo esc_attr( $smart_seo_r ); ?>" fill="none" stroke="<?php echo esc_attr( $color ); ?>" stroke-width="12" stroke-linecap="round"
+                                stroke-dasharray="<?php echo esc_attr( $smart_seo_circ ); ?>" stroke-dashoffset="<?php echo esc_attr( $smart_seo_off ); ?>"
+                                transform="rotate(-90 60 60)" />
+                        </svg>
+                    </div>
+                    <div style="font-size: 24px; font-weight: bold; color: <?php echo esc_attr( $color ); ?>; margin-top: 10px;"><?php echo absint( $score ); ?><span style="font-size:14px;color:var(--ssb-muted);">/100</span></div>
+                    <div style="font-size: 15px; font-weight: bold; color: <?php echo esc_attr( $color ); ?>;"><?php echo esc_html( $status ); ?></div>
                 </div>
-                <div style="padding: 20px;">
-                    <h4>Quick Stats</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li><strong>Published:</strong> <?php echo esc_html( get_the_date('M j, Y', $post) ); ?></li>
-                        <li><strong>Last Modified:</strong> <?php echo esc_html( get_the_modified_date('M j, Y', $post) ); ?></li>
-                        <li><strong>Word Count:</strong> <?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> words</li>
-                        <li><strong>Reading Time:</strong> <?php echo isset($analysis['word_count']['value']) ? absint( ceil($analysis['word_count']['value'] / 200) ) : 0; ?> minutes</li>
+                <div class="ssb-card">
+                    <h4><?php esc_html_e( 'Quick Stats', 'smart-seo-booster' ); ?></h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li><strong><?php esc_html_e( 'Published', 'smart-seo-booster' ); ?>:</strong> <?php echo esc_html( get_the_date('M j, Y', $post) ); ?></li>
+                        <li><strong><?php esc_html_e( 'Last Modified', 'smart-seo-booster' ); ?>:</strong> <?php echo esc_html( get_the_modified_date('M j, Y', $post) ); ?></li>
+                        <li><strong><?php esc_html_e( 'Word Count', 'smart-seo-booster' ); ?>:</strong> <?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?></li>
+                        <li><strong><?php esc_html_e( 'Reading Time', 'smart-seo-booster' ); ?>:</strong> <?php echo isset($analysis['word_count']['value']) ? absint( ceil($analysis['word_count']['value'] / 200) ) : 0; ?> <?php esc_html_e( 'minutes', 'smart-seo-booster' ); ?></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div>
+                <div class="ssb-card">
                     <h4><span class="dashicons dashicons-edit" aria-hidden="true"></span> Content Quality</h4>
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr><td>Word Count</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['word_count']['status'] ?? '' ); ?>"><?php echo isset($analysis['word_count']['value']) ? absint( $analysis['word_count']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['word_count']['icon'] ?? '' ); ?></span></td></tr>
@@ -741,7 +760,7 @@ class Smart_SEO_Score_Display {
                     </table>
                 </div>
                 
-                <div>
+                <div class="ssb-card">
                     <h4><span class="dashicons dashicons-format-image" aria-hidden="true"></span> Media & Links</h4>
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr><td>Images</td><td style="text-align: right;"><span class="<?php echo esc_attr( $analysis['images']['status'] ); ?>"><?php echo isset($analysis['images']['value']) ? absint( $analysis['images']['value'] ) : 0; ?> <?php echo wp_kses_post( $analysis['images']['icon'] ); ?></span></td></tr>
@@ -761,9 +780,9 @@ class Smart_SEO_Score_Display {
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-                <button type="button" class="button button-primary" onclick="window.print()"><span class="dashicons dashicons-printer" aria-hidden="true"></span> Print Report</button>
-                <button type="button" class="button" onclick="jQuery('#smart-seo-modal').remove()">Close</button>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--ssb-line);">
+                <button type="button" class="button button-primary" onclick="window.print()"><span class="dashicons dashicons-printer" aria-hidden="true"></span> <?php esc_html_e( 'Print Report', 'smart-seo-booster' ); ?></button>
+                <button type="button" class="button smart-seo-modal-close"><?php esc_html_e( 'Close', 'smart-seo-booster' ); ?></button>
             </div>
         </div>
         
@@ -789,8 +808,10 @@ class Smart_SEO_Score_Display {
 
         wp_enqueue_script('smart-seo-score', $js_url, ['jquery'], $ver, true);
         wp_localize_script('smart-seo-score', 'SmartSEOScore', [
-            'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce'   => wp_create_nonce('smart_seo_nonce'),
+            'ajaxUrl'          => admin_url('admin-ajax.php'),
+            'nonce'            => wp_create_nonce('smart_seo_nonce'),
+            'refreshingText'   => __( 'Refreshing…', 'smart-seo-booster' ),
+            'refreshErrorText' => __( 'Error refreshing SEO analysis. Please try again.', 'smart-seo-booster' ),
         ]);
     }
 }

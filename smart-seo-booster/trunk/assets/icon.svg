@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="128" height="128" role="img" aria-label="Smart SEO Booster">
+  <defs>
+    <linearGradient id="ssbBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="ssbSwoosh" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#16a34a"/>
+      <stop offset="1" stop-color="#4ade80"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="56" fill="url(#ssbBg)"/>
+  <circle cx="128" cy="128" r="102" fill="none" stroke="#ffffff" stroke-opacity="0.30" stroke-width="3"/>
+
+  <!-- green swoosh arrow (behind rocket) -->
+  <path d="M40 175 Q124 108 212 70" fill="none" stroke="url(#ssbSwoosh)" stroke-width="18" stroke-linecap="round"/>
+  <path d="M217 67 L188 103 L172 63 Z" fill="#4ade80"/>
+
+  <!-- fins -->
+  <path d="M112 150 L98 176 L112 171 Z" fill="#cbd5e1"/>
+  <path d="M144 150 L158 176 L144 171 Z" fill="#cbd5e1"/>
+
+  <!-- flame -->
+  <ellipse cx="128" cy="186" rx="17" ry="12" fill="#f97316"/>
+  <ellipse cx="128" cy="183" rx="9" ry="8" fill="#fbbf24"/>
+
+  <!-- rocket body -->
+  <path d="M128 72 L112 106 L112 170 Q112 178 120 178 L136 178 Q144 178 144 170 L144 106 Z" fill="#ffffff"/>
+  <circle cx="128" cy="112" r="13" fill="#1d4ed8"/>
+</svg>

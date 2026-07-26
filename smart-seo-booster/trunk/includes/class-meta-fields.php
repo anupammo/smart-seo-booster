@@ -65,6 +65,16 @@ class Smart_SEO_Meta_Fields {
      */
     public static function enqueue_block_sidebar() {
         $ver = defined('SMART_SEO_BOOSTER_VERSION') ? SMART_SEO_BOOSTER_VERSION : false;
+
+        // Reuse the classic metabox's preview-card styling for the block
+        // editor's social preview (Facebook/Twitter-style cards).
+        wp_enqueue_style(
+            'smart-seo-meta-box',
+            plugin_dir_url(__FILE__) . '../css/meta-box.css',
+            [],
+            $ver
+        );
+
         wp_enqueue_script(
             'smart-seo-block-editor',
             plugin_dir_url(__FILE__) . '../js/block-editor.js',

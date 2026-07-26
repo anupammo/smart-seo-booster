@@ -40,6 +40,26 @@
 .seo-image-preview { width: 100px; height: 60px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #666; }
 .seo-image-preview img { max-width: 100%; max-height: 100%; object-fit: cover; border-radius: 3px; }
 
+.smart-seo-quick-panel-more { font-size: 12px; color: #757575; margin: 8px 0 0; }
+
+/* ---------- SEO Score metabox actions ----------
+ * The "side" metabox column is narrow (~280px); two icon+label buttons don't
+ * fit on one line and would otherwise wrap awkwardly. Stack them as a clean,
+ * deliberate full-width group instead. */
+.smart-seo-score-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-top: 15px;
+}
+.smart-seo-score-actions .button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	width: 100%;
+}
+
 /* ---------- SEO Score box ---------- */
 .seo-section { margin-bottom: 15px; border-bottom: 1px solid #e5e7eb; padding-bottom: 10px; }
 .seo-section:last-child { border-bottom: none; }
@@ -56,3 +76,24 @@
 .smart-seo-full-report .seo-good { color: #10b981; font-weight: bold; }
 .smart-seo-full-report .seo-warning { color: #f59e0b; font-weight: bold; }
 .smart-seo-full-report .seo-error { color: #ef4444; font-weight: bold; }
+
+.smart-seo-modal-close {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	background: none;
+	border: none;
+	font-size: 24px;
+	line-height: 1;
+	cursor: pointer;
+	color: #666;
+	padding: 4px 8px;
+}
+/* The bottom "Close" button reuses the same class for its click handler
+   (event delegation in seo-score.js) but is nested inside the report body,
+   so it shouldn't be absolutely positioned like the top-right one is. */
+.smart-seo-full-report .smart-seo-modal-close {
+	position: static;
+	font-size: 14px;
+	color: inherit;
+}

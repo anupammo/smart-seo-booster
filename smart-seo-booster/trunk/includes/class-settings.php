@@ -29,17 +29,17 @@ class Smart_SEO_Settings {
                     'enable_sitemap'     => [ 'type' => 'checkbox', 'label' => __( 'Enable XML Sitemap', 'smart-seo-booster' ), 'desc' => __( 'Available at /sitemap.xml', 'smart-seo-booster' ) ],
                     'disable_wp_sitemap' => [ 'type' => 'checkbox', 'label' => __( 'Disable the default WordPress sitemap', 'smart-seo-booster' ), 'desc' => __( 'Prevents duplicate sitemaps when the plugin sitemap is on.', 'smart-seo-booster' ) ],
                     'enable_breadcrumbs' => [ 'type' => 'checkbox', 'label' => __( 'Enable Breadcrumbs', 'smart-seo-booster' ), 'desc' => __( 'Use [smart_seo_breadcrumbs] or the smart_seo_breadcrumbs() template tag.', 'smart-seo-booster' ) ],
-                    'breadcrumb_separator'  => [ 'type' => 'text', 'label' => __( 'Breadcrumb separator', 'smart-seo-booster' ), 'default' => '/', 'class' => 'small-text' ],
+                    'breadcrumb_separator'  => [ 'type' => 'select', 'label' => __( 'Breadcrumb separator', 'smart-seo-booster' ), 'default' => '/', 'options' => self::separator_options() ],
                     'breadcrumb_home_label' => [ 'type' => 'text', 'label' => __( 'Breadcrumb home label', 'smart-seo-booster' ), 'default' => __( 'Home', 'smart-seo-booster' ), 'class' => 'regular-text' ],
                     'auto_image_alt'     => [ 'type' => 'checkbox', 'label' => __( 'Auto-add missing image alt text', 'smart-seo-booster' ), 'desc' => __( 'Fills empty alt attributes from the image or post title on the front end.', 'smart-seo-booster' ) ],
-                    'frontend_credit'    => [ 'type' => 'checkbox', 'label' => __( 'Show a small credit link in the footer', 'smart-seo-booster' ), 'desc' => __( 'Optional. Displays “SEO by Smart SEO Booster” linking to the developer. Off by default.', 'smart-seo-booster' ) ],
+                    'frontend_credit'    => [ 'type' => 'checkbox', 'locked' => true, 'label' => __( 'Show a small credit link in the footer', 'smart-seo-booster' ), 'desc' => __( 'Included free. Displays “SEO by Smart SEO Booster” linking to the developer. Removing this link requires Smart SEO Booster Pro.', 'smart-seo-booster' ) ],
                     'min_word_count'     => [ 'type' => 'number', 'label' => __( 'Minimum word count', 'smart-seo-booster' ), 'default' => 300 ],
                 ],
             ],
             'smart_seo_titles' => [
                 'title'  => __( 'Titles &amp; Metas', 'smart-seo-booster' ),
                 'fields' => [
-                    'separator'           => [ 'type' => 'text', 'label' => __( 'Title separator', 'smart-seo-booster' ), 'default' => '-', 'class' => 'small-text' ],
+                    'separator'           => [ 'type' => 'select', 'label' => __( 'Title separator', 'smart-seo-booster' ), 'default' => '-', 'options' => self::separator_options() ],
                     'title_template'       => [ 'type' => 'text', 'label' => __( 'Title template', 'smart-seo-booster' ), 'default' => '%%title%% %%sep%% %%sitename%%', 'vars' => true ],
                     'description_template' => [ 'type' => 'textarea', 'label' => __( 'Meta description template', 'smart-seo-booster' ), 'default' => '%%excerpt%%', 'vars' => true ],
                 ],
@@ -84,11 +84,23 @@ class Smart_SEO_Settings {
                     'enable_speakable'  => [ 'type' => 'checkbox', 'label' => __( 'Add speakable structured data', 'smart-seo-booster' ), 'desc' => __( 'Marks the title and description as voice-assistant friendly.', 'smart-seo-booster' ) ],
                 ],
             ],
+            'smart_seo_social' => [
+                'title'  => __( 'Social Media Accounts', 'smart-seo-booster' ),
+                'desc'   => __( 'Your site\'s official profiles, added to Organization schema (sameAs) and available for future social features.', 'smart-seo-booster' ),
+                'fields' => [
+                    'social_facebook'  => [ 'type' => 'text', 'label' => __( 'Facebook', 'smart-seo-booster' ), 'class' => 'regular-text', 'desc' => __( 'https://facebook.com/yourpage', 'smart-seo-booster' ) ],
+                    'social_twitter'   => [ 'type' => 'text', 'label' => __( 'X (Twitter)', 'smart-seo-booster' ), 'class' => 'regular-text', 'desc' => __( 'https://x.com/yourhandle', 'smart-seo-booster' ) ],
+                    'social_linkedin'  => [ 'type' => 'text', 'label' => __( 'LinkedIn', 'smart-seo-booster' ), 'class' => 'regular-text', 'desc' => __( 'https://linkedin.com/company/yourcompany', 'smart-seo-booster' ) ],
+                    'social_instagram' => [ 'type' => 'text', 'label' => __( 'Instagram', 'smart-seo-booster' ), 'class' => 'regular-text', 'desc' => __( 'https://instagram.com/yourhandle', 'smart-seo-booster' ) ],
+                    'social_youtube'   => [ 'type' => 'text', 'label' => __( 'YouTube', 'smart-seo-booster' ), 'class' => 'regular-text', 'desc' => __( 'https://youtube.com/@yourchannel', 'smart-seo-booster' ) ],
+                    'social_pinterest' => [ 'type' => 'text', 'label' => __( 'Pinterest', 'smart-seo-booster' ), 'class' => 'regular-text', 'desc' => __( 'https://pinterest.com/yourhandle', 'smart-seo-booster' ) ],
+                ],
+            ],
             'smart_seo_schema_data' => [
                 'title'  => __( 'Schema Details', 'smart-seo-booster' ),
                 'desc'   => __( 'Optional data used to enrich Organization and LocalBusiness schema.', 'smart-seo-booster' ),
                 'fields' => [
-                    'organization_same_as' => [ 'type' => 'textarea', 'label' => __( 'Social profile URLs', 'smart-seo-booster' ), 'desc' => __( 'One URL per line (Facebook, X, LinkedIn, etc.).', 'smart-seo-booster' ) ],
+                    'organization_same_as' => [ 'type' => 'textarea', 'label' => __( 'Other social profile URLs', 'smart-seo-booster' ), 'desc' => __( 'One URL per line, for any network not listed under Social Media Accounts.', 'smart-seo-booster' ) ],
                     'business_phone'       => [ 'type' => 'text', 'label' => __( 'Business phone', 'smart-seo-booster' ), 'class' => 'regular-text' ],
                     'business_street'      => [ 'type' => 'text', 'label' => __( 'Street address', 'smart-seo-booster' ), 'class' => 'regular-text' ],
                     'business_locality'    => [ 'type' => 'text', 'label' => __( 'City / locality', 'smart-seo-booster' ), 'class' => 'regular-text' ],
@@ -100,6 +112,27 @@ class Smart_SEO_Settings {
                     'business_lng'         => [ 'type' => 'text', 'label' => __( 'Longitude', 'smart-seo-booster' ), 'class' => 'small-text' ],
                 ],
             ],
+        ];
+    }
+
+    /**
+     * Common separator characters offered as a dropdown for title/breadcrumb
+     * separators, instead of free-text (which invited typos and inconsistent
+     * spacing).
+     *
+     * @return array<string,string> value => display label.
+     */
+    public static function separator_options() {
+        return [
+            '-' => '- ' . __( '(hyphen)', 'smart-seo-booster' ),
+            '|' => '| ' . __( '(pipe)', 'smart-seo-booster' ),
+            '/' => '/ ' . __( '(slash)', 'smart-seo-booster' ),
+            '»' => '» ' . __( '(guillemet)', 'smart-seo-booster' ),
+            '•' => '• ' . __( '(bullet)', 'smart-seo-booster' ),
+            '·' => '· ' . __( '(middle dot)', 'smart-seo-booster' ),
+            ':' => ': ' . __( '(colon)', 'smart-seo-booster' ),
+            '~' => '~ ' . __( '(tilde)', 'smart-seo-booster' ),
+            '—' => '— ' . __( '(em dash)', 'smart-seo-booster' ),
         ];
     }
 
@@ -148,11 +181,28 @@ class Smart_SEO_Settings {
 
         switch ( $field['type'] ) {
             case 'checkbox':
-                echo '<label><input type="checkbox" name="' . esc_attr( $attr ) . '" value="1" ' . checked( ! empty( $value ), true, false ) . ' /> ';
+                $locked = ! empty( $field['locked'] );
+                if ( $locked ) {
+                    // Always on; not user-togglable. A hidden field preserves the
+                    // value on save since disabled inputs aren't POSTed.
+                    echo '<input type="hidden" name="' . esc_attr( $attr ) . '" value="1" />';
+                    echo '<label><input type="checkbox" checked="checked" disabled="disabled" /> ';
+                    echo '<span class="smart-seo-pro-badge">' . esc_html__( 'Pro', 'smart-seo-booster' ) . '</span> ';
+                } else {
+                    echo '<label><input type="checkbox" name="' . esc_attr( $attr ) . '" value="1" ' . checked( ! empty( $value ), true, false ) . ' /> ';
+                }
                 if ( ! empty( $field['desc'] ) ) {
                     echo esc_html( $field['desc'] );
                 }
                 echo '</label>';
+                break;
+
+            case 'select':
+                echo '<select name="' . esc_attr( $attr ) . '">';
+                foreach ( (array) ( $field['options'] ?? [] ) as $opt_value => $opt_label ) {
+                    echo '<option value="' . esc_attr( $opt_value ) . '" ' . selected( $value, $opt_value, false ) . '>' . esc_html( $opt_label ) . '</option>';
+                }
+                echo '</select>';
                 break;
 
             case 'number':
@@ -196,7 +246,16 @@ class Smart_SEO_Settings {
             foreach ( $section['fields'] as $name => $field ) {
                 switch ( $field['type'] ) {
                     case 'checkbox':
-                        $output[ $name ] = ! empty( $input[ $name ] ) ? 1 : 0;
+                        // Locked checkboxes (e.g. the free-tier footer credit)
+                        // always save as enabled — there is no user-facing way
+                        // to submit a falsy value for them.
+                        $output[ $name ] = ( ! empty( $field['locked'] ) || ! empty( $input[ $name ] ) ) ? 1 : 0;
+                        break;
+
+                    case 'select':
+                        $allowed = array_keys( (array) ( $field['options'] ?? [] ) );
+                        $val     = isset( $input[ $name ] ) ? (string) $input[ $name ] : '';
+                        $output[ $name ] = in_array( $val, $allowed, true ) ? $val : ( $field['default'] ?? ( $allowed[0] ?? '' ) );
                         break;
 
                     case 'number':

@@ -18,6 +18,36 @@
 	outline-offset: -2px;
 }
 
+/*
+ * Card background must track the same variables as its text color. The
+ * .ssb-app wrapper sets `color: var(--ssb-ink)` at the page level (near-white
+ * in OS dark mode) so it reaches every plain WP-core `.card`/`.form-table`
+ * element too — but those keep a hardcoded white background, which washes
+ * the text out to near-invisible. Pairing background+color here fixes it
+ * everywhere this class is used (Settings, Setup Wizard, Redirects, Bulk
+ * Editor, Import all share the `.smart-seo-settings` wrapper).
+ */
+.smart-seo-settings .smart-seo-card,
+.smart-seo-settings .card {
+	background: var(--ssb-card, #fff);
+	color: var(--ssb-ink, #1e293b);
+	border-color: var(--ssb-line, #dcdcde);
+}
+
+.smart-seo-settings .smart-seo-card h2,
+.smart-seo-settings .smart-seo-card h3,
+.smart-seo-settings .smart-seo-card label,
+.smart-seo-settings .smart-seo-card p,
+.smart-seo-settings .form-table th,
+.smart-seo-settings .form-table td {
+	color: var(--ssb-ink, #1e293b);
+}
+
+.smart-seo-settings .smart-seo-card .description,
+.smart-seo-settings .description {
+	color: var(--ssb-muted, #64748b);
+}
+
 .smart-seo-settings .smart-seo-card {
 	max-width: none;
 	margin-block-start: 0;
@@ -66,6 +96,15 @@
 	background: #f0f0f1;
 	color: #50575e;
 	font-size: 13px;
+}
+
+.smart-seo-steps li a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.smart-seo-tutorial-nav {
+	margin-top: 16px;
 }
 
 .smart-seo-steps li.current {

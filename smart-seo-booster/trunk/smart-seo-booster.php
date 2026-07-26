@@ -33,6 +33,12 @@ if (!defined('SMART_SEO_BOOSTER_FILE')) {
     define('SMART_SEO_BOOSTER_FILE', __FILE__);
 }
 
+// The plugin's own brand icon (rocket mark), used in place of generic
+// Dashicons/emoji across the admin menu, page headings, and editor UI.
+if (!defined('SMART_SEO_BOOSTER_ICON_URL')) {
+    define('SMART_SEO_BOOSTER_ICON_URL', plugin_dir_url(__FILE__) . 'assets/icon.svg');
+}
+
 // Autoload classes
 require_once plugin_dir_path(__FILE__) . 'includes/class-loader.php';
 

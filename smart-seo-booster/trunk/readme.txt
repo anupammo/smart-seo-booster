@@ -1,5 +1,5 @@
 === Smart SEO Booster ===
-Contributors: anupamwp
+Contributors: anupam-mondal
 Tags: seo, schema, xml sitemap, breadcrumbs, audit
 Requires at least: 5.9
 Requires PHP: 7.4
@@ -68,9 +68,9 @@ No. It uses minimal hooks and outputs schema only in the footer.
 == Changelog ==
 
 = 2.1.1 =
+* Fix: Resolved a fatal error on activation caused by an incomplete package that was missing several class files. All modules are now included.
 * New: WordPress Playground preview blueprint, enabling the "Live Preview" button on the plugin page.
-* Improvement: Refreshed listing icon and banner.
-* Improvement: Updated screenshots and captions.
+* Improvement: Refreshed listing icon and banner; updated screenshots and captions.
 
 = 2.1.0 =
 Complete SEO toolkit release.
@@ -117,7 +117,7 @@ Editor & experience
 == Upgrade Notice ==
 
 = 2.1.1 =
-Adds a Live Preview (WordPress Playground) blueprint and refreshed listing visuals. No functional changes.
+Important fix: resolves a fatal error on activation from an incomplete 2.1.0 package. All users should update.
 
 = 2.1.0 =
 Complete SEO toolkit: audit dashboard, XML sitemaps, breadcrumbs, schema, analytics, GEO/AI SEO, blocks, and more. After activating, visit Settings → Permalinks once if /sitemap.xml or /llms.txt does not load.

@@ -1,0 +1,58 @@
+/**
+ * Smart SEO Booster — post/page edit screen meta boxes.
+ * Styles for the SEO Meta Tags box, the SEO Score box, and the full report modal.
+ */
+
+/* ---------- SEO Meta Tags & Social Preview box ---------- */
+.smart-seo-meta-fields { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+.seo-tab-nav { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
+.seo-tab-nav button { background: none; border: none; padding: 12px 20px; cursor: pointer; border-bottom: 2px solid transparent; font-weight: 500; }
+.seo-tab-nav button.active { border-bottom-color: #0073aa; color: #0073aa; }
+.seo-tab-nav button:hover { background: #f6f7f7; }
+.seo-tab-content { display: none; }
+.seo-tab-content.active { display: block; }
+.seo-field-group { margin-bottom: 20px; }
+.seo-field-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #1d2327; }
+.seo-field-group input, .seo-field-group textarea, .seo-field-group select { width: 100%; padding: 8px 12px; border: 1px solid #8c8f94; border-radius: 4px; font-size: 14px; }
+.seo-field-group textarea { resize: vertical; min-height: 80px; }
+.seo-field-help { font-size: 12px; color: #646970; margin-top: 5px; }
+.seo-field-counter { font-size: 11px; text-align: right; margin-top: 2px; }
+.seo-field-counter.good { color: #00a32a; }
+.seo-field-counter.warning { color: #dba617; }
+.seo-field-counter.error { color: #d63638; }
+.seo-preview-box { background: #f6f7f7; border: 1px solid #c3c4c7; border-radius: 4px; padding: 15px; margin-top: 10px; }
+.seo-preview-title { color: #1a0dab; font-size: 18px; font-weight: normal; margin: 0 0 5px 0; text-decoration: none; }
+.seo-preview-url { color: #006621; font-size: 14px; margin: 0 0 5px 0; }
+.seo-preview-description { color: #4d5156; font-size: 14px; line-height: 1.4; margin: 0; }
+.seo-social-preview { display: flex; gap: 15px; margin-top: 15px; }
+.seo-social-preview .preview-card { flex: 1; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: white; }
+.seo-social-preview .preview-image { width: 100%; height: 120px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; }
+.seo-social-preview .preview-content { padding: 12px; }
+.seo-social-preview .preview-title { font-weight: 600; font-size: 14px; margin: 0 0 5px 0; }
+.seo-social-preview .preview-desc { font-size: 12px; color: #666; margin: 0; line-height: 1.3; }
+.seo-score-indicator { display: inline-block; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; margin-left: 10px; }
+.seo-score-good { background: #d1e7dd; color: #0a3622; }
+.seo-score-warning { background: #fff3cd; color: #664d03; }
+.seo-score-error { background: #f8d7da; color: #58151c; }
+.seo-keyword-analysis { background: #f8f9fa; border-radius: 4px; padding: 12px; margin-top: 10px; }
+.seo-keyword-density { font-size: 12px; margin-top: 5px; }
+.seo-image-upload { display: flex; align-items: center; gap: 10px; }
+.seo-image-preview { width: 100px; height: 60px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #666; }
+.seo-image-preview img { max-width: 100%; max-height: 100%; object-fit: cover; border-radius: 3px; }
+
+/* ---------- SEO Score box ---------- */
+.seo-section { margin-bottom: 15px; border-bottom: 1px solid #e5e7eb; padding-bottom: 10px; }
+.seo-section:last-child { border-bottom: none; }
+.seo-check { display: flex; justify-content: space-between; align-items: center; margin: 5px 0; }
+.seo-check-status { font-weight: bold; }
+.seo-good { color: #059669; }
+.seo-warning { color: #d97706; }
+.seo-error { color: #dc2626; }
+.seo-score-big { font-size: 24px; font-weight: bold; text-align: center; }
+.seo-recommendations { background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 10px; }
+
+/* ---------- Full SEO report (modal) ---------- */
+.smart-seo-full-report table td { padding: 8px; border-bottom: 1px solid #f0f0f0; }
+.smart-seo-full-report .seo-good { color: #059669; font-weight: bold; }
+.smart-seo-full-report .seo-warning { color: #d97706; font-weight: bold; }
+.smart-seo-full-report .seo-error { color: #dc2626; font-weight: bold; }

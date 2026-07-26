@@ -57,7 +57,7 @@ class Smart_SEO_Importer {
         $auto_source = isset($_GET['auto_source']) ? sanitize_key( wp_unslash( $_GET['auto_source'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- continuation routing, action itself is nonce-checked
         if ( $auto_source ) {
             $auto_offset = isset($_GET['auto_offset']) ? absint( wp_unslash( $_GET['auto_offset'] ) ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- continuation routing
-            echo '<div class="wrap"><h1>' . esc_html__( 'Importing…', 'smart-seo-booster' ) . '</h1>';
+            echo '<div class="wrap ssb-app ssb-adapt"><h1><span class="dashicons dashicons-update" aria-hidden="true"></span> ' . esc_html__( 'Importing…', 'smart-seo-booster' ) . '</h1>';
             echo '<p>' . esc_html__( 'Processing the next batch, please wait…', 'smart-seo-booster' ) . '</p>';
             echo '<form id="smart-seo-auto" method="post" action="' . esc_url( admin_url('admin-post.php') ) . '">';
             wp_nonce_field( self::NONCE, 'smart_seo_import_nonce' );
@@ -76,8 +76,8 @@ class Smart_SEO_Importer {
         $has_yoast    = self::source_available('yoast');
         $has_rankmath = self::source_available('rankmath');
 
-        echo '<div class="wrap smart-seo-settings">';
-        echo '<h1>' . esc_html__( 'Import SEO Data', 'smart-seo-booster' ) . '</h1>';
+        echo '<div class="wrap smart-seo-settings ssb-app ssb-adapt">';
+        echo '<h1><span class="dashicons dashicons-upload" aria-hidden="true"></span> ' . esc_html__( 'Import SEO Data', 'smart-seo-booster' ) . '</h1>';
         echo '<p>' . esc_html__( 'Copy your existing SEO titles, descriptions, social tags and canonicals from another plugin. Existing Smart SEO values are never overwritten.', 'smart-seo-booster' ) . '</p>';
 
         // Progress notice after a batch.

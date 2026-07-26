@@ -67,3 +67,44 @@
 .smart-seo-local-business { padding: 16px 18px; border: 1px solid #e2e8f0; border-radius: 12px; margin: 16px 0; }
 .smart-seo-local-business .ssb-name { font-size: 16px; margin: 0 0 4px; }
 .smart-seo-local-business .ssb-hours { list-style: none; margin: 8px 0 0; padding: 0; font-size: 13px; color: #64748b; }
+
+/* ==========================================================================
+   Block-editor-only presentation (never rendered on the front end).
+   Brings every Smart SEO block's canvas placeholder in line with the same
+   card look and brand-blue accent used on the SEO Audit Report dashboard.
+   ========================================================================== */
+.ssb-block-placeholder.components-placeholder {
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	background: #f8fafc;
+}
+.ssb-block-placeholder .components-placeholder__label {
+	color: #1e293b;
+	font-weight: 600;
+}
+.ssb-block-placeholder .components-placeholder__icon,
+.ssb-block-placeholder .components-placeholder__icon svg {
+	fill: #2563eb;
+	color: #2563eb;
+}
+.ssb-block-placeholder .components-placeholder__instructions {
+	color: #64748b;
+}
+
+/* ---------- Social share (editor preview chips) ---------- */
+.ssb-share-preview { display: flex; flex-wrap: wrap; gap: 8px; }
+.ssb-share-editor.is-center .ssb-share-preview { justify-content: center; }
+.ssb-share-editor.is-right .ssb-share-preview { justify-content: flex-end; }
+.ssb-share-chip {
+	display: inline-flex; align-items: center;
+	padding: 6px 12px; border-radius: 8px;
+	font-size: 13px; font-weight: 500;
+	border: 1px solid rgba(0, 0, 0, .12); background: #fff; color: #1e293b;
+}
+.ssb-share-chip.is-x { background: #000; color: #fff; border-color: #000; }
+.ssb-share-chip.is-facebook { background: #1877f2; color: #fff; border-color: #1877f2; }
+.ssb-share-chip.is-linkedin { background: #0a66c2; color: #fff; border-color: #0a66c2; }
+.ssb-share-chip.is-whatsapp { background: #25d366; color: #fff; border-color: #25d366; }
+.ssb-share-chip.is-reddit { background: #ff4500; color: #fff; border-color: #ff4500; }
+.ssb-share-chip.is-email { background: #64748b; color: #fff; border-color: #64748b; }
+.ssb-share-chip.is-copy { background: #f1f5f9; color: #1e293b; }

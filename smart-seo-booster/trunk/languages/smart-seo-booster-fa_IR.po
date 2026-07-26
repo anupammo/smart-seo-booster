@@ -1,0 +1,977 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Smart SEO Booster 2.1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/smart-seo-booster\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-26T15:34:26+00:00\n"
+"PO-Revision-Date: 2026-07-26T15:34:26+00:00\n"
+"Language-Team: Anupam Mondal\n"
+"X-Domain: smart-seo-booster\n"
+"Language: fa_IR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: includes/class-link-analyzer.php:29
+msgid "%1$s SEO Score: %2$d/%3$d"
+msgstr "امتیاز سئوی %1$s: %2$d/%3$d"
+
+#: includes/class-redirects.php:192
+msgid "%d found in this post."
+msgstr "%d مورد در این نوشته یافت شد."
+
+#: includes/class-breadcrumbs.php:72
+msgid "404 Log"
+msgstr "گزارش ۴۰۴"
+
+#: includes/class-settings.php:82
+msgid "404 Not Found"
+msgstr "۴۰۴ یافت نشد"
+
+#: includes/class-settings.php:79
+msgid "A machine-readable summary of your site for AI assistants, at /llms.txt"
+msgstr "خلاصه‌ای قابل‌خواندن برای ماشین از سایت شما، جهت استفاده دستیارهای هوش مصنوعی، در آدرس /llms.txt"
+
+#: templates/audit-report.php:72
+msgid "AI &amp; GEO"
+msgstr "هوش مصنوعی و GEO"
+
+#: includes/class-redirects.php:174
+msgid "Across published posts &amp; pages"
+msgstr "در تمام نوشته‌ها و برگه‌های منتشرشده"
+
+#: includes/class-redirects.php:170
+msgid "Active redirects"
+msgstr "ریدایرکت‌های فعال"
+
+#: includes/class-content-auditor.php:50
+msgid "Add Redirect"
+msgstr "افزودن ریدایرکت"
+
+#: includes/class-content-auditor.php:36
+msgid "Add alt text to all images"
+msgstr "افزودن متن جایگزین به همه تصاویر"
+
+#: includes/class-content-auditor.php:43
+msgid "Add more content (minimum 300 words recommended)"
+msgstr "محتوای بیشتری اضافه کنید (حداقل ۳۰۰ کلمه توصیه می‌شود)"
+
+#: includes/class-redirects.php:159
+msgid "Add more headings for better structure"
+msgstr "برای ساختار بهتر، عنوان‌های بیشتری اضافه کنید"
+
+#: includes/class-settings.php:84
+msgid "Add redirect"
+msgstr "افزودن ریدایرکت"
+
+#: includes/class-settings.php:60
+msgid "Add speakable structured data"
+msgstr "افزودن داده‌های ساخت‌یافته قابل‌خوانش با صدا (speakable)"
+
+#: js/local-seo-block.js:34
+msgid "Add tracking without touching your theme. Scripts load only when an ID is set."
+msgstr "ردیابی را بدون دست‌زدن به پوسته اضافه کنید. اسکریپت‌ها فقط زمانی بارگذاری می‌شوند که شناسه تنظیم شده باشد."
+
+#: includes/class-settings.php:83
+msgid "Address, phone and hours are pulled from Smart SEO → Settings → Schema Details."
+msgstr "آدرس، تلفن و ساعات کاری از مسیر Smart SEO ← تنظیمات ← جزئیات اسکیما دریافت می‌شود."
+
+#: includes/class-meta-fields.php:156 js/block-editor.js:105
+msgid "Adds Disallow rules for GPTBot, Google-Extended, ClaudeBot, CCBot and others to robots.txt."
+msgstr "قوانین Disallow برای GPTBot، Google-Extended، ClaudeBot، CCBot و سایرین را به robots.txt اضافه می‌کند."
+
+#: js/blocks.js:59
+msgid "Advanced"
+msgstr "پیشرفته"
+
+#: includes/class-meta-fields.php:157
+msgid "Alignment"
+msgstr "چیدمان"
+
+#: includes/class-settings.php:59
+msgid "Analysis"
+msgstr "تحلیل"
+
+#: includes/class-blocks.php:213
+msgid "Analytics"
+msgstr "تحلیل آمار"
+
+#: includes/class-settings.php:83
+msgid "Article footer (dates + share)"
+msgstr "پاورقی مقاله (تاریخ‌ها + اشتراک‌گذاری)"
+
+#: includes/class-admin-ui.php:33
+msgid "Ask AI crawlers not to train on this site"
+msgstr "درخواست از خزنده‌های هوش مصنوعی برای عدم استفاده از این سایت جهت آموزش"
+
+#: includes/class-meta-templates.php:26
+msgid "Audit Report"
+msgstr "گزارش ممیزی"
+
+#: includes/class-settings.php:34
+msgid "Author name"
+msgstr "نام نویسنده"
+
+#: includes/class-settings.php:29
+msgid "Auto-add missing image alt text"
+msgstr "افزودن خودکار متن جایگزین برای تصاویر فاقد آن"
+
+#: templates/audit-report.php:62
+msgid "Available at /sitemap.xml"
+msgstr "در دسترس در /sitemap.xml"
+
+#: templates/audit-report.php:64
+msgid "Average SEO Score"
+msgstr "میانگین امتیاز سئو"
+
+#: includes/class-settings.php:55
+msgid "Average score %d out of 100"
+msgstr "میانگین امتیاز %d از ۱۰۰"
+
+#: includes/class-meta-fields.php:154
+msgid "Baidu"
+msgstr "بایدو"
+
+#: includes/class-setup-wizard.php:192
+msgid "Basic SEO"
+msgstr "سئوی پایه"
+
+#: includes/class-settings.php:52
+msgid "Bing"
+msgstr "بینگ"
+
+#: includes/class-setup-wizard.php:156
+msgid "Bing (Webmaster Tools)"
+msgstr "بینگ (ابزار وبمستر)"
+
+#: includes/class-breadcrumbs.php:106 js/blocks.js:123
+msgid "Blog / Publisher"
+msgstr "وبلاگ / ناشر"
+
+#: js/blocks.js:118
+msgid "Breadcrumb"
+msgstr "مسیر ناوبری (breadcrumb)"
+
+#: includes/class-blocks.php:225
+msgid "Breadcrumb (Smart SEO)"
+msgstr "مسیر ناوبری (Smart SEO)"
+
+#: includes/class-settings.php:33
+msgid "Breadcrumb bar"
+msgstr "نوار مسیر ناوبری"
+
+#: includes/class-settings.php:32
+msgid "Breadcrumb home label"
+msgstr "برچسب خانه در مسیر ناوبری"
+
+#: includes/class-setup-wizard.php:185
+msgid "Breadcrumb separator"
+msgstr "جداکننده مسیر ناوبری"
+
+#: includes/class-admin-ui.php:51
+msgid "Breadcrumbs"
+msgstr "مسیر ناوبری"
+
+#: includes/class-admin-ui.php:50 includes/class-bulk-editor.php:65
+msgid "Bulk Editor"
+msgstr "ویرایشگر گروهی"
+
+#: includes/class-setup-wizard.php:157
+msgid "Bulk SEO Editor"
+msgstr "ویرایشگر گروهی سئو"
+
+#: includes/class-settings.php:92
+msgid "Business / Organization"
+msgstr "کسب‌وکار / سازمان"
+
+#: js/blocks.js:96
+msgid "Business phone"
+msgstr "تلفن کسب‌وکار"
+
+#: js/blocks.js:95
+msgid "Button URL"
+msgstr "نشانی دکمه"
+
+#: includes/class-blocks.php:219
+msgid "Button label"
+msgstr "برچسب دکمه"
+
+#: js/blocks.js:77
+msgid "CTA banner"
+msgstr "بنر فراخوان اقدام (CTA)"
+
+#: js/block-editor.js:96
+msgid "Call to Action (Smart SEO)"
+msgstr "فراخوان اقدام (Smart SEO)"
+
+#: includes/class-bulk-editor.php:69
+msgid "Canonical URL"
+msgstr "نشانی کنونیکال (canonical)"
+
+#: includes/class-settings.php:94
+msgid "Changes saved."
+msgstr "تغییرات ذخیره شد."
+
+#: js/blocks.js:108
+msgid "City / locality"
+msgstr "شهر / منطقه"
+
+#: includes/class-bulk-editor.php:78 js/blocks.js:92 templates/audit-report.php:132
+msgid "Configure the call to action in the sidebar."
+msgstr "فراخوان اقدام را در نوار کناری تنظیم کنید."
+
+#: includes/class-importer.php:68 includes/class-setup-wizard.php:133
+msgid "Content"
+msgstr "محتوا"
+
+#: includes/class-blocks.php:97 js/blocks.js:26
+msgid "Continue"
+msgstr "ادامه"
+
+#: includes/class-importer.php:81
+msgid "Copy link"
+msgstr "کپی پیوند"
+
+#: includes/class-settings.php:97
+msgid "Copy your existing SEO titles, descriptions, social tags and canonicals from another plugin. Existing Smart SEO values are never overwritten."
+msgstr "عنوان‌های سئو، توضیحات، برچسب‌های اجتماعی و کنونیکال‌های موجود را از افزونه دیگری کپی کنید. مقادیر موجود Smart SEO هرگز بازنویسی نمی‌شوند."
+
+#: includes/class-meta-templates.php:28
+msgid "Country code"
+msgstr "کد کشور"
+
+#: js/blocks.js:144
+msgid "Current year"
+msgstr "سال جاری"
+
+#: includes/class-redirects.php:185
+msgid "Dates"
+msgstr "تاریخ‌ها"
+
+#: includes/class-setup-wizard.php:178
+msgid "Delete"
+msgstr "حذف"
+
+#: includes/class-credits.php:49
+msgid "Description template"
+msgstr "قالب توضیحات"
+
+#: includes/class-settings.php:30
+msgid "Developer Portfolio"
+msgstr "نمونه‌کارهای توسعه‌دهنده"
+
+#: js/local-seo-block.js:20
+msgid "Disable the default WordPress sitemap"
+msgstr "غیرفعال‌کردن نقشه سایت پیش‌فرض وردپرس"
+
+#: includes/class-settings.php:64
+msgid "Displays your business address, phone and hours, with LocalBusiness schema."
+msgstr "آدرس، تلفن و ساعات کاری کسب‌وکار شما را همراه با اسکیمای LocalBusiness نمایش می‌دهد."
+
+#: includes/class-bulk-editor.php:92
+msgid "Do not track logged-in administrators"
+msgstr "مدیران واردشده را ردیابی نکن"
+
+#: includes/class-bulk-editor.php:66
+msgid "Edit"
+msgstr "ویرایش"
+
+#: includes/class-setup-wizard.php:200
+msgid "Edit SEO titles and meta descriptions across your content. Leave a field blank to use the automatic value."
+msgstr "عنوان‌های سئو و توضیحات متا را در تمام محتوای خود ویرایش کنید. برای استفاده از مقدار خودکار، فیلد را خالی بگذارید."
+
+#: includes/class-settings.php:31
+msgid "Edit a post and open the SEO panel to fine-tune titles and social previews."
+msgstr "یک نوشته را ویرایش کرده و پنل سئو را باز کنید تا عنوان‌ها و پیش‌نمایش‌های اجتماعی را تنظیم کنید."
+
+#: includes/class-setup-wizard.php:168
+msgid "Enable Breadcrumbs"
+msgstr "فعال‌سازی مسیر ناوبری"
+
+#: includes/class-settings.php:28
+msgid "Enable JSON-LD schema markup"
+msgstr "فعال‌سازی نشانه‌گذاری اسکیمای JSON-LD"
+
+#: includes/class-settings.php:29
+msgid "Enable Schema Markup (JSON-LD)"
+msgstr "فعال‌سازی نشانه‌گذاری اسکیما (JSON-LD)"
+
+#: templates/audit-report.php:83
+msgid "Enable XML Sitemap"
+msgstr "فعال‌سازی نقشه سایت XML"
+
+#: includes/class-setup-wizard.php:142
+msgid "Excellent"
+msgstr "عالی"
+
+#: includes/class-settings.php:34
+msgid "Features"
+msgstr "ویژگی‌ها"
+
+#: includes/class-setup-wizard.php:133
+msgid "Fills empty alt attributes from the image or post title on the front end."
+msgstr "در بخش نمایش سایت، ویژگی‌های alt خالی را با عنوان تصویر یا نوشته پر می‌کند."
+
+#: includes/class-meta-templates.php:24
+msgid "Finish"
+msgstr "پایان"
+
+#: includes/class-meta-templates.php:25
+msgid "First category"
+msgstr "اولین دسته"
+
+#: js/block-editor.js:93
+msgid "First tag"
+msgstr "اولین برچسب"
+
+#: includes/class-settings.php:26
+msgid "Focus keyword"
+msgstr "کلیدواژه کانونی"
+
+#: includes/class-settings.php:80
+msgid "General"
+msgstr "عمومی"
+
+#: includes/class-setup-wizard.php:203
+msgid "Generative Engine Optimization — help (or limit) how AI assistants use your content."
+msgstr "بهینه‌سازی موتورهای مولد (GEO) — کمک (یا محدودکردن) نحوه استفاده دستیارهای هوش مصنوعی از محتوای شما."
+
+#: templates/audit-report.php:84
+msgid "Go to Settings"
+msgstr "رفتن به تنظیمات"
+
+#: includes/class-setup-wizard.php:191
+msgid "Good"
+msgstr "خوب"
+
+#: includes/class-settings.php:51
+msgid "Google"
+msgstr "گوگل"
+
+#: includes/class-settings.php:62
+msgid "Google (Search Console)"
+msgstr "گوگل (Search Console)"
+
+#: js/blocks.js:93
+msgid "Google Analytics 4 ID"
+msgstr "شناسه Google Analytics 4"
+
+#: includes/class-redirects.php:193
+msgid "Heading"
+msgstr "عنوان"
+
+#: includes/class-breadcrumbs.php:29 includes/class-settings.php:33
+msgid "Hits"
+msgstr "بازدیدها"
+
+#: templates/audit-report.php:106
+msgid "Home"
+msgstr "خانه"
+
+#: includes/class-admin-ui.php:60
+msgid "Images missing alt"
+msgstr "تصاویر فاقد متن جایگزین"
+
+#: includes/class-admin-ui.php:59 includes/class-importer.php:80
+msgid "Import"
+msgstr "درون‌ریزی"
+
+#: includes/class-importer.php:86
+msgid "Import SEO Data"
+msgstr "درون‌ریزی داده‌های سئو"
+
+#: includes/class-importer.php:105
+msgid "Import complete."
+msgstr "درون‌ریزی کامل شد."
+
+#: includes/class-importer.php:60
+msgid "Import from %s"
+msgstr "درون‌ریزی از %s"
+
+#: includes/class-settings.php:68
+msgid "Importing…"
+msgstr "در حال درون‌ریزی…"
+
+#: includes/class-link-analyzer.php:29
+msgid "Indexing"
+msgstr "ایندکس‌گذاری"
+
+#: includes/class-redirects.php:193
+msgid "Internal Links:"
+msgstr "پیوندهای داخلی:"
+
+#: includes/class-settings.php:99
+msgid "Last seen"
+msgstr "آخرین بازدید"
+
+#: js/local-seo-block.js:30
+msgid "Latitude"
+msgstr "عرض جغرافیایی"
+
+#: js/local-seo-block.js:19
+msgid "Local Business"
+msgstr "کسب‌وکار محلی"
+
+#: includes/class-settings.php:100
+msgid "Local Business (Smart SEO)"
+msgstr "کسب‌وکار محلی (Smart SEO)"
+
+#: includes/class-settings.php:84
+msgid "Longitude"
+msgstr "طول جغرافیایی"
+
+#: includes/class-settings.php:62
+msgid "Marks the title and description as voice-assistant friendly."
+msgstr "عنوان و توضیحات را برای دستیارهای صوتی مناسب علامت‌گذاری می‌کند."
+
+#: includes/class-bulk-editor.php:80
+msgid "Measurement ID, e.g. G-XXXXXXXXXX"
+msgstr "شناسه اندازه‌گیری، مثلاً G-XXXXXXXXXX"
+
+#: js/block-editor.js:95
+msgid "Meta Description"
+msgstr "توضیحات متا"
+
+#: includes/class-settings.php:44
+msgid "Meta description"
+msgstr "توضیحات متا"
+
+#: includes/class-settings.php:63
+msgid "Meta description template"
+msgstr "قالب توضیحات متا"
+
+#: includes/class-settings.php:36
+msgid "Microsoft Clarity ID"
+msgstr "شناسه Microsoft Clarity"
+
+#: templates/audit-report.php:130
+msgid "Minimum word count"
+msgstr "حداقل تعداد کلمات"
+
+#: templates/audit-report.php:85
+msgid "Needs attention first"
+msgstr "ابتدا نیاز به توجه دارد"
+
+#: js/blocks.js:50
+msgid "Needs work"
+msgstr "نیاز به بهبود دارد"
+
+#: includes/class-redirects.php:195
+msgid "Networks"
+msgstr "شبکه‌ها"
+
+#: includes/class-bulk-editor.php:84
+msgid "No 404s logged yet."
+msgstr "هنوز هیچ خطای ۴۰۴ ثبت نشده است."
+
+#: includes/class-importer.php:108
+msgid "No content found."
+msgstr "محتوایی یافت نشد."
+
+#: includes/class-audit.php:163
+msgid "No data found."
+msgstr "داده‌ای یافت نشد."
+
+#: templates/audit-report.php:107
+msgid "No major issues found. Nice work!"
+msgstr "مشکل مهمی یافت نشد. کارتان عالی بود!"
+
+#: templates/audit-report.php:135
+msgid "No meta description"
+msgstr "بدون توضیحات متا"
+
+#: includes/class-redirects.php:177
+msgid "No published content yet."
+msgstr "هنوز محتوای منتشرشده‌ای وجود ندارد."
+
+#: includes/class-settings.php:72
+msgid "No redirects yet."
+msgstr "هنوز هیچ ریدایرکتی وجود ندارد."
+
+#: includes/class-settings.php:71
+msgid "No-index author archives"
+msgstr "ایندکس‌نشدن آرشیو نویسندگان"
+
+#: includes/class-settings.php:73
+msgid "No-index category, tag &amp; taxonomy archives"
+msgstr "ایندکس‌نشدن آرشیو دسته‌ها، برچسب‌ها و طبقه‌بندی‌ها"
+
+#: includes/class-settings.php:75
+msgid "No-index date archives"
+msgstr "ایندکس‌نشدن آرشیو تاریخ"
+
+#: includes/class-settings.php:74
+msgid "No-index paginated pages (page 2, 3…)"
+msgstr "ایندکس‌نشدن صفحات صفحه‌بندی‌شده (صفحه ۲، ۳…)"
+
+#: templates/audit-report.php:109
+msgid "No-index search results"
+msgstr "ایندکس‌نشدن نتایج جستجو"
+
+#: js/block-editor.js:101
+msgid "No-indexed"
+msgstr "ایندکس‌نشده"
+
+#: js/block-editor.js:102
+msgid "OG description"
+msgstr "توضیحات OG"
+
+#: js/block-editor.js:100
+msgid "OG image URL"
+msgstr "نشانی تصویر OG"
+
+#: includes/class-settings.php:91
+msgid "OG title"
+msgstr "عنوان OG"
+
+#: includes/class-settings.php:98
+msgid "One URL per line (Facebook, X, LinkedIn, etc.)."
+msgstr "یک نشانی در هر خط (فیسبوک، ایکس، لینکدین و غیره)."
+
+#: includes/class-setup-wizard.php:158
+msgid "One rule per line, e.g. Mo-Fr 09:00-17:00"
+msgstr "یک قانون در هر خط، مثلاً Mo-Fr 09:00-17:00"
+
+#: includes/class-settings.php:98
+msgid "Online Store"
+msgstr "فروشگاه آنلاین"
+
+#: templates/audit-report.php:117
+msgid "Opening hours"
+msgstr "ساعات کاری"
+
+#: includes/class-settings.php:89
+msgid "Opportunities"
+msgstr "فرصت‌های بهبود"
+
+#: includes/class-settings.php:35
+msgid "Optional data used to enrich Organization and LocalBusiness schema."
+msgstr "داده‌های اختیاری برای غنی‌سازی اسکیمای Organization و LocalBusiness."
+
+#: includes/class-geo.php:92
+msgid "Optional. Displays “SEO by Smart SEO Booster” linking to the developer. Off by default."
+msgstr "اختیاری. عبارت «SEO by Smart SEO Booster» را همراه با پیوند به توسعه‌دهنده نمایش می‌دهد. به‌طور پیش‌فرض غیرفعال است."
+
+#: includes/class-settings.php:49
+msgid "Pages"
+msgstr "برگه‌ها"
+
+#: includes/class-setup-wizard.php:190
+msgid "Paste only the verification code (the content value), not the whole meta tag. Google = Search Console, Bing = Webmaster Tools."
+msgstr "فقط کد تأیید (مقدار content) را جای‌گذاری کنید، نه کل تگ متا را. گوگل = Search Console، بینگ = ابزار وبمستر."
+
+#: includes/class-redirects.php:166
+msgid "Paste only the verification code, not the whole meta tag."
+msgstr "فقط کد تأیید را جای‌گذاری کنید، نه کل تگ متا را."
+
+#: includes/class-settings.php:53
+msgid "Permanent"
+msgstr "دائمی"
+
+#: templates/audit-report.php:86
+msgid "Pinterest"
+msgstr "پینترست"
+
+#: includes/class-setup-wizard.php:159
+msgid "Poor"
+msgstr "ضعیف"
+
+#: includes/class-meta-templates.php:23
+msgid "Portfolio / Personal"
+msgstr "نمونه‌کار / شخصی"
+
+#: includes/class-meta-templates.php:19
+msgid "Post excerpt"
+msgstr "چکیده نوشته"
+
+#: includes/class-settings.php:96
+msgid "Post/page title"
+msgstr "عنوان نوشته/برگه"
+
+#: includes/class-geo.php:107
+msgid "Postal code"
+msgstr "کد پستی"
+
+#: includes/class-settings.php:30
+msgid "Posts"
+msgstr "نوشته‌ها"
+
+#: includes/class-importer.php:61
+msgid "Prevents duplicate sitemaps when the plugin sitemap is on."
+msgstr "هنگامی که نقشه سایت افزونه فعال است، از ایجاد نقشه سایت تکراری جلوگیری می‌کند."
+
+#: js/blocks.js:133
+msgid "Processing the next batch, please wait…"
+msgstr "در حال پردازش دسته بعدی، لطفاً صبر کنید…"
+
+#: js/blocks.js:150
+msgid "Publish / Updated Dates (Smart SEO)"
+msgstr "تاریخ انتشار / به‌روزرسانی (Smart SEO)"
+
+#: includes/class-blocks.php:192
+msgid "Publish / Updated dates"
+msgstr "تاریخ انتشار / به‌روزرسانی"
+
+#: includes/class-meta-templates.php:27
+msgid "Published %s"
+msgstr "منتشرشده در %s"
+
+#: templates/audit-report.php:105
+msgid "Published date"
+msgstr "تاریخ انتشار"
+
+#: includes/class-importer.php:91
+msgid "Published items"
+msgstr "موارد منتشرشده"
+
+#: includes/class-content-auditor.php:73
+msgid "Rank Math"
+msgstr "Rank Math"
+
+#: includes/class-redirects.php:205
+msgid "Recommendations:"
+msgstr "پیشنهادها:"
+
+#: includes/class-admin-ui.php:41 includes/class-admin-ui.php:42 includes/class-redirects.php:156
+msgid "Redirect"
+msgstr "ریدایرکت"
+
+#: templates/audit-report.php:54
+msgid "Redirections"
+msgstr "ریدایرکت‌ها"
+
+#: includes/class-settings.php:95
+msgid "Refresh"
+msgstr "تازه‌سازی"
+
+#: js/blocks.js:124
+msgid "Region / state"
+msgstr "استان / منطقه"
+
+#: js/block-editor.js:106
+msgid "Renders the breadcrumb trail with schema on the front end."
+msgstr "مسیر ناوبری را همراه با اسکیما در بخش نمایش سایت رندر می‌کند."
+
+#: includes/class-admin-ui.php:88
+msgid "Robots"
+msgstr "ربات‌ها"
+
+#: templates/audit-report.php:45
+msgid "Run Setup Wizard"
+msgstr "اجرای راهنمای راه‌اندازی"
+
+#: includes/class-admin-ui.php:32
+msgid "SEO Audit"
+msgstr "ممیزی سئو"
+
+#: includes/class-bulk-editor.php:79
+msgid "SEO Audit Report"
+msgstr "گزارش ممیزی سئو"
+
+#: includes/class-credits.php:66
+msgid "SEO Title"
+msgstr "عنوان سئو"
+
+#: includes/class-meta-fields.php:153
+msgid "SEO by %s"
+msgstr "سئو توسط %s"
+
+#: js/block-editor.js:94
+msgid "SEO settings"
+msgstr "تنظیمات سئو"
+
+#: includes/class-bulk-editor.php:100
+msgid "SEO title"
+msgstr "عنوان سئو"
+
+#: includes/class-settings.php:88
+msgid "Save All"
+msgstr "ذخیره همه"
+
+#: js/block-editor.js:107
+msgid "Schema Details"
+msgstr "جزئیات اسکیما"
+
+#: templates/audit-report.php:132
+msgid "Schema type"
+msgstr "نوع اسکیما"
+
+#: templates/audit-report.php:79
+msgid "Score"
+msgstr "امتیاز"
+
+#: js/block-editor.js:87
+msgid "Score Distribution"
+msgstr "توزیع امتیازها"
+
+#: includes/class-setup-wizard.php:189
+msgid "Search Appearance"
+msgstr "نمایش در جستجو"
+
+#: includes/class-breadcrumbs.php:70
+msgid "Search engine verification (optional)"
+msgstr "تأیید موتور جستجو (اختیاری)"
+
+#: includes/class-meta-templates.php:22 includes/class-setup-wizard.php:176
+msgid "Search: %s"
+msgstr "جستجو: %s"
+
+#: includes/class-settings.php:82
+msgid "Separator"
+msgstr "جداکننده"
+
+#: includes/class-admin-ui.php:23 includes/class-admin-ui.php:24
+msgid "Serve an llms.txt file"
+msgstr "ارائه فایل llms.txt"
+
+#: includes/class-admin-ui.php:68 includes/class-admin-ui.php:69
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: includes/class-settings.php:35
+msgid "Setup Wizard"
+msgstr "راهنمای راه‌اندازی"
+
+#: js/blocks.js:145
+msgid "Show a small credit link in the footer"
+msgstr "نمایش یک پیوند کوچک اعتبار در پاورقی"
+
+#: js/blocks.js:146
+msgid "Show published date"
+msgstr "نمایش تاریخ انتشار"
+
+#: js/blocks.js:151
+msgid "Show updated date"
+msgstr "نمایش تاریخ به‌روزرسانی"
+
+#: includes/class-geo.php:80
+msgid "Shows the real dates on the front end."
+msgstr "تاریخ‌های واقعی را در بخش نمایش سایت نشان می‌دهد."
+
+#: includes/class-meta-templates.php:20
+msgid "Site URL:"
+msgstr "نشانی سایت:"
+
+#: includes/class-meta-templates.php:21
+msgid "Site name"
+msgstr "نام سایت"
+
+#: includes/class-setup-wizard.php:140
+msgid "Site tagline"
+msgstr "شعار سایت"
+
+#: includes/class-setup-wizard.php:134
+msgid "Site type"
+msgstr "نوع سایت"
+
+#: includes/class-admin-ui.php:13 includes/class-blocks.php:209 js/block-editor.js:82 js/block-editor.js:85
+msgid "Skip"
+msgstr "رد کردن"
+
+#: includes/class-admin-ui.php:12 includes/class-admin-ui.php:84
+msgid "Smart SEO"
+msgstr "Smart SEO"
+
+#: includes/class-setup-wizard.php:198
+msgid "Smart SEO Booster"
+msgstr "Smart SEO Booster"
+
+#: includes/class-setup-wizard.php:102
+msgid "Smart SEO Booster is configured. Here is what to do next:"
+msgstr "Smart SEO Booster پیکربندی شد. کارهای بعدی به این شرح است:"
+
+#: includes/class-credits.php:39
+msgid "Smart SEO Booster — Setup"
+msgstr "Smart SEO Booster — راه‌اندازی"
+
+#: js/block-editor.js:99
+msgid "Smart SEO Booster — crafted by %s"
+msgstr "Smart SEO Booster — ساخته‌شده توسط %s"
+
+#: includes/class-meta-fields.php:155
+msgid "Social"
+msgstr "اجتماعی"
+
+#: js/blocks.js:66
+msgid "Social Media"
+msgstr "شبکه‌های اجتماعی"
+
+#: js/blocks.js:30
+msgid "Social Share"
+msgstr "اشتراک‌گذاری اجتماعی"
+
+#: includes/class-settings.php:91
+msgid "Social Share (Smart SEO)"
+msgstr "اشتراک‌گذاری اجتماعی (Smart SEO)"
+
+#: includes/class-redirects.php:175
+msgid "Social profile URLs"
+msgstr "نشانی پروفایل‌های اجتماعی"
+
+#: includes/class-redirects.php:163
+msgid "Source"
+msgstr "مبدأ"
+
+#: includes/class-content-auditor.php:70
+msgid "Source path"
+msgstr "مسیر مبدأ"
+
+#: includes/class-settings.php:93
+msgid "Stats:"
+msgstr "آمار:"
+
+#: js/blocks.js:98
+msgid "Street address"
+msgstr "آدرس خیابان"
+
+#: includes/class-setup-wizard.php:201
+msgid "Style"
+msgstr "سبک"
+
+#: includes/class-redirects.php:175
+msgid "Submit your sitemap: %s"
+msgstr "نقشه سایت خود را ارسال کنید: %s"
+
+#: includes/class-redirects.php:164
+msgid "Target"
+msgstr "مقصد"
+
+#: includes/class-settings.php:69
+msgid "Target URL"
+msgstr "نشانی مقصد"
+
+#: includes/class-redirects.php:167
+msgid "Tell search engines not to index low-value archive pages. Links are still followed."
+msgstr "به موتورهای جستجو بگویید صفحات آرشیو کم‌ارزش را ایندکس نکنند. پیوندها همچنان دنبال می‌شوند."
+
+#: includes/class-redirects.php:168
+msgid "Temporary"
+msgstr "موقت"
+
+#: js/blocks.js:94
+msgid "Temporary (strict)"
+msgstr "موقت (سخت‌گیرانه)"
+
+#: templates/audit-report.php:108
+msgid "Text"
+msgstr "متن"
+
+#: includes/class-setup-wizard.php:162
+msgid "Thin content"
+msgstr "محتوای کم‌محتوا"
+
+#: includes/class-settings.php:42
+msgid "This sets sensible schema defaults. You can change everything later."
+msgstr "این کار مقادیر پیش‌فرض معقولی برای اسکیما تنظیم می‌کند. بعداً می‌توانید همه چیز را تغییر دهید."
+
+#: includes/class-settings.php:43 includes/class-setup-wizard.php:177
+msgid "Title separator"
+msgstr "جداکننده عنوان"
+
+#: includes/class-setup-wizard.php:141
+msgid "Title template"
+msgstr "قالب عنوان"
+
+#: includes/class-settings.php:40
+msgid "Titles"
+msgstr "عنوان‌ها"
+
+#: includes/class-setup-wizard.php:175
+msgid "Titles &amp; Metas"
+msgstr "عنوان‌ها و متاها"
+
+#: templates/audit-report.php:110
+msgid "Titles &amp; meta descriptions"
+msgstr "عنوان‌ها و توضیحات متا"
+
+#: includes/class-setup-wizard.php:183
+msgid "Total images"
+msgstr "مجموع تصاویر"
+
+#: includes/class-settings.php:97
+msgid "Turn on the essentials"
+msgstr "فعال‌سازی موارد ضروری"
+
+#: includes/class-redirects.php:165 includes/class-redirects.php:175
+msgid "Two-letter code, e.g. US, GB, IN."
+msgstr "کد دو حرفی، مثلاً US، GB، IN."
+
+#: includes/class-redirects.php:193
+msgid "Type"
+msgstr "نوع"
+
+#: includes/class-blocks.php:196
+msgid "URL"
+msgstr "نشانی"
+
+#: includes/class-settings.php:31
+msgid "Updated %s"
+msgstr "به‌روزرسانی‌شده در %s"
+
+#: includes/class-settings.php:177 includes/class-setup-wizard.php:179
+msgid "Use [smart_seo_breadcrumbs] or the smart_seo_breadcrumbs() template tag."
+msgstr "از کدکوتاه [smart_seo_breadcrumbs] یا تگ قالب smart_seo_breadcrumbs() استفاده کنید."
+
+#: includes/class-setup-wizard.php:143
+msgid "Variables:"
+msgstr "متغیرها:"
+
+#: includes/class-settings.php:48
+msgid "Verification"
+msgstr "تأیید"
+
+#: includes/class-setup-wizard.php:161
+msgid "Webmaster Verification"
+msgstr "تأیید وبمستر"
+
+#: includes/class-content-auditor.php:70
+msgid "What kind of site is this?"
+msgstr "این سایت از چه نوعی است؟"
+
+#: includes/class-setup-wizard.php:184
+msgid "Words: %1$d | Headings: %2$d | Images: %3$d | Alt Texts: %4$d"
+msgstr "کلمات: %1$d | عنوان‌ها: %2$d | تصاویر: %3$d | متن‌های جایگزین: %4$d"
+
+#: includes/class-settings.php:54
+msgid "XML Sitemap (at /sitemap.xml)"
+msgstr "نقشه سایت XML (در /sitemap.xml)"
+
+#: includes/class-importer.php:90
+msgid "Yandex"
+msgstr "یاندکس"
+
+#: includes/class-setup-wizard.php:197
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: includes/class-admin-ui.php:78 includes/class-admin-ui.php:135 includes/class-admin-ui.php:142 includes/class-bulk-editor.php:50 includes/class-importer.php:53 includes/class-redirects.php:147
+msgid "You are all set!"
+msgstr "همه‌چیز آماده است!"
+
+#: includes/class-bulk-editor.php:19 includes/class-importer.php:151 includes/class-redirects.php:95 includes/class-redirects.php:130
+msgid "You do not have sufficient permissions to access this page."
+msgstr "شما دسترسی کافی برای مشاهده این صفحه را ندارید."
+
+#: js/block-editor.js:76
+msgid "You do not have sufficient permissions."
+msgstr "شما دسترسی کافی ندارید."
+
+#: js/block-editor.js:77
+msgid "Your SEO title"
+msgstr "عنوان سئوی شما"
+
+#: includes/class-redirects.php:198
+msgid "Your meta description preview…"
+msgstr "پیش‌نمایش توضیحات متای شما…"
+
+msgid "ago"
+msgstr "پیش"
+
+msgid "Adds social sharing buttons (X, Facebook, LinkedIn, WhatsApp, email) to this post."
+msgstr "دکمه‌های اشتراک‌گذاری اجتماعی (X، فیسبوک، لینکدین، واتس‌اپ، ایمیل) را به این نوشته اضافه می‌کند."
+
+msgid "Select at least one network in the sidebar to preview the share buttons."
+msgstr "برای پیش‌نمایش دکمه‌های اشتراک‌گذاری، دست‌کم یک شبکه را در نوار کناری انتخاب کنید."
+
+msgid "Updated date"
+msgstr "تاریخ به‌روزرسانی"

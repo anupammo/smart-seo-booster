@@ -1,0 +1,977 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Smart SEO Booster 2.1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/smart-seo-booster\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-26T14:57:57+00:00\n"
+"PO-Revision-Date: 2026-07-26T14:57:57+00:00\n"
+"Language-Team: Anupam Mondal\n"
+"X-Domain: smart-seo-booster\n"
+"Language: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/class-link-analyzer.php:29
+msgid "%1$s SEO Score: %2$d/%3$d"
+msgstr "Puntuació SEO de %1$s: %2$d/%3$d"
+
+#: includes/class-redirects.php:192
+msgid "%d found in this post."
+msgstr "%d trobats en aquesta entrada."
+
+#: includes/class-breadcrumbs.php:72
+msgid "404 Log"
+msgstr "Registre 404"
+
+#: includes/class-settings.php:82
+msgid "404 Not Found"
+msgstr "404 No trobat"
+
+#: includes/class-settings.php:79
+msgid "A machine-readable summary of your site for AI assistants, at /llms.txt"
+msgstr "Un resum llegible per màquines del vostre lloc per a assistents d'IA, a /llms.txt"
+
+#: templates/audit-report.php:72
+msgid "AI &amp; GEO"
+msgstr "IA i GEO"
+
+#: includes/class-redirects.php:174
+msgid "Across published posts &amp; pages"
+msgstr "En entrades i pàgines publicades"
+
+#: includes/class-redirects.php:170
+msgid "Active redirects"
+msgstr "Redireccions actives"
+
+#: includes/class-content-auditor.php:50
+msgid "Add Redirect"
+msgstr "Afegeix redirecció"
+
+#: includes/class-content-auditor.php:36
+msgid "Add alt text to all images"
+msgstr "Afegeix text alternatiu a totes les imatges"
+
+#: includes/class-content-auditor.php:43
+msgid "Add more content (minimum 300 words recommended)"
+msgstr "Afegeix més contingut (es recomana un mínim de 300 paraules)"
+
+#: includes/class-redirects.php:159
+msgid "Add more headings for better structure"
+msgstr "Afegeix més encapçalaments per a una millor estructura"
+
+#: includes/class-settings.php:84
+msgid "Add redirect"
+msgstr "Afegeix redirecció"
+
+#: includes/class-settings.php:60
+msgid "Add speakable structured data"
+msgstr "Afegeix dades estructurades llegibles en veu alta"
+
+#: js/local-seo-block.js:34
+msgid "Add tracking without touching your theme. Scripts load only when an ID is set."
+msgstr "Afegeix seguiment sense tocar el tema. Els scripts només es carreguen quan hi ha un ID configurat."
+
+#: includes/class-settings.php:83
+msgid "Address, phone and hours are pulled from Smart SEO → Settings → Schema Details."
+msgstr "L'adreça, el telèfon i l'horari es recullen de Smart SEO → Configuració → Detalls de l'esquema."
+
+#: includes/class-meta-fields.php:156 js/block-editor.js:105
+msgid "Adds Disallow rules for GPTBot, Google-Extended, ClaudeBot, CCBot and others to robots.txt."
+msgstr "Afegeix regles Disallow per a GPTBot, Google-Extended, ClaudeBot, CCBot i altres a robots.txt."
+
+#: js/blocks.js:59
+msgid "Advanced"
+msgstr "Avançat"
+
+#: includes/class-meta-fields.php:157
+msgid "Alignment"
+msgstr "Alineació"
+
+#: includes/class-settings.php:59
+msgid "Analysis"
+msgstr "Anàlisi"
+
+#: includes/class-blocks.php:213
+msgid "Analytics"
+msgstr "Analítica"
+
+#: includes/class-settings.php:83
+msgid "Article footer (dates + share)"
+msgstr "Peu d'article (dates + compartir)"
+
+#: includes/class-admin-ui.php:33
+msgid "Ask AI crawlers not to train on this site"
+msgstr "Demana als rastrejadors d'IA que no entrenin amb aquest lloc"
+
+#: includes/class-meta-templates.php:26
+msgid "Audit Report"
+msgstr "Informe d'auditoria"
+
+#: includes/class-settings.php:34
+msgid "Author name"
+msgstr "Nom de l'autor"
+
+#: includes/class-settings.php:29
+msgid "Auto-add missing image alt text"
+msgstr "Afegeix automàticament el text alternatiu que falti a les imatges"
+
+#: templates/audit-report.php:62
+msgid "Available at /sitemap.xml"
+msgstr "Disponible a /sitemap.xml"
+
+#: templates/audit-report.php:64
+msgid "Average SEO Score"
+msgstr "Puntuació SEO mitjana"
+
+#: includes/class-settings.php:55
+msgid "Average score %d out of 100"
+msgstr "Puntuació mitjana %d de 100"
+
+#: includes/class-meta-fields.php:154
+msgid "Baidu"
+msgstr "Baidu"
+
+#: includes/class-setup-wizard.php:192
+msgid "Basic SEO"
+msgstr "SEO bàsic"
+
+#: includes/class-settings.php:52
+msgid "Bing"
+msgstr "Bing"
+
+#: includes/class-setup-wizard.php:156
+msgid "Bing (Webmaster Tools)"
+msgstr "Bing (Eines per a webmasters)"
+
+#: includes/class-breadcrumbs.php:106 js/blocks.js:123
+msgid "Blog / Publisher"
+msgstr "Blog / Editor"
+
+#: js/blocks.js:118
+msgid "Breadcrumb"
+msgstr "Molla de pa"
+
+#: includes/class-blocks.php:225
+msgid "Breadcrumb (Smart SEO)"
+msgstr "Molla de pa (Smart SEO)"
+
+#: includes/class-settings.php:33
+msgid "Breadcrumb bar"
+msgstr "Barra de molla de pa"
+
+#: includes/class-settings.php:32
+msgid "Breadcrumb home label"
+msgstr "Etiqueta d'inici de la molla de pa"
+
+#: includes/class-setup-wizard.php:185
+msgid "Breadcrumb separator"
+msgstr "Separador de la molla de pa"
+
+#: includes/class-admin-ui.php:51
+msgid "Breadcrumbs"
+msgstr "Molla de pa"
+
+#: includes/class-admin-ui.php:50 includes/class-bulk-editor.php:65
+msgid "Bulk Editor"
+msgstr "Editor massiu"
+
+#: includes/class-setup-wizard.php:157
+msgid "Bulk SEO Editor"
+msgstr "Editor SEO massiu"
+
+#: includes/class-settings.php:92
+msgid "Business / Organization"
+msgstr "Empresa / Organització"
+
+#: js/blocks.js:96
+msgid "Business phone"
+msgstr "Telèfon de l'empresa"
+
+#: js/blocks.js:95
+msgid "Button URL"
+msgstr "URL del botó"
+
+#: includes/class-blocks.php:219
+msgid "Button label"
+msgstr "Etiqueta del botó"
+
+#: js/blocks.js:77
+msgid "CTA banner"
+msgstr "Bàner de crida a l'acció"
+
+#: js/block-editor.js:96
+msgid "Call to Action (Smart SEO)"
+msgstr "Crida a l'acció (Smart SEO)"
+
+#: includes/class-bulk-editor.php:69
+msgid "Canonical URL"
+msgstr "URL canònica"
+
+#: includes/class-settings.php:94
+msgid "Changes saved."
+msgstr "Canvis desats."
+
+#: js/blocks.js:108
+msgid "City / locality"
+msgstr "Ciutat / localitat"
+
+#: includes/class-bulk-editor.php:78 js/blocks.js:92 templates/audit-report.php:132
+msgid "Configure the call to action in the sidebar."
+msgstr "Configureu la crida a l'acció a la barra lateral."
+
+#: includes/class-importer.php:68 includes/class-setup-wizard.php:133
+msgid "Content"
+msgstr "Contingut"
+
+#: includes/class-blocks.php:97 js/blocks.js:26
+msgid "Continue"
+msgstr "Continua"
+
+#: includes/class-importer.php:81
+msgid "Copy link"
+msgstr "Copia l'enllaç"
+
+#: includes/class-settings.php:97
+msgid "Copy your existing SEO titles, descriptions, social tags and canonicals from another plugin. Existing Smart SEO values are never overwritten."
+msgstr "Copieu els títols SEO, descripcions, etiquetes socials i canòniques existents d'un altre connector. Els valors existents de Smart SEO mai se sobreescriuen."
+
+#: includes/class-meta-templates.php:28
+msgid "Country code"
+msgstr "Codi de país"
+
+#: js/blocks.js:144
+msgid "Current year"
+msgstr "Any actual"
+
+#: includes/class-redirects.php:185
+msgid "Dates"
+msgstr "Dates"
+
+#: includes/class-setup-wizard.php:178
+msgid "Delete"
+msgstr "Suprimeix"
+
+#: includes/class-credits.php:49
+msgid "Description template"
+msgstr "Plantilla de descripció"
+
+#: includes/class-settings.php:30
+msgid "Developer Portfolio"
+msgstr "Portafolis del desenvolupador"
+
+#: js/local-seo-block.js:20
+msgid "Disable the default WordPress sitemap"
+msgstr "Desactiva el mapa del lloc predeterminat de WordPress"
+
+#: includes/class-settings.php:64
+msgid "Displays your business address, phone and hours, with LocalBusiness schema."
+msgstr "Mostra l'adreça, el telèfon i l'horari de l'empresa, amb l'esquema LocalBusiness."
+
+#: includes/class-bulk-editor.php:92
+msgid "Do not track logged-in administrators"
+msgstr "No facis seguiment dels administradors connectats"
+
+#: includes/class-bulk-editor.php:66
+msgid "Edit"
+msgstr "Edita"
+
+#: includes/class-setup-wizard.php:200
+msgid "Edit SEO titles and meta descriptions across your content. Leave a field blank to use the automatic value."
+msgstr "Editeu els títols SEO i les metadescripcions de tot el contingut. Deixeu un camp en blanc per utilitzar el valor automàtic."
+
+#: includes/class-settings.php:31
+msgid "Edit a post and open the SEO panel to fine-tune titles and social previews."
+msgstr "Editeu una entrada i obriu el panell SEO per ajustar els títols i les previsualitzacions socials."
+
+#: includes/class-setup-wizard.php:168
+msgid "Enable Breadcrumbs"
+msgstr "Activa la molla de pa"
+
+#: includes/class-settings.php:28
+msgid "Enable JSON-LD schema markup"
+msgstr "Activa el marcatge d'esquema JSON-LD"
+
+#: includes/class-settings.php:29
+msgid "Enable Schema Markup (JSON-LD)"
+msgstr "Activa el marcatge d'esquema (JSON-LD)"
+
+#: templates/audit-report.php:83
+msgid "Enable XML Sitemap"
+msgstr "Activa el mapa del lloc XML"
+
+#: includes/class-setup-wizard.php:142
+msgid "Excellent"
+msgstr "Excel·lent"
+
+#: includes/class-settings.php:34
+msgid "Features"
+msgstr "Funcionalitats"
+
+#: includes/class-setup-wizard.php:133
+msgid "Fills empty alt attributes from the image or post title on the front end."
+msgstr "Omple els atributs alt buits amb el títol de la imatge o de l'entrada a la part pública."
+
+#: includes/class-meta-templates.php:24
+msgid "Finish"
+msgstr "Finalitza"
+
+#: includes/class-meta-templates.php:25
+msgid "First category"
+msgstr "Primera categoria"
+
+#: js/block-editor.js:93
+msgid "First tag"
+msgstr "Primera etiqueta"
+
+#: includes/class-settings.php:26
+msgid "Focus keyword"
+msgstr "Paraula clau principal"
+
+#: includes/class-settings.php:80
+msgid "General"
+msgstr "General"
+
+#: includes/class-setup-wizard.php:203
+msgid "Generative Engine Optimization — help (or limit) how AI assistants use your content."
+msgstr "Optimització per a motors generatius — ajudeu (o limiteu) com els assistents d'IA utilitzen el vostre contingut."
+
+#: templates/audit-report.php:84
+msgid "Go to Settings"
+msgstr "Vés a la configuració"
+
+#: includes/class-setup-wizard.php:191
+msgid "Good"
+msgstr "Bo"
+
+#: includes/class-settings.php:51
+msgid "Google"
+msgstr "Google"
+
+#: includes/class-settings.php:62
+msgid "Google (Search Console)"
+msgstr "Google (Search Console)"
+
+#: js/blocks.js:93
+msgid "Google Analytics 4 ID"
+msgstr "ID de Google Analytics 4"
+
+#: includes/class-redirects.php:193
+msgid "Heading"
+msgstr "Encapçalament"
+
+#: includes/class-breadcrumbs.php:29 includes/class-settings.php:33
+msgid "Hits"
+msgstr "Visites"
+
+#: templates/audit-report.php:106
+msgid "Home"
+msgstr "Inici"
+
+#: includes/class-admin-ui.php:60
+msgid "Images missing alt"
+msgstr "Imatges sense text alternatiu"
+
+#: includes/class-admin-ui.php:59 includes/class-importer.php:80
+msgid "Import"
+msgstr "Importa"
+
+#: includes/class-importer.php:86
+msgid "Import SEO Data"
+msgstr "Importa dades SEO"
+
+#: includes/class-importer.php:105
+msgid "Import complete."
+msgstr "Importació completada."
+
+#: includes/class-importer.php:60
+msgid "Import from %s"
+msgstr "Importa des de %s"
+
+#: includes/class-settings.php:68
+msgid "Importing…"
+msgstr "Important…"
+
+#: includes/class-link-analyzer.php:29
+msgid "Indexing"
+msgstr "Indexació"
+
+#: includes/class-redirects.php:193
+msgid "Internal Links:"
+msgstr "Enllaços interns:"
+
+#: includes/class-settings.php:99
+msgid "Last seen"
+msgstr "Vist per darrera vegada"
+
+#: js/local-seo-block.js:30
+msgid "Latitude"
+msgstr "Latitud"
+
+#: js/local-seo-block.js:19
+msgid "Local Business"
+msgstr "Empresa local"
+
+#: includes/class-settings.php:100
+msgid "Local Business (Smart SEO)"
+msgstr "Empresa local (Smart SEO)"
+
+#: includes/class-settings.php:84
+msgid "Longitude"
+msgstr "Longitud"
+
+#: includes/class-settings.php:62
+msgid "Marks the title and description as voice-assistant friendly."
+msgstr "Marca el títol i la descripció com a compatibles amb assistents de veu."
+
+#: includes/class-bulk-editor.php:80
+msgid "Measurement ID, e.g. G-XXXXXXXXXX"
+msgstr "ID de mesura, p. ex. G-XXXXXXXXXX"
+
+#: js/block-editor.js:95
+msgid "Meta Description"
+msgstr "Metadescripció"
+
+#: includes/class-settings.php:44
+msgid "Meta description"
+msgstr "Metadescripció"
+
+#: includes/class-settings.php:63
+msgid "Meta description template"
+msgstr "Plantilla de metadescripció"
+
+#: includes/class-settings.php:36
+msgid "Microsoft Clarity ID"
+msgstr "ID de Microsoft Clarity"
+
+#: templates/audit-report.php:130
+msgid "Minimum word count"
+msgstr "Nombre mínim de paraules"
+
+#: templates/audit-report.php:85
+msgid "Needs attention first"
+msgstr "Necessita atenció primer"
+
+#: js/blocks.js:50
+msgid "Needs work"
+msgstr "Necessita millores"
+
+#: includes/class-redirects.php:195
+msgid "Networks"
+msgstr "Xarxes"
+
+#: includes/class-bulk-editor.php:84
+msgid "No 404s logged yet."
+msgstr "Encara no s'ha registrat cap 404."
+
+#: includes/class-importer.php:108
+msgid "No content found."
+msgstr "No s'ha trobat contingut."
+
+#: includes/class-audit.php:163
+msgid "No data found."
+msgstr "No s'han trobat dades."
+
+#: templates/audit-report.php:107
+msgid "No major issues found. Nice work!"
+msgstr "No s'ha trobat cap problema important. Bona feina!"
+
+#: templates/audit-report.php:135
+msgid "No meta description"
+msgstr "Sense metadescripció"
+
+#: includes/class-redirects.php:177
+msgid "No published content yet."
+msgstr "Encara no hi ha contingut publicat."
+
+#: includes/class-settings.php:72
+msgid "No redirects yet."
+msgstr "Encara no hi ha redireccions."
+
+#: includes/class-settings.php:71
+msgid "No-index author archives"
+msgstr "No indexis els arxius d'autor"
+
+#: includes/class-settings.php:73
+msgid "No-index category, tag &amp; taxonomy archives"
+msgstr "No indexis els arxius de categoria, etiqueta i taxonomia"
+
+#: includes/class-settings.php:75
+msgid "No-index date archives"
+msgstr "No indexis els arxius per data"
+
+#: includes/class-settings.php:74
+msgid "No-index paginated pages (page 2, 3…)"
+msgstr "No indexis les pàgines paginades (pàgina 2, 3…)"
+
+#: templates/audit-report.php:109
+msgid "No-index search results"
+msgstr "No indexis els resultats de cerca"
+
+#: js/block-editor.js:101
+msgid "No-indexed"
+msgstr "No indexat"
+
+#: js/block-editor.js:102
+msgid "OG description"
+msgstr "Descripció OG"
+
+#: js/block-editor.js:100
+msgid "OG image URL"
+msgstr "URL de la imatge OG"
+
+#: includes/class-settings.php:91
+msgid "OG title"
+msgstr "Títol OG"
+
+#: includes/class-settings.php:98
+msgid "One URL per line (Facebook, X, LinkedIn, etc.)."
+msgstr "Una URL per línia (Facebook, X, LinkedIn, etc.)."
+
+#: includes/class-setup-wizard.php:158
+msgid "One rule per line, e.g. Mo-Fr 09:00-17:00"
+msgstr "Una regla per línia, p. ex. Dl-Dv 09:00-17:00"
+
+#: includes/class-settings.php:98
+msgid "Online Store"
+msgstr "Botiga en línia"
+
+#: templates/audit-report.php:117
+msgid "Opening hours"
+msgstr "Horari d'obertura"
+
+#: includes/class-settings.php:89
+msgid "Opportunities"
+msgstr "Oportunitats"
+
+#: includes/class-settings.php:35
+msgid "Optional data used to enrich Organization and LocalBusiness schema."
+msgstr "Dades opcionals utilitzades per enriquir l'esquema Organization i LocalBusiness."
+
+#: includes/class-geo.php:92
+msgid "Optional. Displays “SEO by Smart SEO Booster” linking to the developer. Off by default."
+msgstr "Opcional. Mostra «SEO per Smart SEO Booster» enllaçant al desenvolupador. Desactivat per defecte."
+
+#: includes/class-settings.php:49
+msgid "Pages"
+msgstr "Pàgines"
+
+#: includes/class-setup-wizard.php:190
+msgid "Paste only the verification code (the content value), not the whole meta tag. Google = Search Console, Bing = Webmaster Tools."
+msgstr "Enganxeu només el codi de verificació (el valor content), no l'etiqueta meta sencera. Google = Search Console, Bing = Eines per a webmasters."
+
+#: includes/class-redirects.php:166
+msgid "Paste only the verification code, not the whole meta tag."
+msgstr "Enganxeu només el codi de verificació, no l'etiqueta meta sencera."
+
+#: includes/class-settings.php:53
+msgid "Permanent"
+msgstr "Permanent"
+
+#: templates/audit-report.php:86
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: includes/class-setup-wizard.php:159
+msgid "Poor"
+msgstr "Dolent"
+
+#: includes/class-meta-templates.php:23
+msgid "Portfolio / Personal"
+msgstr "Portafolis / Personal"
+
+#: includes/class-meta-templates.php:19
+msgid "Post excerpt"
+msgstr "Extracte de l'entrada"
+
+#: includes/class-settings.php:96
+msgid "Post/page title"
+msgstr "Títol de l'entrada/pàgina"
+
+#: includes/class-geo.php:107
+msgid "Postal code"
+msgstr "Codi postal"
+
+#: includes/class-settings.php:30
+msgid "Posts"
+msgstr "Entrades"
+
+#: includes/class-importer.php:61
+msgid "Prevents duplicate sitemaps when the plugin sitemap is on."
+msgstr "Evita mapes del lloc duplicats quan el mapa del lloc del connector està activat."
+
+#: js/blocks.js:133
+msgid "Processing the next batch, please wait…"
+msgstr "Processant el següent lot, espereu…"
+
+#: js/blocks.js:150
+msgid "Publish / Updated Dates (Smart SEO)"
+msgstr "Dates de publicació / actualització (Smart SEO)"
+
+#: includes/class-blocks.php:192
+msgid "Publish / Updated dates"
+msgstr "Dates de publicació / actualització"
+
+#: includes/class-meta-templates.php:27
+msgid "Published %s"
+msgstr "Publicat %s"
+
+#: templates/audit-report.php:105
+msgid "Published date"
+msgstr "Data de publicació"
+
+#: includes/class-importer.php:91
+msgid "Published items"
+msgstr "Elements publicats"
+
+#: includes/class-content-auditor.php:73
+msgid "Rank Math"
+msgstr "Rank Math"
+
+#: includes/class-redirects.php:205
+msgid "Recommendations:"
+msgstr "Recomanacions:"
+
+#: includes/class-admin-ui.php:41 includes/class-admin-ui.php:42 includes/class-redirects.php:156
+msgid "Redirect"
+msgstr "Redirecció"
+
+#: templates/audit-report.php:54
+msgid "Redirections"
+msgstr "Redireccions"
+
+#: includes/class-settings.php:95
+msgid "Refresh"
+msgstr "Actualitza"
+
+#: js/blocks.js:124
+msgid "Region / state"
+msgstr "Regió / estat"
+
+#: js/block-editor.js:106
+msgid "Renders the breadcrumb trail with schema on the front end."
+msgstr "Mostra el rastre de molla de pa amb esquema a la part pública."
+
+#: includes/class-admin-ui.php:88
+msgid "Robots"
+msgstr "Robots"
+
+#: templates/audit-report.php:45
+msgid "Run Setup Wizard"
+msgstr "Executa l'auxiliar de configuració"
+
+#: includes/class-admin-ui.php:32
+msgid "SEO Audit"
+msgstr "Auditoria SEO"
+
+#: includes/class-bulk-editor.php:79
+msgid "SEO Audit Report"
+msgstr "Informe d'auditoria SEO"
+
+#: includes/class-credits.php:66
+msgid "SEO Title"
+msgstr "Títol SEO"
+
+#: includes/class-meta-fields.php:153
+msgid "SEO by %s"
+msgstr "SEO per %s"
+
+#: js/block-editor.js:94
+msgid "SEO settings"
+msgstr "Configuració SEO"
+
+#: includes/class-bulk-editor.php:100
+msgid "SEO title"
+msgstr "Títol SEO"
+
+#: includes/class-settings.php:88
+msgid "Save All"
+msgstr "Desa-ho tot"
+
+#: js/block-editor.js:107
+msgid "Schema Details"
+msgstr "Detalls de l'esquema"
+
+#: templates/audit-report.php:132
+msgid "Schema type"
+msgstr "Tipus d'esquema"
+
+#: templates/audit-report.php:79
+msgid "Score"
+msgstr "Puntuació"
+
+#: js/block-editor.js:87
+msgid "Score Distribution"
+msgstr "Distribució de puntuacions"
+
+#: includes/class-setup-wizard.php:189
+msgid "Search Appearance"
+msgstr "Aparença a la cerca"
+
+#: includes/class-breadcrumbs.php:70
+msgid "Search engine verification (optional)"
+msgstr "Verificació de cercadors (opcional)"
+
+#: includes/class-meta-templates.php:22 includes/class-setup-wizard.php:176
+msgid "Search: %s"
+msgstr "Cerca: %s"
+
+#: includes/class-settings.php:82
+msgid "Separator"
+msgstr "Separador"
+
+#: includes/class-admin-ui.php:23 includes/class-admin-ui.php:24
+msgid "Serve an llms.txt file"
+msgstr "Serveix un fitxer llms.txt"
+
+#: includes/class-admin-ui.php:68 includes/class-admin-ui.php:69
+msgid "Settings"
+msgstr "Configuració"
+
+#: includes/class-settings.php:35
+msgid "Setup Wizard"
+msgstr "Auxiliar de configuració"
+
+#: js/blocks.js:145
+msgid "Show a small credit link in the footer"
+msgstr "Mostra un petit enllaç de crèdit al peu de pàgina"
+
+#: js/blocks.js:146
+msgid "Show published date"
+msgstr "Mostra la data de publicació"
+
+#: js/blocks.js:151
+msgid "Show updated date"
+msgstr "Mostra la data d'actualització"
+
+#: includes/class-geo.php:80
+msgid "Shows the real dates on the front end."
+msgstr "Mostra les dates reals a la part pública."
+
+#: includes/class-meta-templates.php:20
+msgid "Site URL:"
+msgstr "URL del lloc:"
+
+#: includes/class-meta-templates.php:21
+msgid "Site name"
+msgstr "Nom del lloc"
+
+#: includes/class-setup-wizard.php:140
+msgid "Site tagline"
+msgstr "Eslògan del lloc"
+
+#: includes/class-setup-wizard.php:134
+msgid "Site type"
+msgstr "Tipus de lloc"
+
+#: includes/class-admin-ui.php:13 includes/class-blocks.php:209 js/block-editor.js:82 js/block-editor.js:85
+msgid "Skip"
+msgstr "Omet"
+
+#: includes/class-admin-ui.php:12 includes/class-admin-ui.php:84
+msgid "Smart SEO"
+msgstr "Smart SEO"
+
+#: includes/class-setup-wizard.php:198
+msgid "Smart SEO Booster"
+msgstr "Smart SEO Booster"
+
+#: includes/class-setup-wizard.php:102
+msgid "Smart SEO Booster is configured. Here is what to do next:"
+msgstr "Smart SEO Booster ja està configurat. Això és el que heu de fer a continuació:"
+
+#: includes/class-credits.php:39
+msgid "Smart SEO Booster — Setup"
+msgstr "Smart SEO Booster — Configuració"
+
+#: js/block-editor.js:99
+msgid "Smart SEO Booster — crafted by %s"
+msgstr "Smart SEO Booster — creat per %s"
+
+#: includes/class-meta-fields.php:155
+msgid "Social"
+msgstr "Social"
+
+#: js/blocks.js:66
+msgid "Social Media"
+msgstr "Xarxes socials"
+
+#: js/blocks.js:30
+msgid "Social Share"
+msgstr "Compartició social"
+
+#: includes/class-settings.php:91
+msgid "Social Share (Smart SEO)"
+msgstr "Compartició social (Smart SEO)"
+
+#: includes/class-redirects.php:175
+msgid "Social profile URLs"
+msgstr "URL de perfils socials"
+
+#: includes/class-redirects.php:163
+msgid "Source"
+msgstr "Origen"
+
+#: includes/class-content-auditor.php:70
+msgid "Source path"
+msgstr "Camí d'origen"
+
+#: includes/class-settings.php:93
+msgid "Stats:"
+msgstr "Estadístiques:"
+
+#: js/blocks.js:98
+msgid "Street address"
+msgstr "Adreça"
+
+#: includes/class-setup-wizard.php:201
+msgid "Style"
+msgstr "Estil"
+
+#: includes/class-redirects.php:175
+msgid "Submit your sitemap: %s"
+msgstr "Envieu el vostre mapa del lloc: %s"
+
+#: includes/class-redirects.php:164
+msgid "Target"
+msgstr "Destinació"
+
+#: includes/class-settings.php:69
+msgid "Target URL"
+msgstr "URL de destinació"
+
+#: includes/class-redirects.php:167
+msgid "Tell search engines not to index low-value archive pages. Links are still followed."
+msgstr "Indiqueu als cercadors que no indexin pàgines d'arxiu de poc valor. Els enllaços encara se segueixen."
+
+#: includes/class-redirects.php:168
+msgid "Temporary"
+msgstr "Temporal"
+
+#: js/blocks.js:94
+msgid "Temporary (strict)"
+msgstr "Temporal (estricte)"
+
+#: templates/audit-report.php:108
+msgid "Text"
+msgstr "Text"
+
+#: includes/class-setup-wizard.php:162
+msgid "Thin content"
+msgstr "Contingut escàs"
+
+#: includes/class-settings.php:42
+msgid "This sets sensible schema defaults. You can change everything later."
+msgstr "Això estableix valors per defecte raonables per a l'esquema. Podeu canviar-ho tot més endavant."
+
+#: includes/class-settings.php:43 includes/class-setup-wizard.php:177
+msgid "Title separator"
+msgstr "Separador del títol"
+
+#: includes/class-setup-wizard.php:141
+msgid "Title template"
+msgstr "Plantilla del títol"
+
+#: includes/class-settings.php:40
+msgid "Titles"
+msgstr "Títols"
+
+#: includes/class-setup-wizard.php:175
+msgid "Titles &amp; Metas"
+msgstr "Títols i metadades"
+
+#: templates/audit-report.php:110
+msgid "Titles &amp; meta descriptions"
+msgstr "Títols i metadescripcions"
+
+#: includes/class-setup-wizard.php:183
+msgid "Total images"
+msgstr "Total d'imatges"
+
+#: includes/class-settings.php:97
+msgid "Turn on the essentials"
+msgstr "Activa els elements essencials"
+
+#: includes/class-redirects.php:165 includes/class-redirects.php:175
+msgid "Two-letter code, e.g. US, GB, IN."
+msgstr "Codi de dues lletres, p. ex. US, GB, IN."
+
+#: includes/class-redirects.php:193
+msgid "Type"
+msgstr "Tipus"
+
+#: includes/class-blocks.php:196
+msgid "URL"
+msgstr "URL"
+
+#: includes/class-settings.php:31
+msgid "Updated %s"
+msgstr "Actualitzat %s"
+
+#: includes/class-settings.php:177 includes/class-setup-wizard.php:179
+msgid "Use [smart_seo_breadcrumbs] or the smart_seo_breadcrumbs() template tag."
+msgstr "Utilitzeu [smart_seo_breadcrumbs] o l'etiqueta de plantilla smart_seo_breadcrumbs()."
+
+#: includes/class-setup-wizard.php:143
+msgid "Variables:"
+msgstr "Variables:"
+
+#: includes/class-settings.php:48
+msgid "Verification"
+msgstr "Verificació"
+
+#: includes/class-setup-wizard.php:161
+msgid "Webmaster Verification"
+msgstr "Verificació de webmaster"
+
+#: includes/class-content-auditor.php:70
+msgid "What kind of site is this?"
+msgstr "Quin tipus de lloc és aquest?"
+
+#: includes/class-setup-wizard.php:184
+msgid "Words: %1$d | Headings: %2$d | Images: %3$d | Alt Texts: %4$d"
+msgstr "Paraules: %1$d | Encapçalaments: %2$d | Imatges: %3$d | Textos alternatius: %4$d"
+
+#: includes/class-settings.php:54
+msgid "XML Sitemap (at /sitemap.xml)"
+msgstr "Mapa del lloc XML (a /sitemap.xml)"
+
+#: includes/class-importer.php:90
+msgid "Yandex"
+msgstr "Yandex"
+
+#: includes/class-setup-wizard.php:197
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: includes/class-admin-ui.php:78 includes/class-admin-ui.php:135 includes/class-admin-ui.php:142 includes/class-bulk-editor.php:50 includes/class-importer.php:53 includes/class-redirects.php:147
+msgid "You are all set!"
+msgstr "Tot a punt!"
+
+#: includes/class-bulk-editor.php:19 includes/class-importer.php:151 includes/class-redirects.php:95 includes/class-redirects.php:130
+msgid "You do not have sufficient permissions to access this page."
+msgstr "No teniu prou permisos per accedir a aquesta pàgina."
+
+#: js/block-editor.js:76
+msgid "You do not have sufficient permissions."
+msgstr "No teniu prou permisos."
+
+#: js/block-editor.js:77
+msgid "Your SEO title"
+msgstr "El vostre títol SEO"
+
+#: includes/class-redirects.php:198
+msgid "Your meta description preview…"
+msgstr "Previsualització de la vostra metadescripció…"
+
+msgid "ago"
+msgstr "fa"
+
+msgid "Adds social sharing buttons (X, Facebook, LinkedIn, WhatsApp, email) to this post."
+msgstr "Afegeix botons de compartició social (X, Facebook, LinkedIn, WhatsApp, correu) a aquesta entrada."
+
+msgid "Select at least one network in the sidebar to preview the share buttons."
+msgstr "Seleccioneu almenys una xarxa a la barra lateral per previsualitzar els botons de compartició."
+
+msgid "Updated date"
+msgstr "Data d'actualització"

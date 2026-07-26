@@ -38,7 +38,7 @@ $smart_seo_tile = static function ( $smart_seo_icon, $smart_seo_num, $smart_seo_
 
 $smart_seo_refresh_url = wp_nonce_url( admin_url( 'admin.php?page=smart-seo-audit&refresh=1' ), 'smart_seo_audit_refresh', '_ssbnonce' );
 ?>
-<div class="wrap">
+<div class="wrap smart-seo-audit">
     <div class="ssb-app ssb-adapt">
 
         <div class="ssb-head">

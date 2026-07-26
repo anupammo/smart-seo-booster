@@ -28,9 +28,18 @@ class Smart_SEO_Local_SEO {
         if ( function_exists('wp_set_script_translations') ) {
             wp_set_script_translations('smart-seo-local-block', 'smart-seo-booster');
         }
+        wp_localize_script( 'smart-seo-local-block', 'smartSeoLocalBusiness', [
+            // Only offer a settings deep link to users who can actually reach it.
+            'settingsUrl' => current_user_can( 'manage_options' )
+                ? admin_url( 'admin.php?page=smart-seo#panel-smart_seo_schema_data' )
+                : '',
+        ] );
 
         register_block_type('smart-seo/local-business', [
             'editor_script'   => 'smart-seo-local-block',
+            // Reuses the shared block stylesheet (registered in class-blocks.php)
+            // so the editor placeholder gets the same styling as the other blocks.
+            'style'           => 'smart-seo-blocks',
             'render_callback' => [__CLASS__, 'render'],
         ]);
     }

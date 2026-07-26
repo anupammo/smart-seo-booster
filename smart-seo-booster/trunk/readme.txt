@@ -1,6 +1,6 @@
 === Smart SEO Booster ===
 Contributors: anupammo
-Tags: seo, schema, xml sitemap, breadcrumbs, audit
+Tags: seo, schema markup, xml sitemap, meta tags, breadcrumbs
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 7.0
@@ -8,13 +8,24 @@ Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Lightweight, complete SEO — meta tags, schema, XML sitemaps, breadcrumbs, social previews & content scoring. Fast, automated, no bloat, no upsells.
+Complete WordPress SEO plugin — schema markup, XML sitemap, meta tags, breadcrumbs, Open Graph & AI SEO. 100% free, no upsells.
 
 == Description ==
 
-Smart SEO Booster is a lightweight, modular plugin that gives you every SEO fundamental that actually moves rankings — without the bloat or upsell walls of the big plugins. It automates titles, meta descriptions, Open Graph & Twitter Cards, JSON-LD schema, XML sitemaps and breadcrumbs, and shows you a live search/social preview with a real-time content score right in the editor.
+**Smart SEO Booster is a free, all-in-one WordPress SEO plugin** that gives you every ranking fundamental that actually moves the needle — schema markup, XML sitemaps, meta tags, Open Graph & Twitter Cards, breadcrumbs, redirects, and content scoring — without the bloat, paywalls, or upsell nags of the big-name SEO plugins. Every feature is free, forever. No "Pro" tier, no locked settings.
 
-**Features:**
+It automates titles and meta descriptions, injects 14 types of JSON-LD schema, generates XML sitemaps, and shows you a live search/social preview with a real-time SEO score right inside the block editor. One-click import from Yoast SEO or Rank Math means switching takes minutes, not hours — and your existing SEO data is never overwritten.
+
+New: built-in **GEO (Generative Engine Optimization) / AI SEO tools** — an `/llms.txt` file for AI assistants, one-click opt-out for AI crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended), and speakable structured data for voice assistants. Few SEO plugins offer this yet.
+
+**Why site owners switch to Smart SEO Booster:**
+* **100% free** — every feature above is included, always. No premium upsells, no drip-fed "unlock with Pro" nags.
+* **Lightweight & fast** — modular architecture, minimal database footprint, nothing loads unless you enable it.
+* **Beginner-friendly** — a 4-step setup wizard gets schema, sitemaps and breadcrumbs configured in under two minutes.
+* **Translated into 17 languages** — Catalan, Chinese (Taiwan), Dutch, English (US/Australia), French, German, Italian, Japanese, Persian, Polish, Portuguese (Brazil), Russian, Spanish (Spain/Chile), Swedish, and Ukrainian.
+* **Future-proofed for AI search** — GEO/llms.txt tools most competitors haven't built yet.
+
+**Core SEO features:**
 * XML sitemaps (posts, pages, custom post types & images) at /sitemap.xml, referenced from robots.txt
 * Breadcrumbs via shortcode `[smart_seo_breadcrumbs]`, template tag, and BreadcrumbList schema
 * JSON-LD schema — 14 per-post types (Article, BlogPosting, Product, Recipe, Event, HowTo, and more)
@@ -34,7 +45,7 @@ Smart SEO Booster is a lightweight, modular plugin that gives you every SEO fund
 * GEO / AI SEO: llms.txt for AI assistants, AI-crawler training opt-out, speakable data
 * Automatic image alt text; publish/updated date structured data
 * Blocks: social share, call-to-action, breadcrumb, and dates — with ready-made patterns
-* Professional admin UI with Dashicons (no emoji), translation-ready
+* Professional admin UI with Dashicons (no emoji), fully translated into 17 languages
 
 Built by Anupam Mondal — Full Stack Developer & SEO Consultant — to automate clarity and boost discoverability.
 
@@ -48,14 +59,41 @@ Developer & documentation: https://anupammondal.in/wordpress-plugin/smart-seo-bo
 
 == Frequently Asked Questions ==
 
+= Is Smart SEO Booster really free? Is there a paid/Pro version? =
+Yes, it's really free — every feature listed above, including schema markup, XML sitemaps, redirects, GA4 integration, and GEO/AI SEO tools, is included at no cost. There is no premium tier and no features are locked behind an upsell.
+
+= Can I switch from Yoast SEO or Rank Math without losing my data? =
+Yes. Go to **Smart SEO → Import**, choose Yoast SEO or Rank Math, and Smart SEO Booster copies your existing titles, meta descriptions, social tags, and canonical URLs. It never overwrites a Smart SEO value that's already set, so you can trial it safely alongside your current plugin.
+
+= Does this plugin add schema markup (JSON-LD) automatically? =
+Yes. It automatically outputs JSON-LD structured data for 14 content types — Article, BlogPosting, Product, Recipe, Event, HowTo, LocalBusiness, and more — with no manual coding required.
+
+= How do I generate an XML sitemap? =
+Enable **XML Sitemap** in Smart SEO → Settings and your sitemap is available instantly at `/sitemap.xml`, automatically referenced from `robots.txt` for search engine discovery.
+
 = Does this plugin support custom post types? =
-Yes, schema detection works for posts, pages, and can be extended to CPTs.
+Yes, schema detection, sitemaps, and meta box support all work for posts, pages, WooCommerce products, and can be extended to any custom post type.
 
 = Can I customize the schema output? =
-Yes, schema templates are modular PHP files located in `/schema/`.
+Yes, schema templates are modular PHP files located in `/schema/`, so developers can override or extend any schema type.
+
+= Is there a setup wizard for beginners? =
+Yes, a 4-step Setup Wizard walks you through site type, schema defaults, and titles/meta templates right after activation — no SEO experience required.
+
+= Does Smart SEO Booster work with the block editor (Gutenberg)? =
+Yes. It ships a native Gutenberg SEO sidebar with live title/meta editing and social previews, plus ready-made blocks for breadcrumbs, social share, call-to-action, and publish/updated dates.
+
+= What languages is this plugin available in? =
+Smart SEO Booster's admin interface is fully translated into 17 languages: Catalan, Chinese (Taiwan), Dutch, English (US), English (Australia), French, German, Italian, Japanese, Persian, Polish, Portuguese (Brazil), Russian, Spanish (Spain), Spanish (Chile), Swedish, and Ukrainian.
+
+= What is GEO / AI SEO, and why does it matter? =
+GEO (Generative Engine Optimization) helps your content perform well when AI assistants like ChatGPT, Claude, and Google AI Overviews summarize or cite it. Smart SEO Booster can publish an `/llms.txt` file for AI assistants, let you opt out of AI-crawler training (GPTBot, ClaudeBot, CCBot, Google-Extended), and mark content as speakable for voice assistants.
+
+= Will this plugin conflict with other SEO plugins? =
+Running two SEO plugins that both output meta tags and schema at the same time can cause duplicates. Use the built-in importer to migrate away from your previous SEO plugin, then deactivate it.
 
 = Will this plugin slow down my site? =
-No. It uses minimal hooks and outputs schema only in the footer.
+No. It uses minimal hooks and outputs schema only in the footer, with no external API calls or render-blocking assets.
 
 == Screenshots ==
 
@@ -130,5 +168,25 @@ First release. Safe to install and test on WordPress 5.2+.
 
 == Localization ==
 
-This plugin is translation-ready. `.pot` file included in `/languages/`.
+Smart SEO Booster is fully translated and ready to use in 17 languages:
+
+* Catalan (ca)
+* Chinese (Taiwan) (zh_TW)
+* Dutch (nl_NL)
+* English (Australia) (en_AU)
+* English (US) (en_US)
+* French (France) (fr_FR)
+* German (de_DE)
+* Italian (it_IT)
+* Japanese (ja)
+* Persian (fa_IR)
+* Polish (pl_PL)
+* Portuguese (Brazil) (pt_BR)
+* Russian (ru_RU)
+* Spanish (Chile) (es_CL)
+* Spanish (Spain) (es_ES)
+* Swedish (sv_SE)
+* Ukrainian (uk)
+
+Translation files (`.po`/`.mo`) are included in `/languages/`, and the plugin loads the matching translation automatically based on your site's WordPress language setting. A `.pot` template is also included for translators who want to add another language — contributions via translate.wordpress.org are welcome.
 

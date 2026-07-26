@@ -76,6 +76,10 @@ msgstr ""
 msgid "Adds Disallow rules for GPTBot, Google-Extended, ClaudeBot, CCBot and others to robots.txt."
 msgstr ""
 
+#: js/blocks.js:66
+msgid "Adds social sharing buttons (X, Facebook, LinkedIn, WhatsApp, email) to this post."
+msgstr ""
+
 #: includes/class-meta-fields.php:156 js/block-editor.js:105
 msgid "Advanced"
 msgstr ""
@@ -712,6 +716,10 @@ msgstr ""
 msgid "Search: %s"
 msgstr ""
 
+#: js/blocks.js:112
+msgid "Select at least one network in the sidebar to preview the share buttons."
+msgstr ""
+
 #: includes/class-meta-templates.php:22 includes/class-setup-wizard.php:176
 msgid "Separator"
 msgstr ""
@@ -902,6 +910,10 @@ msgstr ""
 
 #: includes/class-blocks.php:196
 msgid "Updated %s"
+msgstr ""
+
+#: js/blocks.js:204
+msgid "Updated date"
 msgstr ""
 
 #: includes/class-settings.php:31

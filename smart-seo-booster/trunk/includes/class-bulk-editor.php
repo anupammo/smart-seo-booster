@@ -61,8 +61,8 @@ class Smart_SEO_Bulk_Editor {
             'order'          => 'DESC',
         ]);
 
-        echo '<div class="wrap smart-seo-settings">';
-        echo '<h1>' . esc_html__( 'Bulk SEO Editor', 'smart-seo-booster' ) . '</h1>';
+        echo '<div class="wrap smart-seo-settings ssb-app ssb-adapt">';
+        echo '<h1><span class="dashicons dashicons-edit" aria-hidden="true"></span> ' . esc_html__( 'Bulk SEO Editor', 'smart-seo-booster' ) . '</h1>';
         echo '<p>' . esc_html__( 'Edit SEO titles and meta descriptions across your content. Leave a field blank to use the automatic value.', 'smart-seo-booster' ) . '</p>';
 
         if ( isset($_GET['saved']) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display-only

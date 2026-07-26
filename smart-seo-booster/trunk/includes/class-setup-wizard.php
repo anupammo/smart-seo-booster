@@ -98,8 +98,8 @@ class Smart_SEO_Setup_Wizard {
         $step_raw = isset($_GET['step']) ? sanitize_key( wp_unslash( $_GET['step'] ) ) : '1'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only step routing
         $options  = get_option('smart_seo_options', []);
 
-        echo '<div class="wrap smart-seo-settings smart-seo-wizard">';
-        echo '<h1>' . esc_html__( 'Smart SEO Booster — Setup', 'smart-seo-booster' ) . '</h1>';
+        echo '<div class="wrap smart-seo-settings smart-seo-wizard ssb-app ssb-adapt">';
+        echo '<h1><span class="dashicons dashicons-admin-generic" aria-hidden="true"></span> ' . esc_html__( 'Smart SEO Booster — Setup', 'smart-seo-booster' ) . '</h1>';
 
         if ( $step_raw === 'done' ) {
             self::render_done();

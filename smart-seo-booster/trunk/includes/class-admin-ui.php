@@ -80,8 +80,8 @@ class Smart_SEO_Admin_UI {
 
         $sections = Smart_SEO_Settings::fields();
         ?>
-        <div class="wrap smart-seo-settings">
-            <h1><?php echo esc_html__( 'Smart SEO Booster', 'smart-seo-booster' ); ?></h1>
+        <div class="wrap smart-seo-settings ssb-app ssb-adapt">
+            <h1><span class="dashicons dashicons-chart-line" aria-hidden="true"></span> <?php echo esc_html__( 'Smart SEO Booster', 'smart-seo-booster' ); ?></h1>
 
             <p>
                 <a href="<?php echo esc_url( admin_url('admin.php?page=smart-seo-setup') ); ?>" class="button">
@@ -156,22 +156,23 @@ class Smart_SEO_Admin_UI {
             );
         }
 
+        // Shared design system (colors, cards, typography) — every plugin
+        // admin page uses the same .ssb-app tokens as the Audit Report.
+        if (strpos($hook, 'smart-seo') !== false) {
+            wp_enqueue_style(
+                'smart-seo-dashboard',
+                plugin_dir_url(__FILE__) . '../css/dashboard.css',
+                ['dashicons'],
+                $ver
+            );
+        }
+
         // Settings/wizard/tools styling — all plugin admin pages.
         if (strpos($hook, 'smart-seo') !== false) {
             wp_enqueue_style(
                 'smart-seo-settings',
                 plugin_dir_url(__FILE__) . '../css/settings.css',
-                ['smart-seo-admin', 'dashicons'],
-                $ver
-            );
-        }
-
-        // Audit dashboard design system.
-        if ($hook === 'smart-seo_page_smart-seo-audit') {
-            wp_enqueue_style(
-                'smart-seo-dashboard',
-                plugin_dir_url(__FILE__) . '../css/dashboard.css',
-                ['dashicons'],
+                ['smart-seo-admin', 'smart-seo-dashboard', 'dashicons'],
                 $ver
             );
         }

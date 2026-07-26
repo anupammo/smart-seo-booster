@@ -7,7 +7,7 @@
 .smart-seo-meta-fields { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 .seo-tab-nav { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
 .seo-tab-nav button { background: none; border: none; padding: 12px 20px; cursor: pointer; border-bottom: 2px solid transparent; font-weight: 500; }
-.seo-tab-nav button.active { border-bottom-color: #0073aa; color: #0073aa; }
+.seo-tab-nav button.active { border-bottom-color: #2563eb; color: #2563eb; }
 .seo-tab-nav button:hover { background: #f6f7f7; }
 .seo-tab-content { display: none; }
 .seo-tab-content.active { display: block; }
@@ -17,9 +17,9 @@
 .seo-field-group textarea { resize: vertical; min-height: 80px; }
 .seo-field-help { font-size: 12px; color: #646970; margin-top: 5px; }
 .seo-field-counter { font-size: 11px; text-align: right; margin-top: 2px; }
-.seo-field-counter.good { color: #00a32a; }
-.seo-field-counter.warning { color: #dba617; }
-.seo-field-counter.error { color: #d63638; }
+.seo-field-counter.good { color: #10b981; }
+.seo-field-counter.warning { color: #f59e0b; }
+.seo-field-counter.error { color: #ef4444; }
 .seo-preview-box { background: #f6f7f7; border: 1px solid #c3c4c7; border-radius: 4px; padding: 15px; margin-top: 10px; }
 .seo-preview-title { color: #1a0dab; font-size: 18px; font-weight: normal; margin: 0 0 5px 0; text-decoration: none; }
 .seo-preview-url { color: #006621; font-size: 14px; margin: 0 0 5px 0; }
@@ -45,14 +45,14 @@
 .seo-section:last-child { border-bottom: none; }
 .seo-check { display: flex; justify-content: space-between; align-items: center; margin: 5px 0; }
 .seo-check-status { font-weight: bold; }
-.seo-good { color: #059669; }
-.seo-warning { color: #d97706; }
-.seo-error { color: #dc2626; }
+.seo-good { color: #10b981; }
+.seo-warning { color: #f59e0b; }
+.seo-error { color: #ef4444; }
 .seo-score-big { font-size: 24px; font-weight: bold; text-align: center; }
 .seo-recommendations { background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 10px; }
 
 /* ---------- Full SEO report (modal) ---------- */
 .smart-seo-full-report table td { padding: 8px; border-bottom: 1px solid #f0f0f0; }
-.smart-seo-full-report .seo-good { color: #059669; font-weight: bold; }
-.smart-seo-full-report .seo-warning { color: #d97706; font-weight: bold; }
-.smart-seo-full-report .seo-error { color: #dc2626; font-weight: bold; }
+.smart-seo-full-report .seo-good { color: #10b981; font-weight: bold; }
+.smart-seo-full-report .seo-warning { color: #f59e0b; font-weight: bold; }
+.smart-seo-full-report .seo-error { color: #ef4444; font-weight: bold; }

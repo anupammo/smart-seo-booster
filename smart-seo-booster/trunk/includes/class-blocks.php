@@ -13,6 +13,19 @@ class Smart_SEO_Blocks {
         add_action('init', [__CLASS__, 'register']);
         add_action('init', [__CLASS__, 'register_patterns'], 20);
         add_action('wp_enqueue_scripts', [__CLASS__, 'front_styles']);
+        add_filter('block_categories_all', [__CLASS__, 'block_category']);
+    }
+
+    /**
+     * Groups all 5 Smart SEO blocks under their own inserter category (instead
+     * of the generic "Widgets" bucket) so they're easy to find as a set.
+     * Reuses the same dashicon as the plugin's admin menu for brand continuity.
+     */
+    public static function block_category( $categories ) {
+        return array_merge(
+            [ [ 'slug' => 'smart-seo', 'title' => __( 'Smart SEO', 'smart-seo-booster' ), 'icon' => 'chart-line' ] ],
+            $categories
+        );
     }
 
     public static function register() {

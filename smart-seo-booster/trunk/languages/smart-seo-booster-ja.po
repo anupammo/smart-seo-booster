@@ -1,0 +1,977 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Smart SEO Booster 2.1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/smart-seo-booster\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-26T15:32:38+00:00\n"
+"PO-Revision-Date: 2026-07-26T15:32:38+00:00\n"
+"Language-Team: Anupam Mondal\n"
+"X-Domain: smart-seo-booster\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: includes/class-link-analyzer.php:29
+msgid "%1$s SEO Score: %2$d/%3$d"
+msgstr "%1$s SEOスコア：%2$d/%3$d"
+
+#: includes/class-redirects.php:192
+msgid "%d found in this post."
+msgstr "この投稿内で %d 件見つかりました。"
+
+#: includes/class-breadcrumbs.php:72
+msgid "404 Log"
+msgstr "404ログ"
+
+#: includes/class-settings.php:82
+msgid "404 Not Found"
+msgstr "404 見つかりません"
+
+#: includes/class-settings.php:79
+msgid "A machine-readable summary of your site for AI assistants, at /llms.txt"
+msgstr "AIアシスタント向けにサイトを機械可読形式で要約したもの（/llms.txt）"
+
+#: templates/audit-report.php:72
+msgid "AI &amp; GEO"
+msgstr "AI と GEO"
+
+#: includes/class-redirects.php:174
+msgid "Across published posts &amp; pages"
+msgstr "公開済みの投稿・固定ページ全体"
+
+#: includes/class-redirects.php:170
+msgid "Active redirects"
+msgstr "有効なリダイレクト"
+
+#: includes/class-content-auditor.php:50
+msgid "Add Redirect"
+msgstr "リダイレクトを追加"
+
+#: includes/class-content-auditor.php:36
+msgid "Add alt text to all images"
+msgstr "すべての画像に代替テキストを追加"
+
+#: includes/class-content-auditor.php:43
+msgid "Add more content (minimum 300 words recommended)"
+msgstr "コンテンツを追加してください（最低300語を推奨）"
+
+#: includes/class-redirects.php:159
+msgid "Add more headings for better structure"
+msgstr "構造を改善するために見出しを追加してください"
+
+#: includes/class-settings.php:84
+msgid "Add redirect"
+msgstr "リダイレクトを追加"
+
+#: includes/class-settings.php:60
+msgid "Add speakable structured data"
+msgstr "音声読み上げ用の構造化データ（speakable）を追加"
+
+#: js/local-seo-block.js:34
+msgid "Add tracking without touching your theme. Scripts load only when an ID is set."
+msgstr "テーマを変更せずにトラッキングを追加します。IDが設定されている場合のみスクリプトが読み込まれます。"
+
+#: includes/class-settings.php:83
+msgid "Address, phone and hours are pulled from Smart SEO → Settings → Schema Details."
+msgstr "住所、電話番号、営業時間は「Smart SEO → 設定 → スキーマ詳細」から取得されます。"
+
+#: includes/class-meta-fields.php:156 js/block-editor.js:105
+msgid "Adds Disallow rules for GPTBot, Google-Extended, ClaudeBot, CCBot and others to robots.txt."
+msgstr "robots.txt に GPTBot、Google-Extended、ClaudeBot、CCBot などの Disallow ルールを追加します。"
+
+#: js/blocks.js:59
+msgid "Advanced"
+msgstr "詳細設定"
+
+#: includes/class-meta-fields.php:157
+msgid "Alignment"
+msgstr "配置"
+
+#: includes/class-settings.php:59
+msgid "Analysis"
+msgstr "分析"
+
+#: includes/class-blocks.php:213
+msgid "Analytics"
+msgstr "アクセス解析"
+
+#: includes/class-settings.php:83
+msgid "Article footer (dates + share)"
+msgstr "記事フッター（日付＋シェア）"
+
+#: includes/class-admin-ui.php:33
+msgid "Ask AI crawlers not to train on this site"
+msgstr "AIクローラーにこのサイトを学習に使用しないよう要求する"
+
+#: includes/class-meta-templates.php:26
+msgid "Audit Report"
+msgstr "監査レポート"
+
+#: includes/class-settings.php:34
+msgid "Author name"
+msgstr "著者名"
+
+#: includes/class-settings.php:29
+msgid "Auto-add missing image alt text"
+msgstr "不足している画像の代替テキストを自動追加"
+
+#: templates/audit-report.php:62
+msgid "Available at /sitemap.xml"
+msgstr "/sitemap.xml で利用可能"
+
+#: templates/audit-report.php:64
+msgid "Average SEO Score"
+msgstr "平均SEOスコア"
+
+#: includes/class-settings.php:55
+msgid "Average score %d out of 100"
+msgstr "平均スコア：100点中 %d 点"
+
+#: includes/class-meta-fields.php:154
+msgid "Baidu"
+msgstr "Baidu"
+
+#: includes/class-setup-wizard.php:192
+msgid "Basic SEO"
+msgstr "基本SEO"
+
+#: includes/class-settings.php:52
+msgid "Bing"
+msgstr "Bing"
+
+#: includes/class-setup-wizard.php:156
+msgid "Bing (Webmaster Tools)"
+msgstr "Bing（ウェブマスターツール）"
+
+#: includes/class-breadcrumbs.php:106 js/blocks.js:123
+msgid "Blog / Publisher"
+msgstr "ブログ／出版社"
+
+#: js/blocks.js:118
+msgid "Breadcrumb"
+msgstr "パンくずリスト"
+
+#: includes/class-blocks.php:225
+msgid "Breadcrumb (Smart SEO)"
+msgstr "パンくずリスト（Smart SEO）"
+
+#: includes/class-settings.php:33
+msgid "Breadcrumb bar"
+msgstr "パンくずバー"
+
+#: includes/class-settings.php:32
+msgid "Breadcrumb home label"
+msgstr "パンくずリストのホームラベル"
+
+#: includes/class-setup-wizard.php:185
+msgid "Breadcrumb separator"
+msgstr "パンくずリストの区切り文字"
+
+#: includes/class-admin-ui.php:51
+msgid "Breadcrumbs"
+msgstr "パンくずリスト"
+
+#: includes/class-admin-ui.php:50 includes/class-bulk-editor.php:65
+msgid "Bulk Editor"
+msgstr "一括編集"
+
+#: includes/class-setup-wizard.php:157
+msgid "Bulk SEO Editor"
+msgstr "SEO一括編集"
+
+#: includes/class-settings.php:92
+msgid "Business / Organization"
+msgstr "ビジネス／組織"
+
+#: js/blocks.js:96
+msgid "Business phone"
+msgstr "会社の電話番号"
+
+#: js/blocks.js:95
+msgid "Button URL"
+msgstr "ボタンのURL"
+
+#: includes/class-blocks.php:219
+msgid "Button label"
+msgstr "ボタンのラベル"
+
+#: js/blocks.js:77
+msgid "CTA banner"
+msgstr "CTAバナー"
+
+#: js/block-editor.js:96
+msgid "Call to Action (Smart SEO)"
+msgstr "行動喚起（Smart SEO）"
+
+#: includes/class-bulk-editor.php:69
+msgid "Canonical URL"
+msgstr "正規URL（canonical）"
+
+#: includes/class-settings.php:94
+msgid "Changes saved."
+msgstr "変更を保存しました。"
+
+#: js/blocks.js:108
+msgid "City / locality"
+msgstr "市区町村"
+
+#: includes/class-bulk-editor.php:78 js/blocks.js:92 templates/audit-report.php:132
+msgid "Configure the call to action in the sidebar."
+msgstr "サイドバーで行動喚起（CTA）を設定してください。"
+
+#: includes/class-importer.php:68 includes/class-setup-wizard.php:133
+msgid "Content"
+msgstr "コンテンツ"
+
+#: includes/class-blocks.php:97 js/blocks.js:26
+msgid "Continue"
+msgstr "続ける"
+
+#: includes/class-importer.php:81
+msgid "Copy link"
+msgstr "リンクをコピー"
+
+#: includes/class-settings.php:97
+msgid "Copy your existing SEO titles, descriptions, social tags and canonicals from another plugin. Existing Smart SEO values are never overwritten."
+msgstr "他のプラグインから既存のSEOタイトル、ディスクリプション、ソーシャルタグ、canonicalをコピーします。既存のSmart SEOの値が上書きされることはありません。"
+
+#: includes/class-meta-templates.php:28
+msgid "Country code"
+msgstr "国コード"
+
+#: js/blocks.js:144
+msgid "Current year"
+msgstr "現在の年"
+
+#: includes/class-redirects.php:185
+msgid "Dates"
+msgstr "日付"
+
+#: includes/class-setup-wizard.php:178
+msgid "Delete"
+msgstr "削除"
+
+#: includes/class-credits.php:49
+msgid "Description template"
+msgstr "ディスクリプションテンプレート"
+
+#: includes/class-settings.php:30
+msgid "Developer Portfolio"
+msgstr "開発者ポートフォリオ"
+
+#: js/local-seo-block.js:20
+msgid "Disable the default WordPress sitemap"
+msgstr "WordPress標準のサイトマップを無効化"
+
+#: includes/class-settings.php:64
+msgid "Displays your business address, phone and hours, with LocalBusiness schema."
+msgstr "LocalBusinessスキーマ付きで、住所・電話番号・営業時間を表示します。"
+
+#: includes/class-bulk-editor.php:92
+msgid "Do not track logged-in administrators"
+msgstr "ログイン中の管理者を計測しない"
+
+#: includes/class-bulk-editor.php:66
+msgid "Edit"
+msgstr "編集"
+
+#: includes/class-setup-wizard.php:200
+msgid "Edit SEO titles and meta descriptions across your content. Leave a field blank to use the automatic value."
+msgstr "サイト全体のSEOタイトルとメタディスクリプションを編集します。空欄のままにすると自動生成された値が使用されます。"
+
+#: includes/class-settings.php:31
+msgid "Edit a post and open the SEO panel to fine-tune titles and social previews."
+msgstr "投稿を編集し、SEOパネルを開いてタイトルやソーシャルプレビューを調整してください。"
+
+#: includes/class-setup-wizard.php:168
+msgid "Enable Breadcrumbs"
+msgstr "パンくずリストを有効化"
+
+#: includes/class-settings.php:28
+msgid "Enable JSON-LD schema markup"
+msgstr "JSON-LDスキーママークアップを有効化"
+
+#: includes/class-settings.php:29
+msgid "Enable Schema Markup (JSON-LD)"
+msgstr "スキーママークアップを有効化（JSON-LD）"
+
+#: templates/audit-report.php:83
+msgid "Enable XML Sitemap"
+msgstr "XMLサイトマップを有効化"
+
+#: includes/class-setup-wizard.php:142
+msgid "Excellent"
+msgstr "優秀"
+
+#: includes/class-settings.php:34
+msgid "Features"
+msgstr "機能"
+
+#: includes/class-setup-wizard.php:133
+msgid "Fills empty alt attributes from the image or post title on the front end."
+msgstr "フロントエンドで、空のalt属性を画像や投稿タイトルから自動補完します。"
+
+#: includes/class-meta-templates.php:24
+msgid "Finish"
+msgstr "完了"
+
+#: includes/class-meta-templates.php:25
+msgid "First category"
+msgstr "最初のカテゴリー"
+
+#: js/block-editor.js:93
+msgid "First tag"
+msgstr "最初のタグ"
+
+#: includes/class-settings.php:26
+msgid "Focus keyword"
+msgstr "フォーカスキーワード"
+
+#: includes/class-settings.php:80
+msgid "General"
+msgstr "一般"
+
+#: includes/class-setup-wizard.php:203
+msgid "Generative Engine Optimization — help (or limit) how AI assistants use your content."
+msgstr "生成エンジン最適化（GEO）— AIアシスタントによるコンテンツの利用を支援（または制限）します。"
+
+#: templates/audit-report.php:84
+msgid "Go to Settings"
+msgstr "設定へ移動"
+
+#: includes/class-setup-wizard.php:191
+msgid "Good"
+msgstr "良好"
+
+#: includes/class-settings.php:51
+msgid "Google"
+msgstr "Google"
+
+#: includes/class-settings.php:62
+msgid "Google (Search Console)"
+msgstr "Google（Search Console）"
+
+#: js/blocks.js:93
+msgid "Google Analytics 4 ID"
+msgstr "Google Analytics 4 ID"
+
+#: includes/class-redirects.php:193
+msgid "Heading"
+msgstr "見出し"
+
+#: includes/class-breadcrumbs.php:29 includes/class-settings.php:33
+msgid "Hits"
+msgstr "アクセス数"
+
+#: templates/audit-report.php:106
+msgid "Home"
+msgstr "ホーム"
+
+#: includes/class-admin-ui.php:60
+msgid "Images missing alt"
+msgstr "代替テキストのない画像"
+
+#: includes/class-admin-ui.php:59 includes/class-importer.php:80
+msgid "Import"
+msgstr "インポート"
+
+#: includes/class-importer.php:86
+msgid "Import SEO Data"
+msgstr "SEOデータをインポート"
+
+#: includes/class-importer.php:105
+msgid "Import complete."
+msgstr "インポートが完了しました。"
+
+#: includes/class-importer.php:60
+msgid "Import from %s"
+msgstr "%s からインポート"
+
+#: includes/class-settings.php:68
+msgid "Importing…"
+msgstr "インポート中…"
+
+#: includes/class-link-analyzer.php:29
+msgid "Indexing"
+msgstr "インデックス設定"
+
+#: includes/class-redirects.php:193
+msgid "Internal Links:"
+msgstr "内部リンク："
+
+#: includes/class-settings.php:99
+msgid "Last seen"
+msgstr "最終アクセス"
+
+#: js/local-seo-block.js:30
+msgid "Latitude"
+msgstr "緯度"
+
+#: js/local-seo-block.js:19
+msgid "Local Business"
+msgstr "ローカルビジネス"
+
+#: includes/class-settings.php:100
+msgid "Local Business (Smart SEO)"
+msgstr "ローカルビジネス（Smart SEO）"
+
+#: includes/class-settings.php:84
+msgid "Longitude"
+msgstr "経度"
+
+#: includes/class-settings.php:62
+msgid "Marks the title and description as voice-assistant friendly."
+msgstr "タイトルとディスクリプションを音声アシスタント対応としてマークします。"
+
+#: includes/class-bulk-editor.php:80
+msgid "Measurement ID, e.g. G-XXXXXXXXXX"
+msgstr "測定ID（例：G-XXXXXXXXXX）"
+
+#: js/block-editor.js:95
+msgid "Meta Description"
+msgstr "メタディスクリプション"
+
+#: includes/class-settings.php:44
+msgid "Meta description"
+msgstr "メタディスクリプション"
+
+#: includes/class-settings.php:63
+msgid "Meta description template"
+msgstr "メタディスクリプションテンプレート"
+
+#: includes/class-settings.php:36
+msgid "Microsoft Clarity ID"
+msgstr "Microsoft Clarity ID"
+
+#: templates/audit-report.php:130
+msgid "Minimum word count"
+msgstr "最低文字数"
+
+#: templates/audit-report.php:85
+msgid "Needs attention first"
+msgstr "優先的に対応が必要"
+
+#: js/blocks.js:50
+msgid "Needs work"
+msgstr "改善が必要"
+
+#: includes/class-redirects.php:195
+msgid "Networks"
+msgstr "ネットワーク"
+
+#: includes/class-bulk-editor.php:84
+msgid "No 404s logged yet."
+msgstr "まだ404エラーは記録されていません。"
+
+#: includes/class-importer.php:108
+msgid "No content found."
+msgstr "コンテンツが見つかりません。"
+
+#: includes/class-audit.php:163
+msgid "No data found."
+msgstr "データが見つかりません。"
+
+#: templates/audit-report.php:107
+msgid "No major issues found. Nice work!"
+msgstr "大きな問題は見つかりませんでした。お見事です！"
+
+#: templates/audit-report.php:135
+msgid "No meta description"
+msgstr "メタディスクリプションなし"
+
+#: includes/class-redirects.php:177
+msgid "No published content yet."
+msgstr "まだ公開されたコンテンツはありません。"
+
+#: includes/class-settings.php:72
+msgid "No redirects yet."
+msgstr "まだリダイレクトはありません。"
+
+#: includes/class-settings.php:71
+msgid "No-index author archives"
+msgstr "著者アーカイブをインデックスしない"
+
+#: includes/class-settings.php:73
+msgid "No-index category, tag &amp; taxonomy archives"
+msgstr "カテゴリー・タグ・タクソノミーのアーカイブをインデックスしない"
+
+#: includes/class-settings.php:75
+msgid "No-index date archives"
+msgstr "日付アーカイブをインデックスしない"
+
+#: includes/class-settings.php:74
+msgid "No-index paginated pages (page 2, 3…)"
+msgstr "ページネーションされたページをインデックスしない（2ページ目、3ページ目…）"
+
+#: templates/audit-report.php:109
+msgid "No-index search results"
+msgstr "検索結果ページをインデックスしない"
+
+#: js/block-editor.js:101
+msgid "No-indexed"
+msgstr "未インデックス"
+
+#: js/block-editor.js:102
+msgid "OG description"
+msgstr "OGディスクリプション"
+
+#: js/block-editor.js:100
+msgid "OG image URL"
+msgstr "OG画像URL"
+
+#: includes/class-settings.php:91
+msgid "OG title"
+msgstr "OGタイトル"
+
+#: includes/class-settings.php:98
+msgid "One URL per line (Facebook, X, LinkedIn, etc.)."
+msgstr "1行に1つのURLを入力してください（Facebook、X、LinkedInなど）。"
+
+#: includes/class-setup-wizard.php:158
+msgid "One rule per line, e.g. Mo-Fr 09:00-17:00"
+msgstr "1行に1つのルールを入力してください（例：Mo-Fr 09:00-17:00）"
+
+#: includes/class-settings.php:98
+msgid "Online Store"
+msgstr "オンラインストア"
+
+#: templates/audit-report.php:117
+msgid "Opening hours"
+msgstr "営業時間"
+
+#: includes/class-settings.php:89
+msgid "Opportunities"
+msgstr "改善の余地"
+
+#: includes/class-settings.php:35
+msgid "Optional data used to enrich Organization and LocalBusiness schema."
+msgstr "OrganizationおよびLocalBusinessスキーマを充実させるための任意データです。"
+
+#: includes/class-geo.php:92
+msgid "Optional. Displays “SEO by Smart SEO Booster” linking to the developer. Off by default."
+msgstr "任意設定です。開発者へのリンク付きで「SEO by Smart SEO Booster」と表示します。デフォルトでは無効です。"
+
+#: includes/class-settings.php:49
+msgid "Pages"
+msgstr "固定ページ"
+
+#: includes/class-setup-wizard.php:190
+msgid "Paste only the verification code (the content value), not the whole meta tag. Google = Search Console, Bing = Webmaster Tools."
+msgstr "metaタグ全体ではなく、確認コード（contentの値）のみを貼り付けてください。Google = Search Console、Bing = ウェブマスターツール。"
+
+#: includes/class-redirects.php:166
+msgid "Paste only the verification code, not the whole meta tag."
+msgstr "metaタグ全体ではなく、確認コードのみを貼り付けてください。"
+
+#: includes/class-settings.php:53
+msgid "Permanent"
+msgstr "恒久的"
+
+#: templates/audit-report.php:86
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: includes/class-setup-wizard.php:159
+msgid "Poor"
+msgstr "不良"
+
+#: includes/class-meta-templates.php:23
+msgid "Portfolio / Personal"
+msgstr "ポートフォリオ／個人"
+
+#: includes/class-meta-templates.php:19
+msgid "Post excerpt"
+msgstr "投稿の抜粋"
+
+#: includes/class-settings.php:96
+msgid "Post/page title"
+msgstr "投稿／固定ページのタイトル"
+
+#: includes/class-geo.php:107
+msgid "Postal code"
+msgstr "郵便番号"
+
+#: includes/class-settings.php:30
+msgid "Posts"
+msgstr "投稿"
+
+#: includes/class-importer.php:61
+msgid "Prevents duplicate sitemaps when the plugin sitemap is on."
+msgstr "プラグインのサイトマップが有効な場合に、重複するサイトマップを防止します。"
+
+#: js/blocks.js:133
+msgid "Processing the next batch, please wait…"
+msgstr "次のバッチを処理中です。しばらくお待ちください…"
+
+#: js/blocks.js:150
+msgid "Publish / Updated Dates (Smart SEO)"
+msgstr "公開日／更新日（Smart SEO）"
+
+#: includes/class-blocks.php:192
+msgid "Publish / Updated dates"
+msgstr "公開日／更新日"
+
+#: includes/class-meta-templates.php:27
+msgid "Published %s"
+msgstr "%s に公開"
+
+#: templates/audit-report.php:105
+msgid "Published date"
+msgstr "公開日"
+
+#: includes/class-importer.php:91
+msgid "Published items"
+msgstr "公開済みの項目"
+
+#: includes/class-content-auditor.php:73
+msgid "Rank Math"
+msgstr "Rank Math"
+
+#: includes/class-redirects.php:205
+msgid "Recommendations:"
+msgstr "推奨事項："
+
+#: includes/class-admin-ui.php:41 includes/class-admin-ui.php:42 includes/class-redirects.php:156
+msgid "Redirect"
+msgstr "リダイレクト"
+
+#: templates/audit-report.php:54
+msgid "Redirections"
+msgstr "リダイレクト"
+
+#: includes/class-settings.php:95
+msgid "Refresh"
+msgstr "更新"
+
+#: js/blocks.js:124
+msgid "Region / state"
+msgstr "都道府県／州"
+
+#: js/block-editor.js:106
+msgid "Renders the breadcrumb trail with schema on the front end."
+msgstr "フロントエンドにスキーマ付きのパンくずリストを表示します。"
+
+#: includes/class-admin-ui.php:88
+msgid "Robots"
+msgstr "Robots"
+
+#: templates/audit-report.php:45
+msgid "Run Setup Wizard"
+msgstr "セットアップウィザードを実行"
+
+#: includes/class-admin-ui.php:32
+msgid "SEO Audit"
+msgstr "SEO監査"
+
+#: includes/class-bulk-editor.php:79
+msgid "SEO Audit Report"
+msgstr "SEO監査レポート"
+
+#: includes/class-credits.php:66
+msgid "SEO Title"
+msgstr "SEOタイトル"
+
+#: includes/class-meta-fields.php:153
+msgid "SEO by %s"
+msgstr "SEO by %s"
+
+#: js/block-editor.js:94
+msgid "SEO settings"
+msgstr "SEO設定"
+
+#: includes/class-bulk-editor.php:100
+msgid "SEO title"
+msgstr "SEOタイトル"
+
+#: includes/class-settings.php:88
+msgid "Save All"
+msgstr "すべて保存"
+
+#: js/block-editor.js:107
+msgid "Schema Details"
+msgstr "スキーマ詳細"
+
+#: templates/audit-report.php:132
+msgid "Schema type"
+msgstr "スキーマの種類"
+
+#: templates/audit-report.php:79
+msgid "Score"
+msgstr "スコア"
+
+#: js/block-editor.js:87
+msgid "Score Distribution"
+msgstr "スコア分布"
+
+#: includes/class-setup-wizard.php:189
+msgid "Search Appearance"
+msgstr "検索結果での見え方"
+
+#: includes/class-breadcrumbs.php:70
+msgid "Search engine verification (optional)"
+msgstr "検索エンジンの確認（任意）"
+
+#: includes/class-meta-templates.php:22 includes/class-setup-wizard.php:176
+msgid "Search: %s"
+msgstr "検索：%s"
+
+#: includes/class-settings.php:82
+msgid "Separator"
+msgstr "区切り文字"
+
+#: includes/class-admin-ui.php:23 includes/class-admin-ui.php:24
+msgid "Serve an llms.txt file"
+msgstr "llms.txtファイルを提供する"
+
+#: includes/class-admin-ui.php:68 includes/class-admin-ui.php:69
+msgid "Settings"
+msgstr "設定"
+
+#: includes/class-settings.php:35
+msgid "Setup Wizard"
+msgstr "セットアップウィザード"
+
+#: js/blocks.js:145
+msgid "Show a small credit link in the footer"
+msgstr "フッターに小さなクレジットリンクを表示する"
+
+#: js/blocks.js:146
+msgid "Show published date"
+msgstr "公開日を表示"
+
+#: js/blocks.js:151
+msgid "Show updated date"
+msgstr "更新日を表示"
+
+#: includes/class-geo.php:80
+msgid "Shows the real dates on the front end."
+msgstr "フロントエンドに実際の日付を表示します。"
+
+#: includes/class-meta-templates.php:20
+msgid "Site URL:"
+msgstr "サイトURL："
+
+#: includes/class-meta-templates.php:21
+msgid "Site name"
+msgstr "サイト名"
+
+#: includes/class-setup-wizard.php:140
+msgid "Site tagline"
+msgstr "サイトのキャッチフレーズ"
+
+#: includes/class-setup-wizard.php:134
+msgid "Site type"
+msgstr "サイトの種類"
+
+#: includes/class-admin-ui.php:13 includes/class-blocks.php:209 js/block-editor.js:82 js/block-editor.js:85
+msgid "Skip"
+msgstr "スキップ"
+
+#: includes/class-admin-ui.php:12 includes/class-admin-ui.php:84
+msgid "Smart SEO"
+msgstr "Smart SEO"
+
+#: includes/class-setup-wizard.php:198
+msgid "Smart SEO Booster"
+msgstr "Smart SEO Booster"
+
+#: includes/class-setup-wizard.php:102
+msgid "Smart SEO Booster is configured. Here is what to do next:"
+msgstr "Smart SEO Boosterの設定が完了しました。次に行うことは以下のとおりです。"
+
+#: includes/class-credits.php:39
+msgid "Smart SEO Booster — Setup"
+msgstr "Smart SEO Booster — セットアップ"
+
+#: js/block-editor.js:99
+msgid "Smart SEO Booster — crafted by %s"
+msgstr "Smart SEO Booster — %s 制作"
+
+#: includes/class-meta-fields.php:155
+msgid "Social"
+msgstr "ソーシャル"
+
+#: js/blocks.js:66
+msgid "Social Media"
+msgstr "ソーシャルメディア"
+
+#: js/blocks.js:30
+msgid "Social Share"
+msgstr "ソーシャルシェア"
+
+#: includes/class-settings.php:91
+msgid "Social Share (Smart SEO)"
+msgstr "ソーシャルシェア（Smart SEO）"
+
+#: includes/class-redirects.php:175
+msgid "Social profile URLs"
+msgstr "ソーシャルプロフィールのURL"
+
+#: includes/class-redirects.php:163
+msgid "Source"
+msgstr "送信元"
+
+#: includes/class-content-auditor.php:70
+msgid "Source path"
+msgstr "送信元パス"
+
+#: includes/class-settings.php:93
+msgid "Stats:"
+msgstr "統計："
+
+#: js/blocks.js:98
+msgid "Street address"
+msgstr "番地"
+
+#: includes/class-setup-wizard.php:201
+msgid "Style"
+msgstr "スタイル"
+
+#: includes/class-redirects.php:175
+msgid "Submit your sitemap: %s"
+msgstr "サイトマップを送信してください：%s"
+
+#: includes/class-redirects.php:164
+msgid "Target"
+msgstr "送信先"
+
+#: includes/class-settings.php:69
+msgid "Target URL"
+msgstr "送信先URL"
+
+#: includes/class-redirects.php:167
+msgid "Tell search engines not to index low-value archive pages. Links are still followed."
+msgstr "価値の低いアーカイブページをインデックスしないよう検索エンジンに指示します。リンクの追跡は継続されます。"
+
+#: includes/class-redirects.php:168
+msgid "Temporary"
+msgstr "一時的"
+
+#: js/blocks.js:94
+msgid "Temporary (strict)"
+msgstr "一時的（厳格）"
+
+#: templates/audit-report.php:108
+msgid "Text"
+msgstr "テキスト"
+
+#: includes/class-setup-wizard.php:162
+msgid "Thin content"
+msgstr "内容が薄いコンテンツ"
+
+#: includes/class-settings.php:42
+msgid "This sets sensible schema defaults. You can change everything later."
+msgstr "妥当なスキーマの初期値を設定します。後からいつでも変更できます。"
+
+#: includes/class-settings.php:43 includes/class-setup-wizard.php:177
+msgid "Title separator"
+msgstr "タイトルの区切り文字"
+
+#: includes/class-setup-wizard.php:141
+msgid "Title template"
+msgstr "タイトルテンプレート"
+
+#: includes/class-settings.php:40
+msgid "Titles"
+msgstr "タイトル"
+
+#: includes/class-setup-wizard.php:175
+msgid "Titles &amp; Metas"
+msgstr "タイトルとメタ情報"
+
+#: templates/audit-report.php:110
+msgid "Titles &amp; meta descriptions"
+msgstr "タイトルとメタディスクリプション"
+
+#: includes/class-setup-wizard.php:183
+msgid "Total images"
+msgstr "画像の合計数"
+
+#: includes/class-settings.php:97
+msgid "Turn on the essentials"
+msgstr "基本機能を有効にする"
+
+#: includes/class-redirects.php:165 includes/class-redirects.php:175
+msgid "Two-letter code, e.g. US, GB, IN."
+msgstr "2文字のコード（例：US、GB、IN）。"
+
+#: includes/class-redirects.php:193
+msgid "Type"
+msgstr "種類"
+
+#: includes/class-blocks.php:196
+msgid "URL"
+msgstr "URL"
+
+#: includes/class-settings.php:31
+msgid "Updated %s"
+msgstr "%s に更新"
+
+#: includes/class-settings.php:177 includes/class-setup-wizard.php:179
+msgid "Use [smart_seo_breadcrumbs] or the smart_seo_breadcrumbs() template tag."
+msgstr "[smart_seo_breadcrumbs] ショートコード、またはテンプレートタグ smart_seo_breadcrumbs() を使用してください。"
+
+#: includes/class-setup-wizard.php:143
+msgid "Variables:"
+msgstr "変数："
+
+#: includes/class-settings.php:48
+msgid "Verification"
+msgstr "確認"
+
+#: includes/class-setup-wizard.php:161
+msgid "Webmaster Verification"
+msgstr "ウェブマスター確認"
+
+#: includes/class-content-auditor.php:70
+msgid "What kind of site is this?"
+msgstr "どのような種類のサイトですか？"
+
+#: includes/class-setup-wizard.php:184
+msgid "Words: %1$d | Headings: %2$d | Images: %3$d | Alt Texts: %4$d"
+msgstr "単語数：%1$d｜見出し数：%2$d｜画像数：%3$d｜代替テキスト数：%4$d"
+
+#: includes/class-settings.php:54
+msgid "XML Sitemap (at /sitemap.xml)"
+msgstr "XMLサイトマップ（/sitemap.xml）"
+
+#: includes/class-importer.php:90
+msgid "Yandex"
+msgstr "Yandex"
+
+#: includes/class-setup-wizard.php:197
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: includes/class-admin-ui.php:78 includes/class-admin-ui.php:135 includes/class-admin-ui.php:142 includes/class-bulk-editor.php:50 includes/class-importer.php:53 includes/class-redirects.php:147
+msgid "You are all set!"
+msgstr "準備が整いました！"
+
+#: includes/class-bulk-editor.php:19 includes/class-importer.php:151 includes/class-redirects.php:95 includes/class-redirects.php:130
+msgid "You do not have sufficient permissions to access this page."
+msgstr "このページにアクセスするための十分な権限がありません。"
+
+#: js/block-editor.js:76
+msgid "You do not have sufficient permissions."
+msgstr "十分な権限がありません。"
+
+#: js/block-editor.js:77
+msgid "Your SEO title"
+msgstr "あなたのSEOタイトル"
+
+#: includes/class-redirects.php:198
+msgid "Your meta description preview…"
+msgstr "メタディスクリプションのプレビュー…"
+
+msgid "ago"
+msgstr "前"
+
+msgid "Adds social sharing buttons (X, Facebook, LinkedIn, WhatsApp, email) to this post."
+msgstr "この投稿にソーシャル共有ボタン（X、Facebook、LinkedIn、WhatsApp、メール）を追加します。"
+
+msgid "Select at least one network in the sidebar to preview the share buttons."
+msgstr "サイドバーで少なくとも1つのネットワークを選択すると、共有ボタンのプレビューが表示されます。"
+
+msgid "Updated date"
+msgstr "更新日"

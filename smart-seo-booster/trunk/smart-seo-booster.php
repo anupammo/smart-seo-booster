@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Smart SEO Booster
  * Plugin URI: https://anupammondal.in/wordpress-plugin/smart-seo-booster
- * Description: Lightweight, complete SEO — meta tags, schema, XML sitemaps, breadcrumbs, social previews & content scoring. Fast, automated, no bloat.
+ * Description: Complete WordPress SEO plugin — schema markup, XML sitemaps, meta tags, breadcrumbs, Open Graph & AI SEO. 100% free, no upsells.
  * Version: 2.1.1
  * Author: Anupam Mondal
  * Author URI: https://anupammondal.in
@@ -38,8 +38,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-loader.php';
 
 // Initialize plugin
 add_action('plugins_loaded', function () {
-    // WordPress.org automatically loads translations since WP 4.6
-    // Manual load_plugin_textdomain() call is no longer needed for wp.org hosted plugins
+    // Load bundled translations as a fallback for locales not yet served
+    // by WordPress.org's automatic language packs (translate.wordpress.org).
+    load_plugin_textdomain('smart-seo-booster', false, dirname(plugin_basename(__FILE__)) . '/languages');
 
     // Initialize plugin modules
     Smart_SEO_Loader::init();

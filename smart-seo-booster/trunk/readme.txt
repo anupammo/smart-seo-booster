@@ -4,7 +4,7 @@ Tags: seo, schema, xml sitemap, breadcrumbs, audit
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 7.0.2
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,11 +59,18 @@ No. It uses minimal hooks and outputs schema only in the footer.
 
 == Screenshots ==
 
-1. Admin settings panel
-2. SEO audit report table
-3. Schema markup preview
+1. Site-wide SEO Audit dashboard — average-score gauge, distribution chart and opportunities.
+2. Per-post SEO meta box with live Google and social previews.
+3. Native block-editor (Gutenberg) SEO sidebar.
+4. Tabbed settings — titles &amp; metas, webmaster verification, analytics and AI/GEO.
+5. Setup wizard for guided onboarding.
 
 == Changelog ==
+
+= 2.1.1 =
+* New: WordPress Playground preview blueprint, enabling the "Live Preview" button on the plugin page.
+* Improvement: Refreshed listing icon and banner.
+* Improvement: Updated screenshots and captions.
 
 = 2.1.0 =
 Complete SEO toolkit release.
@@ -108,6 +115,9 @@ Editor & experience
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.1.1 =
+Adds a Live Preview (WordPress Playground) blueprint and refreshed listing visuals. No functional changes.
 
 = 2.1.0 =
 Complete SEO toolkit: audit dashboard, XML sitemaps, breadcrumbs, schema, analytics, GEO/AI SEO, blocks, and more. After activating, visit Settings → Permalinks once if /sitemap.xml or /llms.txt does not load.

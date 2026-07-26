@@ -5,6 +5,14 @@ All notable changes to Smart SEO Booster will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] - 2026-07-24
+
+### Added
+- WordPress Playground preview blueprint (`assets/blueprints/blueprint.json`), enabling the "Live Preview" button on the wp.org listing.
+
+### Changed
+- Refreshed listing icon and banner; updated screenshots and captions. No functional code changes.
+
 ## [2.1.0] - 2026-07-19
 
 Complete SEO toolkit release. All capabilities below ship together in 2.1.0.

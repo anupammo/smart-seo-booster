@@ -1,0 +1,45 @@
+{
+    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+    "meta": {
+        "title": "Smart SEO Booster — Live Preview",
+        "description": "Explore the SEO audit dashboard, per-post meta box, XML sitemap, breadcrumbs, schema and blocks — pre-configured with sample content.",
+        "author": "anupam-mondal",
+        "categories": ["SEO"]
+    },
+    "landingPage": "/wp-admin/admin.php?page=smart-seo-audit",
+    "preferredVersions": {
+        "php": "8.2",
+        "wp": "latest"
+    },
+    "phpExtensionBundles": ["kitchen-sink"],
+    "steps": [
+        {
+            "step": "login",
+            "username": "admin",
+            "password": "password"
+        },
+        {
+            "step": "setSiteOptions",
+            "options": {
+                "blogname": "Smart SEO Booster Demo",
+                "blogdescription": "A lightweight, complete SEO toolkit",
+                "smart_seo_options": {
+                    "enable_schema": 1,
+                    "enable_sitemap": 1,
+                    "enable_breadcrumbs": 1,
+                    "separator": "-",
+                    "title_template": "%%title%% %%sep%% %%sitename%%",
+                    "description_template": "%%excerpt%%",
+                    "auto_image_alt": 1,
+                    "min_word_count": 300,
+                    "breadcrumb_separator": "/",
+                    "breadcrumb_home_label": "Home"
+                }
+            }
+        },
+        {
+            "step": "runPHP",
+            "code": "<?php require_once '/wordpress/wp-load.php'; $good='<h2>Introduction</h2><p>'.str_repeat('Search engine optimization improves visibility and organic traffic over time. ',60).'</p><h2>Best Practices</h2><p>'.str_repeat('Use descriptive titles, meta descriptions and structured data for better rankings. ',40).'</p>'; wp_insert_post(array('post_title'=>'Complete Guide to On-Page SEO','post_status'=>'publish','post_excerpt'=>'A thorough, well-structured guide to on-page SEO covering titles, meta descriptions, schema and internal linking for better search rankings.','post_content'=>$good)); wp_insert_post(array('post_title'=>'Quick SEO Tips','post_status'=>'publish','post_content'=>'<h2>Tips</h2><p>'.str_repeat('Add alt text and relevant internal links to your posts. ',15).'</p>')); wp_insert_post(array('post_title'=>'Short Draft Note','post_status'=>'publish','post_content'=>'<p>This is intentionally thin content to demonstrate the audit.</p>')); flush_rewrite_rules(); delete_transient('smart_seo_audit_data');"
+        }
+    ]
+}

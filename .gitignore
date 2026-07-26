@@ -7,3 +7,8 @@
 .DS_Store
 Thumbs.db
 *.swp
+
+# SVN working-copy metadata, local tooling, and release-tag snapshots
+.svn/
+.claude/
+/smart-seo-booster/tags/

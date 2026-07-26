@@ -3,7 +3,7 @@
  * Plugin Name: Smart SEO Booster
  * Plugin URI: https://anupammondal.in/wordpress-plugin/smart-seo-booster
  * Description: Lightweight, complete SEO — meta tags, schema, XML sitemaps, breadcrumbs, social previews & content scoring. Fast, automated, no bloat.
- * Version: 2.1.0
+ * Version: 2.1.1
  * Author: Anupam Mondal
  * Author URI: https://anupammondal.in
  * License: GPLv2 or later
@@ -19,7 +19,7 @@ defined('ABSPATH') || exit;
 
 // Define plugin version constant for cache busting in enqueued assets.
 if (!defined('SMART_SEO_BOOSTER_VERSION')) {
-    define('SMART_SEO_BOOSTER_VERSION', '2.1.0');
+    define('SMART_SEO_BOOSTER_VERSION', '2.1.1');
 }
 
 // Developer credit / portfolio links.

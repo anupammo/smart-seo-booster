@@ -1,12 +1,16 @@
+<p align="center">
+  <img src=".wordpress-org/banner-1544x500.png" alt="Smart SEO Booster — lightweight, complete WordPress SEO" width="100%">
+</p>
+
 # Smart SEO Booster
 
 **The lightweight, complete SEO toolkit for WordPress — fast by design, powerful by default.**
 
 Smart SEO Booster gives you every SEO fundamental that actually moves rankings — meta tags, Open Graph & Twitter Cards, JSON-LD schema, XML sitemaps, breadcrumbs, and real-time content scoring — in one clean, modular plugin with **no bloat, no upsell walls, and no complex add-ons**.
 
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/anupammo/smart-seo-booster)
+[![Version](https://img.shields.io/badge/version-2.1.1-blue.svg)](https://github.com/anupammo/smart-seo-booster)
 [![WordPress](https://img.shields.io/badge/WordPress-5.9%E2%80%937.0.2-21759b.svg)](https://wordpress.org/)
-[![PHP](https://img.shields.io/badge/PHP-8.0%2B-777bb4.svg)](https://www.php.net/)
+[![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-GPLv2%2B-green.svg)](LICENSE)
 
 > 🎯 **Mission:** Deliver 90% of what Rank Math and Yoast do, at 10% of the weight — the SEO plugin you set up in 5 minutes and forget.
@@ -126,7 +130,7 @@ cp -r smart-seo-booster /path/to/wp-content/plugins/
 wp plugin activate smart-seo-booster
 ```
 
-**Requirements:** WordPress 5.9+ · PHP 8.0+ · Tested up to WordPress 7.0.2
+**Requirements:** WordPress 5.9+ · PHP 7.4+ · Tested up to WordPress 7.0.2
 
 ---
 
@@ -219,7 +223,7 @@ Run before **every** WordPress.org submission or update.
 - [ ] `Plugin Check` plugin: **0 errors, 0 warnings**
 - [ ] PHPCS with `WordPress-Extra` ruleset passes
 - [ ] No PHP notices/warnings with `WP_DEBUG` on
-- [ ] Tested on PHP 8.0, 8.1, 8.2, 8.3
+- [ ] Tested on PHP 7.4, 8.0, 8.1, 8.2, 8.3
 - [ ] Tested on WordPress 5.9 (min) and latest (7.0.2)
 
 ### Security

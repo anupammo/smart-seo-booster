@@ -528,11 +528,7 @@ class Smart_SEO_Score_Display {
                 'status' => $heading_count >= 2 ? 'seo-good' : ($heading_count >= 1 ? 'seo-warning' : 'seo-error'),
                 'icon' => $heading_count >= 2 ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>' : ($heading_count >= 1 ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>' : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>')
             ],
-            'readability' => [
-                'value' => self::smart_seo_calculate_readability_score($content),
-                'status' => 'seo-good', // Simplified for now
-                'icon' => '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>'
-            ],
+            'readability' => self::smart_seo_readability_field($content),
             'title' => [
                 'value' => $title_length,
                 'status' => ($title_length >= 30 && $title_length <= 60) ? 'seo-good' : (($title_length >= 20 && $title_length <= 80) ? 'seo-warning' : 'seo-error'),
@@ -606,37 +602,110 @@ class Smart_SEO_Score_Display {
         if ($external_links === 0) {
             $recommendations[] = 'Consider adding 1-2 relevant external links';
         }
-        
+
+        if ( isset( $analysis['readability']['score'] ) && $analysis['readability']['score'] < 60 ) {
+            $recommendations[] = 'Simplify your writing (shorter sentences, simpler words) to improve readability';
+        }
+
         $analysis['recommendations'] = $recommendations;
         
         return $analysis;
     }
 
     /**
-     * Calculate basic readability score
-     * 
-     * @param string $content The content to analyze
-     * @return string Readability level
+     * Flesch Reading Ease score (standard 0–100 scale; higher = easier),
+     * the same metric Yoast/RankMath surface as "readability". Built from
+     * an approximate English syllable count since PHP has no dictionary
+     * lookup available here — accurate enough to bucket content, not meant
+     * to be exact for every word.
+     *
+     * @param string $content Raw post content (HTML allowed; stripped here).
+     * @return array{score:?int,label:string}
      */
-    public static function smart_seo_calculate_readability_score($content) {
+    public static function smart_seo_flesch_reading_ease( $content ) {
         $text = wp_strip_all_tags( $content );
-        $sentences = preg_split('/[.!?]+/', $text, -1, PREG_SPLIT_NO_EMPTY);
-        $words = str_word_count($text);
-        $sentence_count = count($sentences);
-        
-        if ($sentence_count === 0) return 'No content';
-        
-        $avg_words_per_sentence = $words / $sentence_count;
-        
-        if ($avg_words_per_sentence <= 15) {
-            return 'Easy';
-        } elseif ($avg_words_per_sentence <= 20) {
-            return 'Medium';
-        } else {
-            return 'Difficult';
+
+        $words = preg_split( '/\s+/', trim( $text ), -1, PREG_SPLIT_NO_EMPTY );
+        $word_count = count( $words );
+
+        $sentences = preg_split( '/[.!?]+(?:\s|$)/', $text, -1, PREG_SPLIT_NO_EMPTY );
+        $sentence_count = count( $sentences );
+
+        if ( 0 === $word_count || 0 === $sentence_count ) {
+            return [ 'score' => null, 'label' => __( 'No content', 'smart-seo-booster' ) ];
         }
+
+        $syllable_count = 0;
+        foreach ( $words as $word ) {
+            $syllable_count += self::smart_seo_count_syllables( $word );
+        }
+
+        $score = 206.835 - 1.015 * ( $word_count / $sentence_count ) - 84.6 * ( $syllable_count / $word_count );
+        $score = (int) round( max( 0, min( 100, $score ) ) );
+
+        if ( $score >= 80 ) {
+            $label = __( 'Easy to read', 'smart-seo-booster' );
+        } elseif ( $score >= 60 ) {
+            $label = __( 'Standard', 'smart-seo-booster' );
+        } elseif ( $score >= 30 ) {
+            $label = __( 'Fairly difficult', 'smart-seo-booster' );
+        } else {
+            $label = __( 'Difficult', 'smart-seo-booster' );
+        }
+
+        return [ 'score' => $score, 'label' => $label ];
     }
-    
+
+    /**
+     * Rough English syllable estimate (vowel-group heuristic with common
+     * silent-e/-es/-ed trimming) — the standard approximation used by most
+     * Flesch-score implementations that don't ship a pronunciation dictionary.
+     */
+    private static function smart_seo_count_syllables( $word ) {
+        $word = strtolower( preg_replace( '/[^a-zA-Z]/', '', $word ) );
+        if ( '' === $word ) {
+            return 0;
+        }
+        if ( strlen( $word ) <= 3 ) {
+            return 1;
+        }
+        $word = preg_replace( '/(?:[^laeiouy]es|ed|[^laeiouy]e)$/', '', $word );
+        $word = preg_replace( '/^y/', '', $word );
+        preg_match_all( '/[aeiouy]{1,2}/', $word, $m );
+        return max( 1, count( $m[0] ) );
+    }
+
+    /**
+     * Build the 'readability' row for the analysis table from a Flesch score.
+     */
+    private static function smart_seo_readability_field( $content ) {
+        $result = self::smart_seo_flesch_reading_ease( $content );
+        $score  = $result['score'];
+
+        if ( null === $score ) {
+            return [
+                'value'  => $result['label'],
+                'status' => 'seo-warning',
+                'icon'   => '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>',
+            ];
+        }
+
+        $status = $score >= 60 ? 'seo-good' : ( $score >= 30 ? 'seo-warning' : 'seo-error' );
+        $icon   = $score >= 60
+            ? '<span class="dashicons dashicons-yes-alt" style="color:#059669" aria-hidden="true"></span>'
+            : ( $score >= 30
+                ? '<span class="dashicons dashicons-warning" style="color:#d97706" aria-hidden="true"></span>'
+                : '<span class="dashicons dashicons-dismiss" style="color:#dc2626" aria-hidden="true"></span>' );
+
+        return [
+            /* translators: 1: Flesch reading-ease score (0-100), 2: difficulty label */
+            'value'  => sprintf( __( '%1$d/100 (%2$s)', 'smart-seo-booster' ), $score, $result['label'] ),
+            'status' => $status,
+            'icon'   => $icon,
+            'score'  => $score,
+        ];
+    }
+
     public static function smart_seo_add_seo_score_column($columns) {
         $columns['seo_score'] = '<span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> SEO Score';
         return $columns;

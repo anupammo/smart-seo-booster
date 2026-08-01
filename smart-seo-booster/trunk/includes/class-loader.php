@@ -4,6 +4,7 @@ defined('ABSPATH') || exit;
 class Smart_SEO_Loader {
     public static function init() {
         require_once plugin_dir_path(__FILE__) . 'class-meta-templates.php';
+        require_once plugin_dir_path(__FILE__) . 'class-brand-icons.php';
         require_once plugin_dir_path(__FILE__) . 'class-settings.php';
         require_once plugin_dir_path(__FILE__) . 'class-admin-ui.php';
         require_once plugin_dir_path(__FILE__) . 'class-seo-core.php';
@@ -25,8 +26,10 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-analytics.php';
         require_once plugin_dir_path(__FILE__) . 'class-geo.php';
         require_once plugin_dir_path(__FILE__) . 'class-image-seo.php';
+        require_once plugin_dir_path(__FILE__) . 'class-toc.php';
         require_once plugin_dir_path(__FILE__) . 'class-blocks.php';
         require_once plugin_dir_path(__FILE__) . 'class-credits.php';
+        require_once plugin_dir_path(__FILE__) . 'class-pagespeed.php';
 
         Smart_SEO_Settings::init();
         Smart_SEO_Admin_UI::init();
@@ -48,7 +51,9 @@ class Smart_SEO_Loader {
         Smart_SEO_Analytics::init();
         Smart_SEO_GEO::init();
         Smart_SEO_Image_SEO::init();
+        Smart_SEO_TOC::init();
         Smart_SEO_Blocks::init();
         Smart_SEO_Credits::init();
+        Smart_SEO_PageSpeed::init();
     }
 }

@@ -118,6 +118,62 @@
 	color: #1e4620;
 }
 
+/* ---------- Outline brand mark (decorative, celebratory screens) ---------- */
+.ssb-line-icon {
+	display: block;
+	opacity: 0.9;
+}
+
+.smart-seo-done {
+	text-align: center;
+}
+
+.smart-seo-done .ssb-line-icon {
+	margin: 4px auto 12px;
+}
+
+.ssb-tutorial-hero {
+	float: inline-end;
+	margin-inline-start: 16px;
+}
+
+/* The line-icon PNG is a dark-gray outline on a transparent background —
+   readable on light cards, but low-contrast on dark ones, so invert it
+   whenever the shared dark palette is active. */
+@media (prefers-color-scheme: dark) {
+	.ssb-adapt .ssb-line-icon {
+		filter: invert(1) brightness(1.7);
+	}
+}
+
+/* ---------- Brand marks next to third-party integration fields ---------- */
+.ssb-brand-ico {
+	display: inline-flex;
+	vertical-align: middle;
+	margin-inline-end: 6px;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.ssb-brand-ico svg {
+	inline-size: 100%;
+	block-size: 100%;
+}
+
+.smart-seo-pro-badge {
+	display: inline-block;
+	margin-inline-start: 4px;
+	padding: 1px 7px;
+	border-radius: 10px;
+	background: linear-gradient(135deg, #f59e0b, #d97706);
+	color: #fff;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	vertical-align: middle;
+}
+
 /* Comfortable spacing on small screens. */
 @media screen and (max-width: 782px) {
 	.smart-seo-settings .form-table th {

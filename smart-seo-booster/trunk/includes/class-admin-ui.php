@@ -14,7 +14,7 @@ class Smart_SEO_Admin_UI {
             'manage_options',
             'smart-seo',
             [__CLASS__, 'render_settings_page'],
-            defined( 'SMART_SEO_BOOSTER_MENU_ICON' ) ? SMART_SEO_BOOSTER_MENU_ICON : 'dashicons-chart-line',
+            SMART_SEO_BOOSTER_MENU_ICON,
             80
         );
 
@@ -34,6 +34,15 @@ class Smart_SEO_Admin_UI {
             'manage_options',
             'smart-seo-audit',
             [__CLASS__, 'render_audit_report']
+        );
+
+        add_submenu_page(
+            'smart-seo',
+            __( 'Page Speed', 'smart-seo-booster' ),
+            __( 'Page Speed', 'smart-seo-booster' ),
+            'manage_options',
+            'smart-seo-pagespeed',
+            [__CLASS__, 'render_pagespeed']
         );
 
         add_submenu_page(
@@ -146,6 +155,13 @@ class Smart_SEO_Admin_UI {
         include plugin_dir_path(__FILE__) . '../templates/audit-report.php';
     }
 
+    public static function render_pagespeed() {
+        if (!current_user_can('manage_options')) {
+            wp_die( esc_html__('You do not have sufficient permissions to access this page.', 'smart-seo-booster') );
+        }
+        include plugin_dir_path(__FILE__) . '../templates/pagespeed-report.php';
+    }
+
     public static function render_setup_wizard() {
         if (!current_user_can('manage_options')) {
             wp_die( esc_html__('You do not have sufficient permissions to access this page.', 'smart-seo-booster') );
@@ -195,6 +211,25 @@ class Smart_SEO_Admin_UI {
                 $ver,
                 true
             );
+        }
+
+        if ($hook === 'smart-seo_page_smart-seo-pagespeed') {
+            wp_enqueue_script(
+                'smart-seo-pagespeed',
+                plugin_dir_url(__FILE__) . '../js/pagespeed.js',
+                [],
+                $ver,
+                true
+            );
+            wp_localize_script('smart-seo-pagespeed', 'smartSeoPageSpeed', [
+                'ajaxUrl'  => admin_url('admin-ajax.php'),
+                'nonce'    => wp_create_nonce('smart_seo_nonce'),
+                'homeUrl'  => home_url('/'),
+                'strings'  => [
+                    'checking' => __('Running Lighthouse audit… this can take 20–30 seconds.', 'smart-seo-booster'),
+                    'error'    => __('Something went wrong. Please try again.', 'smart-seo-booster'),
+                ],
+            ]);
         }
     }
 }

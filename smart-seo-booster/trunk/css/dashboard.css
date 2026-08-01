@@ -93,11 +93,19 @@
 .ssb-opps li.notice  .dashicons { color: var(--ssb-primary); }
 
 /* ---------- Score pill + table ---------- */
-.ssb-pill { display: inline-block; min-inline-size: 42px; text-align: center; padding: 2px 8px; border-radius: 999px; font-weight: 700; font-size: 12px; color: #fff; }
+.ssb-pill { display: inline-block; min-inline-size: 42px; text-align: center; padding: 2px 8px; border-radius: 999px; font-weight: 700; font-size: 12px; color: #fff; background: var(--ssb-muted); }
 .ssb-pill.excellent { background: var(--ssb-good); }
 .ssb-pill.good { background: #22c55e; }
 .ssb-pill.needs { background: var(--ssb-warn); }
 .ssb-pill.poor { background: var(--ssb-bad); }
+
+/* ---------- Page Speed report ---------- */
+.ssb-pagespeed-form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-block-start: 10px; }
+.ssb-pagespeed-form input[type="url"] { flex: 1 1 320px; }
+.ssb-pagespeed-status { margin-block-start: 10px; font-style: italic; color: var(--ssb-muted); }
+.ssb-ps-score-card { text-align: center; }
+.ssb-ps-score-card h2 { margin-block-end: 4px; }
+.ssb-ps-gauge-wrap { display: flex; justify-content: center; }
 
 .ssb-app table.ssb-table { border-collapse: collapse; inline-size: 100%; background: var(--ssb-card); border-radius: var(--ssb-radius); overflow: hidden; box-shadow: var(--ssb-shadow); }
 .ssb-app .ssb-table th, .ssb-app .ssb-table td { text-align: start; padding: 12px 16px; border-block-end: 1px solid var(--ssb-line); font-size: 13px; }

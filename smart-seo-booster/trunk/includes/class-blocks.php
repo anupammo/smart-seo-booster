@@ -9,11 +9,20 @@ defined('ABSPATH') || exit;
  */
 class Smart_SEO_Blocks {
 
+    /**
+     * FAQ/HowTo JSON-LD collected while blocks render mid-content, flushed
+     * together in wp_footer (consistent with how Smart_SEO_Schema_Generator
+     * outputs the page's main schema, and safer than echoing <script> tags
+     * from inside render_callback while content is still being assembled).
+     */
+    private static $schema_queue = [];
+
     public static function init() {
         add_action('init', [__CLASS__, 'register']);
         add_action('init', [__CLASS__, 'register_patterns'], 20);
         add_action('wp_enqueue_scripts', [__CLASS__, 'front_styles']);
         add_filter('block_categories_all', [__CLASS__, 'block_category']);
+        add_action('wp_footer', [__CLASS__, 'output_block_schema']);
     }
 
     /**
@@ -85,12 +94,45 @@ class Smart_SEO_Blocks {
                 'showModified'  => [ 'type' => 'boolean', 'default' => true ],
             ],
         ]);
+
+        register_block_type('smart-seo/faq', [
+            'editor_script'   => 'smart-seo-blocks',
+            'style'           => 'smart-seo-blocks',
+            'render_callback' => [__CLASS__, 'render_faq'],
+            'attributes'      => [
+                'title' => [ 'type' => 'string', 'default' => __( 'Frequently Asked Questions', 'smart-seo-booster' ) ],
+                'items' => [ 'type' => 'array', 'default' => [ [ 'question' => '', 'answer' => '' ] ] ],
+            ],
+        ]);
+
+        register_block_type('smart-seo/howto', [
+            'editor_script'   => 'smart-seo-blocks',
+            'style'           => 'smart-seo-blocks',
+            'render_callback' => [__CLASS__, 'render_howto'],
+            'attributes'      => [
+                'title'       => [ 'type' => 'string', 'default' => '' ],
+                'description' => [ 'type' => 'string', 'default' => '' ],
+                'totalTime'   => [ 'type' => 'string', 'default' => '' ],
+                'steps'       => [ 'type' => 'array', 'default' => [ [ 'name' => '', 'text' => '' ] ] ],
+            ],
+        ]);
+
+        register_block_type('smart-seo/toc', [
+            'editor_script'   => 'smart-seo-blocks',
+            'style'           => 'smart-seo-blocks',
+            'render_callback' => [ 'Smart_SEO_TOC', 'render' ],
+            'attributes'      => [
+                'title'    => [ 'type' => 'string', 'default' => __( 'Table of Contents', 'smart-seo-booster' ) ],
+                'minLevel' => [ 'type' => 'number', 'default' => 2 ],
+                'maxLevel' => [ 'type' => 'number', 'default' => 3 ],
+            ],
+        ]);
     }
 
     public static function front_styles() {
         // Registered above; enqueue when a block is present (WP auto-enqueues
         // block styles, but this guarantees availability for older cores).
-        if ( function_exists('has_block') && ( has_block('smart-seo/social-share') || has_block('smart-seo/cta') || has_block('smart-seo/breadcrumb') || has_block('smart-seo/post-dates') || has_block('smart-seo/local-business') ) ) {
+        if ( function_exists('has_block') && ( has_block('smart-seo/social-share') || has_block('smart-seo/cta') || has_block('smart-seo/breadcrumb') || has_block('smart-seo/post-dates') || has_block('smart-seo/local-business') || has_block('smart-seo/faq') || has_block('smart-seo/howto') || has_block('smart-seo/toc') ) ) {
             wp_enqueue_style('smart-seo-blocks');
         }
     }
@@ -209,6 +251,148 @@ class Smart_SEO_Blocks {
                 . esc_html( sprintf( /* translators: %s: date */ __( 'Updated %s', 'smart-seo-booster' ), get_the_modified_date( '', $post ) ) ) . '</time></span>';
         }
         $out .= '</div>';
+        return $out;
+    }
+
+    /**
+     * Render an FAQ accordion (native <details>/<summary>, no JS required)
+     * and queue FAQPage schema — the same feature Yoast/RankMath ship as a
+     * premium/core block, since "how do FAQ rich results happen" is one of
+     * the most common asks from users of every SEO plugin.
+     */
+    public static function render_faq( $attributes ) {
+        $title = isset( $attributes['title'] ) ? wp_strip_all_tags( $attributes['title'] ) : '';
+        $items = self::clean_qa_items( $attributes['items'] ?? [] );
+        if ( empty( $items ) ) {
+            return '';
+        }
+
+        $out = '<div class="ssb-faq">';
+        if ( $title ) {
+            $out .= '<h2 class="ssb-faq-title">' . esc_html( $title ) . '</h2>';
+        }
+        foreach ( $items as $item ) {
+            $out .= '<details class="ssb-faq-item"><summary>' . esc_html( $item['question'] ) . '</summary><div class="ssb-faq-answer">' . wp_kses_post( $item['answer'] ) . '</div></details>';
+        }
+        $out .= '</div>';
+
+        $options = get_option( 'smart_seo_options', [] );
+        if ( ! empty( $options['enable_schema'] ) ) {
+            self::$schema_queue[] = [
+                '@context'   => 'https://schema.org',
+                '@type'      => 'FAQPage',
+                'mainEntity' => array_map( static function ( $item ) {
+                    return [
+                        '@type'          => 'Question',
+                        'name'           => $item['question'],
+                        'acceptedAnswer' => [
+                            '@type' => 'Answer',
+                            'text'  => wp_strip_all_tags( $item['answer'] ),
+                        ],
+                    ];
+                }, $items ),
+            ];
+        }
+
+        return $out;
+    }
+
+    /**
+     * Render a numbered HowTo guide and queue HowTo schema.
+     */
+    public static function render_howto( $attributes ) {
+        $title       = isset( $attributes['title'] ) ? wp_strip_all_tags( $attributes['title'] ) : '';
+        $description = isset( $attributes['description'] ) ? wp_kses_post( $attributes['description'] ) : '';
+        $total_time  = isset( $attributes['totalTime'] ) ? trim( $attributes['totalTime'] ) : '';
+        $steps       = self::clean_steps( $attributes['steps'] ?? [] );
+        if ( empty( $steps ) ) {
+            return '';
+        }
+
+        $out = '<div class="ssb-howto">';
+        if ( $title ) {
+            $out .= '<h2 class="ssb-howto-title">' . esc_html( $title ) . '</h2>';
+        }
+        if ( $description ) {
+            $out .= '<div class="ssb-howto-desc">' . $description . '</div>';
+        }
+        $out .= '<ol class="ssb-howto-steps">';
+        foreach ( $steps as $step ) {
+            $out .= '<li><span class="ssb-howto-step-name">' . esc_html( $step['name'] ) . '</span>';
+            if ( '' !== $step['text'] ) {
+                $out .= '<div class="ssb-howto-step-text">' . wp_kses_post( $step['text'] ) . '</div>';
+            }
+            $out .= '</li>';
+        }
+        $out .= '</ol></div>';
+
+        $options = get_option( 'smart_seo_options', [] );
+        if ( ! empty( $options['enable_schema'] ) ) {
+            $schema = [
+                '@context' => 'https://schema.org',
+                '@type'    => 'HowTo',
+                'name'     => $title ?: __( 'How to', 'smart-seo-booster' ),
+                'step'     => array_map( static function ( $step ) {
+                    return [
+                        '@type' => 'HowToStep',
+                        'name'  => $step['name'],
+                        'text'  => wp_strip_all_tags( $step['text'] ),
+                    ];
+                }, $steps ),
+            ];
+            if ( $description ) {
+                $schema['description'] = wp_strip_all_tags( $description );
+            }
+            // Only pass through a totalTime that actually looks like an ISO
+            // 8601 duration (e.g. PT30M) — schema.org requires that format,
+            // and a free-text value would just be silently invalid.
+            if ( $total_time && preg_match( '/^P(?:\d+Y)?(?:\d+M)?(?:\d+D)?(?:T(?:\d+H)?(?:\d+M)?(?:\d+S)?)?$/', $total_time ) ) {
+                $schema['totalTime'] = $total_time;
+            }
+            self::$schema_queue[] = $schema;
+        }
+
+        return $out;
+    }
+
+    /**
+     * Print any FAQ/HowTo schema queued by blocks rendered earlier in the
+     * page, once, in the footer.
+     */
+    public static function output_block_schema() {
+        foreach ( self::$schema_queue as $schema ) {
+            echo "<script type='application/ld+json'>" . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
+        }
+        self::$schema_queue = [];
+    }
+
+    private static function clean_qa_items( $items ) {
+        if ( ! is_array( $items ) ) {
+            return [];
+        }
+        $out = [];
+        foreach ( $items as $item ) {
+            $q = isset( $item['question'] ) ? wp_strip_all_tags( $item['question'] ) : '';
+            $a = isset( $item['answer'] ) ? wp_kses_post( $item['answer'] ) : '';
+            if ( '' !== $q && '' !== $a ) {
+                $out[] = [ 'question' => $q, 'answer' => $a ];
+            }
+        }
+        return $out;
+    }
+
+    private static function clean_steps( $steps ) {
+        if ( ! is_array( $steps ) ) {
+            return [];
+        }
+        $out = [];
+        foreach ( $steps as $step ) {
+            $name = isset( $step['name'] ) ? wp_strip_all_tags( $step['name'] ) : '';
+            $text = isset( $step['text'] ) ? wp_kses_post( $step['text'] ) : '';
+            if ( '' !== $name ) {
+                $out[] = [ 'name' => $name, 'text' => $text ];
+            }
+        }
         return $out;
     }
 

@@ -219,4 +219,162 @@
 		},
 		save: function () { return null; },
 	} );
+
+	/* ---------------- FAQ ---------------- */
+	registerBlockType( 'smart-seo/faq', {
+		apiVersion: 2,
+		title: __( 'FAQ (Smart SEO)', 'smart-seo-booster' ),
+		description: __( 'A frequently-asked-questions accordion that also outputs FAQPage schema for rich results.', 'smart-seo-booster' ),
+		icon: brandIcon( 'editor-help' ),
+		category: 'smart-seo',
+		supports: { html: false },
+		attributes: {
+			title: { type: 'string', default: __( 'Frequently Asked Questions', 'smart-seo-booster' ) },
+			items: { type: 'array', default: [ { question: '', answer: '' } ] },
+		},
+		edit: function ( props ) {
+			var a = props.attributes;
+			var items = a.items && a.items.length ? a.items : [ { question: '', answer: '' } ];
+
+			var setItem = function ( index, key ) {
+				return function ( value ) {
+					var next = items.slice();
+					next[ index ] = Object.assign( {}, next[ index ], ( function () { var o = {}; o[ key ] = value; return o; } )() );
+					props.setAttributes( { items: next } );
+				};
+			};
+			var addItem = function () {
+				props.setAttributes( { items: items.concat( [ { question: '', answer: '' } ] ) } );
+			};
+			var removeItem = function ( index ) {
+				return function () {
+					var next = items.slice();
+					next.splice( index, 1 );
+					props.setAttributes( { items: next.length ? next : [ { question: '', answer: '' } ] } );
+				};
+			};
+
+			return el( Fragment, {},
+				el( InspectorControls, {},
+					el( c.PanelBody, { title: __( 'Heading', 'smart-seo-booster' ), initialOpen: true },
+						el( c.TextControl, { label: __( 'Title', 'smart-seo-booster' ), value: a.title, onChange: function ( v ) { props.setAttributes( { title: v } ); } } )
+					)
+				),
+				el( 'div', useBlockProps( { className: 'ssb-faq-editor' } ),
+					el( 'p', { className: 'ssb-block-editor-label' }, a.title || __( 'FAQ', 'smart-seo-booster' ) ),
+					items.map( function ( item, index ) {
+						return el( 'div', { key: index, className: 'ssb-repeater-row' },
+							el( c.TextControl, { label: __( 'Question', 'smart-seo-booster' ), value: item.question, onChange: setItem( index, 'question' ) } ),
+							el( c.TextareaControl, { label: __( 'Answer', 'smart-seo-booster' ), value: item.answer, onChange: setItem( index, 'answer' ) } ),
+							el( c.Button, { isDestructive: true, isSmall: true, variant: 'link', onClick: removeItem( index ) }, __( 'Remove question', 'smart-seo-booster' ) )
+						);
+					} ),
+					el( c.Button, { variant: 'secondary', onClick: addItem }, __( 'Add question', 'smart-seo-booster' ) )
+				)
+			);
+		},
+		save: function () { return null; },
+	} );
+
+	/* ---------------- HowTo ---------------- */
+	registerBlockType( 'smart-seo/howto', {
+		apiVersion: 2,
+		title: __( 'How-To Guide (Smart SEO)', 'smart-seo-booster' ),
+		description: __( 'A numbered step-by-step guide that also outputs HowTo schema for rich results.', 'smart-seo-booster' ),
+		icon: brandIcon( 'list-view' ),
+		category: 'smart-seo',
+		supports: { html: false },
+		attributes: {
+			title: { type: 'string', default: '' },
+			description: { type: 'string', default: '' },
+			totalTime: { type: 'string', default: '' },
+			steps: { type: 'array', default: [ { name: '', text: '' } ] },
+		},
+		edit: function ( props ) {
+			var a = props.attributes;
+			var steps = a.steps && a.steps.length ? a.steps : [ { name: '', text: '' } ];
+			var set = function ( k ) { return function ( v ) { var o = {}; o[ k ] = v; props.setAttributes( o ); }; };
+
+			var setStep = function ( index, key ) {
+				return function ( value ) {
+					var next = steps.slice();
+					next[ index ] = Object.assign( {}, next[ index ], ( function () { var o = {}; o[ key ] = value; return o; } )() );
+					props.setAttributes( { steps: next } );
+				};
+			};
+			var addStep = function () {
+				props.setAttributes( { steps: steps.concat( [ { name: '', text: '' } ] ) } );
+			};
+			var removeStep = function ( index ) {
+				return function () {
+					var next = steps.slice();
+					next.splice( index, 1 );
+					props.setAttributes( { steps: next.length ? next : [ { name: '', text: '' } ] } );
+				};
+			};
+
+			return el( Fragment, {},
+				el( InspectorControls, {},
+					el( c.PanelBody, { title: __( 'Guide details', 'smart-seo-booster' ), initialOpen: true },
+						el( c.TextControl, { label: __( 'Title', 'smart-seo-booster' ), value: a.title, onChange: set( 'title' ) } ),
+						el( c.TextareaControl, { label: __( 'Description', 'smart-seo-booster' ), value: a.description, onChange: set( 'description' ) } ),
+						el( c.TextControl, {
+							label: __( 'Total time (ISO 8601, optional)', 'smart-seo-booster' ),
+							help: __( 'e.g. PT30M for 30 minutes, PT1H30M for 1.5 hours.', 'smart-seo-booster' ),
+							value: a.totalTime, onChange: set( 'totalTime' ),
+						} )
+					)
+				),
+				el( 'div', useBlockProps( { className: 'ssb-howto-editor' } ),
+					el( 'p', { className: 'ssb-block-editor-label' }, a.title || __( 'How-To Guide', 'smart-seo-booster' ) ),
+					steps.map( function ( step, index ) {
+						return el( 'div', { key: index, className: 'ssb-repeater-row' },
+							el( c.TextControl, { label: __( 'Step name', 'smart-seo-booster' ), value: step.name, onChange: setStep( index, 'name' ) } ),
+							el( c.TextareaControl, { label: __( 'Step details', 'smart-seo-booster' ), value: step.text, onChange: setStep( index, 'text' ) } ),
+							el( c.Button, { isDestructive: true, isSmall: true, variant: 'link', onClick: removeStep( index ) }, __( 'Remove step', 'smart-seo-booster' ) )
+						);
+					} ),
+					el( c.Button, { variant: 'secondary', onClick: addStep }, __( 'Add step', 'smart-seo-booster' ) )
+				)
+			);
+		},
+		save: function () { return null; },
+	} );
+
+	/* ---------------- Table of Contents ---------------- */
+	registerBlockType( 'smart-seo/toc', {
+		apiVersion: 2,
+		title: __( 'Table of Contents (Smart SEO)', 'smart-seo-booster' ),
+		description: __( 'Auto-generates a jump-list from this post’s headings.', 'smart-seo-booster' ),
+		icon: brandIcon( 'editor-ol' ),
+		category: 'smart-seo',
+		supports: { html: false },
+		attributes: {
+			title: { type: 'string', default: __( 'Table of Contents', 'smart-seo-booster' ) },
+			minLevel: { type: 'number', default: 2 },
+			maxLevel: { type: 'number', default: 3 },
+		},
+		edit: function ( props ) {
+			var a = props.attributes;
+			var set = function ( k ) { return function ( v ) { var o = {}; o[ k ] = v; props.setAttributes( o ); }; };
+			var levelOptions = [ { label: 'H2', value: 2 }, { label: 'H3', value: 3 }, { label: 'H4', value: 4 } ];
+
+			return el( Fragment, {},
+				el( InspectorControls, {},
+					el( c.PanelBody, { title: __( 'Table of Contents', 'smart-seo-booster' ), initialOpen: true },
+						el( c.TextControl, { label: __( 'Title', 'smart-seo-booster' ), value: a.title, onChange: set( 'title' ) } ),
+						el( c.SelectControl, { label: __( 'From heading level', 'smart-seo-booster' ), value: a.minLevel, options: levelOptions, onChange: function ( v ) { props.setAttributes( { minLevel: parseInt( v, 10 ) } ); } } ),
+						el( c.SelectControl, { label: __( 'To heading level', 'smart-seo-booster' ), value: a.maxLevel, options: levelOptions, onChange: function ( v ) { props.setAttributes( { maxLevel: parseInt( v, 10 ) } ); } } )
+					)
+				),
+				el( 'div', useBlockProps(),
+					placeholder( {
+						label: __( 'Table of Contents', 'smart-seo-booster' ),
+						instructions: __( 'Automatically built from this post’s headings when viewed on the front end — nothing to configure here beyond the levels to include.', 'smart-seo-booster' ),
+					} )
+				)
+			);
+		},
+		save: function () { return null; },
+	} );
 } )( window.wp );

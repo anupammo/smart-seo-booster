@@ -9,7 +9,7 @@ defined('ABSPATH') || exit;
  */
 class Smart_SEO_Tutorial {
 
-    const STEPS = 6;
+    const STEPS = 7;
 
     public static function init() {
         // No hooks needed beyond the submenu registration in class-admin-ui.php,
@@ -44,6 +44,10 @@ class Smart_SEO_Tutorial {
             6 => [
                 'label' => __( 'Block Editor', 'smart-seo-booster' ),
                 'render' => [ __CLASS__, 'step_editor' ],
+            ],
+            7 => [
+                'label' => __( 'Page Speed &amp; New Blocks', 'smart-seo-booster' ),
+                'render' => [ __CLASS__, 'step_more' ],
             ],
         ];
     }
@@ -91,6 +95,7 @@ class Smart_SEO_Tutorial {
     }
 
     private static function step_welcome() {
+        echo '<img src="' . esc_url( SMART_SEO_BOOSTER_LINE_ICON_URL ) . '" width="72" height="72" alt="" class="ssb-line-icon ssb-tutorial-hero" />';
         echo '<h2>' . esc_html__( 'Welcome to Smart SEO Booster', 'smart-seo-booster' ) . '</h2>';
         echo '<p class="description">' . esc_html__( 'This short tour covers the six things worth knowing before you start. Use Next/Previous below, or jump to any step above.', 'smart-seo-booster' ) . '</p>';
         echo '<div class="ssb-grid">';
@@ -145,5 +150,20 @@ class Smart_SEO_Tutorial {
         echo '<h2>' . esc_html__( 'Search Appearance', 'smart-seo-booster' ) . '</h2>';
         echo '<p>' . esc_html__( 'While editing a post or page, look for the rocket icon in the block editor\'s top toolbar — it opens the full Smart SEO sidebar with a live search preview, social preview card, and advanced options. A quick-access panel with the essentials is also always visible under the Post/Page Document tab.', 'smart-seo-booster' ) . '</p>';
         echo '<p><a class="button" href="' . esc_url( admin_url( 'edit.php' ) ) . '">' . esc_html__( 'Edit Posts', 'smart-seo-booster' ) . '</a></p>';
+    }
+
+    private static function step_more() {
+        echo '<h2>' . esc_html__( 'Page Speed report', 'smart-seo-booster' ) . '</h2>';
+        echo '<p>' . esc_html__( 'Runs a Google PageSpeed Insights (Lighthouse) check on any URL on your site — performance, SEO, accessibility and best-practices scores, plus Core Web Vitals (LCP, CLS, INP) with a pass/needs-improvement/poor rating for each. Your site must be publicly reachable on the internet to be tested.', 'smart-seo-booster' ) . '</p>';
+        echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=smart-seo-pagespeed' ) ) . '">' . esc_html__( 'Run a Page Speed check', 'smart-seo-booster' ) . '</a></p>';
+
+        echo '<h2 style="margin-top:28px;">' . esc_html__( 'New blocks: FAQ, How-To &amp; Table of Contents', 'smart-seo-booster' ) . '</h2>';
+        echo '<p>' . esc_html__( 'Three more blocks live in the "Smart SEO" block category, alongside Social Share and Call to Action:', 'smart-seo-booster' ) . '</p>';
+        echo '<ul style="list-style:disc;margin-inline-start:20px;">';
+        echo '<li>' . esc_html__( 'FAQ — an accordion of questions/answers that also outputs FAQPage schema, so eligible pages can earn FAQ rich results in Google.', 'smart-seo-booster' ) . '</li>';
+        echo '<li>' . esc_html__( 'How-To Guide — numbered steps with optional total time, outputting HowTo schema.', 'smart-seo-booster' ) . '</li>';
+        echo '<li>' . esc_html__( 'Table of Contents — an auto-generated jump-list built from this post\'s own headings; nothing to fill in.', 'smart-seo-booster' ) . '</li>';
+        echo '</ul>';
+        echo '<p>' . esc_html__( 'Schema output for FAQ and How-To respects the Enable Schema Markup setting under General.', 'smart-seo-booster' ) . '</p>';
     }
 }

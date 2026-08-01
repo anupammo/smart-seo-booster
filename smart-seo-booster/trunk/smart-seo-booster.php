@@ -40,6 +40,13 @@ if (!defined('SMART_SEO_BOOSTER_ICON_URL')) {
     define('SMART_SEO_BOOSTER_ICON_URL', plugin_dir_url(__FILE__) . 'assets/icon.svg');
 }
 
+// Outline ("line icon") variant of the brand mark — used as a decorative
+// illustration on celebratory/empty-state screens (Setup Wizard completion,
+// Tutorial) where a full-color icon would be too heavy-handed.
+if (!defined('SMART_SEO_BOOSTER_LINE_ICON_URL')) {
+    define('SMART_SEO_BOOSTER_LINE_ICON_URL', plugin_dir_url(__FILE__) . 'assets/line-icon.png');
+}
+
 // Admin-menu icon, specifically: WordPress only reliably auto-sizes and
 // recolors (to match the admin color scheme) a base64-encoded monochrome SVG
 // data URI passed as add_menu_page()'s icon_url — a plain image URL can
@@ -64,9 +71,16 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-loader.php';
 
 // Initialize plugin
 add_action('plugins_loaded', function () {
-    // Load bundled translations as a fallback for locales not yet served
-    // by WordPress.org's automatic language packs (translate.wordpress.org).
-    load_plugin_textdomain('smart-seo-booster', false, dirname(plugin_basename(__FILE__)) . '/languages');
+    // WordPress.org automatically loads translations for hosted plugins once
+    // a locale is >90% complete on translate.wordpress.org, so this is
+    // intentionally NOT an unconditional load_plugin_textdomain() call (Plugin
+    // Check flags that as discouraged/redundant, and it is for locales the
+    // automatic loader already serves). This only steps in as a fallback for
+    // the locales among our 17 bundled languages that aren't being served
+    // that way yet, and backs off the moment they are.
+    if (!is_textdomain_loaded('smart-seo-booster')) {
+        load_plugin_textdomain('smart-seo-booster', false, dirname(plugin_basename(__FILE__)) . '/languages');
+    }
 
     // Initialize plugin modules
     Smart_SEO_Loader::init();

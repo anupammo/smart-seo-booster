@@ -8,12 +8,74 @@ msgstr ""
 "Language-Team: Anupam Mondal\n"
 "X-Domain: smart-seo-booster\n"
 
+#: includes/class-seo-score-display.php:702
+msgid "%1$d/100 (%2$s)"
+msgstr ""
+
 #: includes/class-content-auditor.php:68
 msgid "%1$s SEO Score: %2$d/%3$d"
 msgstr ""
 
 #: includes/class-link-analyzer.php:29
 msgid "%d found in this post."
+msgstr ""
+
+#: includes/class-audit.php:143
+msgid "%d image is missing alt text"
+msgid_plural "%d images are missing alt text"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-audit.php:151
+msgid "%d item has no meta description"
+msgid_plural "%d items have no meta description"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-audit.php:159
+msgid "%d item has thin content"
+msgid_plural "%d items have thin content"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-settings.php:132
+msgid "(bullet)"
+msgstr ""
+
+#: includes/class-settings.php:134
+msgid "(colon)"
+msgstr ""
+
+#: includes/class-settings.php:136
+msgid "(em dash)"
+msgstr ""
+
+#: includes/class-settings.php:131
+msgid "(guillemet)"
+msgstr ""
+
+#: includes/class-settings.php:128
+msgid "(hyphen)"
+msgstr ""
+
+#: includes/class-settings.php:133
+msgid "(middle dot)"
+msgstr ""
+
+#: includes/class-settings.php:129
+msgid "(pipe)"
+msgstr ""
+
+#: includes/class-settings.php:130
+msgid "(slash)"
+msgstr ""
+
+#: includes/class-settings.php:135
+msgid "(tilde)"
+msgstr ""
+
+#: includes/class-tutorial.php:104
+msgid "14 structured data types, generated automatically."
 msgstr ""
 
 #: includes/class-redirects.php:192
@@ -24,12 +86,32 @@ msgstr ""
 msgid "404 Not Found"
 msgstr ""
 
-#: includes/class-settings.php:82
+#: js/blocks.js:227
+msgid "A frequently-asked-questions accordion that also outputs FAQPage schema for rich results."
+msgstr ""
+
+#: includes/class-tutorial.php:106
+msgid "A live score for every post and page."
+msgstr ""
+
+#: includes/class-settings.php:83
 msgid "A machine-readable summary of your site for AI assistants, at /llms.txt"
 msgstr ""
 
-#: includes/class-settings.php:79
+#: js/blocks.js:283
+msgid "A numbered step-by-step guide that also outputs HowTo schema for rich results."
+msgstr ""
+
+#: includes/class-tutorial.php:145
+msgid "A site-wide dashboard with an average score gauge, distribution chart, and the content that most needs attention. Every post/page also gets a compact score box in its own edit screen, with a full breakdown available from there."
+msgstr ""
+
+#: includes/class-settings.php:80
 msgid "AI &amp; GEO"
+msgstr ""
+
+#: includes/class-pagespeed.php:29
+msgid "Access denied."
 msgstr ""
 
 #: templates/audit-report.php:72
@@ -56,39 +138,47 @@ msgstr ""
 msgid "Add more headings for better structure"
 msgstr ""
 
+#: js/blocks.js:272
+msgid "Add question"
+msgstr ""
+
 #: includes/class-redirects.php:159
 msgid "Add redirect"
 msgstr ""
 
-#: includes/class-settings.php:84
+#: includes/class-settings.php:85
 msgid "Add speakable structured data"
+msgstr ""
+
+#: js/blocks.js:337
+msgid "Add step"
 msgstr ""
 
 #: includes/class-settings.php:60
 msgid "Add tracking without touching your theme. Scripts load only when an ID is set."
 msgstr ""
 
-#: js/local-seo-block.js:34
+#: js/local-seo-block.js:46
 msgid "Address, phone and hours are pulled from Smart SEO → Settings → Schema Details."
 msgstr ""
 
-#: includes/class-settings.php:83
+#: includes/class-settings.php:84
 msgid "Adds Disallow rules for GPTBot, Google-Extended, ClaudeBot, CCBot and others to robots.txt."
 msgstr ""
 
-#: js/blocks.js:66
+#: js/blocks.js:61
 msgid "Adds social sharing buttons (X, Facebook, LinkedIn, WhatsApp, email) to this post."
 msgstr ""
 
-#: includes/class-meta-fields.php:156 js/block-editor.js:105
+#: includes/class-meta-fields.php:166 js/block-editor.js:178
 msgid "Advanced"
 msgstr ""
 
-#: js/blocks.js:59
+#: js/blocks.js:92
 msgid "Alignment"
 msgstr ""
 
-#: includes/class-meta-fields.php:157
+#: includes/class-meta-fields.php:167
 msgid "Analysis"
 msgstr ""
 
@@ -96,11 +186,15 @@ msgstr ""
 msgid "Analytics"
 msgstr ""
 
-#: includes/class-blocks.php:213
+#: js/blocks.js:268
+msgid "Answer"
+msgstr ""
+
+#: includes/class-blocks.php:410
 msgid "Article footer (dates + share)"
 msgstr ""
 
-#: includes/class-settings.php:83
+#: includes/class-settings.php:84
 msgid "Ask AI crawlers not to train on this site"
 msgstr ""
 
@@ -114,6 +208,18 @@ msgstr ""
 
 #: includes/class-settings.php:34
 msgid "Auto-add missing image alt text"
+msgstr ""
+
+#: js/blocks.js:348
+msgid "Auto-generates a jump-list from this post’s headings."
+msgstr ""
+
+#: includes/class-tutorial.php:103
+msgid "Automatic, template-driven titles and descriptions."
+msgstr ""
+
+#: js/blocks.js:373
+msgid "Automatically built from this post’s headings when viewed on the front end — nothing to configure here beyond the levels to include."
 msgstr ""
 
 #: includes/class-settings.php:29
@@ -132,11 +238,11 @@ msgstr ""
 msgid "Baidu"
 msgstr ""
 
-#: includes/class-meta-fields.php:154
+#: includes/class-meta-fields.php:164
 msgid "Basic SEO"
 msgstr ""
 
-#: includes/class-setup-wizard.php:192
+#: includes/class-setup-wizard.php:196
 msgid "Bing"
 msgstr ""
 
@@ -144,19 +250,23 @@ msgstr ""
 msgid "Bing (Webmaster Tools)"
 msgstr ""
 
+#: includes/class-tutorial.php:45
+msgid "Block Editor"
+msgstr ""
+
 #: includes/class-setup-wizard.php:156
 msgid "Blog / Publisher"
 msgstr ""
 
-#: includes/class-breadcrumbs.php:106 js/blocks.js:123
+#: includes/class-breadcrumbs.php:106 js/blocks.js:177
 msgid "Breadcrumb"
 msgstr ""
 
-#: js/blocks.js:118
+#: js/blocks.js:169
 msgid "Breadcrumb (Smart SEO)"
 msgstr ""
 
-#: includes/class-blocks.php:225
+#: includes/class-blocks.php:422
 msgid "Breadcrumb bar"
 msgstr ""
 
@@ -168,15 +278,15 @@ msgstr ""
 msgid "Breadcrumb separator"
 msgstr ""
 
-#: includes/class-setup-wizard.php:185
+#: includes/class-setup-wizard.php:189 includes/class-tutorial.php:138
 msgid "Breadcrumbs"
 msgstr ""
 
-#: includes/class-admin-ui.php:51
+#: includes/class-admin-ui.php:60
 msgid "Bulk Editor"
 msgstr ""
 
-#: includes/class-admin-ui.php:50 includes/class-bulk-editor.php:65
+#: includes/class-admin-ui.php:59 includes/class-bulk-editor.php:65
 msgid "Bulk SEO Editor"
 msgstr ""
 
@@ -184,27 +294,31 @@ msgstr ""
 msgid "Business / Organization"
 msgstr ""
 
-#: includes/class-settings.php:92
+#: includes/class-settings.php:105
 msgid "Business phone"
 msgstr ""
 
-#: js/blocks.js:96
+#: js/blocks.js:141
 msgid "Button URL"
 msgstr ""
 
-#: js/blocks.js:95
+#: js/blocks.js:140
 msgid "Button label"
 msgstr ""
 
-#: includes/class-blocks.php:219
+#: includes/class-blocks.php:416
 msgid "CTA banner"
 msgstr ""
 
-#: js/blocks.js:77
+#: js/blocks.js:152
+msgid "Call to Action"
+msgstr ""
+
+#: js/blocks.js:119
 msgid "Call to Action (Smart SEO)"
 msgstr ""
 
-#: js/block-editor.js:96
+#: js/block-editor.js:153
 msgid "Canonical URL"
 msgstr ""
 
@@ -212,23 +326,39 @@ msgstr ""
 msgid "Changes saved."
 msgstr ""
 
-#: includes/class-settings.php:94
+#: includes/class-tutorial.php:133
+msgid "Choose a specific type per post from the SEO panel's Advanced tab (Article, Product, Recipe, Event, and more), or rely on the automatic default."
+msgstr ""
+
+#: includes/class-settings.php:107
 msgid "City / locality"
 msgstr ""
 
-#: js/blocks.js:108
+#: includes/class-seo-score-display.php:854
+msgid "Close"
+msgstr ""
+
+#: includes/class-seo-score-display.php:787
+msgid "Complete SEO Analysis"
+msgstr ""
+
+#: js/blocks.js:120 js/blocks.js:153
 msgid "Configure the call to action in the sidebar."
 msgstr ""
 
-#: includes/class-bulk-editor.php:78 js/blocks.js:92 templates/audit-report.php:132
+#: includes/class-bulk-editor.php:78 js/blocks.js:137 templates/audit-report.php:132
 msgid "Content"
+msgstr ""
+
+#: includes/class-tutorial.php:41 includes/class-tutorial.php:106
+msgid "Content Audit"
 msgstr ""
 
 #: includes/class-importer.php:68 includes/class-setup-wizard.php:133
 msgid "Continue"
 msgstr ""
 
-#: includes/class-blocks.php:97 js/blocks.js:26
+#: includes/class-blocks.php:152 js/blocks.js:56
 msgid "Copy link"
 msgstr ""
 
@@ -236,7 +366,15 @@ msgstr ""
 msgid "Copy your existing SEO titles, descriptions, social tags and canonicals from another plugin. Existing Smart SEO values are never overwritten."
 msgstr ""
 
-#: includes/class-settings.php:97
+#: templates/pagespeed-report.php:37
+msgid "Core Web Vitals"
+msgstr ""
+
+#: includes/class-pagespeed.php:91
+msgid "Could not reach the PageSpeed Insights API. Note: this check requires your site to be publicly reachable on the internet — local or staging installs (e.g. localhost/XAMPP) cannot be tested this way."
+msgstr ""
+
+#: includes/class-settings.php:110
 msgid "Country code"
 msgstr ""
 
@@ -244,7 +382,7 @@ msgstr ""
 msgid "Current year"
 msgstr ""
 
-#: js/blocks.js:144
+#: js/blocks.js:207
 msgid "Dates"
 msgstr ""
 
@@ -252,19 +390,27 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: includes/class-setup-wizard.php:178
+#: js/blocks.js:320
+msgid "Description"
+msgstr ""
+
+#: includes/class-setup-wizard.php:182
 msgid "Description template"
 msgstr ""
 
-#: includes/class-credits.php:49
-msgid "Developer Portfolio"
+#: templates/pagespeed-report.php:24
+msgid "Desktop"
+msgstr ""
+
+#: includes/class-seo-score-display.php:653
+msgid "Difficult"
 msgstr ""
 
 #: includes/class-settings.php:30
 msgid "Disable the default WordPress sitemap"
 msgstr ""
 
-#: js/local-seo-block.js:20
+#: js/local-seo-block.js:33
 msgid "Displays your business address, phone and hours, with LocalBusiness schema."
 msgstr ""
 
@@ -272,15 +418,23 @@ msgstr ""
 msgid "Do not track logged-in administrators"
 msgstr ""
 
+#: includes/class-seo-score-display.php:647
+msgid "Easy to read"
+msgstr ""
+
 #: includes/class-bulk-editor.php:92
 msgid "Edit"
+msgstr ""
+
+#: includes/class-tutorial.php:152
+msgid "Edit Posts"
 msgstr ""
 
 #: includes/class-bulk-editor.php:66
 msgid "Edit SEO titles and meta descriptions across your content. Leave a field blank to use the automatic value."
 msgstr ""
 
-#: includes/class-setup-wizard.php:200
+#: includes/class-setup-wizard.php:205
 msgid "Edit a post and open the SEO panel to fine-tune titles and social previews."
 msgstr ""
 
@@ -300,8 +454,32 @@ msgstr ""
 msgid "Enable XML Sitemap"
 msgstr ""
 
+#: includes/class-seo-score-display.php:883
+msgid "Error refreshing SEO analysis. Please try again."
+msgstr ""
+
 #: templates/audit-report.php:83
 msgid "Excellent"
+msgstr ""
+
+#: js/blocks.js:264
+msgid "FAQ"
+msgstr ""
+
+#: js/blocks.js:226
+msgid "FAQ (Smart SEO)"
+msgstr ""
+
+#: includes/class-tutorial.php:163
+msgid "FAQ — an accordion of questions/answers that also outputs FAQPage schema, so eligible pages can earn FAQ rich results in Google."
+msgstr ""
+
+#: includes/class-settings.php:92
+msgid "Facebook"
+msgstr ""
+
+#: includes/class-seo-score-display.php:651
+msgid "Fairly difficult"
 msgstr ""
 
 #: includes/class-setup-wizard.php:142
@@ -324,19 +502,31 @@ msgstr ""
 msgid "First tag"
 msgstr ""
 
-#: js/block-editor.js:93
+#: js/block-editor.js:109 js/block-editor.js:150
 msgid "Focus keyword"
+msgstr ""
+
+#: includes/class-blocks.php:103 js/blocks.js:232
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: js/blocks.js:366
+msgid "From heading level"
+msgstr ""
+
+#: includes/class-seo-score-display.php:461
+msgid "Full Report"
 msgstr ""
 
 #: includes/class-settings.php:26
 msgid "General"
 msgstr ""
 
-#: includes/class-settings.php:80
+#: includes/class-settings.php:81
 msgid "Generative Engine Optimization — help (or limit) how AI assistants use your content."
 msgstr ""
 
-#: includes/class-setup-wizard.php:203
+#: includes/class-setup-wizard.php:208 includes/class-tutorial.php:86 includes/class-tutorial.php:128 js/local-seo-block.js:50
 msgid "Go to Settings"
 msgstr ""
 
@@ -344,7 +534,7 @@ msgstr ""
 msgid "Good"
 msgstr ""
 
-#: includes/class-setup-wizard.php:191
+#: includes/class-setup-wizard.php:195
 msgid "Google"
 msgstr ""
 
@@ -356,7 +546,11 @@ msgstr ""
 msgid "Google Analytics 4 ID"
 msgstr ""
 
-#: js/blocks.js:93
+#: js/blocks.js:318
+msgid "Guide details"
+msgstr ""
+
+#: js/blocks.js:138 js/blocks.js:259
 msgid "Heading"
 msgstr ""
 
@@ -368,15 +562,31 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
+#: includes/class-blocks.php:334
+msgid "How to"
+msgstr ""
+
+#: js/blocks.js:329
+msgid "How-To Guide"
+msgstr ""
+
+#: js/blocks.js:282
+msgid "How-To Guide (Smart SEO)"
+msgstr ""
+
+#: includes/class-tutorial.php:164
+msgid "How-To Guide — numbered steps with optional total time, outputting HowTo schema."
+msgstr ""
+
 #: templates/audit-report.php:106
 msgid "Images missing alt"
 msgstr ""
 
-#: includes/class-admin-ui.php:60
+#: includes/class-admin-ui.php:69
 msgid "Import"
 msgstr ""
 
-#: includes/class-admin-ui.php:59 includes/class-importer.php:80
+#: includes/class-admin-ui.php:68 includes/class-importer.php:80
 msgid "Import SEO Data"
 msgstr ""
 
@@ -392,35 +602,51 @@ msgstr ""
 msgid "Importing…"
 msgstr ""
 
-#: includes/class-settings.php:68
+#: includes/class-settings.php:35
+msgid "Included free. Displays “SEO by Smart SEO Booster” linking to the developer. Removing this link requires Smart SEO Booster Pro."
+msgstr ""
+
+#: includes/class-settings.php:69
 msgid "Indexing"
+msgstr ""
+
+#: includes/class-settings.php:95
+msgid "Instagram"
 msgstr ""
 
 #: includes/class-link-analyzer.php:29
 msgid "Internal Links:"
 msgstr ""
 
+#: includes/class-seo-score-display.php:807
+msgid "Last Modified"
+msgstr ""
+
 #: includes/class-redirects.php:193
 msgid "Last seen"
 msgstr ""
 
-#: includes/class-settings.php:99
+#: includes/class-settings.php:112
 msgid "Latitude"
 msgstr ""
 
-#: js/local-seo-block.js:30
+#: includes/class-settings.php:94
+msgid "LinkedIn"
+msgstr ""
+
+#: js/local-seo-block.js:45
 msgid "Local Business"
 msgstr ""
 
-#: js/local-seo-block.js:19
+#: js/local-seo-block.js:32
 msgid "Local Business (Smart SEO)"
 msgstr ""
 
-#: includes/class-settings.php:100
+#: includes/class-settings.php:113
 msgid "Longitude"
 msgstr ""
 
-#: includes/class-settings.php:84
+#: includes/class-settings.php:85
 msgid "Marks the title and description as voice-assistant friendly."
 msgstr ""
 
@@ -432,12 +658,16 @@ msgstr ""
 msgid "Meta Description"
 msgstr ""
 
-#: js/block-editor.js:95
+#: js/block-editor.js:111 js/block-editor.js:152
 msgid "Meta description"
 msgstr ""
 
 #: includes/class-settings.php:44
 msgid "Meta description template"
+msgstr ""
+
+#: templates/pagespeed-report.php:42
+msgid "Metric"
 msgstr ""
 
 #: includes/class-settings.php:63
@@ -448,6 +678,14 @@ msgstr ""
 msgid "Minimum word count"
 msgstr ""
 
+#: templates/pagespeed-report.php:23
+msgid "Mobile"
+msgstr ""
+
+#: js/block-editor.js:113
+msgid "More SEO options (social preview, schema, robots) are in the Smart SEO sidebar — click the rocket icon in the toolbar above."
+msgstr ""
+
 #: templates/audit-report.php:130
 msgid "Needs attention first"
 msgstr ""
@@ -456,12 +694,24 @@ msgstr ""
 msgid "Needs work"
 msgstr ""
 
-#: js/blocks.js:50
+#: js/blocks.js:83
 msgid "Networks"
+msgstr ""
+
+#: includes/class-tutorial.php:160
+msgid "New blocks: FAQ, How-To &amp; Table of Contents"
+msgstr ""
+
+#: includes/class-tutorial.php:84
+msgid "Next"
 msgstr ""
 
 #: includes/class-redirects.php:195
 msgid "No 404s logged yet."
+msgstr ""
+
+#: includes/class-seo-score-display.php:635
+msgid "No content"
 msgstr ""
 
 #: includes/class-bulk-editor.php:84
@@ -470,6 +720,10 @@ msgstr ""
 
 #: includes/class-importer.php:108
 msgid "No data found."
+msgstr ""
+
+#: js/block-editor.js:164
+msgid "No image"
 msgstr ""
 
 #: includes/class-audit.php:163
@@ -488,23 +742,23 @@ msgstr ""
 msgid "No redirects yet."
 msgstr ""
 
-#: includes/class-settings.php:72
+#: includes/class-settings.php:73
 msgid "No-index author archives"
 msgstr ""
 
-#: includes/class-settings.php:71
+#: includes/class-settings.php:72
 msgid "No-index category, tag &amp; taxonomy archives"
 msgstr ""
 
-#: includes/class-settings.php:73
+#: includes/class-settings.php:74
 msgid "No-index date archives"
 msgstr ""
 
-#: includes/class-settings.php:75
+#: includes/class-settings.php:76
 msgid "No-index paginated pages (page 2, 3…)"
 msgstr ""
 
-#: includes/class-settings.php:74
+#: includes/class-settings.php:75
 msgid "No-index search results"
 msgstr ""
 
@@ -512,23 +766,23 @@ msgstr ""
 msgid "No-indexed"
 msgstr ""
 
-#: js/block-editor.js:101
+#: js/block-editor.js:174
 msgid "OG description"
 msgstr ""
 
-#: js/block-editor.js:102
+#: js/block-editor.js:175
 msgid "OG image URL"
 msgstr ""
 
-#: js/block-editor.js:100
+#: js/block-editor.js:173
 msgid "OG title"
 msgstr ""
 
-#: includes/class-settings.php:91
-msgid "One URL per line (Facebook, X, LinkedIn, etc.)."
+#: includes/class-settings.php:104
+msgid "One URL per line, for any network not listed under Social Media Accounts."
 msgstr ""
 
-#: includes/class-settings.php:98
+#: includes/class-settings.php:111
 msgid "One rule per line, e.g. Mo-Fr 09:00-17:00"
 msgstr ""
 
@@ -536,7 +790,11 @@ msgstr ""
 msgid "Online Store"
 msgstr ""
 
-#: includes/class-settings.php:98
+#: includes/class-pagespeed.php:41
+msgid "Only URLs on this site can be checked."
+msgstr ""
+
+#: includes/class-settings.php:111
 msgid "Opening hours"
 msgstr ""
 
@@ -544,12 +802,36 @@ msgstr ""
 msgid "Opportunities"
 msgstr ""
 
-#: includes/class-settings.php:89
+#: includes/class-settings.php:102
 msgid "Optional data used to enrich Organization and LocalBusiness schema."
 msgstr ""
 
-#: includes/class-settings.php:35
-msgid "Optional. Displays “SEO by Smart SEO Booster” linking to the developer. Off by default."
+#: includes/class-settings.php:65
+msgid "Optional. The Page Speed report works without one (Google's public quota); add a free API key from Google Cloud Console for higher-volume checks."
+msgstr ""
+
+#: includes/class-settings.php:104
+msgid "Other social profile URLs"
+msgstr ""
+
+#: includes/class-admin-ui.php:41 includes/class-admin-ui.php:42 templates/pagespeed-report.php:12
+msgid "Page Speed"
+msgstr ""
+
+#: includes/class-tutorial.php:49
+msgid "Page Speed &amp; New Blocks"
+msgstr ""
+
+#: includes/class-tutorial.php:156
+msgid "Page Speed report"
+msgstr ""
+
+#: includes/class-settings.php:65
+msgid "PageSpeed Insights API key"
+msgstr ""
+
+#: includes/class-pagespeed.php:101
+msgid "PageSpeed Insights returned an unexpected response (HTTP %d)."
 msgstr ""
 
 #: includes/class-geo.php:92
@@ -560,7 +842,7 @@ msgstr ""
 msgid "Paste only the verification code (the content value), not the whole meta tag. Google = Search Console, Bing = Webmaster Tools."
 msgstr ""
 
-#: includes/class-setup-wizard.php:190
+#: includes/class-setup-wizard.php:194
 msgid "Paste only the verification code, not the whole meta tag."
 msgstr ""
 
@@ -568,7 +850,7 @@ msgstr ""
 msgid "Permanent"
 msgstr ""
 
-#: includes/class-settings.php:53
+#: includes/class-settings.php:53 includes/class-settings.php:97
 msgid "Pinterest"
 msgstr ""
 
@@ -588,7 +870,7 @@ msgstr ""
 msgid "Post/page title"
 msgstr ""
 
-#: includes/class-settings.php:96
+#: includes/class-settings.php:109
 msgid "Postal code"
 msgstr ""
 
@@ -596,27 +878,47 @@ msgstr ""
 msgid "Posts"
 msgstr ""
 
+#: templates/pagespeed-report.php:18
+msgid "Powered by Google PageSpeed Insights. Your site must be publicly reachable on the internet — local/staging installs cannot be tested this way."
+msgstr ""
+
 #: includes/class-settings.php:30
 msgid "Prevents duplicate sitemaps when the plugin sitemap is on."
+msgstr ""
+
+#: includes/class-tutorial.php:81
+msgid "Previous"
+msgstr ""
+
+#: includes/class-seo-score-display.php:853
+msgid "Print Report"
+msgstr ""
+
+#: includes/class-settings.php:191
+msgid "Pro"
 msgstr ""
 
 #: includes/class-importer.php:61
 msgid "Processing the next batch, please wait…"
 msgstr ""
 
-#: js/blocks.js:133
+#: js/blocks.js:188
 msgid "Publish / Updated Dates (Smart SEO)"
 msgstr ""
 
-#: js/blocks.js:150
+#: js/blocks.js:214
 msgid "Publish / Updated dates"
 msgstr ""
 
-#: includes/class-blocks.php:192
+#: includes/class-seo-score-display.php:806
+msgid "Published"
+msgstr ""
+
+#: includes/class-blocks.php:247
 msgid "Published %s"
 msgstr ""
 
-#: includes/class-meta-templates.php:27
+#: includes/class-meta-templates.php:27 js/blocks.js:200
 msgid "Published date"
 msgstr ""
 
@@ -624,8 +926,24 @@ msgstr ""
 msgid "Published items"
 msgstr ""
 
+#: js/blocks.js:267
+msgid "Question"
+msgstr ""
+
+#: includes/class-seo-score-display.php:804
+msgid "Quick Stats"
+msgstr ""
+
 #: includes/class-importer.php:91
 msgid "Rank Math"
+msgstr ""
+
+#: templates/pagespeed-report.php:44
+msgid "Rating"
+msgstr ""
+
+#: includes/class-seo-score-display.php:809
+msgid "Reading Time"
 msgstr ""
 
 #: includes/class-content-auditor.php:73
@@ -636,7 +954,7 @@ msgstr ""
 msgid "Redirect"
 msgstr ""
 
-#: includes/class-admin-ui.php:41 includes/class-admin-ui.php:42 includes/class-redirects.php:156
+#: includes/class-admin-ui.php:50 includes/class-admin-ui.php:51 includes/class-redirects.php:156
 msgid "Redirections"
 msgstr ""
 
@@ -644,23 +962,59 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: includes/class-settings.php:95
+#: includes/class-seo-score-display.php:458
+msgid "Refresh Analysis"
+msgstr ""
+
+#: includes/class-seo-score-display.php:882
+msgid "Refreshing…"
+msgstr ""
+
+#: includes/class-settings.php:108
 msgid "Region / state"
 msgstr ""
 
-#: js/blocks.js:124
+#: js/blocks.js:269
+msgid "Remove question"
+msgstr ""
+
+#: js/blocks.js:334
+msgid "Remove step"
+msgstr ""
+
+#: includes/class-tutorial.php:139 js/blocks.js:170 js/blocks.js:178
 msgid "Renders the breadcrumb trail with schema on the front end."
 msgstr ""
 
-#: js/block-editor.js:106
+#: js/block-editor.js:179
 msgid "Robots"
 msgstr ""
 
-#: includes/class-admin-ui.php:88
+#: includes/class-admin-ui.php:106 includes/class-tutorial.php:115
 msgid "Run Setup Wizard"
 msgstr ""
 
-#: templates/audit-report.php:45
+#: templates/pagespeed-report.php:27
+msgid "Run Test"
+msgstr ""
+
+#: templates/pagespeed-report.php:16
+msgid "Run a Lighthouse check"
+msgstr ""
+
+#: includes/class-tutorial.php:158
+msgid "Run a Page Speed check"
+msgstr ""
+
+#: includes/class-admin-ui.php:229
+msgid "Running Lighthouse audit… this can take 20–30 seconds."
+msgstr ""
+
+#: includes/class-tutorial.php:157
+msgid "Runs a Google PageSpeed Insights (Lighthouse) check on any URL on your site — performance, SEO, accessibility and best-practices scores, plus Core Web Vitals (LCP, CLS, INP) with a pass/needs-improvement/poor rating for each. Your site must be publicly reachable on the internet to be tested."
+msgstr ""
+
+#: includes/class-tutorial.php:144 templates/audit-report.php:45
 msgid "SEO Audit"
 msgstr ""
 
@@ -672,15 +1026,15 @@ msgstr ""
 msgid "SEO Title"
 msgstr ""
 
-#: includes/class-credits.php:66
+#: includes/class-credits.php:50
 msgid "SEO by %s"
 msgstr ""
 
-#: includes/class-meta-fields.php:153
+#: includes/class-meta-fields.php:163
 msgid "SEO settings"
 msgstr ""
 
-#: js/block-editor.js:94
+#: js/block-editor.js:110 js/block-editor.js:151
 msgid "SEO title"
 msgstr ""
 
@@ -688,11 +1042,23 @@ msgstr ""
 msgid "Save All"
 msgstr ""
 
-#: includes/class-settings.php:88
+#: includes/class-tutorial.php:33
+msgid "Schema"
+msgstr ""
+
+#: includes/class-tutorial.php:104
+msgid "Schema (JSON-LD)"
+msgstr ""
+
+#: includes/class-settings.php:101 includes/class-tutorial.php:134
 msgid "Schema Details"
 msgstr ""
 
-#: js/block-editor.js:107
+#: includes/class-tutorial.php:167
+msgid "Schema output for FAQ and How-To respects the Enable Schema Markup setting under General."
+msgstr ""
+
+#: includes/class-tutorial.php:132 js/block-editor.js:180
 msgid "Schema type"
 msgstr ""
 
@@ -700,15 +1066,19 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
+#: includes/class-seo-score-display.php:793
+msgid "Score %d out of 100"
+msgstr ""
+
 #: templates/audit-report.php:79
 msgid "Score Distribution"
 msgstr ""
 
-#: js/block-editor.js:87
+#: includes/class-tutorial.php:150 js/block-editor.js:144
 msgid "Search Appearance"
 msgstr ""
 
-#: includes/class-setup-wizard.php:189
+#: includes/class-setup-wizard.php:193
 msgid "Search engine verification (optional)"
 msgstr ""
 
@@ -716,7 +1086,7 @@ msgstr ""
 msgid "Search: %s"
 msgstr ""
 
-#: js/blocks.js:112
+#: js/blocks.js:108
 msgid "Select at least one network in the sidebar to preview the share buttons."
 msgstr ""
 
@@ -724,15 +1094,19 @@ msgstr ""
 msgid "Separator"
 msgstr ""
 
-#: includes/class-settings.php:82
+#: includes/class-settings.php:83
 msgid "Serve an llms.txt file"
+msgstr ""
+
+#: includes/class-tutorial.php:127
+msgid "Set a title/description template once in Settings, and every post uses it automatically. Variables like %%title%%, %%sitename%% and %%excerpt%% get replaced per-post; override any single post from its own SEO panel."
 msgstr ""
 
 #: includes/class-admin-ui.php:23 includes/class-admin-ui.php:24
 msgid "Settings"
 msgstr ""
 
-#: includes/class-admin-ui.php:68 includes/class-admin-ui.php:69
+#: includes/class-admin-ui.php:77 includes/class-admin-ui.php:78
 msgid "Setup Wizard"
 msgstr ""
 
@@ -740,15 +1114,15 @@ msgstr ""
 msgid "Show a small credit link in the footer"
 msgstr ""
 
-#: js/blocks.js:145
+#: js/blocks.js:208
 msgid "Show published date"
 msgstr ""
 
-#: js/blocks.js:146
+#: js/blocks.js:209
 msgid "Show updated date"
 msgstr ""
 
-#: js/blocks.js:151
+#: js/blocks.js:189 js/blocks.js:204
 msgid "Shows the real dates on the front end."
 msgstr ""
 
@@ -768,48 +1142,72 @@ msgstr ""
 msgid "Site type"
 msgstr ""
 
+#: includes/class-tutorial.php:37 includes/class-tutorial.php:105
+msgid "Sitemaps &amp; Breadcrumbs"
+msgstr ""
+
 #: includes/class-setup-wizard.php:134
 msgid "Skip"
 msgstr ""
 
-#: includes/class-admin-ui.php:13 includes/class-blocks.php:209 js/block-editor.js:82 js/block-editor.js:85
+#: includes/class-admin-ui.php:13 includes/class-blocks.php:35 includes/class-blocks.php:406 js/block-editor.js:106 js/block-editor.js:139 js/block-editor.js:142
 msgid "Smart SEO"
 msgstr ""
 
-#: includes/class-admin-ui.php:12 includes/class-admin-ui.php:84
+#: includes/class-admin-ui.php:12 includes/class-admin-ui.php:102
 msgid "Smart SEO Booster"
 msgstr ""
 
-#: includes/class-setup-wizard.php:198
+#: includes/class-setup-wizard.php:203
 msgid "Smart SEO Booster is configured. Here is what to do next:"
+msgstr ""
+
+#: includes/class-tutorial.php:119
+msgid "Smart SEO Booster version %s"
 msgstr ""
 
 #: includes/class-setup-wizard.php:102
 msgid "Smart SEO Booster — Setup"
 msgstr ""
 
-#: includes/class-credits.php:39
+#: includes/class-tutorial.php:65
+msgid "Smart SEO Booster — Tutorial"
+msgstr ""
+
+#: includes/class-credits.php:37
 msgid "Smart SEO Booster — crafted by %s"
 msgstr ""
 
-#: js/block-editor.js:99
+#: includes/class-seo-score-display.php:272
+msgid "Smart SEO Overview"
+msgstr ""
+
+#: js/block-editor.js:156
 msgid "Social"
 msgstr ""
 
-#: includes/class-meta-fields.php:155
+#: includes/class-meta-fields.php:165
 msgid "Social Media"
 msgstr ""
 
-#: js/blocks.js:66
+#: includes/class-settings.php:89
+msgid "Social Media Accounts"
+msgstr ""
+
+#: js/block-editor.js:158
+msgid "Social Media Preview"
+msgstr ""
+
+#: js/blocks.js:107
 msgid "Social Share"
 msgstr ""
 
-#: js/blocks.js:30
+#: js/blocks.js:60
 msgid "Social Share (Smart SEO)"
 msgstr ""
 
-#: includes/class-settings.php:91
-msgid "Social profile URLs"
+#: includes/class-admin-ui.php:230
+msgid "Something went wrong. Please try again."
 msgstr ""
 
 #: includes/class-redirects.php:175
@@ -820,20 +1218,44 @@ msgstr ""
 msgid "Source path"
 msgstr ""
 
+#: includes/class-seo-score-display.php:649
+msgid "Standard"
+msgstr ""
+
 #: includes/class-content-auditor.php:70
 msgid "Stats:"
 msgstr ""
 
-#: includes/class-settings.php:93
+#: js/blocks.js:333
+msgid "Step details"
+msgstr ""
+
+#: js/blocks.js:332
+msgid "Step name"
+msgstr ""
+
+#: includes/class-settings.php:106
 msgid "Street address"
 msgstr ""
 
-#: js/blocks.js:98
+#: js/blocks.js:143
 msgid "Style"
 msgstr ""
 
-#: includes/class-setup-wizard.php:201
+#: includes/class-setup-wizard.php:206
 msgid "Submit your sitemap: %s"
+msgstr ""
+
+#: includes/class-blocks.php:125 js/blocks.js:353 js/blocks.js:364 js/blocks.js:372
+msgid "Table of Contents"
+msgstr ""
+
+#: js/blocks.js:347
+msgid "Table of Contents (Smart SEO)"
+msgstr ""
+
+#: includes/class-tutorial.php:165
+msgid "Table of Contents — an auto-generated jump-list built from this post's own headings; nothing to fill in."
 msgstr ""
 
 #: includes/class-redirects.php:175
@@ -844,7 +1266,11 @@ msgstr ""
 msgid "Target URL"
 msgstr ""
 
-#: includes/class-settings.php:69
+#: includes/class-tutorial.php:105
+msgid "Technical SEO, on by default."
+msgstr ""
+
+#: includes/class-settings.php:70
 msgid "Tell search engines not to index low-value archive pages. Links are still followed."
 msgstr ""
 
@@ -856,7 +1282,7 @@ msgstr ""
 msgid "Temporary (strict)"
 msgstr ""
 
-#: js/blocks.js:94
+#: js/blocks.js:139
 msgid "Text"
 msgstr ""
 
@@ -864,15 +1290,27 @@ msgstr ""
 msgid "Thin content"
 msgstr ""
 
-#: includes/class-setup-wizard.php:162
+#: includes/class-setup-wizard.php:162 includes/class-tutorial.php:133
 msgid "This sets sensible schema defaults. You can change everything later."
+msgstr ""
+
+#: includes/class-tutorial.php:100
+msgid "This short tour covers the six things worth knowing before you start. Use Next/Previous below, or jump to any step above."
+msgstr ""
+
+#: includes/class-tutorial.php:161
+msgid "Three more blocks live in the \"Smart SEO\" block category, alongside Social Share and Call to Action:"
+msgstr ""
+
+#: js/blocks.js:260 js/blocks.js:319 js/blocks.js:365
+msgid "Title"
 msgstr ""
 
 #: includes/class-settings.php:42
 msgid "Title separator"
 msgstr ""
 
-#: includes/class-settings.php:43 includes/class-setup-wizard.php:177
+#: includes/class-settings.php:43 includes/class-setup-wizard.php:181
 msgid "Title template"
 msgstr ""
 
@@ -880,23 +1318,35 @@ msgstr ""
 msgid "Titles"
 msgstr ""
 
-#: includes/class-settings.php:40
+#: includes/class-settings.php:40 includes/class-tutorial.php:29 includes/class-tutorial.php:103
 msgid "Titles &amp; Metas"
 msgstr ""
 
-#: includes/class-setup-wizard.php:175
+#: includes/class-setup-wizard.php:175 includes/class-tutorial.php:126
 msgid "Titles &amp; meta descriptions"
+msgstr ""
+
+#: js/blocks.js:367
+msgid "To heading level"
 msgstr ""
 
 #: templates/audit-report.php:110
 msgid "Total images"
 msgstr ""
 
-#: includes/class-setup-wizard.php:183
+#: js/blocks.js:322
+msgid "Total time (ISO 8601, optional)"
+msgstr ""
+
+#: includes/class-setup-wizard.php:187
 msgid "Turn on the essentials"
 msgstr ""
 
-#: includes/class-settings.php:97
+#: includes/class-admin-ui.php:86 includes/class-admin-ui.php:87
+msgid "Tutorial"
+msgstr ""
+
+#: includes/class-settings.php:110
 msgid "Two-letter code, e.g. US, GB, IN."
 msgstr ""
 
@@ -908,19 +1358,23 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: includes/class-blocks.php:196
+#: includes/class-blocks.php:251
 msgid "Updated %s"
 msgstr ""
 
-#: js/blocks.js:204
+#: js/blocks.js:201
 msgid "Updated date"
 msgstr ""
 
-#: includes/class-settings.php:31
+#: includes/class-settings.php:31 includes/class-tutorial.php:139
 msgid "Use [smart_seo_breadcrumbs] or the smart_seo_breadcrumbs() template tag."
 msgstr ""
 
-#: includes/class-settings.php:177 includes/class-setup-wizard.php:179
+#: templates/pagespeed-report.php:43
+msgid "Value"
+msgstr ""
+
+#: includes/class-settings.php:228 includes/class-setup-wizard.php:183
 msgid "Variables:"
 msgstr ""
 
@@ -928,19 +1382,43 @@ msgstr ""
 msgid "Verification"
 msgstr ""
 
+#: includes/class-tutorial.php:146
+msgid "View Audit Report"
+msgstr ""
+
 #: includes/class-settings.php:48
 msgid "Webmaster Verification"
+msgstr ""
+
+#: includes/class-tutorial.php:25
+msgid "Welcome"
+msgstr ""
+
+#: includes/class-tutorial.php:99
+msgid "Welcome to Smart SEO Booster"
 msgstr ""
 
 #: includes/class-setup-wizard.php:161
 msgid "What kind of site is this?"
 msgstr ""
 
+#: includes/class-tutorial.php:151
+msgid "While editing a post or page, look for the rocket icon in the block editor's top toolbar — it opens the full Smart SEO sidebar with a live search preview, social preview card, and advanced options. A quick-access panel with the essentials is also always visible under the Post/Page Document tab."
+msgstr ""
+
+#: includes/class-seo-score-display.php:808
+msgid "Word Count"
+msgstr ""
+
 #: includes/class-content-auditor.php:70
 msgid "Words: %1$d | Headings: %2$d | Images: %3$d | Alt Texts: %4$d"
 msgstr ""
 
-#: includes/class-setup-wizard.php:184
+#: includes/class-settings.php:93
+msgid "X (Twitter)"
+msgstr ""
+
+#: includes/class-setup-wizard.php:188 includes/class-tutorial.php:138
 msgid "XML Sitemap (at /sitemap.xml)"
 msgstr ""
 
@@ -952,11 +1430,11 @@ msgstr ""
 msgid "Yoast SEO"
 msgstr ""
 
-#: includes/class-setup-wizard.php:197
+#: includes/class-setup-wizard.php:202
 msgid "You are all set!"
 msgstr ""
 
-#: includes/class-admin-ui.php:78 includes/class-admin-ui.php:135 includes/class-admin-ui.php:142 includes/class-bulk-editor.php:50 includes/class-importer.php:53 includes/class-redirects.php:147
+#: includes/class-admin-ui.php:96 includes/class-admin-ui.php:153 includes/class-admin-ui.php:160 includes/class-admin-ui.php:167 includes/class-bulk-editor.php:50 includes/class-importer.php:53 includes/class-redirects.php:147 includes/class-tutorial.php:57
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
@@ -964,15 +1442,55 @@ msgstr ""
 msgid "You do not have sufficient permissions."
 msgstr ""
 
-#: js/block-editor.js:76
+#: includes/class-settings.php:96
+msgid "YouTube"
+msgstr ""
+
+#: js/block-editor.js:129
 msgid "Your SEO title"
 msgstr ""
 
-#: js/block-editor.js:77
+#: js/block-editor.js:130
 msgid "Your meta description preview…"
+msgstr ""
+
+#: includes/class-settings.php:90
+msgid "Your site's official profiles, added to Organization schema (sameAs) and available for future social features."
 msgstr ""
 
 #: includes/class-redirects.php:198
 msgid "ago"
+msgstr ""
+
+#: js/blocks.js:323
+msgid "e.g. PT30M for 30 minutes, PT1H30M for 1.5 hours."
+msgstr ""
+
+#: includes/class-settings.php:92
+msgid "https://facebook.com/yourpage"
+msgstr ""
+
+#: includes/class-settings.php:95
+msgid "https://instagram.com/yourhandle"
+msgstr ""
+
+#: includes/class-settings.php:94
+msgid "https://linkedin.com/company/yourcompany"
+msgstr ""
+
+#: includes/class-settings.php:97
+msgid "https://pinterest.com/yourhandle"
+msgstr ""
+
+#: includes/class-settings.php:93
+msgid "https://x.com/yourhandle"
+msgstr ""
+
+#: includes/class-settings.php:96
+msgid "https://youtube.com/@yourchannel"
+msgstr ""
+
+#: includes/class-seo-score-display.php:809
+msgid "minutes"
 msgstr ""
 

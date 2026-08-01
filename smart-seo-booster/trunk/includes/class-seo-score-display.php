@@ -18,7 +18,12 @@ class Smart_SEO_Score_Display {
         add_filter('manage_pages_columns', [__CLASS__, 'smart_seo_add_seo_score_column']);
         add_action('manage_posts_custom_column', [__CLASS__, 'smart_seo_display_seo_score_column'], 10, 2);
         add_action('manage_pages_custom_column', [__CLASS__, 'smart_seo_display_seo_score_column'], 10, 2);
-        
+
+        // Quick-test row actions (PageSpeed Insights / Rich Results Test) on
+        // the posts/pages list tables, for published items only.
+        add_filter('post_row_actions', [__CLASS__, 'smart_seo_row_actions'], 10, 2);
+        add_filter('page_row_actions', [__CLASS__, 'smart_seo_row_actions'], 10, 2);
+
         // Add AJAX handlers for SEO analysis
         add_action('wp_ajax_get_seo_score', [__CLASS__, 'smart_seo_ajax_get_seo_score']);
         add_action('wp_ajax_get_full_seo_report', [__CLASS__, 'smart_seo_ajax_get_full_seo_report']);
@@ -461,8 +466,43 @@ class Smart_SEO_Score_Display {
                     <span class="dashicons dashicons-chart-bar" aria-hidden="true"></span> <?php esc_html_e( 'Full Report', 'smart-seo-booster' ); ?>
                 </button>
             </div>
+            <?php if ( 'publish' === $post->post_status ) : ?>
+            <div class="smart-seo-score-actions smart-seo-external-actions">
+                <a class="button" target="_blank" rel="noopener" href="<?php echo esc_url( Smart_SEO_Score_Display::pagespeed_test_url( $post ) ); ?>">
+                    <?php echo Smart_SEO_Brand_Icons::icon( 'pagespeed', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static, hardcoded SVG from Smart_SEO_Brand_Icons; no user input reaches it. ?> <?php esc_html_e( 'PageSpeed Insights', 'smart-seo-booster' ); ?>
+                </a>
+                <a class="button" target="_blank" rel="noopener" href="<?php echo esc_url( Smart_SEO_Score_Display::rich_results_test_url( $post ) ); ?>">
+                    <?php echo Smart_SEO_Brand_Icons::icon( 'google', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static, hardcoded SVG from Smart_SEO_Brand_Icons; no user input reaches it. ?> <?php esc_html_e( 'Rich Results Test', 'smart-seo-booster' ); ?>
+                </a>
+            </div>
+            <?php endif; ?>
         </div>
         <?php
+    }
+
+    /**
+     * Deep link to Google's PageSpeed Insights web tool for a published
+     * post's live URL. Requires the site to be publicly reachable — no
+     * different from the plugin's own Page Speed report in that respect,
+     * but this opens Google's own tool directly rather than going through
+     * our API integration, so it works even without our transient cache.
+     *
+     * @param WP_Post $post
+     * @return string
+     */
+    public static function pagespeed_test_url( $post ) {
+        return 'https://pagespeed.web.dev/report?url=' . rawurlencode( get_permalink( $post ) );
+    }
+
+    /**
+     * Deep link to Google's Rich Results Test for a published post's live
+     * URL, to check the schema markup this plugin outputs.
+     *
+     * @param WP_Post $post
+     * @return string
+     */
+    public static function rich_results_test_url( $post ) {
+        return 'https://search.google.com/test/rich-results?url=' . rawurlencode( get_permalink( $post ) );
     }
 
     /**
@@ -704,6 +744,37 @@ class Smart_SEO_Score_Display {
             'icon'   => $icon,
             'score'  => $score,
         ];
+    }
+
+    /**
+     * Add "PageSpeed Insights" / "Rich Results Test" quick links to the
+     * posts/pages list row actions, so a live check is one click away
+     * without leaving the list screen. Published items only — both tools
+     * need a real, publicly reachable URL.
+     *
+     * @param array   $actions Existing row actions.
+     * @param WP_Post $post    The row's post.
+     * @return array
+     */
+    public static function smart_seo_row_actions( $actions, $post ) {
+        if ( 'publish' !== $post->post_status || ! current_user_can( 'edit_post', $post->ID ) ) {
+            return $actions;
+        }
+
+        $actions['smart_seo_pagespeed'] = sprintf(
+            '<a href="%s" target="_blank" rel="noopener">%s%s</a>',
+            esc_url( self::pagespeed_test_url( $post ) ),
+            Smart_SEO_Brand_Icons::icon( 'pagespeed', 14 ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static, hardcoded SVG from Smart_SEO_Brand_Icons; no user input reaches it.
+            esc_html__( 'PageSpeed Insights', 'smart-seo-booster' )
+        );
+        $actions['smart_seo_rich_results'] = sprintf(
+            '<a href="%s" target="_blank" rel="noopener">%s%s</a>',
+            esc_url( self::rich_results_test_url( $post ) ),
+            Smart_SEO_Brand_Icons::icon( 'google', 14 ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static, hardcoded SVG from Smart_SEO_Brand_Icons; no user input reaches it.
+            esc_html__( 'Rich Results Test', 'smart-seo-booster' )
+        );
+
+        return $actions;
     }
 
     public static function smart_seo_add_seo_score_column($columns) {

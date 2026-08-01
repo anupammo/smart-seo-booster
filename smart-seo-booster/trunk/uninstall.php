@@ -17,10 +17,13 @@ delete_transient('smart_seo_activation_redirect');
 delete_transient('smart_seo_audit_data');
 
 // Delete cached Page Speed results — one transient per URL+strategy checked,
-// so the keys are unbounded and can't be deleted by name; a direct query
-// against the options table is the standard way WordPress itself expects
-// this to be cleaned up (delete_transient() only handles one key at a time).
+// so the keys are unbounded and can't be deleted by name; there is no core
+// API to delete transients by pattern, so a direct query against the options
+// table is the WordPress-recommended way to clean these up on uninstall.
+// Safe to run uncached: uninstall.php runs once and nothing will read this
+// data again afterwards.
 global $wpdb;
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- see comment above; no core API exists for pattern-deleting transients, and caching is moot on uninstall.
 $wpdb->query(
     $wpdb->prepare(
         "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",

@@ -153,7 +153,7 @@ class Smart_SEO_Redirects {
         arsort( $log );
 
         echo '<div class="wrap smart-seo-settings ssb-app ssb-adapt">';
-        echo '<h1><span class="dashicons dashicons-randomize" aria-hidden="true"></span> ' . esc_html__( 'Redirections', 'smart-seo-booster' ) . '</h1>';
+        echo '<h1><img src="' . esc_url( SMART_SEO_BOOSTER_LINE_ICON_URL ) . '" width="26" height="26" alt="" class="ssb-h1-icon" /> ' . esc_html__( 'Redirections', 'smart-seo-booster' ) . '</h1>';
 
         // Add form.
         echo '<div class="card smart-seo-card"><h2>' . esc_html__( 'Add redirect', 'smart-seo-booster' ) . '</h2>';

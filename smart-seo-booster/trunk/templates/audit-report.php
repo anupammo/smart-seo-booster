@@ -42,7 +42,7 @@ $smart_seo_refresh_url = wp_nonce_url( admin_url( 'admin.php?page=smart-seo-audi
     <div class="ssb-app ssb-adapt">
 
         <div class="ssb-head">
-            <h1><span class="dashicons dashicons-chart-area"></span> <?php esc_html_e( 'SEO Audit', 'smart-seo-booster' ); ?></h1>
+            <h1><img src="<?php echo esc_url( SMART_SEO_BOOSTER_LINE_ICON_URL ); ?>" width="26" height="26" alt="" class="ssb-h1-icon" /> <?php esc_html_e( 'SEO Audit', 'smart-seo-booster' ); ?></h1>
             <div>
                 <span class="ssb-sub">
                     <?php

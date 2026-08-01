@@ -8,7 +8,7 @@
 
 Smart SEO Booster gives you every SEO fundamental that actually moves rankings — meta tags, Open Graph & Twitter Cards, JSON-LD schema, XML sitemaps, breadcrumbs, and real-time content scoring — in one clean, modular plugin with **no bloat, no upsell walls, and no complex add-ons**.
 
-[![Version](https://img.shields.io/badge/version-2.1.1-blue.svg)](https://github.com/anupammo/smart-seo-booster)
+[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/anupammo/smart-seo-booster)
 [![WordPress](https://img.shields.io/badge/WordPress-5.9%E2%80%937.0.2-21759b.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-GPLv2%2B-green.svg)](LICENSE)
@@ -45,8 +45,13 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 
 ## 📊 Feature Matrix (Current vs Planned)
 
-### ✅ Available now (v2.1)
+### ✅ Available now (v2.2)
 
+- **Page Speed report** — real Google PageSpeed Insights scores (Performance/SEO/Accessibility/Best-Practices) plus Core Web Vitals (LCP, CLS, INP), no API key required
+- **FAQ &amp; How-To blocks** — accordion/step-guide blocks that also output FAQPage/HowTo JSON-LD schema
+- **Table of Contents block** — auto-builds a jump-list from a post's own headings
+- **Flesch reading-ease scoring** — the same readability metric Yoast/Rank Math surface, replacing a cruder heuristic
+- **Branded integration icons** — recognizable logos next to every social, analytics & webmaster-verification field
 - **SEO Audit dashboard** — site-wide score gauge, distribution chart, opportunities & lowest-scoring list (professional Dashicon UI, no emoji)
 - **Analytics** — Google Analytics 4 + Microsoft Clarity, loaded only when configured
 - **Webmaster verification** — Google (Search Console), Bing, Yandex, Pinterest, Baidu
@@ -77,14 +82,17 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 - **Canonical URLs & robots meta** — per-post control
 - **Focus keyword analysis** — density + placement checks in the editor
 
-### 🔭 Future ideas (post-roadmap)
+### 🔭 Future ideas (Phase 5+, see [STRATEGY.md](STRATEGY.md))
 
-All four roadmap phases are complete. Candidate future work:
+Phases 1–4 are complete; Phase 5 is in progress. Still open:
 
+- **Google Search Console** read-only insights (clicks/impressions widget) — the top-requested gap vs. Rank Math's free tier
+- **Review-prompt system** — dismissible, ~2 weeks post-activation
+- **Link-suggestion / orphaned-content** helper in the editor
+- **Import from SEOPress / All in One SEO**
 - **Video & News sitemaps**, sitemap caching
-- **Link-suggestion** helper in the editor
 - **Multiple** LocalBusiness locations
-- **Google Search Console** read-only insights
+- **Automated Plugin Check in CI**
 
 ---
 
@@ -92,23 +100,26 @@ All four roadmap phases are complete. Candidate future work:
 
 Smart SEO Booster competes in the **lightweight/automated lane** — alongside Slim SEO and The SEO Framework — not the heavyweight Rank Math/Yoast lane. Our edge: **automation of Slim SEO + the visual editor UX of Rank Math, without the weight of either.**
 
-| Capability | Smart SEO Booster (target v2.5) | Slim SEO | The SEO Framework | Rank Math (Free) | Yoast (Free) |
+| Capability | Smart SEO Booster (v2.2) | Slim SEO | The SEO Framework | Rank Math (Free) | Yoast (Free) |
 |---|---|---|---|---|---|
 | Meta title/description | ✅ | ✅ | ✅ | ✅ | ✅ |
 | OG / Twitter Cards | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Live social/search preview | ✅ | ➖ | ➖ | ✅ | ✅ |
-| JSON-LD schema | ✅ (10+ types) | ✅ | ✅ | ✅ (18+ types) | ✅ (limited) |
+| JSON-LD schema | ✅ (14+ types incl. FAQ/HowTo blocks) | ✅ | ✅ | ✅ (18+ types) | ✅ (limited) |
 | XML sitemap | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Breadcrumbs | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Content/SEO scoring | ✅ | ➖ | ➖ | ✅ | ✅ |
+| Content/SEO scoring | ✅ (incl. Flesch readability) | ➖ | ➖ | ✅ | ✅ |
+| Page Speed / Core Web Vitals report | ✅ | ➖ | ➖ | ➖ | ➖ (Premium) |
+| Table of Contents block | ✅ | ➖ | ➖ | ✅ | ➖ |
 | Redirection manager | ✅ | ➖ (Pro) | ➖ | ✅ | ➖ (Premium) |
 | Import from Yoast/Rank Math | ✅ | ✅ | ✅ | ✅ | ✅ |
 | WooCommerce product schema | ✅ | ✅ | ➖ | ✅ | ➖ (Premium) |
+| Google Search Console insights | ➖ (Phase 5) | ➖ | ➖ | ✅ | ➖ |
 | Settings-light automation | ✅ | ✅✅ | ✅ | ➖ | ➖ |
 | Weight / performance | ✅✅ | ✅✅ | ✅✅ | ➖ | ➖ |
 | Free & no upsell nags | ✅ | ✅ | ✅ | ➖ | ➖ |
 
-**Takeaway:** Closing the **XML sitemap + breadcrumbs** gap is the single highest-priority work — they are table-stakes every competitor ships free, and their absence is the #1 reason a lightweight SEO plugin gets uninstalled.
+**Takeaway:** Phase 4 closed the sitemap/breadcrumbs/scoring table-stakes gap; Phase 5 added Page Speed reporting and FAQ/HowTo/TOC blocks — genuine differentiators most "lightweight" competitors don't offer free. The one gap left that reviewers actively compare against Rank Math on is **Google Search Console insights** (see [STRATEGY.md](STRATEGY.md)).
 
 *Sources: [WordPress.org SEO plugin listings](https://wordpress.org/plugins/), [Slim SEO](https://wordpress.org/plugins/slim-seo/), [Rank Math](https://wordpress.org/plugins/seo-by-rank-math/), 2026 comparison reviews.*
 
@@ -167,10 +178,10 @@ smart-seo-booster/
 
 ## 🗺️ Development Roadmap
 
-The road to **5,000 downloads** is four phases. Each phase is independently shippable and raises the plugin's WordPress.org rating and retention.
+The road to **10,000 downloads** (see [STRATEGY.md](STRATEGY.md)) is five phases. Each phase is independently shippable and raises the plugin's WordPress.org rating and retention.
 
 ### ✅ Phase 1 — Foundation & Fixes *(v2.1.0)*  ·  **COMPLETE**
-> Goal: a rock-solid, consistent, spotless base. Ship nothing new until these are clean. — **Done.** All items landed; only the official Plugin Check run remains (needs a live WP install).
+> Goal: a rock-solid, consistent, spotless base. Ship nothing new until these are clean. — **Done**, including the official Plugin Check run against a live WordPress instance (zero errors, zero warnings, verified in v2.2.0 — see Phase 5).
 
 - [x] **Fix version consistency** — plugin header, `SMART_SEO_BOOSTER_VERSION` constant, and `readme.txt` stable tag all aligned to `2.1.0` (with changelog + upgrade notice)
 - [x] **Fix emoji encoding (mojibake)** — reversed CP1252 double-encoding across all admin strings, templates & docs (161 corrupted glyphs in 7 files) to proper UTF-8
@@ -178,7 +189,7 @@ The road to **5,000 downloads** is four phases. Each phase is independently ship
 - [x] **Move inline CSS/JS to enqueued assets** — extracted to `js/meta-fields.js`, `js/seo-score.js`, `css/meta-box.css`; enqueued with version cache-busting + `wp_localize_script` (no inline `<style>`/`wp_add_inline_script` blobs remain)
 - [x] **Remove/enqueue dead code** — deleted the never-enqueued `js/block-editor.js`
 - [x] **De-personalize & dynamic schema** — removed hardcoded personal identity (name, address, phone, social links) from **all five** schema templates; now derived from post/site with `apply_filters` hooks
-- [x] **Pass WordPress.org Plugin Check** — static audit clean (escaping, i18n with text domain, nonce-guarded & sanitized superglobals, direct-access guards on every file, no obfuscation/unsafe I/O/short tags, complete header incl. License URI + Domain Path, `uninstall.php` clears all options + post meta). *Run `wp plugin check smart-seo-booster` on your live WP for the official green tick.*
+- [x] **Pass WordPress.org Plugin Check** — verified for real via `wp plugin check smart-seo-booster --include-experimental --include-low-severity-errors --include-low-severity-warnings` against a live WordPress 7.0.2 + PHP 8.2 instance: **zero errors, zero warnings.** (escaping, i18n with text domain, nonce-guarded & sanitized superglobals, direct-access guards on every file, no obfuscation/unsafe I/O/short tags, complete header incl. License URI + Domain Path, `uninstall.php` clears all options + post meta, including dynamically-keyed transients)
 - [x] **Consolidate documentation** — moved 12 scattered dev notes into `docs/` + `docs/archive/`; root now holds only README, STRATEGY, CHANGELOG, CONTRIBUTING; added `.distignore` so dev docs never ship
 
 ### ✅ Phase 2 — Parity Features *(2.1.0)*  ·  **COMPLETE**
@@ -212,6 +223,21 @@ The road to **5,000 downloads** is four phases. Each phase is independently ship
 - [x] **Local SEO** — `class-local-seo.php`: `[smart_seo_local_business]` shortcode **and** a dynamic Gutenberg block; LocalBusiness schema enriched with geo coordinates + opening hours from settings
 - [x] **WooCommerce basics** — `class-woocommerce.php` (loads only when WC is active): Product JSON-LD (offers, availability, SKU, aggregateRating) + `og:type=product` and price/availability OG tags
 - [x] **Import from Yoast/Rank Math** — `class-importer.php`: batched one-click migration of titles, descriptions, social tags, canonicals & robots; never overwrites existing values (removes the #1 switching barrier)
+
+### 🚧 Phase 5 — Close the 10K Gap *(v2.2.0)*  ·  **IN PROGRESS**
+> Goal: the specific features that move installs from 5K to 10K without adding the bloat we're positioned against — see [STRATEGY.md §1 &amp; §4](STRATEGY.md) for the full gap analysis.
+
+- [x] **Page Speed report** — `class-pagespeed.php`: real Google PageSpeed Insights scores (Performance/SEO/Accessibility/Best-Practices) + Core Web Vitals (LCP/CLS/INP), preferring real-user CrUX field data over lab data when available; keyless by default with an optional API key field for higher volume; results cached as transients (cleaned up on uninstall)
+- [x] **FAQ &amp; How-To blocks** — `class-blocks.php`: accordion/step-guide blocks that queue FAQPage/HowTo JSON-LD schema, output once in the footer; verified XSS-safe and schema-valid against a live WP instance
+- [x] **Table of Contents block** — `class-toc.php`: auto-builds a jump-list from a post's headings and assigns heading IDs site-wide so the links work even on themes that never added them
+- [x] **Flesch Reading Ease scoring** — `class-seo-score-display.php`: replaces the old sentence-length heuristic with the same readability metric Yoast/Rank Math surface
+- [x] **Branded integration icons** — `class-brand-icons.php`: recognizable logo marks (Facebook, X, LinkedIn, Instagram, YouTube, Pinterest, Google, Bing, Yandex, Baidu, GA4, Clarity, PageSpeed) next to every matching Settings field
+- [x] **Fixed a real content-quality bug found during testing** — the auto-generated meta description ran adjacent HTML blocks together (`"Section OneThis is…"`) when source content had no whitespace between tags; `Smart_SEO_Meta_Templates::plain_text()` now normalizes block boundaries before stripping tags, applied everywhere post content is turned into plain text (meta description, GEO/llms.txt, word counts, readability scoring, schema descriptions)
+- [x] **Uninstall gap fixed** — Page Speed's per-URL cached results are transients with dynamically-generated keys that `delete_option()` can't reach; `uninstall.php` now removes them via a direct, `esc_like()`-safe query, verified end-to-end against a live database
+- [ ] **Google Search Console read-only insights** — clicks/impressions widget; the top-cited "why switch to Rank Math" gap
+- [ ] **Review-prompt system** — dismissible, ~2 weeks post-activation
+- [ ] **Import from SEOPress / All in One SEO**
+- [ ] **Automated Plugin Check in CI** — today's zero-error result was a manual, one-time verification against a real WordPress instance; without CI it can regress silently on the next change
 
 ---
 
@@ -276,4 +302,4 @@ GPLv2 or later — see [LICENSE](LICENSE).
 
 ---
 
-<sub>⭐ If Smart SEO Booster helps your site, a WordPress.org review and a GitHub star go a long way toward that 5K milestone.</sub>
+<sub>⭐ If Smart SEO Booster helps your site, a WordPress.org review and a GitHub star go a long way toward that 10K milestone.</sub>

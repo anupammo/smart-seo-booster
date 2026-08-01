@@ -9,7 +9,7 @@ defined('ABSPATH') || exit;
     <div class="ssb-app ssb-adapt">
 
         <div class="ssb-head">
-            <h1><?php echo Smart_SEO_Brand_Icons::icon( 'pagespeed', 24 ); ?> <?php esc_html_e( 'Page Speed', 'smart-seo-booster' ); ?></h1>
+            <h1><?php echo Smart_SEO_Brand_Icons::icon( 'pagespeed', 24 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static, hardcoded SVG from Smart_SEO_Brand_Icons; no user input reaches it. ?> <?php esc_html_e( 'Page Speed', 'smart-seo-booster' ); ?></h1>
         </div>
 
         <div class="ssb-card">

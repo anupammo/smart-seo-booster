@@ -1,10 +1,10 @@
 === Smart SEO Booster ===
-Contributors: anupammo
+Contributors: anupamwp
 Tags: seo, schema markup, xml sitemap, meta tags, breadcrumbs
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 7.0
-Stable tag: 2.1.1
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,8 +44,10 @@ New: built-in **GEO (Generative Engine Optimization) / AI SEO tools** — an `/l
 * Google Analytics 4 & Microsoft Clarity integration; Google/Bing/Yandex/Baidu/Pinterest verification
 * GEO / AI SEO: llms.txt for AI assistants, AI-crawler training opt-out, speakable data
 * Automatic image alt text; publish/updated date structured data
-* Blocks: social share, call-to-action, breadcrumb, and dates — with ready-made patterns
-* Professional admin UI with Dashicons (no emoji), fully translated into 17 languages
+* Blocks: social share, call-to-action, breadcrumb, dates, FAQ (FAQPage schema), How-To (HowTo schema), and Table of Contents — with ready-made patterns
+* Page Speed report: Google PageSpeed Insights scores and Core Web Vitals (LCP, CLS, INP) for any page on your site, no API key required
+* Flesch reading-ease score in the content analysis, alongside word count, headings, image alt coverage & internal links
+* Professional admin UI with brand icons for every social/analytics/webmaster integration (no emoji), fully translated into 17 languages
 
 Built by Anupam Mondal — Full Stack Developer & SEO Consultant — to automate clarity and boost discoverability.
 
@@ -112,6 +114,15 @@ No. It uses minimal hooks and outputs schema only in the footer, with no externa
 
 == Changelog ==
 
+= 2.2.0 =
+* New: Page Speed report — real Google PageSpeed Insights data (Performance/SEO/Accessibility/Best-Practices scores plus Core Web Vitals: LCP, CLS, INP) for any URL on your site, no API key required.
+* New: FAQ block — an accordion that also outputs FAQPage JSON-LD schema for rich results.
+* New: How-To block — a numbered step guide that also outputs HowTo JSON-LD schema for rich results.
+* New: Table of Contents block — auto-builds a jump-list from a post's headings.
+* Improvement: Readability scoring now uses the Flesch Reading Ease formula instead of a sentence-length heuristic.
+* Improvement: Recognizable brand icons next to every social, webmaster-verification and analytics field in Settings.
+* Improvement: Tutorial and Setup Wizard now use the plugin's outline "line icon" mark on completion/empty states.
+
 = 2.1.1 =
 * Fix: Resolved a fatal error on activation caused by an incomplete package that was missing several class files. All modules are now included.
 * New: WordPress Playground preview blueprint, enabling the "Live Preview" button on the plugin page.
@@ -160,6 +171,9 @@ Editor & experience
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.2.0 =
+New Page Speed report (Core Web Vitals), FAQ/How-To/Table of Contents blocks, and Flesch reading-ease scoring.
 
 = 2.1.1 =
 Important fix: resolves a fatal error on activation from an incomplete 2.1.0 package. All users should update.

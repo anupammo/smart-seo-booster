@@ -97,7 +97,7 @@ class Smart_SEO_Audit {
             }
 
             // Thin content.
-            $words = str_word_count( wp_strip_all_tags( $post->post_content ) );
+            $words = str_word_count( Smart_SEO_Meta_Templates::plain_text( $post->post_content ) );
             if ( $words < $min_words ) {
                 $data['thin_content']++;
             }

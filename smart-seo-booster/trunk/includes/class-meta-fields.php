@@ -211,7 +211,7 @@ class Smart_SEO_Meta_Fields {
             
             <!-- Social Media Tab -->
             <div class="seo-tab-content" id="social-tab" role="tabpanel" aria-labelledby="seo-tab-social" hidden>
-                <h4><?php echo Smart_SEO_Brand_Icons::icon( 'facebook', 16 ); ?> Open Graph (Facebook, LinkedIn)</h4>
+                <h4><?php echo Smart_SEO_Brand_Icons::icon( 'facebook', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static, hardcoded SVG from Smart_SEO_Brand_Icons; no user input reaches it. ?> Open Graph (Facebook, LinkedIn)</h4>
                 
                 <div class="seo-field-group">
                     <label for="smart_seo_og_title"><span class="dashicons dashicons-media-text" aria-hidden="true"></span> OG Title</label>
@@ -252,7 +252,7 @@ class Smart_SEO_Meta_Fields {
                     </select>
                 </div>
                 
-                <h4 style="margin-top: 30px;"><?php echo Smart_SEO_Brand_Icons::icon( 'twitter', 16 ); ?> Twitter Cards</h4>
+                <h4 style="margin-top: 30px;"><?php echo Smart_SEO_Brand_Icons::icon( 'twitter', 16 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static, hardcoded SVG from Smart_SEO_Brand_Icons; no user input reaches it. ?> Twitter Cards</h4>
                 
                 <div class="seo-field-group">
                     <label for="smart_seo_twitter_card"><span class="dashicons dashicons-clipboard" aria-hidden="true"></span> Card Type</label>

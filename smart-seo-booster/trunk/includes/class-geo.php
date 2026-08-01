@@ -123,7 +123,7 @@ class Smart_SEO_GEO {
         $url   = get_permalink( $post );
         $desc  = get_post_meta( $post->ID, '_smart_seo_description', true );
         if ( '' === $desc ) {
-            $desc = $post->post_excerpt ? $post->post_excerpt : wp_trim_words( wp_strip_all_tags( $post->post_content ), 25, '' );
+            $desc = $post->post_excerpt ? $post->post_excerpt : wp_trim_words( Smart_SEO_Meta_Templates::plain_text( $post->post_content ), 25, '' );
         }
         $desc = wp_strip_all_tags( $desc );
 

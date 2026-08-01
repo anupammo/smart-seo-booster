@@ -20,7 +20,7 @@ class Smart_SEO_Content_Auditor {
         if (!$post) return;
 
         $content = $post->post_content;
-        $word_count = str_word_count( wp_strip_all_tags( $content ) );
+        $word_count = str_word_count( Smart_SEO_Meta_Templates::plain_text( $content ) );
         $headings = substr_count($content, '<h');
         $images = substr_count($content, '<img');
         $alts = substr_count($content, 'alt=');

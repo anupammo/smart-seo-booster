@@ -10,6 +10,26 @@ defined('ABSPATH') || exit;
 class Smart_SEO_Meta_Templates {
 
     /**
+     * Strip HTML from a content blob into plain text, without running
+     * adjacent blocks together. wp_strip_all_tags() alone turns
+     * "<h2>Title</h2><p>Body</p>" into "TitleBody" whenever the source HTML
+     * has no whitespace between tags (common with imported/pasted content
+     * and some page builders) — this inserts a space at block-level tag
+     * boundaries first, then collapses whitespace runs to one space.
+     *
+     * @param string $html Raw content HTML (typically $post->post_content).
+     * @return string Plain text, single-spaced, trimmed.
+     */
+    public static function plain_text( $html ) {
+        $html = (string) $html;
+        $html = preg_replace( '#</(p|div|h[1-6]|li|blockquote|section|article|header|footer|figcaption|td|th|tr)>#i', '$0 ', $html );
+        $html = preg_replace( '#<br\s*/?>#i', ' ', $html );
+        $text = wp_strip_all_tags( $html );
+        $text = preg_replace( '/\s+/u', ' ', $text );
+        return trim( $text );
+    }
+
+    /**
      * Available variables, for the settings-screen help text.
      *
      * @return array<string,string> token => description

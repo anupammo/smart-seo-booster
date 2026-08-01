@@ -1,31 +1,32 @@
-# Smart SEO Booster — Growth Strategy to 5,000 Downloads
+# Smart SEO Booster — Growth Strategy to 10,000 Downloads
 
-**Owner:** Anupam Mondal · **Target milestone:** 5,000 active/downloads · **Last updated:** 2026-07-18
+**Owner:** Anupam Mondal · **Target milestone:** 10,000 active/downloads · **Last updated:** 2026-08-02
 
 This document is the business case behind the [README roadmap](README.md#-development-roadmap). It answers three questions: *Where do we fit?*, *What must we build?*, and *How do we get people to install it?*
 
+> **Milestone note:** the original version of this document targeted 5,000 downloads and Phases 1–4 (foundation, parity, UX, differentiators). Those all shipped — see `git log` and the README changelog. This revision raises the target to **10,000** and adds **Phase 5**, the feature set that closes the remaining gap with Yoast/Rank Math-class plugins as of mid-2026 without adding the bloat that made those plugins vulnerable to a lightweight challenger in the first place.
+
 ---
 
-## 1. The Honest Starting Position
+## 1. The Honest Starting Position (updated)
 
-A deep scan of the current codebase (branch `v2.1`) shows a **structurally sound but incomplete** plugin:
+Phases 1–4 (foundation, parity, UX, differentiators) are **complete and shipped** — see the [README feature matrix](README.md#-feature-matrix-current-vs-planned). The plugin now has sitemaps, breadcrumbs, dynamic schema, a setup wizard, redirects, bulk editing, WooCommerce/Local SEO, a Yoast/Rank Math importer, and (as of v2.2.0) a real PageSpeed Insights report, FAQ/HowTo/Table-of-Contents blocks, and Flesch reading-ease scoring — all verified against a real WordPress instance with the official **Plugin Check** tool passing at zero errors/zero warnings, including experimental and low-severity checks.
 
 **Strengths to keep**
 - Clean modular architecture (one class per concern) — easy to extend.
-- Solid security hygiene (escaping, sanitization, nonces, capability checks).
+- Solid security hygiene (escaping, sanitization, nonces, capability checks) — audited against the live Plugin Check tool, not just static review.
 - A genuinely nice per-post meta box with live search/social preview and a scoring engine — this is already better UX than Slim SEO or The SEO Framework.
+- Real, verified functionality: schema validates as JSON, sitemap validates as XML, uninstall leaves nothing behind (including dynamically-keyed transients, which is easy to miss).
 
-**Gaps that block growth** *(prioritized)*
-1. **No XML sitemap** — every competitor ships this free; its absence alone causes uninstalls.
-2. **No breadcrumbs** — second most-expected feature in the lightweight lane.
-3. **Duplicate meta output** — `class-seo-core.php` and `class-meta-fields.php` both emit `description`/`og:*` on singular pages, producing double tags (an SEO defect reviewers will flag).
-4. **Static schema** — Article schema hardcodes the author name; the per-post schema selector isn't wired to output.
-5. **Emoji mojibake** — corrupted UTF-8 (`🎯`, `✅`) throughout admin strings looks broken and unprofessional.
-6. **Inline CSS/JS blobs** — against WordPress.org best practices; hurts Plugin Check and caching.
-7. **Version drift** — header says `1.0.1`, code says `@since 2.1.0`, branch is `v2.1`.
-8. **Documentation sprawl** — 15+ dev-diary `.md` files that confuse rather than help.
+**Gaps that block the next jump to 10K** *(prioritized — this is the Phase 5 backlog, §4 below)*
+1. **No Google Search Console read-only insights** — Rank Math's free tier surfaces GSC clicks/impressions inside wp-admin; we only offer verification meta tags today. This is the single most-requested "why not just use Rank Math" feature.
+2. **No internal-linking / orphaned-content assistant** — competitors increasingly surface this in the editor; we only count links, we don't suggest any.
+3. **No review-prompt system** — the compounding review→ranking→impressions loop described in §5.3 has no mechanism yet; it's still a checklist item, not code.
+4. **Translation lag** — new v2.2.0 strings (Page Speed, FAQ/HowTo/TOC, brand icons) exist only in English pending community translation via translate.wordpress.org; the 17 bundled languages cover v2.1 strings only.
+5. **No migrate-from-more-plugins** — importer covers Yoast/Rank Math only; SEOPress and All in One SEO users have no easy switching path.
+6. **No CI/automated Plugin Check on every commit** — today's clean pass was a manual, one-time verification; without automation it can regress silently on the next change.
 
-> **Strategic conclusion:** Do **not** chase Rank Math's feature count. Win the **"lightweight but complete"** niche: the polish of Rank Math's editor UX with the weight and simplicity of Slim SEO. Fix the base (Phase 1), reach feature parity (Phase 2), then differentiate (Phase 3–4).
+> **Strategic conclusion (unchanged):** Do **not** chase Rank Math's feature count for its own sake. Win the **"lightweight but complete"** niche: the polish of Rank Math's editor UX with the weight and simplicity of Slim SEO. Phases 1–4 built the base and reached parity; Phase 5 (§4) adds the handful of things that actually move installs from 5K to 10K without becoming what we're positioned against.
 
 ---
 
@@ -77,9 +78,32 @@ Everything ships **inside the single free plugin**. No separate premium package,
 
 **Explicitly out of scope** (keeps us lightweight): AI content writing, rank tracking, backlink tools, keyword research APIs, anything requiring an external account. These are what make competitors "heavy" — avoiding them *is* the strategy.
 
+### Phase 5 — Close the 10K Gap *(v2.2+)*
+
+Shipped in v2.2.0 (see the [changelog](trunk/readme.txt) — done without requiring the user to set up any external account, keeping the "no complex add-ons" rule intact):
+
+| Feature | Why it matters for downloads |
+|---|---|
+| Page Speed report (real PageSpeed Insights + Core Web Vitals, no API key required) | The #1 named gap in user feedback for lightweight plugins — "how fast is my site" is the natural next question after "is my SEO OK". |
+| FAQ block + HowTo block (real FAQPage/HowTo schema) | Direct Yoast/Rank Math parity feature; both compete hard on "which schema types do you get for free". |
+| Table of Contents block | Common ask for long-form content/affiliate sites — a core Smart SEO Booster audience segment. |
+| Flesch reading-ease score | Replaces a crude heuristic with the same metric Yoast/Rank Math surface — makes score comparisons between plugins apples-to-apples in reviews. |
+| Branded icons for every social/analytics/webmaster field | Pure trust/polish signal — screenshots with real logos convert better than plain text fields (see §5.2). |
+
+Still open (the actual list to work next, in priority order):
+
+| Feature | Phase | Why it matters for downloads |
+|---|---|---|
+| Google Search Console read-only insights (clicks/impressions widget) | 5 | Closes the single most-cited "why switch to Rank Math" gap; requires an OAuth flow, so scope it as fully optional and off by default |
+| Review-prompt system (dismissible, ~2 weeks post-activation) | 5 | §5.3's compounding loop currently has no code behind it — this is pure execution debt, not a design question |
+| Orphaned-content / internal-linking suggestions in the editor | 5 | Extends the existing link-analyzer from "counts links" to "tells you what to fix" |
+| CI: run Plugin Check automatically on every push/PR | 5 | Today's zero-error pass was manual; without automation the very next change can regress it silently |
+| Import from SEOPress / All in One SEO | 5 | Extends the existing importer's switching-barrier removal to two more competitor userbases |
+| Video/News sitemaps | 6 | Named in the README's "future ideas"; niche but zero-downside to add once core sitemap is stable |
+
 ---
 
-## 5. The Download Funnel — How 5K Actually Happens
+## 5. The Download Funnel — How 10K Actually Happens
 
 Downloads are a function of **Impressions × Install-rate × Retention (→ reviews → ranking → more impressions)**. Work all three.
 
@@ -116,19 +140,23 @@ Downloads are a function of **Impressions × Install-rate × Retention (→ revi
 | **100 → 500** | Phase 2 parity (sitemap + breadcrumbs) live | Months 2–3 |
 | **500 → 1,500** | Phase 3 UX + reviews compounding | Months 4–6 |
 | **1,500 → 5,000** | Phase 4 differentiators + migration tool + content marketing | Months 6–12 |
+| **5,000 → 8,000** | Phase 5 competitive-edge features (Page Speed, FAQ/HowTo/TOC, Flesch) live; verified Plugin-Check-clean | Months 12–15 |
+| **8,000 → 10,000** | GSC insights + review-prompt system live; SEOPress/AIOSEO import removes remaining switching barriers | Months 15–20 |
 
-**Leading indicators to watch:** average rating (keep ≥ 4.5), support response time (< 48h), and update recency (≤ 60 days). These three drive wp.org search ranking, which drives the impressions that make 5K reachable.
+**Leading indicators to watch:** average rating (keep ≥ 4.5), support response time (< 48h), and update recency (≤ 60 days). These three drive wp.org search ranking, which drives the impressions that make 10K reachable.
 
 ---
 
-## 7. Definition of Done for "5K-Ready"
+## 7. Definition of Done for "10K-Ready"
 
-The plugin is ready to *sustain* growth to 5K when:
+The plugin is ready to *sustain* growth to 10K when:
 
-1. ✅ Plugin Check passes with zero issues.
-2. ✅ Every parity feature in §4 (Phases 1–2) ships and validates.
-3. ✅ A first-time user can install, run the wizard, and have correct meta + sitemap + schema in under 5 minutes with zero manual config.
-4. ✅ Listing has pro assets, a benefit-led description, and a differentiation FAQ.
-5. ✅ Support and update cadence are established and consistent.
+1. ✅ Plugin Check passes with zero issues, verified against a live WordPress instance (not just static review) — **done as of v2.2.0**.
+2. ✅ Every parity feature in §4 (Phases 1–4) ships and validates — **done**.
+3. ✅ Phase 5 competitive-edge features (§4) ship and validate — **Page Speed / FAQ / HowTo / TOC / Flesch done in v2.2.0; GSC insights and the review-prompt system still open.**
+4. ✅ A first-time user can install, run the wizard, and have correct meta + sitemap + schema in under 5 minutes with zero manual config.
+5. ✅ Listing has pro assets, a benefit-led description, and a differentiation FAQ.
+6. ☐ Support and update cadence are established and consistent — ongoing, not a one-time gate.
+7. ☐ Plugin Check runs automatically in CI so this list can't silently regress.
 
 Everything in this document traces back to one idea: **be the lightweight SEO plugin that's actually complete and actually pleasant — then make sure people can find it.**

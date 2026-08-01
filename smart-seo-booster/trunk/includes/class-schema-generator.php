@@ -137,7 +137,7 @@ class Smart_SEO_Schema_Generator {
 
         $desc = has_excerpt( $post )
             ? get_the_excerpt( $post )
-            : wp_trim_words( wp_strip_all_tags( $post->post_content ), 30, '' );
+            : wp_trim_words( Smart_SEO_Meta_Templates::plain_text( $post->post_content ), 30, '' );
         if ( $desc ) {
             $schema['description'] = wp_strip_all_tags( $desc );
         }

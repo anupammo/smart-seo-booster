@@ -35,7 +35,7 @@ class Smart_SEO_Score_Display {
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
-        $word_count = str_word_count( wp_strip_all_tags( $content ) );
+        $word_count = str_word_count( Smart_SEO_Meta_Templates::plain_text( $content ) );
         $headings = substr_count($content, '<h');
         $images = substr_count($content, '<img');
         $alts = substr_count($content, 'alt=');
@@ -114,7 +114,7 @@ class Smart_SEO_Score_Display {
         $min_words = isset($options['min_word_count']) ? intval($options['min_word_count']) : 300;
         
         $content = $post->post_content;
-        $word_count = str_word_count( wp_strip_all_tags( $content ) );
+        $word_count = str_word_count( Smart_SEO_Meta_Templates::plain_text( $content ) );
         $headings = substr_count($content, '<h');
         $images = substr_count($content, '<img');
         $alts = substr_count($content, 'alt=');
@@ -478,7 +478,7 @@ class Smart_SEO_Score_Display {
         $slug = $post->post_name;
         
         // Content Analysis
-        $word_count = str_word_count( wp_strip_all_tags( $content ) );
+        $word_count = str_word_count( Smart_SEO_Meta_Templates::plain_text( $content ) );
         $paragraph_count = substr_count($content, '</p>');
         $heading_count = substr_count($content, '<h');
         
@@ -623,7 +623,7 @@ class Smart_SEO_Score_Display {
      * @return array{score:?int,label:string}
      */
     public static function smart_seo_flesch_reading_ease( $content ) {
-        $text = wp_strip_all_tags( $content );
+        $text = Smart_SEO_Meta_Templates::plain_text( $content );
 
         $words = preg_split( '/\s+/', trim( $text ), -1, PREG_SPLIT_NO_EMPTY );
         $word_count = count( $words );

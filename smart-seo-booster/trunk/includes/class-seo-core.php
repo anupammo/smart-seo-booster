@@ -216,7 +216,7 @@ class Smart_SEO_Core {
                 return wp_strip_all_tags($post->post_excerpt);
             }
             if ($post instanceof WP_Post) {
-                return wp_trim_words(wp_strip_all_tags($post->post_content), 30, '…');
+                return wp_trim_words(Smart_SEO_Meta_Templates::plain_text($post->post_content), 30, '…');
             }
         }
         return wp_strip_all_tags(get_bloginfo('description'));

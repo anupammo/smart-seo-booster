@@ -77,7 +77,7 @@ class Smart_SEO_Importer {
         $has_rankmath = self::source_available('rankmath');
 
         echo '<div class="wrap smart-seo-settings ssb-app ssb-adapt">';
-        echo '<h1><img src="' . esc_url( SMART_SEO_BOOSTER_LINE_ICON_URL ) . '" width="26" height="26" alt="" class="ssb-h1-icon" /> ' . esc_html__( 'Import SEO Data', 'smart-seo-booster' ) . '</h1>';
+        echo '<h1><img src="' . esc_url( SMART_SEO_BOOSTER_ICON_URL ) . '" width="26" height="26" alt="" class="ssb-h1-icon" /> ' . esc_html__( 'Import SEO Data', 'smart-seo-booster' ) . '</h1>';
         echo '<p>' . esc_html__( 'Copy your existing SEO titles, descriptions, social tags and canonicals from another plugin. Existing Smart SEO values are never overwritten.', 'smart-seo-booster' ) . '</p>';
 
         // Progress notice after a batch.

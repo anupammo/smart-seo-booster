@@ -85,6 +85,9 @@ class Smart_SEO_Meta_Fields {
         if ( function_exists('wp_set_script_translations') ) {
             wp_set_script_translations('smart-seo-block-editor', 'smart-seo-booster');
         }
+        wp_localize_script( 'smart-seo-block-editor', 'smartSeoBlocksBrand', [
+            'iconUrl' => SMART_SEO_BOOSTER_ICON_URL,
+        ] );
     }
 
     /**

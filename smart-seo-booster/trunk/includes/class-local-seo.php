@@ -33,6 +33,7 @@ class Smart_SEO_Local_SEO {
             'settingsUrl' => current_user_can( 'manage_options' )
                 ? admin_url( 'admin.php?page=smart-seo#panel-smart_seo_schema_data' )
                 : '',
+            'iconUrl' => SMART_SEO_BOOSTER_ICON_URL,
         ] );
 
         register_block_type('smart-seo/local-business', [

@@ -33,37 +33,24 @@ if (!defined('SMART_SEO_BOOSTER_FILE')) {
     define('SMART_SEO_BOOSTER_FILE', __FILE__);
 }
 
-// The plugin's own brand icon (rocket mark), used in place of generic
-// Dashicons/emoji on page headings and editor UI (rendered via <img> with
-// explicit width/height, so any image URL is safe here).
+// The plugin's own brand icon (logo), used everywhere the UI needs to show
+// "this is Smart SEO Booster" — page headings, empty-state illustrations,
+// the admin menu, and block icons — in place of generic Dashicons/emoji.
+// Deliberately the plain wp.org listing PNG (not a custom SVG variant), so
+// every one of these surfaces shows the exact same recognizable mark.
 if (!defined('SMART_SEO_BOOSTER_ICON_URL')) {
-    define('SMART_SEO_BOOSTER_ICON_URL', plugin_dir_url(__FILE__) . 'assets/icon.svg');
+    define('SMART_SEO_BOOSTER_ICON_URL', plugin_dir_url(__FILE__) . 'assets/icon-256x256.png');
 }
 
-// Outline ("line icon") variant of the brand mark — used as a decorative
-// illustration on celebratory/empty-state screens (Setup Wizard completion,
-// Tutorial) where a full-color icon would be too heavy-handed.
-if (!defined('SMART_SEO_BOOSTER_LINE_ICON_URL')) {
-    define('SMART_SEO_BOOSTER_LINE_ICON_URL', plugin_dir_url(__FILE__) . 'assets/line-icon.png');
-}
-
-// Admin-menu icon, specifically: WordPress only reliably auto-sizes and
-// recolors (to match the admin color scheme) a base64-encoded monochrome SVG
-// data URI passed as add_menu_page()'s icon_url — a plain image URL can
-// render at its native size, clipped inside the small menu-icon slot, which
-// looks like a broken/oversized icon. Same rocket silhouette as elsewhere,
-// just flattened to one color since WP recolors this itself.
+// Admin-menu icon. WordPress core's own admin CSS constrains any image
+// passed as add_menu_page()'s icon_url to 20x20 (#adminmenu .wp-menu-image
+// img), so a plain PNG URL renders correctly sized — it just won't get the
+// dark/light admin-scheme auto-recolor a monochrome SVG data URI would.
+// That trade-off is intentional here: a consistent full-color logo everywhere
+// beats a scheme-adapted abstract mark that looks different from the rest
+// of the plugin's branding.
 if (!defined('SMART_SEO_BOOSTER_MENU_ICON')) {
-    $smart_seo_menu_icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="black">'
-        . '<path d="M112 150 L98 176 L112 171 Z"/>'
-        . '<path d="M144 150 L158 176 L144 171 Z"/>'
-        . '<ellipse cx="128" cy="186" rx="17" ry="12"/>'
-        . '<ellipse cx="128" cy="183" rx="9" ry="8"/>'
-        . '<path d="M128 72 L112 106 L112 170 Q112 178 120 178 L136 178 Q144 178 144 170 L144 106 Z"/>'
-        . '<circle cx="128" cy="112" r="13" fill-opacity="0.35"/>'
-        . '</svg>';
-    define('SMART_SEO_BOOSTER_MENU_ICON', 'data:image/svg+xml;base64,' . base64_encode($smart_seo_menu_icon_svg));
-    unset($smart_seo_menu_icon_svg);
+    define('SMART_SEO_BOOSTER_MENU_ICON', SMART_SEO_BOOSTER_ICON_URL);
 }
 
 // Autoload classes

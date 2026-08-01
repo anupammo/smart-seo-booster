@@ -16,16 +16,11 @@
 	var c = wp.components;
 
 	// Same brand mark used as the Placeholder icon for every Smart SEO block.
-	var ROCKET_MARK = el(
-		'svg',
-		{ viewBox: '0 0 256 256', width: 24, height: 24, fill: 'currentColor', 'aria-hidden': 'true', focusable: 'false' },
-		el( 'path', { d: 'M112 150 L98 176 L112 171 Z' } ),
-		el( 'path', { d: 'M144 150 L158 176 L144 171 Z' } ),
-		el( 'ellipse', { cx: 128, cy: 186, rx: 17, ry: 12 } ),
-		el( 'ellipse', { cx: 128, cy: 183, rx: 9, ry: 8 } ),
-		el( 'path', { d: 'M128 72 L112 106 L112 170 Q112 178 120 178 L136 178 Q144 178 144 170 L144 106 Z' } ),
-		el( 'circle', { cx: 128, cy: 112, r: 13, opacity: 0.35 } )
-	);
+	// Sourced from PHP via wp_localize_script (class-local-seo.php).
+	var BRAND_ICON_URL = ( window.smartSeoLocalBusiness && window.smartSeoLocalBusiness.iconUrl ) || '';
+	var ROCKET_MARK = BRAND_ICON_URL
+		? el( 'img', { src: BRAND_ICON_URL, width: 24, height: 24, alt: '' } )
+		: null;
 
 	wp.blocks.registerBlockType( 'smart-seo/local-business', {
 		apiVersion: 2,

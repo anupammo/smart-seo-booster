@@ -118,10 +118,9 @@
 	color: #1e4620;
 }
 
-/* ---------- Outline brand mark (decorative, celebratory screens) ---------- */
+/* ---------- Brand mark (decorative, celebratory screens) ---------- */
 .ssb-line-icon {
 	display: block;
-	opacity: 0.9;
 }
 
 .smart-seo-done {
@@ -135,15 +134,6 @@
 .ssb-tutorial-hero {
 	float: inline-end;
 	margin-inline-start: 16px;
-}
-
-/* The line-icon PNG is a dark-gray outline on a transparent background —
-   readable on light cards, but low-contrast on dark ones, so invert it
-   whenever the shared dark palette is active. */
-@media (prefers-color-scheme: dark) {
-	.ssb-adapt .ssb-line-icon {
-		filter: invert(1) brightness(1.7);
-	}
 }
 
 /* ---------- Brand marks next to third-party integration fields ---------- */

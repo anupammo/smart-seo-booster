@@ -26,9 +26,11 @@ class Smart_SEO_Blocks {
     }
 
     /**
-     * Groups all 5 Smart SEO blocks under their own inserter category (instead
+     * Groups all Smart SEO blocks under their own inserter category (instead
      * of the generic "Widgets" bucket) so they're easy to find as a set.
-     * Reuses the same dashicon as the plugin's admin menu for brand continuity.
+     * Block category icons are registered as a plain dashicon slug — there's
+     * no PHP-side way to pass a custom image here, unlike individual block/
+     * Placeholder icons — so this stays a dashicon rather than the brand PNG.
      */
     public static function block_category( $categories ) {
         return array_merge(
@@ -53,6 +55,9 @@ class Smart_SEO_Blocks {
         if ( function_exists('wp_set_script_translations') ) {
             wp_set_script_translations('smart-seo-blocks', 'smart-seo-booster');
         }
+        wp_localize_script( 'smart-seo-blocks', 'smartSeoBlocksBrand', [
+            'iconUrl' => SMART_SEO_BOOSTER_ICON_URL,
+        ] );
         wp_register_style('smart-seo-blocks', plugin_dir_url(__FILE__) . '../css/blocks.css', [], $ver);
         wp_register_script('smart-seo-blocks-front', plugin_dir_url(__FILE__) . '../js/blocks-front.js', [], $ver, true);
 

@@ -23,19 +23,14 @@
 	var useDispatch = wp.data.useDispatch;
 	var __ = wp.i18n.__;
 
-	// Brand mark (the Smart SEO Booster rocket) — same icon used everywhere
+	// Brand mark (the Smart SEO Booster logo) — same icon used everywhere
 	// else in the plugin's admin UI, in place of the generic "chart-line"
-	// Dashicon this panel used previously.
-	var ROCKET_MARK = el(
-		'svg',
-		{ viewBox: '0 0 256 256', width: 20, height: 20, fill: 'currentColor', 'aria-hidden': 'true', focusable: 'false' },
-		el( 'path', { d: 'M112 150 L98 176 L112 171 Z' } ),
-		el( 'path', { d: 'M144 150 L158 176 L144 171 Z' } ),
-		el( 'ellipse', { cx: 128, cy: 186, rx: 17, ry: 12 } ),
-		el( 'ellipse', { cx: 128, cy: 183, rx: 9, ry: 8 } ),
-		el( 'path', { d: 'M128 72 L112 106 L112 170 Q112 178 120 178 L136 178 Q144 178 144 170 L144 106 Z' } ),
-		el( 'circle', { cx: 128, cy: 112, r: 13, opacity: 0.35 } )
-	);
+	// Dashicon this panel used previously. Sourced from PHP via
+	// wp_localize_script (class-meta-fields.php).
+	var BRAND_ICON_URL = ( window.smartSeoBlocksBrand && window.smartSeoBlocksBrand.iconUrl ) || '';
+	var ROCKET_MARK = BRAND_ICON_URL
+		? el( 'img', { src: BRAND_ICON_URL, width: 20, height: 20, alt: '' } )
+		: null;
 
 	var ROBOTS = [
 		{ label: 'Index, Follow (default)', value: 'index,follow' },

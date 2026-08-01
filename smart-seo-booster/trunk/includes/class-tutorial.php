@@ -95,7 +95,7 @@ class Smart_SEO_Tutorial {
     }
 
     private static function step_welcome() {
-        echo '<img src="' . esc_url( SMART_SEO_BOOSTER_LINE_ICON_URL ) . '" width="72" height="72" alt="" class="ssb-line-icon ssb-tutorial-hero" />';
+        echo '<img src="' . esc_url( SMART_SEO_BOOSTER_ICON_URL ) . '" width="72" height="72" alt="" class="ssb-line-icon ssb-tutorial-hero" />';
         echo '<h2>' . esc_html__( 'Welcome to Smart SEO Booster', 'smart-seo-booster' ) . '</h2>';
         echo '<p class="description">' . esc_html__( 'This short tour covers the six things worth knowing before you start. Use Next/Previous below, or jump to any step above.', 'smart-seo-booster' ) . '</p>';
         echo '<div class="ssb-grid">';

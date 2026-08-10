@@ -126,6 +126,7 @@ No. It uses minimal hooks and outputs schema only in the footer, with no externa
 10. Smart SEO blocks — breadcrumbs, social share, call-to-action, dates and Local Business, grouped in their own inserter category.
 11. Bulk SEO Editor — edit SEO titles and meta descriptions across your whole site from one table.
 12. Redirection manager with a live 404 log — catch broken links before search engines do.
+13. Page Speed report — Google PageSpeed Insights scores and Core Web Vitals (LCP, CLS, INP) for any page, with no API key required.
 
 == Changelog ==
 

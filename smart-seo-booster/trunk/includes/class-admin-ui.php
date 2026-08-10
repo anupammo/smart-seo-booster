@@ -172,6 +172,29 @@ class Smart_SEO_Admin_UI {
     public static function enqueue_assets($hook) {
         $ver = defined('SMART_SEO_BOOSTER_VERSION') ? SMART_SEO_BOOSTER_VERSION : false;
 
+        // Size the admin-menu icon. This has to load on EVERY admin screen,
+        // not just ours, because the menu renders everywhere.
+        //
+        // WordPress only sizes menu icons for two of its three icon_url forms:
+        // a `dashicons-*` slug becomes a 20px font glyph, and a
+        // `data:image/svg+xml;base64,` URI becomes a background-image with
+        // `background-size: 20px auto`. A plain image URL — which is what a
+        // PNG logo is — renders as a bare <img> that core styles with only
+        // `padding: 9px 0 0; opacity: .6` and *no* width/height, so it draws
+        // at its intrinsic size and blows the menu apart. Constrain it to the
+        // same 20px box, with the 7px top padding dashicons use so it lines up
+        // with neighbouring items, and full opacity (core dims icons to 60%
+        // because it recolours monochrome glyphs; a full-colour logo just
+        // looks washed out).
+        //
+        // Attached to core's always-present `admin-menu` handle so it costs no
+        // extra HTTP request, and scoped to our own menu item so no other
+        // plugin's icon is affected.
+        wp_add_inline_style(
+            'admin-menu',
+            '#adminmenu .toplevel_page_smart-seo .wp-menu-image img{width:20px;height:20px;padding:7px 0 0;opacity:1;}'
+        );
+
         if (strpos($hook, 'smart-seo') !== false) {
             wp_enqueue_style(
                 'smart-seo-admin',

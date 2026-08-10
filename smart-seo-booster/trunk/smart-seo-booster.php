@@ -3,7 +3,7 @@
  * Plugin Name: Smart SEO Booster
  * Plugin URI: https://anupammondal.in/wordpress-plugin/smart-seo-booster
  * Description: Free WordPress SEO plugin built for AI search — llms.txt, AI-crawler control & speakable data, plus schema, XML sitemaps, breadcrumbs & Core Web Vitals.
- * Version: 2.2.1
+ * Version: 2.2.2
  * Author: Anupam Mondal
  * Author URI: https://anupammondal.in
  * License: GPLv2 or later
@@ -19,7 +19,7 @@ defined('ABSPATH') || exit;
 
 // Define plugin version constant for cache busting in enqueued assets.
 if (!defined('SMART_SEO_BOOSTER_VERSION')) {
-    define('SMART_SEO_BOOSTER_VERSION', '2.2.1');
+    define('SMART_SEO_BOOSTER_VERSION', '2.2.2');
 }
 
 // Developer credit / portfolio links.
@@ -42,13 +42,15 @@ if (!defined('SMART_SEO_BOOSTER_ICON_URL')) {
     define('SMART_SEO_BOOSTER_ICON_URL', plugin_dir_url(__FILE__) . 'assets/icon-256x256.png');
 }
 
-// Admin-menu icon. WordPress core's own admin CSS constrains any image
-// passed as add_menu_page()'s icon_url to 20x20 (#adminmenu .wp-menu-image
-// img), so a plain PNG URL renders correctly sized — it just won't get the
-// dark/light admin-scheme auto-recolor a monochrome SVG data URI would.
-// That trade-off is intentional here: a consistent full-color logo everywhere
-// beats a scheme-adapted abstract mark that looks different from the rest
-// of the plugin's branding.
+// Admin-menu icon — the same logo used everywhere else, so the menu matches
+// the rest of the plugin's branding rather than showing a generic glyph.
+//
+// Note that core does NOT size a plain image URL passed as icon_url: it only
+// applies `padding` and `opacity` to the resulting <img>, leaving it at its
+// intrinsic size (unlike `dashicons-*` slugs and base64 SVG data URIs, which
+// core sizes to 20px). Smart_SEO_Admin_UI::enqueue_assets() therefore ships a
+// scoped inline rule constraining this image to 20x20. If that rule is ever
+// removed, this icon will render at full size and break the admin menu.
 if (!defined('SMART_SEO_BOOSTER_MENU_ICON')) {
     define('SMART_SEO_BOOSTER_MENU_ICON', SMART_SEO_BOOSTER_ICON_URL);
 }

@@ -4,7 +4,7 @@ Tags: ai seo, llms txt, core web vitals, faq schema, breadcrumbs
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 7.0
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,9 @@ No. It uses minimal hooks and outputs schema only in the footer, with no externa
 
 == Changelog ==
 
+= 2.2.2 =
+* Fix: The Smart SEO icon in the admin menu displayed at full size in 2.2.1, pushing the menu out of shape. It is now constrained to the normal menu-icon size.
+
 = 2.2.1 =
 * New: One-click PageSpeed Insights and Google Rich Results Test links, on the posts/pages list and in the per-post SEO meta box, for published content.
 * New: An occasional, dismissible reminder to leave a WordPress.org review. It waits until the plugin has been set up and used for two weeks, appears only on the plugin's own screens and the dashboard, and can be turned off permanently in one click.
@@ -193,6 +196,9 @@ Editor & experience
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.2.2 =
+Fixes an oversized admin-menu icon introduced in 2.2.1. Recommended for anyone on 2.2.1.
 
 = 2.2.1 =
 Adds one-click PageSpeed Insights and Rich Results Test links for your published posts and pages.

@@ -3,7 +3,7 @@
  * Plugin Name: Smart SEO Booster
  * Plugin URI: https://anupammondal.in/wordpress-plugin/smart-seo-booster
  * Description: Free WordPress SEO plugin built for AI search — llms.txt, AI-crawler control & speakable data, plus schema, XML sitemaps, breadcrumbs & Core Web Vitals.
- * Version: 2.2.0
+ * Version: 2.2.1
  * Author: Anupam Mondal
  * Author URI: https://anupammondal.in
  * License: GPLv2 or later
@@ -19,7 +19,7 @@ defined('ABSPATH') || exit;
 
 // Define plugin version constant for cache busting in enqueued assets.
 if (!defined('SMART_SEO_BOOSTER_VERSION')) {
-    define('SMART_SEO_BOOSTER_VERSION', '2.2.0');
+    define('SMART_SEO_BOOSTER_VERSION', '2.2.1');
 }
 
 // Developer credit / portfolio links.

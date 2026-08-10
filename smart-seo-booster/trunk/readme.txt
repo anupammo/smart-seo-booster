@@ -4,7 +4,7 @@ Tags: ai seo, llms txt, core web vitals, faq schema, breadcrumbs
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 7.0
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,12 @@ No. It uses minimal hooks and outputs schema only in the footer, with no externa
 
 == Changelog ==
 
+= 2.2.1 =
+* New: One-click PageSpeed Insights and Google Rich Results Test links, on the posts/pages list and in the per-post SEO meta box, for published content.
+* New: An occasional, dismissible reminder to leave a WordPress.org review. It waits until the plugin has been set up and used for two weeks, appears only on the plugin's own screens and the dashboard, and can be turned off permanently in one click.
+* Improvement: Every place the plugin shows its own logo — admin menu, page headings, block editor — now uses one consistent icon.
+* Improvement: Removed unused image files from the plugin package.
+
 = 2.2.0 =
 * New: Page Speed report — real Google PageSpeed Insights data (Performance/SEO/Accessibility/Best-Practices scores plus Core Web Vitals: LCP, CLS, INP) for any URL on your site, no API key required.
 * New: FAQ block — an accordion that also outputs FAQPage JSON-LD schema for rich results.
@@ -187,6 +193,9 @@ Editor & experience
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.2.1 =
+Adds one-click PageSpeed Insights and Rich Results Test links for your published posts and pages.
 
 = 2.2.0 =
 New Page Speed report (Core Web Vitals), FAQ/How-To/Table of Contents blocks, and Flesch reading-ease scoring.

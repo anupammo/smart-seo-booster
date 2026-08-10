@@ -10,6 +10,9 @@ delete_option('smart_seo_options');
 delete_option('smart_seo_redirects');
 delete_option('smart_seo_404_log');
 delete_option('smart_seo_rewrite_v');
+delete_option('smart_seo_installed_at');
+delete_option('smart_seo_review_dismissed');
+delete_option('smart_seo_review_snooze');
 
 // Delete short-lived, fixed-name transients (self-expire anyway, but no
 // reason to leave them behind on an explicit uninstall).

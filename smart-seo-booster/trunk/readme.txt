@@ -8,7 +8,7 @@ Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Free SEO plugin with AI/GEO tools: llms.txt, AI-crawler control & speakable data — plus XML sitemaps, schema, breadcrumbs & Core Web Vitals.
+A free WordPress SEO plugin built for AI search, with an llms.txt file, AI crawler controls, schema markup, XML sitemaps, breadcrumbs and more.
 
 == Description ==
 

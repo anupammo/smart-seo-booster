@@ -29,6 +29,7 @@ class Smart_SEO_Loader {
         require_once plugin_dir_path(__FILE__) . 'class-toc.php';
         require_once plugin_dir_path(__FILE__) . 'class-blocks.php';
         require_once plugin_dir_path(__FILE__) . 'class-credits.php';
+        require_once plugin_dir_path(__FILE__) . 'class-review-prompt.php';
         require_once plugin_dir_path(__FILE__) . 'class-pagespeed.php';
 
         Smart_SEO_Settings::init();
@@ -54,6 +55,7 @@ class Smart_SEO_Loader {
         Smart_SEO_TOC::init();
         Smart_SEO_Blocks::init();
         Smart_SEO_Credits::init();
+        Smart_SEO_Review_Prompt::init();
         Smart_SEO_PageSpeed::init();
     }
 }

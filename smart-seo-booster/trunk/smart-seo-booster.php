@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Smart SEO Booster
  * Plugin URI: https://anupammondal.in/wordpress-plugin/smart-seo-booster
- * Description: Complete WordPress SEO plugin — schema markup, XML sitemaps, meta tags, breadcrumbs, Open Graph & AI SEO. 100% free, no upsells.
+ * Description: Free WordPress SEO plugin built for AI search — llms.txt, AI-crawler control & speakable data, plus schema, XML sitemaps, breadcrumbs & Core Web Vitals.
  * Version: 2.2.0
  * Author: Anupam Mondal
  * Author URI: https://anupammondal.in

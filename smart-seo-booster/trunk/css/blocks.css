@@ -123,10 +123,11 @@
 	color: #1e293b;
 	font-weight: 600;
 }
-.ssb-block-placeholder .components-placeholder__icon,
-.ssb-block-placeholder .components-placeholder__icon svg {
-	fill: #2563eb;
-	color: #2563eb;
+/* The placeholder icon is the brand logo <img>, so there is nothing to tint
+   here (the old fill/color rule applied to a monochrome inline SVG); just
+   keep it from picking up an inline-element baseline gap. */
+.ssb-block-placeholder .components-placeholder__icon img {
+	display: block;
 }
 .ssb-block-placeholder .components-placeholder__instructions {
 	color: #64748b;

@@ -1,6 +1,6 @@
 === Smart SEO Booster ===
 Contributors: anupamwp
-Tags: seo, schema markup, xml sitemap, meta tags, breadcrumbs
+Tags: ai seo, llms txt, core web vitals, faq schema, breadcrumbs
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 7.0
@@ -8,15 +8,15 @@ Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Complete WordPress SEO plugin — schema markup, XML sitemap, meta tags, breadcrumbs, Open Graph & AI SEO. 100% free, no upsells.
+Free SEO plugin with AI/GEO tools: llms.txt, AI-crawler control & speakable data — plus XML sitemaps, schema, breadcrumbs & Core Web Vitals.
 
 == Description ==
 
-**Smart SEO Booster is a free, all-in-one WordPress SEO plugin** that gives you every ranking fundamental that actually moves the needle — schema markup, XML sitemaps, meta tags, Open Graph & Twitter Cards, breadcrumbs, redirects, and content scoring — without the bloat, paywalls, or upsell nags of the big-name SEO plugins. Every feature is free, forever. No "Pro" tier, no locked settings.
+**Smart SEO Booster is a free WordPress SEO plugin built for AI search.** It ships the **GEO (Generative Engine Optimization) / AI SEO** tools most SEO plugins still don't have — an `/llms.txt` file that tells AI assistants what your site is about, one-click opt-out for AI crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended), and speakable structured data for voice assistants — on top of a complete, conventional SEO toolkit.
+
+That toolkit covers every ranking fundamental that actually moves the needle: schema markup (including FAQ and How-To rich results), XML sitemaps, meta tags, Open Graph & Twitter Cards, breadcrumbs, redirects, content scoring, and a **Core Web Vitals** report powered by Google PageSpeed Insights — without the bloat, paywalls, or upsell nags of the big-name SEO plugins. Every feature is free, forever. No "Pro" tier, no locked settings.
 
 It automates titles and meta descriptions, injects 14 types of JSON-LD schema, generates XML sitemaps, and shows you a live search/social preview with a real-time SEO score right inside the block editor. One-click import from Yoast SEO or Rank Math means switching takes minutes, not hours — and your existing SEO data is never overwritten.
-
-New: built-in **GEO (Generative Engine Optimization) / AI SEO tools** — an `/llms.txt` file for AI assistants, one-click opt-out for AI crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended), and speakable structured data for voice assistants. Few SEO plugins offer this yet.
 
 **Why site owners switch to Smart SEO Booster:**
 * **100% free** — every feature above is included, always. No premium upsells, no drip-fed "unlock with Pro" nags.

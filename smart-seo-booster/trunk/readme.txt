@@ -64,6 +64,9 @@ Developer & documentation: https://anupammondal.in/wordpress-plugin/smart-seo-bo
 = Is Smart SEO Booster really free? Is there a paid/Pro version? =
 Yes, it's really free — every feature listed above, including schema markup, XML sitemaps, redirects, GA4 integration, and GEO/AI SEO tools, is included at no cost. There is no premium tier and no features are locked behind an upsell.
 
+= Is this a good free alternative to Yoast SEO or Rank Math? =
+It depends on what you need. Yoast and Rank Math are mature, widely used plugins with large support communities — if you are happy with either, switching will gain you little. Smart SEO Booster is aimed at people who want the same fundamentals (titles, meta descriptions, schema markup, XML sitemaps, breadcrumbs) without a paid tier: redirects, the bulk editor and every schema type are free here, and there are no upsell notices in the admin. It also ships AI/GEO tools that most SEO plugins do not have yet. The one-click importer means you can try it without losing your existing data.
+
 = Can I switch from Yoast SEO or Rank Math without losing my data? =
 Yes. Go to **Smart SEO → Import**, choose Yoast SEO or Rank Math, and Smart SEO Booster copies your existing titles, meta descriptions, social tags, and canonical URLs. It never overwrites a Smart SEO value that's already set, so you can trial it safely alongside your current plugin.
 
@@ -72,6 +75,12 @@ Yes. It automatically outputs JSON-LD structured data for 14 content types — A
 
 = How do I generate an XML sitemap? =
 Enable **XML Sitemap** in Smart SEO → Settings and your sitemap is available instantly at `/sitemap.xml`, automatically referenced from `robots.txt` for search engine discovery.
+
+= How do I check my Core Web Vitals and PageSpeed score? =
+Go to **Smart SEO → Page Speed** and enter any URL on your site. The report shows Google PageSpeed Insights scores for Performance, SEO, Accessibility and Best Practices, plus Core Web Vitals (LCP, CLS and INP) rated against Google's own thresholds. It uses real-user field data where Google has it for your site, and lab data otherwise. No API key is required, though you can add a free one for higher-volume checks. Your site must be publicly reachable — local and staging installs cannot be tested this way.
+
+= How do I add FAQ schema to a page? =
+Add the **FAQ (Smart SEO)** block in the block editor and fill in your questions and answers. The block renders an accessible accordion on the front end and outputs FAQPage JSON-LD automatically, which is what Google reads for FAQ rich results. There is a matching How-To block that outputs HowTo schema the same way, and a Table of Contents block that builds a jump list from your headings.
 
 = Does this plugin support custom post types? =
 Yes, schema detection, sitemaps, and meta box support all work for posts, pages, WooCommerce products, and can be extended to any custom post type.
@@ -90,6 +99,12 @@ Smart SEO Booster's admin interface is fully translated into 17 languages: Catal
 
 = What is GEO / AI SEO, and why does it matter? =
 GEO (Generative Engine Optimization) helps your content perform well when AI assistants like ChatGPT, Claude, and Google AI Overviews summarize or cite it. Smart SEO Booster can publish an `/llms.txt` file for AI assistants, let you opt out of AI-crawler training (GPTBot, ClaudeBot, CCBot, Google-Extended), and mark content as speakable for voice assistants.
+
+= How do I add an llms.txt file to my WordPress site? =
+Enable **Serve an llms.txt file** under Smart SEO → Settings → AI &amp; GEO. The file is generated from your published content and served at `/llms.txt`, so it stays current as you publish instead of going stale like a hand-written one. If it does not load, visit Settings → Permalinks and click Save once to flush your rewrite rules.
+
+= How do I stop ChatGPT and other AI crawlers from training on my content? =
+Turn on **Ask AI crawlers not to train on this site** under Smart SEO → Settings → AI &amp; GEO. This adds robots.txt rules for GPTBot, Google-Extended, ClaudeBot, CCBot and others. Two things worth knowing: Google-Extended controls Gemini training only and has no effect on your Google Search rankings, and blocking training crawlers can also reduce how often AI assistants cite your site — so it is worth deciding deliberately rather than by default.
 
 = Will this plugin conflict with other SEO plugins? =
 Running two SEO plugins that both output meta tags and schema at the same time can cause duplicates. Use the built-in importer to migrate away from your previous SEO plugin, then deactivate it.

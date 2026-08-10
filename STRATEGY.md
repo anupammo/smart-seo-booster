@@ -1,6 +1,8 @@
-# Smart SEO Booster — Growth Strategy to 10,000 Downloads
+# Smart SEO Booster — Growth Strategy to 10,000 Active Installs
 
-**Owner:** Anupam Mondal · **Target milestone:** 10,000 active/downloads · **Last updated:** 2026-08-02
+**Owner:** Anupam Mondal · **Target milestone:** 10,000 **active installs** · **Last updated:** 2026-08-11
+
+> **On the metric:** this document previously targeted "downloads." That was the wrong number to steer by. At 724 all-time downloads the plugin has **0 active installs** — wp.org's download counter includes mirrors, scrapers and security scanners, and every new tag triggers a burst of them. Active installs and ratings are the only figures that drive directory ranking, so those are what this plan targets.
 
 This document is the business case behind the [README roadmap](README.md#-development-roadmap). It answers three questions: *Where do we fit?*, *What must we build?*, and *How do we get people to install it?*
 
@@ -32,18 +34,23 @@ Phases 1–4 (foundation, parity, UX, differentiators) are **complete and shippe
 
 ## 2. Market Landscape (2026)
 
-| Plugin | Active installs | Position | Free-tier strength | Weakness we exploit |
-|---|---|---|---|---|
-| **Yoast SEO** | 13M+ | Incumbent | Ecosystem, content analysis | Heavy, aggressive upsells |
-| **Rank Math** | 3M+ | Feature leader | 18+ schema, redirects, GSC, 404 — all free | Complex, heavier footprint |
-| **All in One SEO** | 3M+ | Agency/WooCommerce | Multi-site economics | Bloated for simple sites |
-| **SEOPress** | 300K+ | Privacy all-rounder | No ads, white-label | Smaller ecosystem |
-| **The SEO Framework** | 100K+ | Lightweight/technical | Fast, private, automated | No visual editor UX, sparse |
-| **Slim SEO** | 100K+ | Lightweight/automated | Zero-config, blazing fast | No settings, no scoring, no visual feedback |
+Figures below are pulled from the WordPress.org plugin API (`api.wordpress.org/plugins/info/1.2/`), verified 2026-08-11. An earlier revision of this table carried numbers that were simply wrong — Yoast was listed at 13M (actually 10M), Rank Math at 3M (actually 4M), Slim SEO at 100K (actually 60K). Re-pull before relying on them.
+
+| Plugin | Active installs | Rating | Position | Free-tier strength | Weakness we exploit |
+|---|---:|---:|---|---|---|
+| **Yoast SEO** | 10,000,000 | 4.8 (27,817) | Incumbent | Ecosystem, content analysis | Heavy, aggressive upsells |
+| **Rank Math** | 4,000,000 | 4.8 (7,484) | Feature leader | 18+ schema, redirects, GSC, 404 — all free | Complex, heavier footprint |
+| **All in One SEO** | 3,000,000 | 4.7 (5,190) | Agency/WooCommerce | Multi-site economics | Bloated for simple sites |
+| **SEOPress** | 300,000 | 4.8 (1,242) | Privacy all-rounder | No ads, white-label | Smaller ecosystem |
+| **The SEO Framework** | 200,000 | 4.9 (377) | Lightweight/technical | Fast, private, automated | No visual editor UX, sparse |
+| **Slim SEO** | 60,000 | 4.7 (135) | Lightweight/automated | Zero-config, blazing fast | No settings, no scoring, no visual feedback |
+| **Smart SEO Booster** | **0** | **— (0)** | — | — | — |
 
 **The open lane:** Slim SEO and The SEO Framework prove there's real demand for *lightweight*, but both are **deliberately minimal** — no live preview, no content scoring, no visual guidance. That's exactly what Smart SEO Booster already has. **Combine "lightweight & automated" with "helpful & visual" and you own a differentiated position.**
 
-*Sources: [WordPress.org plugin directory](https://wordpress.org/plugins/), [Rank Math](https://rankmath.com/wordpress/plugin/seo-suite/), [Slim SEO](https://wpslimseo.com/), [The SEO Framework](https://wordpress.org/plugins/autodescription/), 2026 comparison reviews ([Zapier](https://zapier.com/blog/best-wordpress-seo-plugins/), [ALM Corp](https://almcorp.com/blog/top-seo-plugins-compared/)).*
+**The sobering column is "Rating."** Every plugin above has between 135 and 27,817 ratings. We have zero. In a category where a bad plugin can quietly cost someone their traffic, that gap — not the feature gap — is what actually stops installs. The lightest competitor here still has 135 people vouching for it.
+
+*Source: WordPress.org plugin API, 2026-08-11. Ratings shown as stars with total rating count.*
 
 ---
 
@@ -132,31 +139,65 @@ Downloads are a function of **Impressions × Install-rate × Retention (→ revi
 
 ---
 
-## 6. Milestone Timeline (Indicative)
+## 6. Milestone Timeline
 
-| Milestone | Trigger | Target |
+### What actually happened
+
+The original version of this table predicted **0 → 100 installs in weeks 1–4**, triggered by "wp.org approval + a clean Phase 1 build."
+
+Reality, measured 2026-08-11:
+
+| | |
+|---|---|
+| Listed on wp.org | 2026-03-12 (5 months) |
+| Phases 1–4 shipped | Yes, in full |
+| Plugin Check | Clean, verified against a live install |
+| All-time downloads | 724 |
+| **Active installs** | **0** |
+| **Ratings** | **0** |
+| Support threads | 0 |
+
+The prediction was wrong by a wide margin, and the reason matters more than the miss: **it assumed shipping quality software was the trigger.** Every phase landed, the build is genuinely clean, and the install count never moved. Note too that 724 downloads against 0 active installs means almost none of those downloads were humans — wp.org counts mirrors, scrapers, and security scanners, and each new tag triggers a fresh burst.
+
+The corrected causal model: **wp.org search ranks on installs and ratings, so a plugin with neither is invisible for every competitive term.** Nothing on the product side breaks that loop. Only traffic from outside wp.org does.
+
+### Revised timeline
+
+Anchored on the two things that actually gate growth, not on feature phases:
+
+| Milestone | Real trigger | Realistic window |
 |---|---|---|
-| **0 → 100** | wp.org approval + Phase 1 clean build | Weeks 1–4 |
-| **100 → 500** | Phase 2 parity (sitemap + breadcrumbs) live | Months 2–3 |
-| **500 → 1,500** | Phase 3 UX + reviews compounding | Months 4–6 |
-| **1,500 → 5,000** | Phase 4 differentiators + migration tool + content marketing | Months 6–12 |
-| **5,000 → 8,000** | Phase 5 competitive-edge features (Page Speed, FAQ/HowTo/TOC, Flesch) live; verified Plugin-Check-clean | Months 12–15 |
-| **8,000 → 10,000** | GSC insights + review-prompt system live; SEOPress/AIOSEO import removes remaining switching barriers | Months 15–20 |
+| **0 → 10** | External content ranks, or a WP-news mention; every install hand-earned | Months 1–3 from first publishing |
+| **10 → 50** | First ~5 genuine reviews arrive via the in-plugin prompt | Months 3–6 |
+| **50 → 500** | ~10+ ratings; wp.org search starts contributing instead of burying us | Months 6–12 |
+| **500 → 2,000** | Search visibility compounds; long-tail tags (llms.txt, Core Web Vitals) start earning their own traffic | Year 1–2 |
+| **2,000 → 10,000** | Category presence, sustained content, possible GSC insights parity | Year 2+ |
 
-**Leading indicators to watch:** average rating (keep ≥ 4.5), support response time (< 48h), and update recency (≤ 60 days). These three drive wp.org search ranking, which drives the impressions that make 10K reachable.
+**The gate nobody can skip:** roughly **10 honest reviews**. Below that, every install is manual. Above it, the directory begins working for you. That single number matters more than any remaining feature on the roadmap.
+
+**Leading indicators to watch:** rating count (the binding constraint — anything above 0 is progress), average rating (keep ≥ 4.5), support response time (< 48h), update recency (≤ 60 days).
 
 ---
 
 ## 7. Definition of Done for "10K-Ready"
 
-The plugin is ready to *sustain* growth to 10K when:
+**The product half is done.** Keeping it here as a record, but note that every box below was already ticked while installs sat at zero — which is precisely the point of §6. Completing this list is necessary, not sufficient.
 
 1. ✅ Plugin Check passes with zero issues, verified against a live WordPress instance (not just static review) — **done as of v2.2.0**.
 2. ✅ Every parity feature in §4 (Phases 1–4) ships and validates — **done**.
-3. ✅ Phase 5 competitive-edge features (§4) ship and validate — **Page Speed / FAQ / HowTo / TOC / Flesch done in v2.2.0; GSC insights and the review-prompt system still open.**
+3. ✅ Phase 5 competitive-edge features (§4) ship and validate — **Page Speed / FAQ / HowTo / TOC / Flesch done in v2.2.0; GSC insights still open.**
 4. ✅ A first-time user can install, run the wizard, and have correct meta + sitemap + schema in under 5 minutes with zero manual config.
 5. ✅ Listing has pro assets, a benefit-led description, and a differentiation FAQ.
-6. ☐ Support and update cadence are established and consistent — ongoing, not a one-time gate.
-7. ☐ Plugin Check runs automatically in CI so this list can't silently regress.
+6. ✅ In-plugin review prompt exists (delayed, gated on real use, permanently dismissible) — **built, unreleased until a 2.2.1 tag is cut**.
+7. ☐ Support and update cadence are established and consistent — ongoing, not a one-time gate.
+8. ☐ Plugin Check runs automatically in CI so this list can't silently regress.
 
-Everything in this document traces back to one idea: **be the lightweight SEO plugin that's actually complete and actually pleasant — then make sure people can find it.**
+### The distribution half — where the actual work is
+
+1. ☐ Publish the `llms.txt` guide (`docs/marketing/`) — the piece most likely to rank.
+2. ☐ Publish the lightweight-SEO comparison (`docs/marketing/`).
+3. ☐ **Cut a 2.2.1 tag** so the review prompt can actually reach users.
+4. ☐ Earn the first ~10 genuine reviews. Everything else is downstream of this.
+5. ☐ One WP-news or community mention.
+
+Everything in this document traces back to one idea: **be the lightweight SEO plugin that's actually complete and actually pleasant — then make sure people can find it.** Five months in, the first half is done and the second half has not been started. That, not the roadmap, is the reason the install count is zero.

@@ -178,7 +178,7 @@ smart-seo-booster/
 
 ## 🗺️ Development Roadmap
 
-The road to **10,000 downloads** (see [STRATEGY.md](STRATEGY.md)) is five phases. Each phase is independently shippable and raises the plugin's WordPress.org rating and retention.
+The road to **10,000 active installs** (see [STRATEGY.md](STRATEGY.md)) is five phases. Each phase is independently shippable — though note that Phases 1–4 all shipped while installs sat at zero, which is why STRATEGY.md now treats distribution, not features, as the binding constraint.
 
 ### ✅ Phase 1 — Foundation & Fixes *(v2.1.0)*  ·  **COMPLETE**
 > Goal: a rock-solid, consistent, spotless base. Ship nothing new until these are clean. — **Done**, including the official Plugin Check run against a live WordPress instance (zero errors, zero warnings, verified in v2.2.0 — see Phase 5).

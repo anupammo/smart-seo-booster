@@ -42,8 +42,12 @@ if (!defined('SMART_SEO_BOOSTER_ICON_URL')) {
     define('SMART_SEO_BOOSTER_ICON_URL', plugin_dir_url(__FILE__) . 'assets/icon-256x256.png');
 }
 
-// Admin-menu icon — the same logo used everywhere else, so the menu matches
-// the rest of the plugin's branding rather than showing a generic glyph.
+// Admin-menu icon — the same artwork as above, but a separate 40x40 file
+// rather than the 256px one. The admin menu renders on *every* wp-admin
+// screen, so this is the one image the plugin asks every page to load;
+// shipping the 256px original there cost ~32KB to fill a 20px slot, which
+// sits badly with a plugin that sells itself on being lightweight. 40px is
+// 2x the rendered size, so it stays sharp on HiDPI displays.
 //
 // Note that core does NOT size a plain image URL passed as icon_url: it only
 // applies `padding` and `opacity` to the resulting <img>, leaving it at its
@@ -52,7 +56,7 @@ if (!defined('SMART_SEO_BOOSTER_ICON_URL')) {
 // scoped inline rule constraining this image to 20x20. If that rule is ever
 // removed, this icon will render at full size and break the admin menu.
 if (!defined('SMART_SEO_BOOSTER_MENU_ICON')) {
-    define('SMART_SEO_BOOSTER_MENU_ICON', SMART_SEO_BOOSTER_ICON_URL);
+    define('SMART_SEO_BOOSTER_MENU_ICON', plugin_dir_url(__FILE__) . 'assets/menu-icon.png');
 }
 
 // Autoload classes

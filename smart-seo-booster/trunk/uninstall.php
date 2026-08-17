@@ -13,6 +13,7 @@ delete_option('smart_seo_rewrite_v');
 delete_option('smart_seo_installed_at');
 delete_option('smart_seo_review_dismissed');
 delete_option('smart_seo_review_snooze');
+delete_option('smart_seo_last_seen_version');
 
 // Delete short-lived, fixed-name transients (self-expire anyway, but no
 // reason to leave them behind on an explicit uninstall).

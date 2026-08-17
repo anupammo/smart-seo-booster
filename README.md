@@ -8,7 +8,7 @@
 
 Smart SEO Booster gives you every SEO fundamental that actually moves rankings — meta tags, Open Graph & Twitter Cards, JSON-LD schema, XML sitemaps, breadcrumbs, and real-time content scoring — in one clean, modular plugin with **no bloat, no upsell walls, and no complex add-ons**.
 
-[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/anupammo/smart-seo-booster)
+[![Version](https://img.shields.io/badge/version-2.2.3-blue.svg)](https://github.com/anupammo/smart-seo-booster)
 [![WordPress](https://img.shields.io/badge/WordPress-5.9%E2%80%937.0.2-21759b.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-GPLv2%2B-green.svg)](LICENSE)
@@ -25,6 +25,7 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 - [Installation](#-installation)
 - [Architecture](#-architecture)
 - [Development Roadmap](#-development-roadmap)
+- [Growth Strategy](#-growth-strategy--road-to-1000-active-installs)
 - [Release Checklist](#-release-checklist)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -45,7 +46,7 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 
 ## 📊 Feature Matrix (Current vs Planned)
 
-### ✅ Available now (v2.2)
+### ✅ Available now (v2.2.3)
 
 - **Page Speed report** — real Google PageSpeed Insights scores (Performance/SEO/Accessibility/Best-Practices) plus Core Web Vitals (LCP, CLS, INP), no API key required
 - **FAQ &amp; How-To blocks** — accordion/step-guide blocks that also output FAQPage/HowTo JSON-LD schema
@@ -87,12 +88,10 @@ Smart SEO Booster gives you every SEO fundamental that actually moves rankings �
 Phases 1–4 are complete; Phase 5 is in progress. Still open:
 
 - **Google Search Console** read-only insights (clicks/impressions widget) — the top-requested gap vs. Rank Math's free tier
-- **Review-prompt system** — dismissible, ~2 weeks post-activation
 - **Link-suggestion / orphaned-content** helper in the editor
 - **Import from SEOPress / All in One SEO**
 - **Video & News sitemaps**, sitemap caching
 - **Multiple** LocalBusiness locations
-- **Automated Plugin Check in CI**
 
 ---
 
@@ -238,6 +237,44 @@ The road to **10,000 active installs** (see [STRATEGY.md](STRATEGY.md)) is five 
 - [ ] **Review-prompt system** — dismissible, ~2 weeks post-activation
 - [ ] **Import from SEOPress / All in One SEO**
 - [ ] **Automated Plugin Check in CI** — today's zero-error result was a manual, one-time verification against a real WordPress instance; without CI it can regress silently on the next change
+
+---
+
+## 📈 Growth Strategy — Road to 1,000 Active Installs
+
+Full working checklist: **[GROWTH-CHECKLIST.md](GROWTH-CHECKLIST.md)** · Business case: **[STRATEGY.md](STRATEGY.md)**
+
+**Current position (2026-08-17):** listed 5 months · **0 active installs** · **0 ratings** · Plugin Check clean.
+
+The uncomfortable finding, and the thing this whole strategy turns on: **the product is not the bottleneck.** All four roadmap phases shipped, the build is verifiably clean, and the install count never moved. WordPress.org search ranks primarily on installs and ratings, so a plugin with neither is invisible for every competitive term. No further feature work breaks that loop — only traffic from outside wp.org does.
+
+### The two gates
+
+| Gate | Why it is the constraint |
+|---|---|
+| **First ~10 users** | Hand-earned from external content. No shortcut exists. |
+| **First ~10 reviews** | The compounding threshold. Below it every install is manual; above it, directory search starts working for you. Every competitor has 135–27,817 ratings; we have 0. |
+
+### What the plugin does to help itself
+
+- **Review prompt** — waits 14 days *and* until the plugin is actually configured, appears only on our own screens and the dashboard, permanently dismissible in one click.
+- **Deactivation survey** — asks why on deactivation. Never blocks it, and transmits nothing unless the user explicitly chooses to send.
+- **Post-update notice** — dismissible link to the changelog after an upgrade.
+
+### A note on activation redirects
+
+A frequent request is to open the plugin's home page automatically on install or update. We deliberately **do not** do this, and the notice above exists instead. Redirecting to an *external* site is the textbook case of the admin-hijacking that WordPress.org guidelines prohibit, and it risks removal from the directory — which would end the growth effort outright. It also breaks bulk updates (ten plugins would fire ten redirects), and popup-based variants are silently blocked by browsers anyway. A dismissible notice reaches the same page, is one click, and cannot get the plugin pulled.
+
+### Realistic timeline
+
+| Milestone | Real trigger | Window |
+|---|---|---|
+| 0 → 10 | External content ranks, or a WP-news mention | Months 1–3 from first publishing |
+| 10 → 50 | First ~5 genuine reviews | Months 3–6 |
+| 50 → 500 | 10+ ratings; wp.org search starts contributing | Months 6–12 |
+| 500 → 1,000 | Long-tail tags earn their own traffic | Months 12–18 |
+
+1,000 active installs is a **12–18 month** goal in the most saturated category on wp.org, starting from zero. The next action is not code — it is publishing the two drafts in [`docs/marketing/`](docs/marketing/).
 
 ---
 

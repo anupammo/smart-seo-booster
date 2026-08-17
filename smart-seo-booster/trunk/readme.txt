@@ -4,7 +4,7 @@ Tags: ai seo, llms txt, core web vitals, faq schema, breadcrumbs
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 7.0
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,11 @@ No. It uses minimal hooks and outputs schema only in the footer, with no externa
 
 == Changelog ==
 
+= 2.2.3 =
+* New: When you deactivate the plugin, a short optional survey asks what went wrong. Deactivation is never blocked, and nothing is sent anywhere unless you choose to send it.
+* New: After an update, a dismissible notice links to the changelog so you can see what changed.
+* Improvement: The admin-menu icon is now a 40px image instead of the 256px original, cutting about 29KB from every admin page load.
+
 = 2.2.2 =
 * Fix: The Smart SEO icon in the admin menu displayed at full size in 2.2.1, pushing the menu out of shape. It is now constrained to the normal menu-icon size.
 
@@ -196,6 +201,9 @@ Editor & experience
 * Initial release with schema injection, audit report, and internal link analysis
 
 == Upgrade Notice ==
+
+= 2.2.3 =
+Adds an optional deactivation survey and a post-update changelog notice, and trims about 29KB from every admin page load.
 
 = 2.2.2 =
 Fixes an oversized admin-menu icon introduced in 2.2.1. Recommended for anyone on 2.2.1.

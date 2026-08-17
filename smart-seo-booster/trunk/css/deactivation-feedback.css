@@ -1,0 +1,161 @@
+/**
+ * Smart SEO Booster — deactivation feedback modal.
+ * Loaded only on plugins.php. Uses logical properties for RTL safety.
+ */
+
+.ssb-fb-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.ssb-fb-overlay[hidden] {
+	display: none;
+}
+
+body.ssb-fb-open {
+	overflow: hidden;
+}
+
+.ssb-fb-modal {
+	inline-size: 100%;
+	max-inline-size: 520px;
+	max-block-size: 90vh;
+	overflow-y: auto;
+	background: #fff;
+	color: #1e293b;
+	border-radius: 10px;
+	padding: 24px;
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.ssb-fb-head {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-block-end: 12px;
+}
+
+.ssb-fb-head img {
+	flex: 0 0 auto;
+	border-radius: 6px;
+}
+
+.ssb-fb-modal h2 {
+	margin: 0;
+	font-size: 18px;
+	line-height: 1.3;
+}
+
+.ssb-fb-intro {
+	margin: 0 0 16px;
+	color: #50575e;
+	font-size: 13px;
+}
+
+.ssb-fb-reasons {
+	margin: 0 0 16px;
+	padding: 0;
+	list-style: none;
+}
+
+.ssb-fb-reasons li {
+	margin-block-end: 6px;
+}
+
+.ssb-fb-reasons label {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	padding: 7px 10px;
+	border: 1px solid #dcdcde;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.ssb-fb-reasons label:hover {
+	background: #f6f7f7;
+	border-color: #c3c4c7;
+}
+
+.ssb-fb-reasons input[type="radio"] {
+	margin-block-start: 2px;
+}
+
+.ssb-fb-details-label {
+	display: block;
+	margin-block-end: 4px;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+#ssb-fb-details {
+	inline-size: 100%;
+	margin-block-end: 12px;
+}
+
+.ssb-fb-privacy {
+	margin: 0 0 16px;
+	padding: 10px 12px;
+	background: #f6f7f7;
+	border-radius: 6px;
+	color: #50575e;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.ssb-fb-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.ssb-fb-actions .ssb-fb-cancel {
+	margin-inline-start: auto;
+	color: #50575e;
+	text-decoration: none;
+}
+
+/* Dark-mode parity with the rest of the plugin's admin UI. */
+@media (prefers-color-scheme: dark) {
+	.ssb-fb-modal {
+		background: #1e293b;
+		color: #e2e8f0;
+	}
+
+	.ssb-fb-intro,
+	.ssb-fb-privacy,
+	.ssb-fb-actions .ssb-fb-cancel {
+		color: #94a3b8;
+	}
+
+	.ssb-fb-reasons label {
+		border-color: #334155;
+	}
+
+	.ssb-fb-reasons label:hover {
+		background: #0f172a;
+		border-color: #475569;
+	}
+
+	.ssb-fb-privacy {
+		background: #0f172a;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.ssb-fb-modal {
+		padding: 18px;
+	}
+
+	.ssb-fb-actions .ssb-fb-cancel {
+		margin-inline-start: 0;
+	}
+}

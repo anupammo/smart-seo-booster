@@ -190,6 +190,10 @@ msgstr ""
 msgid "Answer"
 msgstr ""
 
+#: includes/class-deactivation-feedback.php:99
+msgid "Anything else? (optional)"
+msgstr ""
+
 #: includes/class-blocks.php:415
 msgid "Article footer (dates + share)"
 msgstr ""
@@ -240,6 +244,10 @@ msgstr ""
 
 #: includes/class-meta-fields.php:167
 msgid "Basic SEO"
+msgstr ""
+
+#: includes/class-deactivation-feedback.php:80
+msgid "Before you go — what went wrong?"
 msgstr ""
 
 #: includes/class-setup-wizard.php:196
@@ -316,6 +324,10 @@ msgstr ""
 
 #: js/blocks.js:115
 msgid "Call to Action (Smart SEO)"
+msgstr ""
+
+#: includes/class-deactivation-feedback.php:115
+msgid "Cancel"
 msgstr ""
 
 #: js/block-editor.js:148
@@ -408,6 +420,10 @@ msgstr ""
 
 #: includes/class-settings.php:30
 msgid "Disable the default WordPress sitemap"
+msgstr ""
+
+#: includes/class-whats-new.php:118
+msgid "Dismiss"
 msgstr ""
 
 #: js/local-seo-block.js:28
@@ -586,6 +602,18 @@ msgstr ""
 msgid "How-To Guide — numbered steps with optional total time, outputting HowTo schema."
 msgstr ""
 
+#: includes/class-deactivation-feedback.php:38
+msgid "I could not work out how to use it"
+msgstr ""
+
+#: includes/class-deactivation-feedback.php:36
+msgid "I found a plugin I like better"
+msgstr ""
+
+#: includes/class-deactivation-feedback.php:33
+msgid "I only needed it temporarily"
+msgstr ""
+
 #: templates/audit-report.php:106
 msgid "Images missing alt"
 msgstr ""
@@ -626,8 +654,20 @@ msgstr ""
 msgid "Internal Links:"
 msgstr ""
 
+#: includes/class-deactivation-feedback.php:37
+msgid "It broke my site or caused an error"
+msgstr ""
+
+#: includes/class-deactivation-feedback.php:34
+msgid "It did not work the way I expected"
+msgstr ""
+
 #: includes/class-review-prompt.php:141
 msgid "It is built and maintained by one developer, and given away free. A short review on WordPress.org helps other site owners find it — it is the only thing that really moves the needle for a small plugin."
+msgstr ""
+
+#: includes/class-deactivation-feedback.php:35
+msgid "It is missing a feature I need"
 msgstr ""
 
 #: includes/class-seo-score-display.php:878
@@ -786,6 +826,10 @@ msgstr ""
 msgid "No-indexed"
 msgstr ""
 
+#: includes/class-deactivation-feedback.php:104
+msgid "Nothing is sent anywhere unless you choose \"Send feedback\". It opens a page where you can see exactly what is being shared before submitting it. No site data, URLs or personal details are collected."
+msgstr ""
+
 #: js/block-editor.js:169
 msgid "OG description"
 msgstr ""
@@ -812,6 +856,10 @@ msgstr ""
 
 #: includes/class-pagespeed.php:41
 msgid "Only URLs on this site can be checked."
+msgstr ""
+
+#: includes/class-whats-new.php:115
+msgid "Open settings"
 msgstr ""
 
 #: includes/class-settings.php:111
@@ -1034,7 +1082,7 @@ msgstr ""
 msgid "Run a Page Speed check"
 msgstr ""
 
-#: includes/class-admin-ui.php:229
+#: includes/class-admin-ui.php:252
 msgid "Running Lighthouse audit… this can take 20–30 seconds."
 msgstr ""
 
@@ -1114,8 +1162,20 @@ msgstr ""
 msgid "Search: %s"
 msgstr ""
 
+#: includes/class-whats-new.php:108
+msgid "See what changed, and what is coming next."
+msgstr ""
+
+#: includes/class-whats-new.php:112
+msgid "See what's new"
+msgstr ""
+
 #: js/blocks.js:104
 msgid "Select at least one network in the sidebar to preview the share buttons."
+msgstr ""
+
+#: includes/class-deactivation-feedback.php:109
+msgid "Send feedback &amp; deactivate"
 msgstr ""
 
 #: includes/class-meta-templates.php:42 includes/class-setup-wizard.php:176
@@ -1178,6 +1238,10 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
+#: includes/class-deactivation-feedback.php:112
+msgid "Skip &amp; deactivate"
+msgstr ""
+
 #: includes/class-admin-ui.php:13 includes/class-blocks.php:37 includes/class-blocks.php:411 js/block-editor.js:101 js/block-editor.js:134 js/block-editor.js:137
 msgid "Smart SEO"
 msgstr ""
@@ -1186,8 +1250,16 @@ msgstr ""
 msgid "Smart SEO Booster"
 msgstr ""
 
+#: includes/class-deactivation-feedback.php:84
+msgid "Smart SEO Booster is built and maintained by one developer. Knowing why you are leaving is the single most useful thing you can share — it decides what gets fixed next."
+msgstr ""
+
 #: includes/class-setup-wizard.php:203
 msgid "Smart SEO Booster is configured. Here is what to do next:"
+msgstr ""
+
+#: includes/class-whats-new.php:103
+msgid "Smart SEO Booster is now on version %s."
 msgstr ""
 
 #: includes/class-tutorial.php:119
@@ -1234,7 +1306,11 @@ msgstr ""
 msgid "Social Share (Smart SEO)"
 msgstr ""
 
-#: includes/class-admin-ui.php:230
+#: includes/class-deactivation-feedback.php:39
+msgid "Something else"
+msgstr ""
+
+#: includes/class-admin-ui.php:253
 msgid "Something went wrong. Please try again."
 msgstr ""
 
